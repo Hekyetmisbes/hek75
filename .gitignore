@@ -3,3 +3,4 @@ dist/
 .vite/
 vite-dev*.log
 vite-dev*.err
+.playwright-mcp/
