@@ -1,226 +1,247 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef, useImperativeHandle, useCallback, useRef } from "react";
+import { motion, useAnimate } from "motion/react";
 
-const SvgIcon = ({ className = '', size = 20, viewBox = "0 0 24 24", children }) => (
-  <svg
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox={viewBox}
-    width={size}
-    height={size}
-    className={`inline-block align-middle ${className}`}
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    {children}
-  </svg>
-);
+// --- ANIMATED ICONS ---
 
-const Gamepad2 = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <rect x="3" y="8" width="18" height="10" rx="4" />
-    <path d="M8 13h4" />
-    <path d="M10 11v4" />
-    <circle cx="16" cy="12" r="1" fill="currentColor" stroke="none" />
-    <circle cx="18" cy="14" r="1" fill="currentColor" stroke="none" />
-  </SvgIcon>
-);
+const InstagramIcon = forwardRef(
+  ({ size = 24, color = "currentColor", strokeWidth = 2, className = "" }, ref) => {
+    const [scope, animate] = useAnimate();
 
-const Code2 = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="m8 17-5-5 5-5" />
-    <path d="m16 7 5 5-5 5" />
-    <path d="m14 4-4 16" />
-  </SvgIcon>
-);
+    const start = useCallback(async () => {
+      animate(".ig-body", { scale: [1, 1.05, 1] }, { duration: 0.3, ease: "easeOut" });
+      await animate(".ig-lens", { scale: [1, 1.2, 1] }, { duration: 0.25, ease: "easeOut" });
+      animate(".ig-dot", { opacity: [1, 0, 1] }, { duration: 0.2, ease: "easeInOut" });
+    }, [animate]);
 
-const Cpu = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <rect x="7" y="7" width="10" height="10" rx="2" />
-    <path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4" />
-  </SvgIcon>
-);
+    const stop = useCallback(() => {
+      animate(".ig-body, .ig-lens, .ig-dot", { scale: 1, opacity: 1 }, { duration: 0.2, ease: "easeInOut" });
+    }, [animate]);
 
-const Trophy = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="M8 4h8v4a4 4 0 0 1-8 0V4Z" />
-    <path d="M10 16h4M9 20h6" />
-    <path d="M8 6H5a2 2 0 0 0 0 4h3M16 6h3a2 2 0 0 1 0 4h-3" />
-  </SvgIcon>
-);
+    useImperativeHandle(ref, () => ({
+      startAnimation: start,
+      stopAnimation: stop,
+    }));
 
-const Briefcase = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <rect x="3" y="7" width="18" height="12" rx="2" />
-    <path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 12h18" />
-  </SvgIcon>
-);
-
-const CharacterIcon = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <circle cx="12" cy="8" r="3" />
-    <path d="M7 20v-2a5 5 0 0 1 10 0v2" />
-    <path d="M9 13l-2 3M15 13l2 3" />
-  </SvgIcon>
-);
-
-const MapIcon = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z" />
-    <path d="M9 4v13.5M15 6.5V20" />
-  </SvgIcon>
-);
-
-const StairsIcon = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="M4 19h4v-4h4v-4h4V7h4" />
-  </SvgIcon>
-);
-
-const StarIcon = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.2 6.5 20.2l1-6.2L3 9.6l6.2-.9Z" />
-  </SvgIcon>
-);
-
-const GraduationCap = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="m2 9 10-5 10 5-10 5Z" />
-    <path d="M6 11v4c0 1.5 3 3 6 3s6-1.5 6-3v-4" />
-    <path d="M22 9v6" />
-  </SvgIcon>
-);
-
-const Github = ({ className = '', size = 20 }) => (
-  <svg
-    aria-hidden="true"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width={size}
-    height={size}
-    className={`inline-block align-middle ${className}`}
-    fill="currentColor"
-  >
-    <path d="M12 .5C5.73.5.75 5.48.75 11.75c0 5.02 3.25 9.28 7.76 10.79.57.1.78-.25.78-.56v-2.15c-3.16.69-3.83-1.34-3.83-1.34-.52-1.3-1.27-1.65-1.27-1.65-1.04-.71.08-.69.08-.69 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.34.96.1-.74.4-1.25.72-1.53-2.52-.29-5.17-1.26-5.17-5.61 0-1.24.44-2.25 1.17-3.05-.12-.29-.51-1.46.11-3.04 0 0 .95-.3 3.11 1.17a10.8 10.8 0 0 1 5.66 0c2.16-1.47 3.11-1.17 3.11-1.17.62 1.58.23 2.75.12 3.04.73.8 1.17 1.81 1.17 3.05 0 4.36-2.66 5.31-5.2 5.59.41.35.77 1.04.77 2.1v3.12c0 .31.21.67.79.56A11.26 11.26 0 0 0 23.25 11.75C23.25 5.48 18.27.5 12 .5Z" />
-  </svg>
-);
-
-const Linkedin = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <rect x="4" y="4" width="16" height="16" rx="2" />
-    <path d="M8 11v5M8 8h.01M12 16v-3a2 2 0 0 1 4 0v3M12 11v5" />
-  </SvgIcon>
-);
-
-const Mail = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <rect x="3" y="5" width="18" height="14" rx="2" />
-    <path d="m4 7 8 6 8-6" />
-  </SvgIcon>
-);
-
-const MapPin = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="M12 22s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" />
-    <circle cx="12" cy="11" r="2.5" />
-  </SvgIcon>
-);
-
-const Phone = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="M22 16.5v2a2 2 0 0 1-2.2 2 19.7 19.7 0 0 1-8.6-3.1 19.3 19.3 0 0 1-6-6A19.7 19.7 0 0 1 2.1 2.8 2 2 0 0 1 4.1 1h2a2 2 0 0 1 2 1.7c.1.8.4 1.6.7 2.3a2 2 0 0 1-.5 2.1L7 8.4a16 16 0 0 0 6.6 6.6l1.3-1.3a2 2 0 0 1 2.1-.5c.7.3 1.5.6 2.3.7a2 2 0 0 1 1.7 2Z" />
-  </SvgIcon>
-);
-
-const ExternalLink = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="M14 5h5v5" />
-    <path d="M10 14 19 5" />
-    <path d="M19 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4" />
-  </SvgIcon>
-);
-
-const Play = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <polygon points="8,6 18,12 8,18" fill="currentColor" stroke="none" />
-  </SvgIcon>
-);
-
-const Terminal = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="m6 8 4 4-4 4" />
-    <path d="M12 16h6" />
-    <rect x="3" y="4" width="18" height="16" rx="2" />
-  </SvgIcon>
-);
-
-const ChevronDown = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="m6 9 6 6 6-6" />
-  </SvgIcon>
-);
-
-const Bell = ({ className = '', size = 20 }) => (
-  <SvgIcon className={className} size={size}>
-    <path d="M6 8a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6" />
-    <path d="M10 18a2 2 0 0 0 4 0" />
-  </SvgIcon>
-);
-
-
-const trackEvent = (eventName, props = {}) => {
-  if (typeof window === "undefined") return;
-  if (typeof window.gtag === "function") {
-    window.gtag("event", eventName, props);
+    return (
+      <div ref={scope} className={`inline-flex ${className}`}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke={color}
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <motion.path
+            className="ig-body"
+            style={{ transformOrigin: "50% 50%" }}
+            d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"
+          />
+          <motion.path
+            className="ig-lens"
+            style={{ transformOrigin: "50% 50%" }}
+            d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"
+          />
+          <motion.path className="ig-dot" d="M16.5 7.5v.01" />
+        </svg>
+      </div>
+    );
   }
-  if (typeof window.plausible === "function") {
-    window.plausible(eventName, { props });
+);
+
+const LinkedinIcon = forwardRef(
+  ({ size = 24, color = "currentColor", strokeWidth = 2, className = "" }, ref) => {
+    const [scope, animate] = useAnimate();
+
+    const start = useCallback(async () => {
+      animate(".border", { scale: [1, 1.05, 1] }, { duration: 0.4, ease: "easeInOut" });
+      await animate(".lines", { pathLength: [0, 1] }, { duration: 0.5, ease: "easeOut" });
+    }, [animate]);
+
+    const stop = useCallback(() => {
+      animate(".lines, .border", { pathLength: 1, scale: 1 }, { duration: 0.2 });
+    }, [animate]);
+
+    useImperativeHandle(ref, () => ({
+      startAnimation: start,
+      stopAnimation: stop,
+    }));
+
+    return (
+      <motion.svg
+        ref={scope}
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <motion.path className="lines" d="M8 11v5" initial={{ pathLength: 1 }} />
+        <motion.path className="lines" d="M8 8v.01" initial={{ pathLength: 1 }} />
+        <motion.path className="lines" d="M12 16v-5" initial={{ pathLength: 1 }} />
+        <motion.path className="lines" d="M16 16v-3a2 2 0 1 0 -4 0" initial={{ pathLength: 1 }} />
+        <motion.path
+          className="border"
+          d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z"
+          style={{ transformOrigin: "center" }}
+        />
+      </motion.svg>
+    );
   }
-};
+);
+
+const MailIcon = forwardRef(
+  ({ size = 24, color = "currentColor", strokeWidth = 2, className = "" }, ref) => {
+    const [scope, animate] = useAnimate();
+
+    const start = useCallback(async () => {
+      await animate(".mail-open", { rotateX: -60, transformOrigin: "50% 0%" }, { duration: 0.5, ease: "easeInOut" });
+    }, [animate]);
+
+    const stop = useCallback(() => {
+      animate(".mail-open", { rotateX: 0, transformOrigin: "50% 0%" }, { duration: 0.5, ease: "easeInOut" });
+    }, [animate]);
+
+    useImperativeHandle(ref, () => ({
+      startAnimation: start,
+      stopAnimation: stop,
+    }));
+
+    return (
+      <motion.svg
+        ref={scope}
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={`${className} perspective-distant`}
+      >
+        <motion.path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <motion.path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+        <motion.path d="M3 7l9 6l9 -6" className="mail-open" />
+      </motion.svg>
+    );
+  }
+);
+
+const GithubIcon = forwardRef(
+  ({ size = 24, color = "currentColor", strokeWidth = 2, className = "" }, ref) => {
+    const [scope, animate] = useAnimate();
+
+    const start = useCallback(async () => {
+      await animate(".github-icon", { scale: [1, 1.1, 1], rotate: [0, -5, 5, 0] }, { duration: 0.5, ease: "easeInOut" });
+    }, [animate]);
+
+    const stop = useCallback(() => {
+      animate(".github-icon", { scale: 1, rotate: 0 }, { duration: 0.2, ease: "easeOut" });
+    }, [animate]);
+
+    useImperativeHandle(ref, () => ({
+      startAnimation: start,
+      stopAnimation: stop,
+    }));
+
+    return (
+      <motion.svg
+        ref={scope}
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={`inline-flex items-center justify-center ${className}`}
+        style={{ overflow: "visible" }}
+      >
+        <motion.g className="github-icon" style={{ transformOrigin: "center" }}>
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+        </motion.g>
+      </motion.svg>
+    );
+  }
+);
+
+const ArrowBigDownDashIcon = forwardRef(
+  ({ size = 32, className = "", color = "currentColor", strokeWidth = "2", onClick }, ref) => {
+    const [scope, animate] = useAnimate();
+
+    const start = useCallback(async () => {
+      animate(".arrow", { y: 3 }, { duration: 0.4, ease: "easeOut" });
+      animate(".dash", { opacity: 0.4 }, { duration: 0.4 });
+    }, [animate]);
+
+    const stop = useCallback(async () => {
+      animate(".arrow", { y: 0 }, { duration: 0.3, ease: "easeIn" });
+      animate(".dash", { opacity: 1 }, { duration: 0.3 });
+    }, [animate]);
+
+    useImperativeHandle(ref, () => ({
+      startAnimation: start,
+      stopAnimation: stop,
+    }));
+
+    return (
+      <motion.svg
+        ref={scope}
+        onHoverStart={start}
+        onHoverEnd={stop}
+        onClick={onClick}
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        color={color}
+        className={`cursor-pointer ${className}`}
+        style={{ overflow: "visible" }}
+      >
+        <motion.path
+          className="arrow"
+          d="M15 10a1 1 0 0 0 1 1h2.939a1 1 0 0 1 .75 1.811l-6.835 6.836a1.207 1.207 0 0 1-1.707 0L4.31 12.81a1 1 0 0 1 .75-1.811H8a1 1 0 0 0 1-1V8a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1z"
+        />
+        <motion.path className="dash" d="M9 4h6" />
+      </motion.svg>
+    );
+  }
+);
+
+InstagramIcon.displayName = "InstagramIcon";
+LinkedinIcon.displayName = "LinkedinIcon";
+MailIcon.displayName = "MailIcon";
+GithubIcon.displayName = "GithubIcon";
+ArrowBigDownDashIcon.displayName = "ArrowBigDownDashIcon";
+
 const Portfolio = () => {
-  const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
-  const [typedText, setTypedText] = useState('');
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [showLatestUpdate, setShowLatestUpdate] = useState(true);
-  const [showUpdatesPanel, setShowUpdatesPanel] = useState(false);
-  const fullText = "Computer Engineer | Game Developer";
-  const githubProfileUrl = "https://github.com/Hekyetmisbes";
-  const linkedinProfileUrl = "https://www.linkedin.com/in/harunemrecankarabag/";
-  const cvUrl = "/assets/Harun-Emrecan-Karabag-CV.pdf";
-  const updates = [
-    {
-      title: "Delivery Driver demo is now live on itch.io",
-      details: "The current demo build is playable on itch.io, so visitors can jump into the delivery loop directly from the portfolio.",
-      ctaLabel: "Play Demo",
-      ctaUrl: "https://hekyetmisbes.itch.io/delivery-driver"
-    },
-    {
-      title: "Delivery Driver got a new update",
-      details: "Added phone-based delivery acceptance, improved delivery flow, and tuned checkpoint balance."
-    }
-  ];
-  const latestUpdate = updates[0];
+  const mailRef = useRef(null);
+  const linkedinRef = useRef(null);
+  const instagramRef = useRef(null);
+  const githubRef = useRef(null);
 
-  // Typing effect for Hero
   useEffect(() => {
-    let index = 0;
-    setTypedText("");
-    const interval = setInterval(() => {
-      setTypedText(fullText.slice(0, index + 1));
-      index++;
-      if (index === fullText.length) clearInterval(interval);
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Scroll listener
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -228,47 +249,33 @@ const Portfolio = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
-      setActiveSection(id);
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  const openProjectFromCard = (project) => {
-    const primaryLink = project.links?.[0];
-    const primaryUrl = primaryLink?.url;
-    const shouldOpenNewTab = primaryLink?.newTab ?? true;
-    if (!primaryUrl) return;
-    trackEvent("project_card_click", { project: project.title, url: primaryUrl });
-    if (shouldOpenNewTab) {
-      window.open(primaryUrl, "_blank", "noopener,noreferrer");
-      return;
-    }
-    window.location.href = primaryUrl;
+
+  const enterProject = (project) => {
+    window.open(project.link, "_blank", "noopener,noreferrer");
   };
 
   const handleProjectCardClick = (event, project) => {
-    if (event.target.closest("a, button")) return;
-    openProjectFromCard(project);
+    if (event.target.closest("a")) return;
+    enterProject(project);
   };
 
   const handleProjectCardKeyDown = (event, project) => {
-    if (event.target.closest("a, button")) return;
+    if (event.target.closest("a")) return;
     if (event.key !== "Enter" && event.key !== " ") return;
     event.preventDefault();
-    openProjectFromCard(project);
+    enterProject(project);
   };
-  const getProjectLinkClasses = (kind = "secondary") =>
-    kind === "primary"
-      ? "inline-flex items-center gap-2 rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-2 text-sm font-bold text-cyan-200 transition-all hover:border-cyan-300 hover:bg-cyan-400/15 hover:text-white"
-      : "inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 px-3 py-2 text-sm font-bold text-slate-300 transition-all hover:border-slate-500 hover:text-white";
 
-  // --- DATA FROM CV ---
   const experiences = [
     {
       role: "Co-Founder",
       company: "Fiction Technology Studios",
       location: "Ankara, Turkey",
-      date: "December 2025 - Present",
-      desc: "Co-founded an indie studio. Led product planning, task tracking, and delivery processes. Built Kotlin-based mobile applications and managed product roadmaps. Developed the studio website using React.",
+      date: "December 2025 - April 2026",
+      desc: "Co-founded an indie studio. Led product planning, task tracking, and delivery processes. Built Kotlin-based mobile applications and managed product roadmaps.",
       tech: ["Project Management", "Kotlin", "React"]
     },
     {
@@ -276,7 +283,7 @@ const Portfolio = () => {
       company: "Erciyes University IT Dept.",
       location: "Kayseri",
       date: "July 2025 - August 2025",
-      desc: "Developed a Personnel Directory system using ASP.NET Core 8 and Clean Architecture. Integrated Elasticsearch, built a role-based admin panel, and designed the UI with Bootstrap 5.",
+      desc: "Developed a Personnel Directory system using ASP.NET Core 8 and Clean Architecture. Integrated Elasticsearch and built a role-based admin panel.",
       tech: ["ASP.NET Core", "Elasticsearch", "CQRS", "Docker"]
     },
     {
@@ -284,573 +291,262 @@ const Portfolio = () => {
       company: "Fotonik Teknoloji A.Ş.",
       location: "Ankara",
       date: "July 2024 - August 2024",
-      desc: "Designed and improved hardware components. Conducted testing and performance analysis. Performed troubleshooting and prepared technical documentation.",
+      desc: "Designed and improved hardware components. Conducted testing and performance analysis.",
       tech: ["Hardware Design", "Testing", "Documentation"]
-    },
-    {
-      role: "STAR Research Intern Fellow",
-      company: "TÜBİTAK",
-      location: "Remote / Hybrid",
-      date: "February 2024 - July 2024",
-      desc: "Built an agent-based simulation model for electricity markets using AI-assisted learning, forecasting, and optimization algorithms.",
-      tech: ["AI", "Simulation", "Optimization"]
     }
   ];
 
-    const projects = [
+  const projects = [
     {
       title: "The Final Loop",
       genre: "Psychological Puzzle / Pitch",
       engine: "Unreal",
-      status: "Pitch Available",
-      desc: "A written pitch page for a psychological puzzle escape-room project, covering concept, atmosphere, systems, roadmap, and delivery plan.",
-      technologies: ["HTML", "CSS", "JavaScript"],
-      impact: "Turns the project into a shareable standalone presentation at the /thefinalloop/ route.",
-      links: [
-        { label: "Pitch", url: "/thefinalloop/", event: "project_internal_click", newTab: false }
-      ]
+      desc: "A written pitch page for a psychological puzzle escape-room project, covering concept, atmosphere, and systems.",
+      link: "/projects/thefinalloop/"
     },
     {
       title: "The Unlit Door",
       genre: "Psychological Puzzle / Pitch",
       engine: "Unity",
-      status: "Pitch Available",
-      desc: "A written pitch page for a psychological narrative puzzle project, detailing concept, atmosphere, systems, and production plan.",
-      technologies: ["Unity", "C#", "Narrative Design"],
-      impact: "Makes the project accessible as a dedicated showcase at the /theunlitdoor/ route.",
-      links: [
-        { label: "Pitch", url: "/theunlitdoor/", event: "project_internal_click", newTab: false }
-      ]
+      desc: "A written pitch page for a psychological narrative puzzle project, detailing concept and atmosphere.",
+      link: "/projects/theunlitdoor/"
     },
     {
       title: "Delivery Driver",
       genre: "3D Simulation",
       engine: "Unity",
-      status: "In Development",
-      desc: "A Unity 3D game where you play as a courier delivering orders to different locations across the city.",
-      technologies: ["Unity", "C#", "3D Physics"],
-      impact: "Reduced new route integration time with a modular mission flow and now offers a playable public demo on itch.io.",
-      links: [
-        { label: "Play on itch.io", url: "https://hekyetmisbes.itch.io/delivery-driver", event: "project_demo_click", kind: "primary" },
-        { label: "View Source", url: "https://github.com/Hekyetmisbes/Delivery-Driver", event: "github_click" }
-      ]
+      desc: "A Unity 3D game where you play as a courier delivering orders across the city.",
+      link: "https://hekyetmisbes.itch.io/delivery-driver"
     },
     {
       title: "Movidle Game",
       genre: "Web Game / Puzzle",
       engine: "Unity",
-      status: "Released",
-      desc: "A movie guessing game featuring random titles from the IMDb Top 250, with color-coded feedback.",
-      technologies: ["Unity", "C#", "WebGL"],
-      impact: "Increased repeat visits through a daily replay loop.",
-      links: [
-        { label: "View Source", url: "https://github.com/Hekyetmisbes/Movidle-Game", event: "github_click" },
-        { label: "Demo", url: "https://github.com/Hekyetmisbes?tab=repositories&q=movidle+demo&type=&language=&sort=", event: "project_demo_click" }
-      ]
-    },
-    {
-      title: "Flag Quiz",
-      genre: "Mobile / Puzzle",
-      engine: "Unity 2D",
-      status: "Released",
-      desc: "An Android flag guessing game with Firebase integration, including name/code retrieval, image upload, and high-score tracking.",
-      technologies: ["Unity 2D", "Firebase", "Android"],
-      impact: "Reduced manual operations by enabling live database-driven content updates.",
-      links: [
-        { label: "Repo", url: "https://github.com/Hekyetmisbes/flag-quiz-game", event: "github_click" },
-        { label: "Demo", url: "https://github.com/Hekyetmisbes?tab=repositories&q=flag+quiz+apk&type=&language=&sort=", event: "project_demo_click" }
-      ]
-    },
-    {
-      title: "Platform",
-      genre: "2D Platformer",
-      engine: "Unity",
-      status: "Demo Available",
-      desc: "A 10-level Unity-based 2D platformer. Overcome obstacles and collect 30 stars.",
-      technologies: ["Unity", "C#", "Level Design"],
-      impact: "Increased iteration speed through a reusable level structure.",
-      links: [
-        { label: "View Source", url: "https://github.com/Hekyetmisbes/platform", event: "github_click" }
-      ]
+      desc: "A movie guessing game featuring titles from the IMDb Top 250 with color-coded feedback.",
+      link: "https://github.com/Hekyetmisbes/Movidle-Game"
     }
   ];
+
   const skills = {
     engines: [
-      { name: "Unreal Engine", level: 90 },
-      { name: "Unity", level: 95 }
+      { name: "Unity", level: 85, color: "vibrant-blue" },
+      { name: "Unreal Engine", level: 60, color: "vibrant-blue" }
     ],
     languages: [
-      { name: "C#", level: 95 },
-      { name: "Kotlin", level: 85 },
-      { name: "Java", level: 80 },
-      { name: "JavaScript/React", level: 85 }
+      { name: "C#", level: 85, color: "pastel-coral" },
+      { name: "JavaScript/React", level: 75, color: "pastel-coral" },
+      { name: "Kotlin", level: 45, color: "pastel-coral" }
     ],
-    backend: [
-      { name: "ASP.NET Core", level: 80 },
-      { name: "EF Core", level: 75 },
-      { name: "Git / GitHub", level: 90 }
+    tools: [
+      { name: "Git / GitHub", level: 95, color: "pastel-green" },
+      { name: "ASP.NET Core", level: 80, color: "pastel-green" }
     ]
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500 selection:text-black overflow-x-hidden">
-      
-      {/* --- CRT SCANLINE EFFECT --- */}
-      <div className="fixed inset-0 pointer-events-none z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] opacity-20"></div>
-
-      {/* --- HUD NAVIGATION --- */}
-      <header>
-      <nav aria-label="Main navigation" className={`fixed top-0 w-full z-40 transition-all duration-300 border-b ${scrolled ? 'bg-slate-900/90 backdrop-blur-md border-cyan-500/30 py-3' : 'bg-transparent border-transparent py-6'}`}>
-        <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <Gamepad2 className="text-cyan-400 animate-pulse" />
-            <span className="text-xl font-bold tracking-tighter uppercase text-white">
-              HEK<span className="text-cyan-400">.dev</span>
-            </span>
-          </div>
-          <div className="hidden md:flex gap-8 text-sm font-mono uppercase tracking-widest">
-            {['Start', 'Stats', 'Quests', 'Levels', 'Side Quest'].map((item) => (
-              <button 
-                key={item}
-                onClick={() => scrollToSection(item === 'Start' ? 'hero' : item === 'Side Quest' ? 'sidequest' : item.toLowerCase())}
-                className="hover:text-cyan-400 transition-colors relative group"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
-              </button>
-            ))}
-            <div className="relative flex items-center gap-4">
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="hover:text-cyan-400 transition-colors relative group"
-              >
-                Contact
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
-              </button>
-              <button
-                aria-label="Toggle updates list"
-                onClick={() => setShowUpdatesPanel((prev) => !prev)}
-                className="text-slate-300 hover:text-cyan-400 transition-colors"
-              >
-                <Bell size={16} />
-              </button>
-              {showUpdatesPanel && (
-                <div className="absolute right-0 top-8 w-80 bg-slate-900/95 backdrop-blur border border-cyan-500/30 rounded-lg p-4 shadow-2xl z-50">
-                  <p className="text-cyan-400 font-bold text-xs uppercase tracking-wider mb-3">Updates</p>
-                  <div className="space-y-3">
-                    {updates.map((update, index) => (
-                      <div key={index} className="border border-slate-800 rounded-md p-3 bg-slate-950/80">
-                        <p className="text-slate-100 text-xs font-bold">{update.title}</p>
-                        <p className="text-slate-400 text-xs mt-1">{update.details}</p>
-                        {update.ctaUrl && update.ctaLabel && (
-                          <a
-                            href={update.ctaUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            onClick={() => trackEvent("project_demo_click", { project: "Delivery Driver", source: "updates_panel", label: update.ctaLabel })}
-                            className="mt-3 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-cyan-200 transition-colors hover:border-cyan-300 hover:text-white"
-                          >
-                            {update.ctaLabel} <ExternalLink size={12} />
-                          </a>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
+    <div className="portfolio-root">
+      {/* HUD Header */}
+      <header className={`hud-header ${scrolled ? 'scrolled' : ''}`}>
+        <div className="container hud-nav">
+          <div className="hud-logo"><span style={{ color: '#ffffff' }}>HEK</span>.dev</div>
+          <nav className="hud-menu">
+            <a href="#hero" className="hud-link" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>Start</a>
+            <a href="#stats" className="hud-link" onClick={(e) => { e.preventDefault(); scrollToSection('stats'); }}>Stats</a>
+            <a href="#quests" className="hud-link" onClick={(e) => { e.preventDefault(); scrollToSection('quests'); }}>Quests</a>
+            <a href="#levels" className="hud-link" onClick={(e) => { e.preventDefault(); scrollToSection('levels'); }}>Levels</a>
+            <a href="#contact" className="hud-link" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a>
+          </nav>
         </div>
-      </nav>
       </header>
 
       <main>
-      {/* --- HERO SECTION --- */}
-      <section id="hero" className="relative h-screen flex flex-col justify-center items-center text-center px-4 pt-16">
-        {/* Background Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-        
-        <div className="z-10 space-y-6 max-w-4xl">
-          <div className="inline-block px-3 py-1 mb-4 text-xs font-mono text-cyan-300 border border-cyan-500/30 rounded-full bg-cyan-500/10 backdrop-blur-sm">
-            STATUS: ONLINE / OPEN TO WORK
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-2">
-            Harun Emrecan <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600">Karabağ</span>
-          </h1>
-          
-          <div className="h-8 flex items-center justify-center">
-            <p className="text-xl md:text-2xl font-mono text-cyan-400">
-              {typedText}<span className="animate-blink">|</span>
+        {/* Hero Section */}
+        <section id="hero" className="hero">
+          <div className="container hero-content">
+            <h1>Harun Emrecan <span className="text-vibrant-blue">Karabağ</span></h1>
+            <p className="hero-subtitle">
+              Computer Engineer | Game Developer specializing in Unreal Engine and Unity systems.
             </p>
+            <div className="hero-btns" style={{ marginBottom: '3rem' }}>
+              <button className="btn btn-primary" onClick={() => scrollToSection('levels')}>View Projects</button>
+              <a href="/assets/Harun-Emrecan-Karabag-CV.pdf" target="_blank" className="btn btn-outline" style={{ marginLeft: '1rem' }}>Download CV</a>
+            </div>
+            <div className="hero-scroll-indicator" style={{ marginTop: '2rem' }}>
+              <ArrowBigDownDashIcon 
+                color="var(--accent-vibrant-blue)" 
+                size={42}
+                strokeWidth="2.25"
+                onClick={() => scrollToSection('stats')} 
+              />
+            </div>
           </div>
+        </section>
 
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed mt-6">
-            Graduated in Computer Engineering from Erciyes University. Specialized in Unreal Engine and Unity. 
-            Skilled in game programming, systems design, and real-time development.
-          </p>
-
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <button onClick={() => scrollToSection('levels')} className="px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded clip-path-polygon transition-transform hover:scale-105 shadow-[0_0_15px_rgba(8,145,178,0.5)] flex items-center gap-2 justify-center">
-              <Play size={18} fill="currentColor" />
-              VIEW PROJECTS
-            </button>
-            <a href={cvUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('cv_download', { source: 'hero' })} className="px-8 py-3 border border-cyan-500/50 hover:border-cyan-400 text-cyan-300 hover:text-cyan-200 font-bold rounded transition-colors flex items-center gap-2 justify-center">
-              <ExternalLink size={16} />
-              DOWNLOAD CV
-            </a>
-            <a href={linkedinProfileUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('linkedin_click', { source: 'hero' })} className="px-8 py-3 border border-blue-500/50 hover:border-blue-400 text-blue-300 hover:text-blue-200 font-bold rounded transition-colors flex items-center gap-2 justify-center">
-              <Linkedin size={18} />
-              LINKEDIN
-            </a>
-            <a href="mailto:harunemrecankarabag@gmail.com" onClick={() => trackEvent('contact_click', { source: 'hero' })} className="px-8 py-3 border border-slate-600 hover:border-purple-500 hover:text-purple-400 text-slate-300 font-bold rounded transition-colors flex items-center gap-2 justify-center">
-              <Mail size={18} />
-              SEND EMAIL
-            </a>
-          </div>
-        </div>
-
-        <div className="absolute bottom-10 animate-bounce cursor-pointer" onClick={() => scrollToSection('stats')}>
-          <ChevronDown className="text-cyan-500" size={32} />
-        </div>
-      </section>
-
-      {/* --- STATS / SKILLS SECTION --- */}
-      <section id="stats" className="py-20 bg-slate-900 relative">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center gap-4 mb-12">
-            <CharacterIcon className="text-purple-500" size={32} />
-            <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-wider">Character Stats</h2>
-            <div className="h-px bg-purple-500/50 flex-grow ml-4"></div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Skill Category 1 */}
-            <div className="bg-slate-950 p-6 rounded-lg border border-slate-800 hover:border-cyan-500/50 transition-colors shadow-lg">
-              <h3 className="text-xl font-bold text-cyan-400 mb-6 flex items-center gap-2">
-                <Gamepad2 size={20} /> Game Engines
-              </h3>
-              <div className="space-y-6">
-                {skills.engines.map(skill => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-1 text-sm font-mono">
-                      <span>{skill.name}</span>
-                      <span className="text-cyan-500">{skill.level}%</span>
+        {/* Stats Section */}
+        <section id="stats" className="section">
+          <div className="container">
+            <h2 className="panel-title">Character Stats</h2>
+            <div className="grid-3">
+              <div className="panel">
+                <h3 className="text-vibrant-blue mb-4">Engines</h3>
+                {skills.engines.map(s => (
+                  <div key={s.name} className="mb-4">
+                    <div className="flex-between">
+                      <span className="text-sm font-bold uppercase">{s.name}</span>
+                      <span className="text-vibrant-blue text-sm font-mono">{s.level}%</span>
                     </div>
-                    <div className="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
-                      <div className="bg-gradient-to-r from-cyan-600 to-blue-500 h-2.5 rounded-full" style={{ width: `${skill.level}%` }}></div>
-                    </div>
+                    <div className="stat-bar"><div className={`stat-fill ${s.color === 'vibrant-blue' ? '' : s.color}`} style={{ width: `${s.level}%` }}></div></div>
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Skill Category 2 */}
-            <div className="bg-slate-950 p-6 rounded-lg border border-slate-800 hover:border-purple-500/50 transition-colors shadow-lg">
-              <h3 className="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
-                <Code2 size={20} /> Languages
-              </h3>
-              <div className="space-y-6">
-                {skills.languages.map(skill => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-1 text-sm font-mono">
-                      <span>{skill.name}</span>
-                      <span className="text-purple-500">{skill.level}%</span>
+              <div className="panel">
+                <h3 className="text-pastel-coral mb-4">Languages</h3>
+                {skills.languages.map(s => (
+                  <div key={s.name} className="mb-4">
+                    <div className="flex-between">
+                      <span className="text-sm font-bold uppercase">{s.name}</span>
+                      <span className="text-pastel-coral text-sm font-mono">{s.level}%</span>
                     </div>
-                    <div className="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
-                      <div className="bg-gradient-to-r from-purple-600 to-pink-500 h-2.5 rounded-full" style={{ width: `${skill.level}%` }}></div>
-                    </div>
+                    <div className="stat-bar"><div className={`stat-fill ${s.color}`} style={{ width: `${s.level}%` }}></div></div>
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Skill Category 3 */}
-            <div className="bg-slate-950 p-6 rounded-lg border border-slate-800 hover:border-green-500/50 transition-colors shadow-lg">
-              <h3 className="text-xl font-bold text-green-400 mb-6 flex items-center gap-2">
-                <Terminal size={20} /> Backend & Tools
-              </h3>
-              <div className="space-y-6">
-                {skills.backend.map(skill => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-1 text-sm font-mono">
-                      <span>{skill.name}</span>
-                      <span className="text-green-500">{skill.level}%</span>
+              <div className="panel">
+                <h3 className="text-pastel-green mb-4">Tools</h3>
+                {skills.tools.map(s => (
+                  <div key={s.name} className="mb-4">
+                    <div className="flex-between">
+                      <span className="text-sm font-bold uppercase">{s.name}</span>
+                      <span className="text-pastel-green text-sm font-mono">{s.level}%</span>
                     </div>
-                    <div className="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
-                      <div className="bg-gradient-to-r from-green-600 to-emerald-500 h-2.5 rounded-full" style={{ width: `${skill.level}%` }}></div>
-                    </div>
+                    <div className="stat-bar"><div className={`stat-fill ${s.color}`} style={{ width: `${s.level}%` }}></div></div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* --- EXPERIENCE / QUEST LOG --- */}
-      <section id="quests" className="py-20 bg-slate-950">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center gap-4 mb-12">
-            <MapIcon className="text-yellow-500" size={32} />
-            <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-wider">Quest Log</h2>
-            <div className="h-px bg-yellow-500/50 flex-grow ml-4"></div>
-          </div>
-
-          <div className="relative border-l-2 border-slate-800 ml-3 md:ml-6 space-y-12">
-            {experiences.map((exp, index) => (
-              <div key={index} className="relative pl-8 md:pl-12">
-                {/* Timeline Dot */}
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-950 border-2 border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]"></div>
-                
-                <div className="flex flex-col md:flex-row gap-4 mb-2">
-                  <h3 className="text-2xl font-bold text-slate-100">{exp.role}</h3>
-                  <div className="flex items-center gap-2 text-yellow-500 font-mono text-sm bg-yellow-500/10 px-3 py-1 rounded w-fit">
-                    <span>{exp.date}</span>
-                  </div>
-                </div>
-                
-                <h4 className="text-lg text-cyan-400 mb-2 flex items-center gap-2">
-                  @{exp.company} <span className="text-slate-500 text-sm flex items-center gap-1"><MapPin size={12}/> {exp.location}</span>
-                </h4>
-                
-                <p className="text-slate-400 mb-4 max-w-3xl leading-relaxed">
-                  {exp.desc}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {exp.tech.map((t, i) => (
-                    <span key={i} className="text-xs font-mono text-slate-300 bg-slate-800 px-2 py-1 rounded border border-slate-700">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Education Mini Section */}
-          <div className="mt-20">
-             <div className="flex items-center gap-2 mb-8">
-              <GraduationCap className="text-blue-500" />
-              <h3 className="text-xl font-bold uppercase text-blue-400">Education Checkpoints</h3>
-             </div>
-             <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-slate-900/50 p-6 rounded border-l-4 border-blue-500">
-                  <h4 className="font-bold text-lg text-white">M.Sc. Computer Animation & Game Tech</h4>
-                  <p className="text-slate-400">Hacettepe University</p>
-                  <p className="text-sm font-mono text-blue-400 mt-2">2026 - Present</p>
-                </div>
-                <div className="bg-slate-900/50 p-6 rounded border-l-4 border-blue-500 opacity-75 hover:opacity-100 transition-opacity">
-                  <h4 className="font-bold text-lg text-white">B.Sc. Computer Engineering</h4>
-                  <p className="text-slate-400">Erciyes University (GPA: 3.00/4.00)</p>
-                  <p className="text-sm font-mono text-blue-400 mt-2">2020 - 2025</p>
-                </div>
-             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- PROJECTS / LEVELS --- */}
-      <section id="levels" className="py-20 bg-slate-900 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl"></div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="flex items-center gap-4 mb-12">
-            <StairsIcon className="text-red-500" size={32} />
-            <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-wider">Select Level</h2>
-            <div className="h-px bg-red-500/50 flex-grow ml-4"></div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                role="link"
-                tabIndex={0}
-                aria-label={`Open ${project.title} project link`}
-                onClick={(event) => handleProjectCardClick(event, project)}
-                onKeyDown={(event) => handleProjectCardKeyDown(event, project)}
-                className="group relative bg-slate-950 rounded-xl overflow-hidden border border-slate-800 hover:border-cyan-500 transition-all duration-300 hover:shadow-[0_0_20px_rgba(8,145,178,0.2)] hover:-translate-y-1 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70"
-              >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-purple-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                
-                <div className="p-8">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">{project.title}</h3>
-                      <span className="text-xs font-mono text-purple-400 uppercase tracking-widest">{project.genre}</span>
-                    </div>
-                    <div className="bg-slate-900 px-3 py-1 rounded text-xs font-bold text-slate-300 border border-slate-700">
-                      {project.engine}
-                    </div>
-                  </div>
-
-                  <p className="text-slate-400 mb-4">
-                    {project.desc}
-                  </p>
-
-                  <p className="text-sm text-cyan-300 mb-4">
-                    <strong>What did it achieve?</strong> {project.impact}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map((tech) => (
-                      <span key={tech} className="text-xs font-mono text-slate-300 bg-slate-800 px-2 py-1 rounded border border-slate-700">
-                        {tech}
-                      </span>
+        {/* Quest Log (Experience) */}
+        <section id="quests" className="section">
+          <div className="container">
+            <h2 className="panel-title">Quest Log</h2>
+            <div className="exp-list">
+              {experiences.map((exp, i) => (
+                <div key={i} className="exp-item">
+                  <div className="exp-date">{exp.date}</div>
+                  <h3 className="text-lg font-bold">{exp.role} @ <span className="text-vibrant-blue">{exp.company}</span></h3>
+                  <p className="mt-2 text-secondary">{exp.desc}</p>
+                  <div className="mt-2 flex-gap">
+                    {exp.tech.map(t => (
+                      <span key={t} className="tag">{t}</span>
                     ))}
                   </div>
-
-                  <div className="flex justify-between items-center mt-auto pt-4 border-t border-slate-900">
-                    <span className={`text-xs px-2 py-1 rounded ${project.status === 'Released' ? 'bg-green-500/10 text-green-400' : 'bg-yellow-500/10 text-yellow-400'}`}>
-                      {project.status}
-                    </span>
-                    
-                    <div className="flex flex-wrap justify-end gap-2">
-                      {project.links.map((link, i) => (
-                        <a
-                          key={i}
-                          href={link.url}
-                          target={link.newTab === false ? undefined : "_blank"}
-                          rel={link.newTab === false ? undefined : "noreferrer"}
-                          onClick={() => trackEvent(link.event, { project: project.title, label: link.label })}
-                          className={getProjectLinkClasses(link.kind)}
-                        >
-                          {link.label} <ExternalLink size={14} />
-                        </a>
-                      ))}
-                    </div>
-                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          
-          <div className="mt-12 text-center">
-            <p className="text-slate-500 mb-4">And more on my GitHub profile...</p>
-            <a href={githubProfileUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('github_click', { source: 'levels-footer' })} className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-mono border-b border-cyan-400 pb-1">
-              github.com/hekyetmisbes <ExternalLink size={16} />
-            </a>
-          </div>
-        </div>
-      </section>
-      {/* --- SIDE QUEST --- */}
-      <section id="sidequest" className="py-16 bg-slate-950 border-t border-slate-800">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center gap-4 mb-8">
-            <StarIcon className="text-pink-400" size={28} />
-            <h2 className="text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">Side Quest</h2>
-            <div className="h-px bg-pink-500/40 flex-grow ml-4"></div>
-          </div>
+        </section>
 
-          <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-6 md:p-8">
-            <h3 className="text-xl font-bold text-slate-100">School Support Association</h3>
-            <p className="text-pink-300 text-sm font-mono mt-1">Volunteer Math Instructor</p>
-            <p className="text-slate-400 mt-3 max-w-3xl">Provided math support sessions for middle school students and helped improve their exam readiness through regular practice and mentoring.</p>
+        {/* Levels (Projects) */}
+        <section id="levels" className="section">
+          <div className="container">
+            <h2 className="panel-title">Select Level</h2>
+            <div className="grid-2">
+              {projects.map((p, i) => (
+                <div
+                  key={i}
+                  className="panel project-card"
+                  role="link"
+                  tabIndex={0}
+                  aria-label={`Enter ${p.title}`}
+                  onClick={(event) => handleProjectCardClick(event, p)}
+                  onKeyDown={(event) => handleProjectCardKeyDown(event, p)}
+                >
+                  <div className="flex-between mb-4">
+                    <h3 className="text-xl font-bold">{p.title}</h3>
+                    <span className="tag">{p.engine}</span>
+                  </div>
+                  <p className="text-secondary mb-4">{p.desc}</p>
+                  <a href={p.link} target="_blank" rel="noreferrer" className="btn btn-outline btn-sm">Enter Level</a>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Contact (Footer) */}
+        <footer id="contact" className="contact-footer">
+          <div className="container contact-footer-inner">
+            <h2 className="panel-title">End Game</h2>
+            <p className="contact-copy">Ready for the next level? Let's connect.</p>
+            <nav className="contact-links" aria-label="Contact links">
+              <a 
+                href="mailto:harunemrecankarabag@gmail.com" 
+                className="icon-link-minimal" 
+                aria-label="Email Me"
+                onMouseEnter={() => mailRef.current?.startAnimation()}
+                onMouseLeave={() => mailRef.current?.stopAnimation()}
+              >
+                <MailIcon ref={mailRef} size={32} />
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/harunemrecankarabag/" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="icon-link-minimal" 
+                aria-label="LinkedIn Profile"
+                onMouseEnter={() => linkedinRef.current?.startAnimation()}
+                onMouseLeave={() => linkedinRef.current?.stopAnimation()}
+              >
+                <LinkedinIcon ref={linkedinRef} size={32} />
+              </a>
+              <a 
+                href="https://www.instagram.com/hekyetmisbes/" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="icon-link-minimal" 
+                aria-label="Instagram Profile"
+                onMouseEnter={() => instagramRef.current?.startAnimation()}
+                onMouseLeave={() => instagramRef.current?.stopAnimation()}
+              >
+                <InstagramIcon ref={instagramRef} size={32} />
+              </a>
+              <a 
+                href="https://github.com/Hekyetmisbes" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="icon-link-minimal" 
+                aria-label="GitHub Profile"
+                onMouseEnter={() => githubRef.current?.startAnimation()}
+                onMouseLeave={() => githubRef.current?.stopAnimation()}
+              >
+                <GithubIcon ref={githubRef} size={32} />
+              </a>
+            </nav>
+            <p className="contact-copyright">© 2026 Harun Emrecan Karabağ. Ankara, Turkey.</p>
+          </div>
+        </footer>
       </main>
 
-      {/* --- FOOTER / GAME OVER --- */}
-      <footer id="contact" className="py-20 bg-black text-center relative border-t border-slate-800">
-        <div className="container mx-auto px-6">
-          <a
-            href="/easter-egg/"
-            onClick={() => trackEvent("easter_egg_click", { source: "footer-game-over" })}
-            className="game-over-link group mx-auto mb-8"
-            aria-label="Open Neon Bug Hunt easter egg"
-          >
-            <span
-              className="game-over-title text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-fuchsia-400"
-              data-text="GAME OVER?"
-            >
-              GAME OVER?
-            </span>
-          </a>
-          <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-            No, this is just the start of the next level. Reach out for a new project or collaboration.
-          </p>
-
-          <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
-            <a href="mailto:harunemrecankarabag@gmail.com" onClick={() => trackEvent('contact_click', { source: 'footer-email' })} className="flex items-center gap-3 px-6 py-4 bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors border border-slate-800 hover:border-cyan-500 group">
-              <div className="bg-slate-800 p-2 rounded-full group-hover:bg-cyan-500/20 group-hover:text-cyan-400 transition-colors">
-                <Mail size={20} />
-              </div>
-              <div className="text-left">
-                <p className="text-xs text-slate-500 uppercase">Email</p>
-                <p className="text-slate-200">harunemrecankarabag@gmail.com</p>
-              </div>
-            </a>
-
-            <a href="tel:+905070493574" className="flex items-center gap-3 px-6 py-4 bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors border border-slate-800 hover:border-green-500 group">
-              <div className="bg-slate-800 p-2 rounded-full group-hover:bg-green-500/20 group-hover:text-green-400 transition-colors">
-                <Phone size={20} />
-              </div>
-              <div className="text-left">
-                <p className="text-xs text-slate-500 uppercase">Phone</p>
-                <p className="text-slate-200">+90 507 049 35 74</p>
-              </div>
-            </a>
-          </div>
-
-          <div className="flex justify-center gap-6 mb-12">
-            <a href={githubProfileUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('github_click', { source: 'footer' })} className="p-3 bg-slate-900 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-all hover:-translate-y-1" aria-label="GitHub">
-              <Github size={24} />
-            </a>
-            <a href={linkedinProfileUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('linkedin_click', { source: 'footer' })} className="p-3 bg-slate-900 rounded-full text-slate-400 hover:text-blue-400 hover:bg-slate-800 transition-all hover:-translate-y-1" aria-label="LinkedIn">
-              <Linkedin size={24} />
-            </a>
-          </div>
-
-          <div className="text-slate-600 text-sm font-mono">
-            <p>&copy; 2026 Harun Emrecan Karabağ. Ankara, Turkey.</p>
-          </div>
-        </div>
-      </footer>
-
-      {/* --- FLOATING UPDATE BADGE --- */}
-      {showLatestUpdate && latestUpdate && (
-        <div className="fixed bottom-6 right-6 z-30 hidden lg:block">
-          <div className="max-w-sm rounded-xl border border-cyan-500/30 bg-slate-900/90 p-4 shadow-2xl backdrop-blur">
-            <div className="mb-3 flex items-start justify-between gap-3">
-              <div>
-                <div className="mb-2 flex items-center gap-2 text-sm font-bold uppercase text-cyan-400">
-                  <Trophy size={14} /> Latest Update
-                </div>
-                <p className="text-sm font-bold text-slate-100">{latestUpdate.title}</p>
-                <p className="mt-1 text-xs leading-relaxed text-slate-400">{latestUpdate.details}</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowLatestUpdate(false)}
-                className="rounded-full border border-slate-700 px-2 py-1 text-xs font-bold text-slate-400 transition-colors hover:border-slate-500 hover:text-white"
-                aria-label="Dismiss latest update"
-              >
-                X
-              </button>
-            </div>
-
-            {latestUpdate.ctaUrl && latestUpdate.ctaLabel && (
-              <a
-                href={latestUpdate.ctaUrl}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => trackEvent("project_demo_click", { project: "Delivery Driver", source: "floating_update", label: latestUpdate.ctaLabel })}
-                className="inline-flex items-center gap-2 rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-2 text-sm font-bold text-cyan-200 transition-all hover:border-cyan-300 hover:bg-cyan-400/15 hover:text-white"
-              >
-                {latestUpdate.ctaLabel} <ExternalLink size={14} />
-              </a>
-            )}
-          </div>
-        </div>
-      )}
+      <style>{`
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .flex-gap { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .text-secondary { color: var(--text-secondary); font-size: 0.875rem; }
+        .tag { 
+          font-size: 0.65rem; 
+          font-weight: 700; 
+          text-transform: uppercase; 
+          background: var(--bg-dark); 
+          color: var(--text-secondary); 
+          padding: 0.25rem 0.5rem; 
+          border: 1px solid var(--border-color);
+          border-radius: 2px;
+        }
+        .btn-sm { padding: 0.5rem 1rem; font-size: 0.75rem; }
+      `}</style>
     </div>
   );
 };
 
 export default Portfolio;
-
