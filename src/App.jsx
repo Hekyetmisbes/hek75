@@ -319,6 +319,13 @@ const Portfolio = () => {
       link: "https://hekyetmisbes.itch.io/delivery-driver"
     },
     {
+      title: "Fog Bridge",
+      genre: "Atmospheric Narrative Puzzle",
+      engine: "Unity",
+      desc: "A short GameDev.tv Game Jam 2026 narrative puzzle about decoding paper plane messages and rebuilding a bridge across the fog.",
+      link: "https://hekyetmisbes.itch.io/fog-bridge"
+    },
+    {
       title: "Movidle Game",
       genre: "Web Game / Puzzle",
       engine: "Unity",
