@@ -299,9 +299,9 @@ const Portfolio = () => {
   const projects = [
     {
       title: "The Final Loop",
-      genre: "Psychological Puzzle / Pitch",
+      genre: "Psychological Puzzle / Vertical Slice",
       engine: "Unreal",
-      desc: "A written pitch page for a psychological puzzle escape-room project, covering concept, atmosphere, and systems.",
+      desc: "Completed Unreal Engine psychological puzzle vertical slice. Explore memory loops and solve escape-room puzzles in a dark research facility.",
       link: "/projects/thefinalloop/"
     },
     {
@@ -330,7 +330,14 @@ const Portfolio = () => {
       genre: "Web Game / Puzzle",
       engine: "Unity",
       desc: "A movie guessing game featuring titles from the IMDb Top 250 with color-coded feedback.",
-      link: "https://github.com/Hekyetmisbes/Movidle-Game"
+      link: "https://github.com/Hekyetmisbes/movidle"
+    },
+    {
+      title: "Flag Quiz Game",
+      genre: "Mobile Quiz / Educational",
+      engine: "Unity",
+      desc: "A mobile flag guessing game developed with Unity and C#, helping players improve their geography knowledge with an interactive UI.",
+      link: "https://github.com/Hekyetmisbes/flag-quiz-game"
     }
   ];
 
