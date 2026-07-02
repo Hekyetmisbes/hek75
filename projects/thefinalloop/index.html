@@ -390,12 +390,16 @@
 
   /* Chapter cards */
   .chapter-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.25rem;
     margin: 2rem 0;
   }
   .chapter-card {
+    flex: 1 1 calc(33.333% - 1.25rem);
+    min-width: 280px;
+    max-width: 380px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 6px;
@@ -450,12 +454,16 @@
 
   /* Emotion card */
   .emotion-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
     margin: 1.5rem 0;
   }
   .emotion-card {
+    flex: 1 1 calc(20% - 1rem);
+    min-width: 180px;
+    max-width: 260px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 6px;
@@ -1112,6 +1120,94 @@
     }
     .document-frame { height: 70vh; }
   }
+
+  /* New Gallery Styles */
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 2rem 0; }
+  .gallery-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+  .gallery-card:hover { border-color: var(--border-light); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 20px rgba(0, 212, 255, 0.04); }
+  .gallery-card img { width: 100%; height: 190px; object-fit: cover; filter: saturate(0.72) brightness(0.86); display: block; transition: filter 0.3s; }
+  .gallery-card:hover img { filter: saturate(0.9) brightness(0.96); }
+  .gallery-body { padding: 1rem 1.1rem; }
+  .gallery-title { font-size: 1rem; color: #fff; font-weight: 600; margin-bottom: 0.2rem; }
+  .gallery-desc { font-size: 0.82rem; color: var(--text-tertiary); line-height: 1.45; }
+
+  /* New Deliverable Styles */
+  .deliverable-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .deliverable-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
+  .deliverable-card:hover { border-color: rgba(0, 212, 255, 0.25); box-shadow: 0 0 24px rgba(0, 212, 255, 0.06); transform: translateY(-2px); }
+  .deliverable-title { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.35rem; }
+  .deliverable-desc { font-size: 0.8rem; color: var(--text-tertiary); line-height: 1.45; }
+
+  /* Custom Audio Player */
+  .custom-audio-player {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: rgba(17, 26, 46, 0.6);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    width: 100%;
+    max-width: 600px;
+  }
+  .play-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    color: #060B14;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+    flex-shrink: 0;
+  }
+  .play-btn:hover {
+    transform: scale(1.05);
+    background: #00e5ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+  }
+  .play-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  .player-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .player-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+  }
+  .progress-container {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-cyan);
+    border-radius: 3px;
+  }
+  .time-display {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-family: 'Space Mono', monospace;
+    text-align: right;
+  }
 </style>
 </head>
 <body>
@@ -1119,18 +1215,18 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">// Written Pitch Dokümanı</div>
+    <div class="hero-eyebrow">// Final Build Güncellemesi</div>
     <img src="Oyun%20Logo.svg" alt="The Final Loop" class="game-logo">
     <div class="subtitle">Hafıza &middot; Kimlik &middot; Kabulleniş</div>
     <p class="description">
       Terk edilmiş bir araştırma tesisinde geçen, psikolojik gerilim tonuna sahip, tek oyunculu bir bulmaca / anlatı odaklı escape-room deneyimi.
     </p>
     <div class="meta-grid">
+      <div class="meta-item"><strong>Durum:</strong> Final Demo Hazır</div>
+      <div class="meta-item"><strong>Motor:</strong> Unreal Engine</div>
       <div class="meta-item"><strong>Tür:</strong> Psikolojik Bulmaca / Escape-room</div>
-      <div class="meta-item"><strong>Platform:</strong> PC (Steam)</div>
-      <div class="meta-item"><strong>Format:</strong> Tek oyunculu, oda temelli</div>
-      <div class="meta-item"><strong>Süre:</strong> 20–30 dk (Vertical Slice)</div>
-      <div class="meta-item"><strong>Durum:</strong> 12 Haftalık Geliştirme</div>
+      <div class="meta-item"><strong>Platform:</strong> PC</div>
+      <div class="meta-item"><strong>Hedef Süre:</strong> 20–30 dk (Vertical Slice)</div>
     </div>
     <div class="team-strip">
       <img src="../theunlitdoor/logo.svg" alt="UN4 Studio" class="team-logo">
@@ -1149,11 +1245,14 @@
   <a href="#konsept">Yüksek Konsept</a>
   <a href="#hikaye">Hikâye</a>
   <a href="#mekanikler">Mekanikler</a>
+  <a href="#alanlar">Oynanabilir Alanlar</a>
   <a href="#sanat">Sanat Yönetimi</a>
   <a href="#pazar">Pazar</a>
   <a href="#benzer">Benzer Oyunlar</a>
   <a href="#plan">Geliştirme Planı</a>
   <a href="#riskler">Riskler</a>
+  <a href="#ekip-lore">Ekip & Kayıtlar</a>
+  <a href="#galeri">Galeri</a>
   <a href="#pitch-pdf">PDF</a>
 </nav>
 
@@ -1214,8 +1313,8 @@
   </div>
 
   <div class="img-block">
-    <img src="Gemini_Generated_Image_wu9fvpwu9fvpwu9f%20%281%29.png" alt="Araştırma Tesisi Ana Laboratuvar">
-    <div class="img-caption">Konsept Görsel &mdash; Araştırma Tesisi Ana Laboratuvar</div>
+    <img src="assets/gameplay/main_lab.jpg" alt="Araştırma Tesisi Ana Laboratuvar">
+    <div class="img-caption">Oyun İçi Görsel &mdash; Araştırma Tesisi Ana Laboratuvar</div>
   </div>
 </div>
 </section>
@@ -1371,8 +1470,8 @@
   </div>
 
   <div class="img-block">
-    <img src="Gemini_Generated_Image_psp6k6psp6k6psp6%20%281%29.png" alt="Takviye Hapı Mekaniği">
-    <div class="img-caption">Konsept Görsel &mdash; Takviye Hapı Mekaniği</div>
+    <img src="assets/gameplay/gas_room_terminal.jpg" alt="Takviye Hapı ve Terminal Etkileşimi">
+    <div class="img-caption">Oyun İçi Görsel &mdash; Takviye Hapı ve Terminal Etkileşimi</div>
   </div>
 
   <div class="mech-card">
@@ -1393,6 +1492,76 @@
     <p>Oyunun finalinde oyuncunun daha önce çözdüğü her oda, yaptığı her seçim ve topladığı her bilgi yeni bir anlam kazanır. Bu, oyunun "twist"ini yalnızca şok unsuru olmaktan çıkarır; bütün tasarımın omurgası haline getirir.</p>
   </div>
 </div>
+</section>
+
+<!-- OYNANABİLİR ALANLAR -->
+<section class="section" id="alanlar">
+  <div class="container">
+    <div class="section-label">Bölüm 03.5</div>
+    <h2>Oynanabilir Alanlar ve Sıralanış</h2>
+    <p class="lead">
+      Oynanabilir dikey kesit (vertical slice) boyunca oyuncunun sırasıyla geçtiği odalar ve bu odalardaki temel işlevler.
+    </p>
+
+    <div class="chapter-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+      <div class="chapter-card">
+        <img src="assets/gameplay/work_room_desk.jpg" alt="Çalışma Odası" class="ch-img">
+        <div class="ch-body">
+          <div class="ch-num" style="color: var(--accent-cyan);">Oda 1</div>
+          <div class="ch-title">Çalışma Odası</div>
+          <div class="ch-desc">Oyuncunun uyanıp ilk ipuçlarını, masa notlarını ve bilgisayar terminalini incelediği alan.</div>
+        </div>
+      </div>
+      <div class="chapter-card">
+        <img src="assets/gameplay/corridor_entry.jpg" alt="Koridor" class="ch-img">
+        <div class="ch-body">
+          <div class="ch-num" style="color: var(--accent-blue);">Oda 2</div>
+          <div class="ch-title">Koridor</div>
+          <div class="ch-desc">Odalar arası geçiş, yön duygusu ve gerilimi taşıyan ara bağlantı.</div>
+        </div>
+      </div>
+      <div class="chapter-card">
+        <img src="assets/gameplay/meeting_room.jpg" alt="Toplantı Odası" class="ch-img">
+        <div class="ch-body">
+          <div class="ch-num" style="color: var(--accent-purple);">Oda 3</div>
+          <div class="ch-title">Toplantı Odası</div>
+          <div class="ch-desc">Ekip geçmişi, proje kararları ve tesis içi belgeleri barındıran oda.</div>
+        </div>
+      </div>
+      <div class="chapter-card">
+        <img src="assets/gameplay/break_room.jpg" alt="Dinlenme Odası" class="ch-img">
+        <div class="ch-body">
+          <div class="ch-num" style="color: var(--accent-orange);">Oda 4</div>
+          <div class="ch-title">Dinlenme Odası</div>
+          <div class="ch-desc">Araştırmacıların yorulduklarında vakit geçirdiği, eski anıların canlandığı alan.</div>
+        </div>
+      </div>
+      <div class="chapter-card">
+        <img src="assets/gameplay/corridor_second_dark.jpg" alt="Koridor 2" class="ch-img">
+        <div class="ch-body">
+          <div class="ch-num" style="color: var(--accent-red);">Oda 5</div>
+          <div class="ch-title">Koridor 2</div>
+          <div class="ch-desc">Atmosferin daha da karardığı ve gerilimin tırmandığı karanlık geçiş varyasyonu.</div>
+        </div>
+      </div>
+      <div class="chapter-card">
+        <img src="assets/gameplay/gas_room_terminal.jpg" alt="Gaz Odası" class="ch-img">
+        <div class="ch-body">
+          <div class="ch-num" style="color: var(--accent-green);">Oda 6</div>
+          <div class="ch-title">Gaz Odası</div>
+          <div class="ch-desc">Çevresel tehlikenin bulunduğu, gaz sisteminin terminal etkileşimi ile kapatıldığı alan.</div>
+        </div>
+      </div>
+      <div class="chapter-card">
+        <img src="assets/gameplay/computer_room_core.jpg" alt="Bilgisayar Odası" class="ch-img">
+        <div class="ch-body">
+          <div class="ch-num" style="color: var(--accent-cyan);">Oda 7</div>
+          <div class="ch-title">Bilgisayar Odası</div>
+          <div class="ch-desc">Finale yaklaşırken veri izleme panelleri ve gerçeklik algısının çözüldüğü teknik merkez.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- 4. SANAT YÖNETİMİ -->
@@ -1450,8 +1619,8 @@
   </ul>
 
   <div class="img-block">
-    <img src="Gemini_Generated_Image_du3qz1du3qz1du3q%20%281%29.png" alt="Koridor ve Laboratuvar Girişi">
-    <div class="img-caption">Konsept Görsel &mdash; Koridor ve Laboratuvar Girişi</div>
+    <img src="assets/gameplay/corridor_entry.jpg" alt="Koridor ve Laboratuvar Girişi">
+    <div class="img-caption">Oyun İçi Görsel &mdash; Koridor ve Laboratuvar Girişi</div>
   </div>
 
   <h3>Ses Tasarımı</h3>
@@ -1468,8 +1637,8 @@
   </div>
 
   <div class="img-block">
-    <img src="Gemini_Generated_Image_p6r945p6r945p6r9%20%281%29.png" alt="Section D-4 Koridoru">
-    <div class="img-caption">Konsept Görsel &mdash; Section D-4 Koridoru</div>
+    <img src="assets/gameplay/corridor_second_dark.jpg" alt="Section D-4 Koridoru">
+    <div class="img-caption">Oyun İçi Görsel &mdash; Section D-4 Koridoru</div>
   </div>
 </div>
 </section>
@@ -1789,6 +1958,104 @@
 </div>
 </section>
 
+<!-- Ekip & Kayıtlar -->
+<section class="section" id="ekip-lore">
+  <div class="container">
+    <div class="section-label">Bölüm 08.5</div>
+    <h2>Araştırma Ekibi & Kayıtlar</h2>
+    <p class="lead">
+      Project NOVA-7 kapsamında çalışan Hinode Araştırma Ekibi ve tesisteki son günlere dair sesli/yazılı günlük kayıtları.
+    </p>
+
+    <!-- Ekip Üyeleri -->
+    <div class="team-lore-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+      <div class="team-lore-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; transition: border-color 0.3s;">
+        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem; font-size: 1.05rem;">Dr. Harun Karabağ</h4>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem;"><strong>Rol:</strong> Baş Araştırmacı / Proje Lideri</p>
+        <p style="font-size: 0.82rem; line-height: 1.5; color: var(--text-primary);">Bilişsel Koruma Protokolü'nün kurucusu. Tesis karantinaya alındıktan ve tüm ekip kaybedildikten sonra LOOP protokolünü kendi zihninde başlatan kişi.</p>
+      </div>
+      <div class="team-lore-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; transition: border-color 0.3s;">
+        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem; font-size: 1.05rem;">Dr. Elif Yılmaz</h4>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem;"><strong>Rol:</strong> Bilişsel Koruma Uzmanı</p>
+        <p style="font-size: 0.82rem; line-height: 1.5; color: var(--text-primary);">Deney Günü 213'te hayatını kaybetti. İleri evre bilişsel çöküş yaşarken iki saat boyunca kendi adını tekrar ettiği kayıtlara geçti.</p>
+      </div>
+      <div class="team-lore-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; transition: border-color 0.3s;">
+        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem; font-size: 1.05rem;">Dr. Murat Can</h4>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem;"><strong>Rol:</strong> Sistem Programcısı ve Veri Analisti</p>
+        <p style="font-size: 0.82rem; line-height: 1.5; color: var(--text-primary);">Deney Günü 34'te kendi raporunu okuyamadığı fark edilince A-3 odasında izolasyona alındı. Tesisin veri izleme altyapısını kuran isim.</p>
+      </div>
+      <div class="team-lore-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; transition: border-color 0.3s;">
+        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem; font-size: 1.05rem;">Dr. Cem Sever</h4>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem;"><strong>Rol:</strong> Laboratuvar Sorumlusu / Kimya Uzmanı</p>
+        <p style="font-size: 0.82rem; line-height: 1.5; color: var(--text-primary);">Gaz odasındaki testlerden sonra fiziksel olarak hayatta kalmasına rağmen bilincini tamamen kaybetti ve bir daha uyanamadı.</p>
+      </div>
+    </div>
+
+    <!-- Ekip Fotoğrafları -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+      <div class="img-block" style="margin: 0; display: flex; flex-direction: column;">
+        <img src="assets/lore/research_team_archival.jpg" alt="Hinode Araştırma Ekibi" style="height: 240px; object-fit: cover; width: 100%;">
+        <div class="img-caption">Arşiv Fotoğrafı &mdash; Araştırma Ekibi (Deney Öncesi)</div>
+      </div>
+      <div class="img-block" style="margin: 0; display: flex; flex-direction: column;">
+        <img src="assets/lore/project_meeting_archival.jpg" alt="Project Hinode Toplantısı" style="height: 240px; object-fit: cover; width: 100%;">
+        <div class="img-caption">Arşiv Fotoğrafı &mdash; Project NOVA-7 Karar Toplantısı</div>
+      </div>
+    </div>
+
+    <!-- Ses Kaydı Bölümü -->
+    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 2rem; margin-top: 2rem;">
+      <h3 style="color: #fff; margin-bottom: 1rem; font-size: 1.2rem;">Örnek Ses Kaydı (Arşiv Kaydı - Gün 1)</h3>
+      <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+        Dr. Harun Karabağ tarafından Ana Bilgisayar Odası'nda kaydedilen ilk sesli günlük.
+      </p>
+      
+      <!-- Custom Audio Player -->
+      <div class="custom-audio-player">
+        <audio id="audioLog" src="Notlar/AUDIO-2026-05-15-23-01-38.mp3.mpeg" style="display: none;"></audio>
+        <button class="play-btn" id="playBtn" type="button" aria-label="Oynat/Durdur">
+          <svg class="play-icon" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+          <svg class="pause-icon" viewBox="0 0 24 24" style="width: 20px; height: 20px; display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/></svg>
+        </button>
+        <div class="player-info">
+          <div class="player-title">AUDIO-2026-05-15-23-01-38.mp3</div>
+          <div class="progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <div class="time-display">
+            <span id="currentTime">0:00</span> / <span id="duration">3:44</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; margin-top: 1rem;">
+        <div style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border); border-radius: 4px; padding: 1rem; width: 100%; font-family: monospace; font-size: 0.8rem; color: var(--text-secondary); max-height: 200px; overflow-y: auto;">
+          <strong>[SES TRANSKRİPTİ - GÜN 1]</strong><br>
+          "Bu kayıt, tesis içi arşiv ve olası dış denetim için tutulmaktadır. Proje kodu: LOOP. Geçici çalışma adı: Bilişsel Koruma ve Geri Çağırma Protokolü... Salgın artık yerel değil. Hastalar önce isimleri unutuyor, sonra mekânları, sonra kendilerini... Buraya geldik çünkü dışarıda herkes kendini kaybederken, içeride hâlâ bir şeyi koruyabileceğimize inandık..."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ek Görsel Galeri -->
+<section class="section" id="galeri">
+  <div class="container">
+    <div class="section-label">Bölüm 09</div>
+    <h2>Ek Görsel Galeri (Gameplay & Lore)</h2>
+    <p class="lead">Geliştirme süreci boyunca tesisten toplanan gerçek oynanış görüntüleri ve lore/arşiv belgeleri.</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-card"><img src="assets/gameplay/work_room_desk.jpg" alt="Çalışma Odası"><div class="gallery-body"><div class="gallery-title">Çalışma Odası</div><div class="gallery-desc">Oyuncunun ilk ipuçlarını, terminali ve kişisel çevre detaylarını okumaya başladığı alan.</div></div></div>
+      <div class="gallery-card"><img src="assets/gameplay/meeting_room.jpg" alt="Toplantı Odası"><div class="gallery-body"><div class="gallery-title">Toplantı Odası</div><div class="gallery-desc">Ekip geçmişi, proje belgeleri ve kurumsal anlatı parçalarını barındıran oda.</div></div></div>
+      <div class="gallery-card"><img src="assets/gameplay/break_room.jpg" alt="Dinlenme Odası"><div class="gallery-body"><div class="gallery-title">Dinlenme Odası</div><div class="gallery-desc">Steril tesis atmosferinin daha gündelik ve rahatsız edici yüzünü gösteren alan.</div></div></div>
+      <div class="gallery-card"><img src="assets/lore/patient_corridor_archival.jpg" alt="Hasta Koridoru"><div class="gallery-body"><div class="gallery-title">Hasta Koridoru</div><div class="gallery-desc">Deney sonrası sessizlik ve kayıp hissini taşıyan arşiv kompozisyonu.</div></div></div>
+      <div class="gallery-card"><img src="assets/lore/journal_record_68.jpg" alt="Günlük - Kayıt 68"><div class="gallery-body"><div class="gallery-title">Günlük - Kayıt 68</div><div class="gallery-desc">Oyuncunun kendi hatırlama sorununu ve odaların tekrarını fark ettiği kişisel not.</div></div></div>
+      <div class="gallery-card"><img src="assets/lore/isolation_timeline.jpg" alt="Project NOVA-7 İzolasyon Panosu"><div class="gallery-body"><div class="gallery-title">Project NOVA-7 İzolasyon Panosu</div><div class="gallery-desc">Tesis geçmişini parça parça çözen zaman çizelgesi panosu.</div></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- 10. PDF -->
 <section class="section" id="pitch-pdf">
 <div class="container">
@@ -2029,6 +2296,56 @@
   }
 
   createPhaseRoadmap(phasePlans);
+
+  // Custom Audio Player Logic
+  (function() {
+    const audio = document.getElementById('audioLog');
+    const playBtn = document.getElementById('playBtn');
+    if (!audio || !playBtn) return;
+
+    const playIcon = playBtn.querySelector('.play-icon');
+    const pauseIcon = playBtn.querySelector('.pause-icon');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressBar = document.getElementById('progressBar');
+    const currentTimeSpan = document.getElementById('currentTime');
+    const durationSpan = document.getElementById('duration');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play().catch(err => console.log("Ses oynatılamadı:", err));
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+      } else {
+        audio.pause();
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+      }
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (!audio.duration) return;
+      const percent = (audio.currentTime / audio.duration) * 100;
+      progressBar.style.width = percent + '%';
+      
+      const curMins = Math.floor(audio.currentTime / 60);
+      const curSecs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+      currentTimeSpan.textContent = `${curMins}:${curSecs}`;
+    });
+
+    audio.addEventListener('durationchange', () => {
+      const durMins = Math.floor(audio.duration / 60);
+      const durSecs = Math.floor(audio.duration % 60).toString().padStart(2, '0');
+      durationSpan.textContent = `${durMins}:${durSecs}`;
+    });
+
+    progressContainer.addEventListener('click', (e) => {
+      if (!audio.duration) return;
+      const rect = progressContainer.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      audio.currentTime = (clickX / width) * audio.duration;
+    });
+  })();
 </script>
 
 </body>
