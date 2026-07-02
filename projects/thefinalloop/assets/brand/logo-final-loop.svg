@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 220" role="img" aria-labelledby="title desc">
+  <title id="title">The Final Loop Logo</title>
+  <desc id="desc">Text logo for The Final Loop with an infinity loop mark.</desc>
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="loop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e9f7ff"/><stop offset="0.55" stop-color="#78dfff"/><stop offset="1" stop-color="#2e7cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="820" height="220" fill="none"/>
+  <text x="48" y="92" font-family="Outfit, Inter, Arial, sans-serif" font-weight="800" font-size="54" letter-spacing="3" fill="#f5fbff">THE FINAL</text>
+  <text x="48" y="162" font-family="Outfit, Inter, Arial, sans-serif" font-weight="800" font-size="54" letter-spacing="3" fill="#f5fbff">LOOP</text>
+  <path d="M422 131 C458 91 497 91 532 131 C566 171 604 171 640 131 C604 91 566 91 532 131 C497 171 458 171 422 131Z" fill="none" stroke="url(#loop)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <circle cx="422" cy="131" r="5" fill="#00d4ff"/>
+  <circle cx="640" cy="131" r="5" fill="#00d4ff"/>
+</svg>
