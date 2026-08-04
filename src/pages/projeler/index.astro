@@ -1,107 +1,126 @@
 ---
 // src/pages/projeler/index.astro
-// Projects list page with dynamic filtering tabs and card grid.
+// Chronological Film Strip Projects Page with updated years, engines, and no "View Project" link.
 
 import Layout from '../../layouts/Layout.astro';
 
 const projects = [
   {
-    title: "The Final Loop",
-    genre: "Psychological Puzzle / Vertical Slice",
-    engine: "Unreal Engine",
-    desc: "Unreal Engine ile geliştirilmiş psikolojik bulmaca oyunu. Karanlık bir araştırma tesisinde hafıza döngülerini keşfedin ve odalardan kaçış bulmacalarını çözün.",
-    slug: "the-final-loop",
-    category: "oyunlar",
-    year: "2026",
-    image: "/assets/echoes.png"
-  },
-  {
-    title: "The Unlit Door",
-    genre: "Psychological Puzzle / Pitch",
-    engine: "Unity",
-    desc: "Psikolojik ve anlatı odaklı bir bulmaca oyunu projesi için hazırlanan, konsept ve atmosfer detaylarını içeren yazılı pitch sayfası.",
-    slug: "the-unlit-door",
-    category: "diger",
-    year: "2025",
-    image: "/assets/luma.png"
-  },
-  {
-    title: "Delivery Driver",
-    genre: "3D Simulation",
-    engine: "Unity",
-    desc: "Şehir içinde siparişleri zamanında teslim etmeye çalıştığınız eğlenceli bir Unity 3D simülasyon ve sürüş oyunu.",
-    slug: "delivery-driver",
-    category: "oyunlar",
-    year: "2024",
-    image: "/assets/tiny_survivor.png"
-  },
-  {
+    frame: "FRAME 01",
     title: "Fog Bridge",
     genre: "Atmospheric Narrative Puzzle",
     engine: "Unity",
-    desc: "GameDev.tv Game Jam 2026 için geliştirilen, sisler arasından gelen kağıt uçaklardaki mesajları çözerek köprüyü yeniden kurduğunuz atmosferik bulmaca oyunu.",
+    desc: "Developed in 72 hours for GameDev.tv Game Jam 2026. Decipher cryptic paper plane messages emerging through dense fog to rebuild a bridge across the void.",
     slug: "fog-bridge",
-    category: "jam",
     year: "2026",
-    image: "/assets/hero_background.png"
+    image: "/assets/fog-bridge-logo.png"
   },
   {
-    title: "Movidle Game",
-    genre: "Web Game / Puzzle",
+    frame: "FRAME 02",
+    title: "The Final Loop",
+    genre: "Psychological Puzzle / Vertical Slice",
+    engine: "Unreal Engine 5",
+    desc: "A psychological puzzle game developed in Unreal Engine 5. Uncover memory loops inside a collapsing research facility and solve room escape mysteries.",
+    slug: "the-final-loop",
+    year: "2026",
+    image: "/assets/final_loop_logo.png"
+  },
+  {
+    frame: "FRAME 03",
+    title: "The Unlit Door",
+    genre: "Psychological Puzzle / Pitch",
+    engine: "Unity Mobile",
+    desc: "Written pitch document and system design for a psychological narrative puzzle game exploring light, shadow, and internal rooms of memory.",
+    slug: "the-unlit-door",
+    year: "2026",
+    image: "/assets/unlit_door_logo.png"
+  },
+  {
+    frame: "FRAME 04",
+    title: "Delivery Driver",
+    genre: "3D Simulation & Driving",
     engine: "Unity",
-    desc: "IMDb Top 250 listesindeki filmleri tahmin etmeye çalıştığınız, renk kodlu ipuçları sunan eğlenceli bir Unity web bulmaca oyunu.",
-    slug: "movidle-game",
-    category: "oyunlar",
+    desc: "A physics-based courier simulation game. Deliver packages across city traffic within time limits using shortcuts and dynamic driving physics.",
+    slug: "delivery-driver",
     year: "2025",
-    image: "/assets/orbital.png"
+    image: "/assets/delivery-drive-logo.png"
   },
   {
+    frame: "FRAME 05",
+    title: "The Platform",
+    genre: "2D Cyberpunk Platformer",
+    engine: "Unity 2D",
+    desc: "A 2D cyberpunk platformer where players collect stars, avoid hazards, complete levels, and experience a short-session gameplay loop.",
+    slug: "the-platform",
+    year: "2024",
+    image: "/assets/platform-logo.png"
+  },
+  {
+    frame: "FRAME 06",
     title: "Flag Quiz Game",
     genre: "Mobile Quiz / Educational",
-    engine: "Unity",
-    desc: "Oyuncuların coğrafya bilgisini geliştirmesini hedefleyen, Unity ve C# ile mobil cihazlar için optimize edilmiş bayrak tahmin oyunu.",
+    engine: "Unity Mobile",
+    desc: "An educational mobile quiz game for geography enthusiasts featuring multiple game modes, custom ShaderLab effects, and score save systems.",
     slug: "flag-quiz-game",
-    category: "oyunlar",
     year: "2023",
-    image: "/assets/luma.png"
+    image: "/assets/flag-quiz-logo.png"
+  },
+  {
+    frame: "FRAME 07",
+    title: "Movidle Game",
+    genre: "Web Game / Wordle Puzzle",
+    engine: "Unity",
+    desc: "A cinema guessing puzzle game featuring IMDb Top 250 movies. Deduce directors, release years, and cast lists using color-coded feedback.",
+    slug: "movidle-game",
+    year: "2023",
+    image: "/assets/movidle-logo.png"
   }
 ];
 ---
 
-<Layout title="Projelerim | Harun Emrecan Karabağ" description="Harun Emrecan Karabağ'ın Unity ve Unreal Engine ile geliştirdiği oyunlar ve diğer projeleri.">
-  <section class="section border-none">
+<Layout title="Projects | Film Strip Portfolio" description="Harun Emrecan Karabağ's game projects ordered chronologically in a white film strip timeline.">
+  <section class="section border-none film-strip-section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Projelerim</h2>
-        <div class="filter-tabs">
-          <button class="filter-tab active" data-filter="all">Tümü</button>
-          <button class="filter-tab" data-filter="oyunlar">Oyunlar</button>
-          <button class="filter-tab" data-filter="jam">Oyun Jam</button>
-          <button class="filter-tab" data-filter="diger">Diğer</button>
+        <div>
+          <small class="page-meta font-sans">CHRONOLOGICAL FILM STRIP · 2026—2023</small>
+          <h1 class="section-title font-serif">Projects</h1>
         </div>
       </div>
 
-      <div class="projects-grid">
+      <!-- Vertical Film Strip Reel Container -->
+      <div class="film-strip-reel">
+        <div class="film-timeline-line"></div>
+
         {projects.map((project) => (
-          <article class="project-card" data-category={project.category} data-slug={project.slug}>
-            <div class="project-img-wrapper">
-              <img src={project.image} alt={project.title} loading="lazy" />
-              <div class="project-overlay">
-                <span class="btn-detail">Projeyi İncele ↗</span>
-              </div>
+          <article class="film-frame-card" data-slug={project.slug}>
+            <!-- Film Reel Sprocket Holes Side (Crisp White Sprockets) -->
+            <div class="film-sprockets">
+              <span class="sprocket-hole"></span>
+              <span class="sprocket-hole"></span>
+              <span class="sprocket-hole"></span>
+              <span class="sprocket-hole"></span>
             </div>
-            <div class="project-info">
-              <div class="project-meta">
-                <span class="project-genre">{project.genre}</span>
-                <span class="project-year">{project.year}</span>
+
+            <!-- Main Film Frame Content -->
+            <div class="film-frame-inner">
+              <div class="film-frame-image">
+                <img src={project.image} alt={project.title} loading="lazy" />
+                <span class="film-frame-tag font-sans">{project.frame}</span>
               </div>
-              <h3 class="project-card-title">{project.title}</h3>
-              <p class="project-desc">{project.desc}</p>
-              <div class="project-card-footer">
-                <span class="project-engine">{project.engine}</span>
-                <a href={`/projeler/${project.slug}/`} class="project-link-icon" aria-label={`${project.title} detay sayfasını aç`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                </a>
+              
+              <div class="film-frame-body">
+                <div class="film-frame-header">
+                  <span class="film-year-badge font-sans">{project.year}</span>
+                  <span class="film-genre-text font-sans">{project.genre}</span>
+                </div>
+                
+                <h2 class="film-project-title font-serif">{project.title}</h2>
+                <p class="film-project-desc font-sans">{project.desc}</p>
+                
+                <div class="film-frame-footer">
+                  <span class="film-engine-tag font-sans">{project.engine}</span>
+                </div>
               </div>
             </div>
           </article>
@@ -112,42 +131,10 @@ const projects = [
 </Layout>
 
 <script>
-  // Project Filtering Logic
-  const tabs = document.querySelectorAll('.filter-tab');
-  const cards = document.querySelectorAll('.project-card');
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach((t) => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      const filter = tab.getAttribute('data-filter');
-
-      cards.forEach((card) => {
-        const cardEl = card as HTMLElement;
-        const category = cardEl.getAttribute('data-category');
-
-        if (filter === 'all' || filter === category) {
-          cardEl.style.display = 'flex';
-          cardEl.style.opacity = '0';
-          setTimeout(() => {
-            cardEl.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-            cardEl.style.opacity = '1';
-          }, 50);
-        } else {
-          cardEl.style.display = 'none';
-        }
-      });
-    });
-  });
-
   // Card click routing
+  const cards = document.querySelectorAll('.film-frame-card');
   cards.forEach((card) => {
-    card.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement;
-      // If clicked the direct anchor link icon, let the browser handle it
-      if (target.closest('a')) return;
-      
+    card.addEventListener('click', () => {
       const slug = card.getAttribute('data-slug');
       if (slug) {
         window.location.href = `/projeler/${slug}/`;
@@ -157,204 +144,224 @@ const projects = [
 </script>
 
 <style>
+  .film-strip-section {
+    padding-top: 130px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+  }
+
+  .page-meta {
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    color: var(--pastel-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
   .section-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-bottom: 3.5rem;
+    align-items: flex-end;
+    margin-bottom: 4rem;
   }
 
   .section-header .section-title {
     margin-bottom: 0;
   }
 
-  /* Filtering Tabs */
-  .filter-tabs {
-    display: flex;
-    gap: 0.75rem;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--border-color);
-    padding: 0.35rem;
-    border-radius: 30px;
-  }
-
-  .filter-tab {
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    padding: 0.5rem 1.25rem;
-    font-size: 0.8125rem;
-    font-weight: 700;
-    border-radius: 20px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.3s ease;
-  }
-
-  .filter-tab:hover {
-    color: var(--text-primary);
-  }
-
-  .filter-tab.active {
-    background: var(--accent-purple);
-    color: #ffffff;
-    box-shadow: 0 2px 10px rgba(168, 85, 247, 0.3);
-  }
-
-  /* Project Cards & Grid */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.25rem;
-  }
-
-  .project-card {
-    background: var(--bg-panel);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    overflow: hidden;
+  /* Film Strip Vertical Reel Container */
+  .film-strip-reel {
+    position: relative;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    gap: 3.5rem;
+    max-width: 1080px;
+    margin: 0 auto;
   }
 
-  .project-card:hover {
-    border-color: var(--border-hover);
-    box-shadow: 0 10px 30px var(--accent-purple-glow);
-    transform: translateY(-4px);
+  /* White Timeline Connector Line */
+  .film-timeline-line {
+    position: absolute;
+    left: 28px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ffffff;
+    opacity: 0.8;
+    z-index: 1;
   }
 
-  .project-img-wrapper {
+  /* Iconic White Film Frame Card */
+  .film-frame-card {
     position: relative;
-    height: 220px;
+    z-index: 2;
+    background: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    display: flex;
     overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
   }
 
-  .project-img-wrapper img {
+  .film-frame-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 45px rgba(255, 255, 255, 0.15);
+  }
+
+  /* Film Sprocket Perforations Side Bar */
+  .film-sprockets {
+    width: 56px;
+    background: #0a0e17;
+    border-right: 1px solid #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.25rem 0;
+    flex-shrink: 0;
+  }
+
+  .sprocket-hole {
+    width: 14px;
+    height: 22px;
+    background: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 3px;
+  }
+
+  /* Frame Inner Layout */
+  .film-frame-inner {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    flex-grow: 1;
+    align-items: stretch;
+  }
+
+  /* Standardized 16:9 Aspect Ratio Container for All Cover Images */
+  .film-frame-image {
+    position: relative;
+    background: #000000;
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .film-frame-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
   }
 
-  .project-card:hover .project-img-wrapper img {
+  .film-frame-card:hover .film-frame-image img {
     transform: scale(1.05);
   }
 
-  .project-overlay {
+  .film-frame-tag {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(8, 9, 13, 0.65);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .project-card:hover .project-overlay {
-    opacity: 1;
-  }
-
-  .btn-detail {
+    top: 1rem;
+    left: 1rem;
+    background: #000000;
+    border: 1px solid #ffffff;
     color: #ffffff;
+    font-size: 0.6875rem;
     font-weight: 700;
-    font-size: 0.875rem;
-    background: rgba(168, 85, 247, 0.95);
-    padding: 0.65rem 1.25rem;
-    border-radius: 30px;
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
-    transform: translateY(10px);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.14em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    z-index: 5;
   }
 
-  .project-card:hover .btn-detail {
-    transform: translateY(0);
-  }
-
-  .project-info {
-    padding: 1.75rem;
+  .film-frame-body {
+    padding: 2.25rem;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    background: #07090e;
   }
 
-  .project-meta {
+  .film-frame-header {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
     margin-bottom: 0.75rem;
   }
 
-  .project-genre {
-    color: var(--accent-purple-light);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .project-year {
-    color: var(--text-secondary);
+  .film-year-badge {
+    background: #ffffff;
+    color: #000000;
     font-size: 0.8125rem;
-    font-weight: 500;
-  }
-
-  .project-card-title {
-    font-size: 1.35rem;
     font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
   }
 
-  .project-desc {
-    color: var(--text-secondary);
-    font-size: 0.9125rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+  .film-genre-text {
+    color: var(--pastel-blue);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .film-project-title {
+    font-size: 1.85rem;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 0.85rem;
+  }
+
+  .film-project-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 1.75rem;
     flex-grow: 1;
   }
 
-  .project-card-footer {
+  .film-frame-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
   }
 
-  .project-engine {
+  .film-engine-tag {
     font-size: 0.75rem;
-    font-weight: 700;
-    background: rgba(255, 255, 255, 0.03);
-    color: var(--text-secondary);
-    padding: 0.25rem 0.65rem;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
+    font-weight: 600;
+    color: var(--pastel-blue);
     text-transform: uppercase;
+    letter-spacing: 0.12em;
   }
 
-  .project-link-icon {
-    color: var(--text-secondary);
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-
-  .project-card:hover .project-link-icon {
-    color: var(--accent-purple);
-    transform: translate(2px, -2px);
-  }
-
-  @media (max-width: 768px) {
-    .projects-grid {
+  @media (max-width: 900px) {
+    .film-frame-inner {
       grid-template-columns: 1fr;
-      gap: 1.75rem;
+    }
+
+    .film-frame-image {
+      height: 230px;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .film-sprockets {
+      width: 44px;
+    }
+
+    .sprocket-hole {
+      width: 12px;
+      height: 18px;
     }
   }
 </style>

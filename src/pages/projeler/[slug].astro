@@ -1,11 +1,35 @@
 ---
 // src/pages/projeler/[slug].astro
-// Dynamic project detail page rendering trailer, story, technologies, and specs.
+// Dynamic project detail page in English with updated years, engines, and video embeds.
 
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
   const projectsData = [
+    {
+      slug: "fog-bridge",
+      title: "Fog Bridge",
+      genre: "Atmospheric Narrative Puzzle",
+      engine: "Unity",
+      tech: ["C#", "Cinemachine", "URP 2D Light", "Custom Audio Controller"],
+      year: "2026",
+      teamSize: "Solo Developer",
+      image: "/assets/fog-bridge-logo.png",
+      videoCover: "/assets/fog-bridge-logo.png",
+      embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7464783917389152257?compact=1",
+      videoUrl: "https://www.linkedin.com/posts/harunemrecankarabag_gamedev-indiedev-unity-activity-7464784394495586304-Svgy",
+      story: "An atmospheric puzzle game developed in 72 hours for GameDev.tv Game Jam 2026. In the middle of an endless sea of fog, decipher cryptic paper plane messages to rebuild a fog bridge extending into the unknown.",
+      features: [
+        { title: "Paper Plane Messages", desc: "Decipher mysterious symbols carried by paper planes emerging from the fog to place subsequent bridge segments." },
+        { title: "2D Lighting & Atmosphere", desc: "A surreal, melancholic fog atmosphere built using Unity URP 2D lights and custom audio triggers." },
+        { title: "Jam Execution", desc: "Completed under a 72-hour constraint with clean, focused gameplay mechanics and high performance." }
+      ],
+      links: {
+        github: "https://github.com/Hekyetmisbes",
+        itch: "https://hekyetmisbes.itch.io/fog-bridge",
+        presentation: ""
+      }
+    },
     {
       slug: "the-final-loop",
       title: "The Final Loop",
@@ -13,14 +37,16 @@ export async function getStaticPaths() {
       engine: "Unreal Engine 5",
       tech: ["C++", "Blueprints", "Unreal Audio", "Niagara VFX"],
       year: "2026",
-      teamSize: "1 (Tek Geliştirici)",
-      image: "/assets/echoes.png",
-      videoCover: "/assets/echoes.png",
-      story: "Karanlık bir askeri araştırma tesisinde uyanan deneysel bir deneğin hikayesi. Tesis çökerken, kendinizi bitmek bilmeyen bir zaman döngüsünün (memory loop) içinde buluyorsunuz. Her döngüde odalardaki ipuçlarını birleştirerek tesisin sırrını çözmeli ve kaçış yolunu bulmalısınız.",
+      teamSize: "Solo Developer",
+      image: "/assets/final_loop_logo.png",
+      videoCover: "/assets/final_loop_logo.png",
+      embedUrl: "",
+      videoUrl: "",
+      story: "The story of an experimental subject awakening inside a collapsing military research facility. As the facility crumbles around you, you find yourself trapped inside an endless memory loop. In each loop, combine clues found in escape rooms to uncover the facility's secret and find a way out.",
       features: [
-        { title: "Hafıza Döngüleri", desc: "Zaman sıfırlandığında değişen çevre koşulları, açılan yeni yollar ve döngüye rağmen kalıcı olan bulmaca durumları." },
-        { title: "Kaçış Odası Mekanikleri", desc: "Etkileşimli terminal arayüzleri, şifre çözme, gizli belgeler ve fizik tabanlı bulmaca tasarımları." },
-        { title: "Gerilim Dolu Atmosfer", desc: "Unreal Engine 5 kalitesinde volumetrik sisler, dinamik ışıklandırmalar ve 3D uzamsal ses tasarımıyla yaratılan klostrofobik his." }
+        { title: "Memory Loops", desc: "Environmental conditions change when time resets, unlocking new paths while preserving puzzle progress across loops." },
+        { title: "Escape Room Mechanics", desc: "Interactive terminal interfaces, codebreaking, classified documents, and physics-based puzzle designs." },
+        { title: "Atmospheric Tension", desc: "Unreal Engine 5 volumetric fog, dynamic lighting, and 3D spatial audio creating a claustrophobic psychological atmosphere." }
       ],
       links: {
         github: "https://github.com/Hekyetmisbes",
@@ -31,18 +57,20 @@ export async function getStaticPaths() {
     {
       slug: "the-unlit-door",
       title: "The Unlit Door",
-      genre: "Psychological Puzzle / Pitch",
-      engine: "Unity (URP)",
+      genre: "Psychological Puzzle / Written Pitch",
+      engine: "Unity Mobile",
       tech: ["C#", "ScriptableObjects", "Cinemachine", "Post-Processing"],
-      year: "2025",
-      teamSize: "1 (Tek Geliştirici)",
-      image: "/assets/luma.png",
-      videoCover: "/assets/luma.png",
-      story: "Karanlık ve aydınlık temaları etrafında şekillenen, oyuncunun zihnindeki odaları sembolize eden kapıları açmaya çalıştığı psikolojik bir anlatı bulmaca oyunu konsepti. Bu sayfa, oyunun atmosferini, pazar araştırmasını ve geliştirme süreçlerinin planlamasını içeren detaylı bir Written Pitch sunumudur.",
+      year: "2026",
+      teamSize: "Solo Developer",
+      image: "/assets/unlit_door_logo.png",
+      videoCover: "/assets/unlit_door_logo.png",
+      embedUrl: "",
+      videoUrl: "",
+      story: "A psychological narrative puzzle concept revolving around themes of light and shadow, where players unlock doors representing rooms of the human mind. This page presents a comprehensive written pitch detailing game atmosphere, market research, and production roadmaps.",
       features: [
-        { title: "Anlatı Odaklı Bulmacalar", desc: "Hikaye anlatımıyla iç içe geçmiş, oyuncunun kararlarına ve zihinsel durumuna göre şekillenen soyut bulmacalar." },
-        { title: "Işık ve Gölge Kontrolü", desc: "Görünmeyen yolları aydınlatmak, gizli kapıları açmak ve tehlikelerden kaçınmak için ışığı bir araç olarak kullanma mekaniği." },
-        { title: "Detaylı Pazar Analizi", desc: "Gantt şemaları, pazar analizleri, hedef kitle davranışları ve finansal planlamaları içeren profesyonel sunum dosyaları." }
+        { title: "Narrative-Driven Puzzles", desc: "Abstract puzzles intertwined with narrative storytelling, evolving based on player decisions and mental states." },
+        { title: "Light & Shadow Control", desc: "Mechanics using light as a primary tool to illuminate unseen paths, reveal secret doors, and avoid dangers." },
+        { title: "Market & Production Analysis", desc: "Professional pitch materials containing Gantt charts, target audience analyses, and production planning." }
       ],
       links: {
         github: "https://github.com/Hekyetmisbes",
@@ -53,18 +81,20 @@ export async function getStaticPaths() {
     {
       slug: "delivery-driver",
       title: "Delivery Driver",
-      genre: "3D Simulation & Sürüş",
+      genre: "3D Simulation & Driving",
       engine: "Unity",
       tech: ["C#", "Unity Physics", "New Input System"],
-      year: "2024",
-      teamSize: "1 (Tek Geliştirici)",
-      image: "/assets/tiny_survivor.png",
-      videoCover: "/assets/tiny_survivor.png",
-      story: "Şehir trafiğinde bir kurye olarak kargoları en hızlı ve güvenli şekilde hedefe ulaştırmaya çalıştığınız, fizik tabanlı bir kurye simülasyon oyunu. Trafik kurallarına uymak veya kestirme yollardan gitmek tamamen sizin kuryelik stratejinize kalmış!",
+      year: "2025",
+      teamSize: "Solo Developer",
+      image: "/assets/delivery-drive-logo.png",
+      videoCover: "/assets/delivery-drive-logo.png",
+      embedUrl: "",
+      videoUrl: "",
+      story: "A physics-based courier simulation game where you deliver cargo through city traffic as fast and safely as possible. Follow traffic rules or take risky shortcuts to optimize your delivery strategy!",
       features: [
-        { title: "Fizik Tabanlı Sürüş", desc: "Araç kontrolü, ani frenlemeler, virajlarda paketlerin savrulması ve hasar alma gibi gerçekçi fizik etkileşimleri." },
-        { title: "Dinamik Teslimat Noktaları", desc: "Şehir genelinde rastgele oluşturulan kurye görevleri ve süre kısıtlamasına karşı heyecan dolu yarış." },
-        { title: "Yeni Giriş Sistemi", desc: "Gamepad ve klavye kontrolleri için tamamen optimize edilmiş New Input System entegrasyonu." }
+        { title: "Physics-Based Driving", desc: "Realistic vehicle handling, abrupt braking, cargo inertia around corners, and damage physics." },
+        { title: "Dynamic Delivery Points", desc: "Randomly generated courier assignments across the city and high-stakes racing against countdown timers." },
+        { title: "New Input System", desc: "Fully optimized input bindings for both gamepad and keyboard controllers." }
       ],
       links: {
         github: "https://github.com/Hekyetmisbes/delivery-driver",
@@ -73,46 +103,26 @@ export async function getStaticPaths() {
       }
     },
     {
-      slug: "fog-bridge",
-      title: "Fog Bridge",
-      genre: "Atmospheric Narrative Puzzle",
-      engine: "Unity",
-      tech: ["C#", "Cinemachine", "URP 2D Light", "Custom Audio Controller"],
-      year: "2026",
-      teamSize: "1 (Tek Geliştirici)",
-      image: "/assets/hero_background.png",
-      videoCover: "/assets/hero_background.png",
-      story: "GameDev.tv Game Jam 2026 için 72 saatte geliştirilmiş atmosferik bir bulmaca oyunu. Uçsuz bucaksız bir sis denizinin ortasında, kağıt uçaklarla gelen şifreli mektupları deşifre ederek karşı tarafa uzanan sis köprüsünü parça parça inşa etmeye çalışıyorsunuz.",
+      slug: "the-platform",
+      title: "The Platform",
+      genre: "2D Cyberpunk Platformer",
+      engine: "Unity 2D",
+      tech: ["Unity 2D", "C#", "Platformer Mechanics", "Level Flow", "Collectibles", "ShaderLab/HLSL", "Git"],
+      year: "2024",
+      teamSize: "Solo Developer",
+      image: "/assets/platform-logo.png",
+      videoCover: "/assets/platform-logo.png",
+      embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7287040546265534464?compact=1",
+      videoUrl: "https://www.linkedin.com/posts/harunemrecankarabag_unity-platformer-game-activity-7287041023799693312-4arg",
+      story: "Released 2D platformer where players collect stars, avoid hazards and obstacles, complete levels, and interact with a cyberpunk-themed short-session gameplay loop.",
       features: [
-        { title: "Kağıt Uçak Mesajları", desc: "Sisin içinden süzülüp gelen uçaklardaki gizemli sembolleri çözerek köprünün bir sonraki parçasını yerleştirme mekaniği." },
-        { title: "2D Işık ve Atmosfer", desc: "Unity URP 2D ışıkları kullanılarak tasarlanmış, melankolik, minimalist ve sürreal sis atmosferi." },
-        { title: "Jam Kısıtlamaları", desc: "72 saatlik kısıtlı sürede tamamlanmış, yüksek performanslı ve odaklanmış temiz oyun mekanikleri." }
+        { title: "Player Movement & Mechanics", desc: "Developed fluid player movement, obstacle interaction, collectible tracking, star-based objectives, level progression, and win/fail state transitions." },
+        { title: "Cyberpunk Feedback & UX", desc: "Implemented readable player feedback around collection, hazards, progress, completion conditions, and short-session gameplay clarity." },
+        { title: "Playable Windows Build", desc: "Released a playable Windows build with downloadable package and installation instructions on Itch.io." }
       ],
       links: {
-        github: "https://github.com/Hekyetmisbes",
-        itch: "https://hekyetmisbes.itch.io/fog-bridge",
-        presentation: ""
-      }
-    },
-    {
-      slug: "movidle-game",
-      title: "Movidle Game",
-      genre: "Web Game / Puzzle",
-      engine: "Unity (WebGL)",
-      tech: ["C#", "JSON Parsing", "IMDb API integration", "Responsive WebGL UI"],
-      year: "2025",
-      teamSize: "1 (Tek Geliştirici)",
-      image: "/assets/orbital.png",
-      videoCover: "/assets/orbital.png",
-      story: "IMDb Top 250 listesindeki popüler filmleri tahmin etmeye çalıştığınız Wordle benzeri bir kelime ve sinema bulmaca oyunu. Her tahminde filmin yönetmeni, yılı, türü ve oyuncu kadrosuna dair renk kodlu ipuçları alırsınız.",
-      features: [
-        { title: "Wordle Mekaniği", desc: "Renk kodlu (yeşil, sarı, gri) kutularla hedefe ne kadar yaklaştığınızı (yönetmen, yıl, oyuncular bazında) gösteren ipuçları." },
-        { title: "IMDb Top 250 Veri Tabanı", desc: "250 efsanevi filmden oluşan ve yerel JSON dosyaları üzerinden beslenen hızlı ve çevrimdışı veri tabanı." },
-        { title: "WebGL Optimizasyonu", desc: "Mobil ve masaüstü tarayıcılarda anında yüklenen, optimize edilmiş bellek tüketimine sahip WebGL derlemesi." }
-      ],
-      links: {
-        github: "https://github.com/Hekyetmisbes/movidle",
-        itch: "",
+        github: "https://github.com/Hekyetmisbes/platform",
+        itch: "https://hekyetmisbes.itch.io/platform",
         presentation: ""
       }
     },
@@ -120,20 +130,46 @@ export async function getStaticPaths() {
       slug: "flag-quiz-game",
       title: "Flag Quiz Game",
       genre: "Mobile Quiz / Educational",
-      engine: "Unity",
+      engine: "Unity Mobile",
       tech: ["C#", "UI Toolkit", "ShaderLab Custom Effects", "Local Storage Save System"],
       year: "2023",
-      teamSize: "1 (Tek Geliştirici)",
-      image: "/assets/luma.png",
-      videoCover: "/assets/luma.png",
-      story: "Dünya ülkelerinin bayraklarını eğlenceli oyun modlarıyla öğrenmenizi sağlayan eğitici ve dinamik bir mobil bilgi yarışması oyunu. Zaman sınırı, can sistemi ve yüksek skor takibi ile oyuncu bağlılığı hedeflenmiştir.",
+      teamSize: "Solo Developer",
+      image: "/assets/flag-quiz-logo.png",
+      videoCover: "/assets/flag-quiz-logo.png",
+      embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7198598131725303809?compact=1",
+      videoUrl: "https://www.linkedin.com/posts/harunemrecankarabag_gamedevelopment-unity-oyun-activity-7198598131725303809-WXSh",
+      story: "An educational mobile quiz game designed to help players learn world flags through engaging game modes, time trials, life systems, and high score tracking.",
       features: [
-        { title: "Çoklu Oyun Modu", desc: "Zamana karşı yarış, sonsuz mod ve bayraktan ülke bulma gibi çeşitli modlarla zengin oyun deneyimi." },
-        { title: "Shader Efektleri", desc: "Cevap verildiğinde bayrak kartları üzerinde tetiklenen custom shader parlamaları ve geçiş efektleri." },
-        { title: "Mobil Uyumlu Arayüz", desc: "Farklı ekran en-boy oranları için tamamen esnek (responsive) mobil UI tasarımı ve yerel veri kaydetme sistemi." }
+        { title: "Multiple Game Modes", desc: "Time trial, endless mode, and flag-to-country matching for varied replayability." },
+        { title: "Shader Effects", desc: "Custom shader glows and card transition effects triggered upon answering questions." },
+        { title: "Mobile Optimized UI", desc: "Responsive mobile interface adaptable to various screen aspect ratios with local data save systems." }
       ],
       links: {
         github: "https://github.com/Hekyetmisbes/flag-quiz-game",
+        itch: "",
+        presentation: ""
+      }
+    },
+    {
+      slug: "movidle-game",
+      title: "Movidle Game",
+      genre: "Web Game / Wordle Puzzle",
+      engine: "Unity",
+      tech: ["C#", "JSON Parsing", "IMDb API Integration", "Responsive WebGL UI"],
+      year: "2023",
+      teamSize: "Solo Developer",
+      image: "/assets/movidle-logo.png",
+      videoCover: "/assets/movidle-logo.png",
+      embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7141805886859112448?compact=1",
+      videoUrl: "https://www.linkedin.com/posts/harunemrecankarabag_game-gamedevelopment-unity-activity-7141805886859112448-oZPK",
+      story: "A movie guessing puzzle game featuring IMDb Top 250 films. Receive color-coded feedback on directors, release years, genres, and cast members with every guess.",
+      features: [
+        { title: "Wordle-Style Feedback", desc: "Color-coded tiles (green, yellow, gray) indicating how close your guesses are to the target movie." },
+        { title: "IMDb Top 250 Database", desc: "A fast offline database of 250 legendary films fed via local JSON files." },
+        { title: "WebGL Optimization", desc: "Optimized memory footprint ensuring instant loading across desktop and mobile web browsers." }
+      ],
+      links: {
+        github: "https://github.com/Hekyetmisbes/movidle",
         itch: "",
         presentation: ""
       }
@@ -149,63 +185,66 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 ---
 
-<Layout title={`${project.title} | Proje Detayı`} description={project.story}>
+<Layout title={`${project.title} | Project Details`} description={project.story}>
   <section class="section border-none detail-page">
     <div class="container">
-      <!-- Back button -->
-      <a href="/projeler/" class="back-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        Tüm Projelere Dön
+      <a href="/projeler/" class="back-link font-sans">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to All Projects
       </a>
 
-      <!-- Project Header Info -->
       <div class="detail-header">
-        <span class="project-tag-genre">{project.genre}</span>
-        <h1 class="project-detail-title">{project.title}</h1>
+        <span class="project-tag-genre font-sans">{project.genre}</span>
+        <h1 class="project-detail-title font-serif">{project.title}</h1>
       </div>
 
-      <!-- Main Columns -->
       <div class="detail-grid">
-        <!-- Main Column: Video & Story -->
         <div class="detail-main-col">
-          <!-- Trailer Video Mockup -->
           <div class="video-container">
-            <div class="video-overlay" id="videoOverlay">
-              <img src={project.videoCover} alt="Trailer Cover Image" class="video-cover-img" />
-              <div class="play-button-wrapper">
-                <div class="play-button-glow"></div>
-                <button class="play-button" aria-label="Fragmanı Oynat" id="playBtn">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor" class="text-white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                </button>
+            {project.embedUrl ? (
+              <iframe 
+                src={project.embedUrl} 
+                title={`${project.title} Video Trailer`}
+                class="embedded-video-iframe" 
+                frameborder="0" 
+                allowfullscreen
+              ></iframe>
+            ) : (
+              <div class="video-overlay" id="videoOverlay">
+                <img src={project.videoCover} alt="Trailer Cover Image" class="video-cover-img" />
+                <div class="play-button-wrapper">
+                  <button class="play-button" aria-label="Play Trailer" id="playBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  </button>
+                </div>
+                <span class="video-label font-sans">Watch Trailer</span>
               </div>
-              <span class="video-label">Fragmanı İzle</span>
-            </div>
-            
-            <!-- Hidden video iframe or local video tag (simulated player) -->
-            <div class="simulated-player" id="simPlayer" style="display: none;">
-              <video id="localVideo" width="100%" height="100%" controls poster={project.videoCover}>
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-digital-particles-loop-31835-large.mp4" type="video/mp4" />
-                Tarayıcınız video oynatmayı desteklemiyor.
-              </video>
-            </div>
+            )}
+
+            {!project.embedUrl && (
+              <div class="simulated-player" id="simPlayer" style="display: none;">
+                <video id="localVideo" width="100%" height="100%" controls poster={project.videoCover}>
+                  <source src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-digital-particles-loop-31835-large.mp4" type="video/mp4" />
+                  Your browser does not support video playback.
+                </video>
+              </div>
+            )}
           </div>
 
-          <!-- Story Section -->
           <div class="story-section">
-            <h2 class="sub-title">Hikaye & Konsept</h2>
-            <p class="story-text">{project.story}</p>
+            <h2 class="sub-title font-serif">Story & Concept</h2>
+            <p class="story-text font-serif">{project.story}</p>
           </div>
 
-          <!-- Key Features Section -->
           <div class="features-section">
-            <h2 class="sub-title">Öne Çıkan Özellikler</h2>
+            <h2 class="sub-title font-serif">Key Features</h2>
             <div class="features-list">
               {project.features.map((f) => (
                 <div class="feature-item">
                   <div class="feature-marker"></div>
                   <div class="feature-info">
-                    <h3 class="feature-title">{f.title}</h3>
-                    <p class="feature-desc">{f.desc}</p>
+                    <h3 class="feature-title font-sans">{f.title}</h3>
+                    <p class="feature-desc font-sans">{f.desc}</p>
                   </div>
                 </div>
               ))}
@@ -213,50 +252,48 @@ const { project } = Astro.props;
           </div>
         </div>
 
-        <!-- Sidebar: Spec Details & Actions -->
         <div class="detail-sidebar-col">
           <div class="spec-card">
-            <h3 class="spec-card-title">Proje Detayları</h3>
+            <h3 class="spec-card-title font-serif">Project Specs</h3>
             
-            <div class="spec-list">
+            <div class="spec-list font-sans">
               <div class="spec-row">
-                <span class="spec-label">Oyun Motoru</span>
+                <span class="spec-label">Game Engine</span>
                 <span class="spec-val text-white">{project.engine}</span>
               </div>
               <div class="spec-row">
-                <span class="spec-label">Yapım Yılı</span>
+                <span class="spec-label">Year</span>
                 <span class="spec-val text-white">{project.year}</span>
               </div>
               <div class="spec-row">
-                <span class="spec-label">Ekip / Rol</span>
+                <span class="spec-label">Team / Role</span>
                 <span class="spec-val text-white">{project.teamSize}</span>
               </div>
             </div>
 
             <div class="tech-tags-wrapper">
-              <h4 class="tech-title">Kullanılan Teknolojiler</h4>
-              <div class="tech-tags">
+              <h4 class="tech-title font-sans">Technologies Used</h4>
+              <div class="tech-tags font-sans">
                 {project.tech.map((t) => (
                   <span class="tech-tag">{t}</span>
                 ))}
               </div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="action-buttons">
+            <div class="action-buttons font-sans">
               {project.links.itch && (
                 <a href={project.links.itch} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full">
-                  Itch.io'da Oyna ↗
+                  Play on Itch.io ↗
                 </a>
               )}
               {project.links.github && (
                 <a href={project.links.github} target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-full">
-                  GitHub'da İncele
+                  View on GitHub
                 </a>
               )}
               {project.links.presentation && (
-                <a href={project.links.presentation} class="btn btn-primary btn-full glow-btn">
-                  Detaylı Sunum Sayfası ↗
+                <a href={project.links.presentation} class="btn btn-primary btn-full">
+                  Detailed Written Pitch ↗
                 </a>
               )}
             </div>
@@ -268,13 +305,12 @@ const { project } = Astro.props;
 </Layout>
 
 <script>
-  // Simple Video Play Simulation
-  const playBtn = document.getElementById('playBtn');
   const videoOverlay = document.getElementById('videoOverlay');
+  const playBtn = document.getElementById('playBtn');
   const simPlayer = document.getElementById('simPlayer');
   const localVideo = document.getElementById('localVideo') as HTMLVideoElement;
 
-  if (playBtn && videoOverlay && simPlayer && localVideo) {
+  if (videoOverlay && playBtn && simPlayer && localVideo) {
     playBtn.addEventListener('click', () => {
       videoOverlay.style.display = 'none';
       simPlayer.style.display = 'block';
@@ -285,28 +321,28 @@ const { project } = Astro.props;
 
 <style>
   .detail-page {
-    padding-top: 8rem;
+    padding-top: 130px;
+    padding-bottom: 90px;
   }
 
   .back-link {
     display: inline-flex;
     align-items: center;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 700;
+    color: var(--muted);
+    font-size: 0.8125rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     margin-bottom: 2rem;
-    transition: color 0.3s ease;
+    transition: color 0.25s ease;
   }
 
   .back-link:hover {
-    color: var(--accent-purple);
+    color: var(--white);
   }
 
   .back-link .inline-icon {
-    margin-right: 0.5rem;
+    margin-right: 0.4rem;
   }
 
   .detail-header {
@@ -314,22 +350,21 @@ const { project } = Astro.props;
   }
 
   .project-tag-genre {
-    color: var(--accent-purple-light);
-    font-size: 0.8125rem;
-    font-weight: 800;
+    color: var(--pastel-blue);
+    font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.14em;
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   .project-detail-title {
-    font-size: 3rem;
-    font-weight: 900;
-    color: #ffffff;
+    font-size: clamp(32px, 5.5vw, 64px);
+    line-height: 1;
+    color: var(--white);
   }
 
-  /* Grid Columns */
   .detail-grid {
     display: grid;
     grid-template-columns: 1.4fr 0.8fr;
@@ -337,17 +372,23 @@ const { project } = Astro.props;
     align-items: start;
   }
 
-  /* Video Trailer Container */
   .video-container {
     position: relative;
     width: 100%;
     aspect-ratio: 16/9;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    background: #000;
-    margin-bottom: 3.5rem;
+    background: #000000;
+    margin-bottom: 3rem;
+  }
+
+  .embedded-video-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #000000;
+    display: block;
   }
 
   .video-overlay {
@@ -371,8 +412,9 @@ const { project } = Astro.props;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.4;
-    transition: transform 0.5s ease;
+    object-position: center;
+    opacity: 0.8;
+    transition: transform 0.4s ease;
   }
 
   .video-overlay:hover .video-cover-img {
@@ -382,53 +424,35 @@ const { project } = Astro.props;
   .play-button-wrapper {
     position: relative;
     z-index: 12;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .play-button {
-    width: 100%;
-    height: 100%;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    background: var(--accent-purple);
+    background: var(--white);
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
+    color: #000;
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .play-button-glow {
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: transparent;
-    border: 2px solid var(--accent-purple);
-    opacity: 0.5;
-    animation: pulse-glow 2s infinite;
+    transition: all 0.25s ease;
   }
 
   .video-overlay:hover .play-button {
-    background: #b56ff8;
-    transform: scale(1.1);
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.9);
+    transform: scale(1.08);
   }
 
   .video-label {
     position: relative;
     z-index: 12;
-    color: #ffffff;
-    font-weight: 700;
+    color: var(--white);
+    font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.8125rem;
-    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
   }
 
   .simulated-player {
@@ -436,29 +460,12 @@ const { project } = Astro.props;
     height: 100%;
   }
 
-  @keyframes pulse-glow {
-    0% {
-      transform: scale(0.95);
-      opacity: 0.8;
-    }
-    50% {
-      transform: scale(1.15);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(0.95);
-      opacity: 0;
-    }
-  }
-
-  /* Subtitles */
   .sub-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 1.25rem;
     position: relative;
-    padding-left: 0.75rem;
+    padding-left: 0.85rem;
   }
 
   .sub-title::before {
@@ -468,85 +475,79 @@ const { project } = Astro.props;
     top: 50%;
     transform: translateY(-50%);
     width: 3px;
-    height: 14px;
-    background: var(--accent-purple);
-    border-radius: 2px;
+    height: 16px;
+    background: var(--white);
   }
 
-  /* Story section */
   .story-section {
-    margin-bottom: 3.5rem;
+    margin-bottom: 3rem;
   }
 
   .story-text {
     font-size: 1.0625rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
+    color: var(--muted);
+    line-height: 1.75;
   }
 
-  /* Features section */
   .features-section {
-    margin-bottom: 3.5rem;
+    margin-bottom: 3rem;
   }
 
   .features-list {
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
 
   .feature-item {
     display: flex;
-    gap: 1.25rem;
+    gap: 1rem;
     align-items: start;
   }
 
   .feature-marker {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: var(--accent-purple);
-    box-shadow: 0 0 8px var(--accent-purple);
-    margin-top: 0.55rem;
+    background: var(--white);
+    margin-top: 0.65rem;
     flex-shrink: 0;
   }
 
   .feature-title {
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--white);
     margin-bottom: 0.25rem;
   }
 
   .feature-desc {
-    color: var(--text-secondary);
+    color: var(--muted);
     font-size: 0.9375rem;
-    line-height: 1.5;
+    line-height: 1.6;
   }
 
-  /* Specs Sidebar Card */
   .spec-card {
-    background: var(--bg-panel);
-    border: 1px solid var(--border-color);
-    padding: 2.25rem;
-    border-radius: 12px;
+    background: #07090e;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 2rem;
+    border-radius: 8px;
     position: sticky;
     top: 6.5rem;
   }
 
   .spec-card-title {
     font-size: 1.25rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 1.75rem;
+    color: var(--white);
+    margin-bottom: 1.5rem;
   }
 
   .spec-list {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1.75rem;
+    gap: 1.1rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--border-color);
   }
 
@@ -557,74 +558,57 @@ const { project } = Astro.props;
   }
 
   .spec-label {
-    color: var(--text-secondary);
-    font-weight: 500;
+    color: var(--muted);
   }
 
   .spec-val {
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .tech-tags-wrapper {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   .tech-title {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--pastel-blue);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.85rem;
   }
 
   .tech-tags {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.4rem;
     flex-wrap: wrap;
   }
 
   .tech-tag {
     font-size: 0.75rem;
-    font-weight: 700;
-    background: rgba(255, 255, 255, 0.03);
-    color: var(--text-primary);
-    padding: 0.35rem 0.75rem;
+    font-weight: 600;
+    background: var(--dark);
+    color: var(--white);
+    padding: 0.3rem 0.65rem;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
-    text-transform: uppercase;
+    border-radius: 4px;
   }
 
-  /* Action Buttons */
   .action-buttons {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.85rem;
   }
 
   .btn-full {
     width: 100%;
     justify-content: center;
   }
-  
-  .glow-btn {
-    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.55);
-  }
-
-  .inline-icon {
-    vertical-align: middle;
-  }
 
   @media (max-width: 900px) {
     .detail-grid {
       grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .project-detail-title {
-      font-size: 2.25rem;
+      gap: 2.5rem;
     }
   }
 </style>
