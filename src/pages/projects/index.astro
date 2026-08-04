@@ -1,5 +1,5 @@
 ---
-// src/pages/projeler/index.astro
+// src/pages/projects/index.astro
 // Chronological Film Strip Projects Page with updated years, engines, and no "View Project" link.
 
 import Layout from '../../layouts/Layout.astro';
@@ -137,7 +137,7 @@ const projects = [
     card.addEventListener('click', () => {
       const slug = card.getAttribute('data-slug');
       if (slug) {
-        window.location.href = `/projeler/${slug}/`;
+        window.location.href = `/projects/${slug}/`;
       }
     });
   });

@@ -13,10 +13,10 @@ const {
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
-const isProjeler = pathname.startsWith('/projeler');
-const isHakkimda = pathname.startsWith('/hakkimda');
-const isYetkinlikler = pathname.startsWith('/yetkinlikler');
-const isIletisim = pathname.startsWith('/iletisim');
+const isProjects = pathname.startsWith('/projects');
+const isAbout = pathname.startsWith('/about');
+const isSkills = pathname.startsWith('/skills');
+const isContact = pathname.startsWith('/contact');
 ---
 
 <!doctype html>
@@ -25,7 +25,8 @@ const isIletisim = pathname.startsWith('/iletisim');
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <link rel="icon" type="image/svg+xml" href="/assets/spider-favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="alternate icon" type="image/x-icon" href="/assets/favicon.ico" />
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,10 +56,10 @@ const isIletisim = pathname.startsWith('/iletisim');
         
         <!-- Desktop Menu -->
         <nav class="nav-links font-sans" aria-label="Main Menu">
-          <a href="/projeler/" class={isProjeler ? "nav-link active" : "nav-link"}>Projects</a>
-          <a href="/hakkimda/" class={isHakkimda ? "nav-link active" : "nav-link"}>About</a>
-          <a href="/yetkinlikler/" class={isYetkinlikler ? "nav-link active" : "nav-link"}>Skills</a>
-          <a href="/iletisim/" class={isIletisim ? "nav-link active" : "nav-link"}>Contact</a>
+          <a href="/projects/" class={isProjects ? "nav-link active" : "nav-link"}>Projects</a>
+          <a href="/about/" class={isAbout ? "nav-link active" : "nav-link"}>About</a>
+          <a href="/skills/" class={isSkills ? "nav-link active" : "nav-link"}>Skills</a>
+          <a href="/contact/" class={isContact ? "nav-link active" : "nav-link"}>Contact</a>
         </nav>
 
         <!-- Mobile Toggle -->
@@ -70,10 +71,10 @@ const isIletisim = pathname.startsWith('/iletisim');
       <!-- Mobile Dropdown -->
       <div class="mobile-dropdown" id="mobileMenu">
         <nav aria-label="Mobile Menu">
-          <a href="/projeler/" class={isProjeler ? "mobile-link active" : "mobile-link"}>Projects</a>
-          <a href="/hakkimda/" class={isHakkimda ? "mobile-link active" : "mobile-link"}>About</a>
-          <a href="/yetkinlikler/" class={isYetkinlikler ? "mobile-link active" : "mobile-link"}>Skills</a>
-          <a href="/iletisim/" class={isIletisim ? "mobile-link active" : "mobile-link"}>Contact</a>
+          <a href="/projects/" class={isProjects ? "mobile-link active" : "mobile-link"}>Projects</a>
+          <a href="/about/" class={isAbout ? "mobile-link active" : "mobile-link"}>About</a>
+          <a href="/skills/" class={isSkills ? "mobile-link active" : "mobile-link"}>Skills</a>
+          <a href="/contact/" class={isContact ? "mobile-link active" : "mobile-link"}>Contact</a>
         </nav>
       </div>
     </header>
@@ -82,7 +83,7 @@ const isIletisim = pathname.startsWith('/iletisim');
     <slot />
 
     <!-- Delicate Minimalist Footer -->
-    {pathname !== '/iletisim/' && pathname !== '/iletisim' && (
+    {pathname !== '/contact/' && pathname !== '/contact' && (
       <footer class="delicate-footer">
         <div class="container footer-inner">
           <p class="footer-quote font-serif">Stories begin with atmosphere before images.</p>

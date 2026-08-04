@@ -1,5 +1,5 @@
 ---
-// src/pages/projeler/[slug].astro
+// src/pages/projects/[slug].astro
 // Dynamic project detail page in English with updated years, engines, and video embeds.
 
 import Layout from '../../layouts/Layout.astro';
@@ -40,8 +40,8 @@ export async function getStaticPaths() {
       teamSize: "Solo Developer",
       image: "/assets/final_loop_logo.png",
       videoCover: "/assets/final_loop_logo.png",
-      embedUrl: "",
-      videoUrl: "",
+      embedUrl: "https://www.youtube.com/embed/rsCtGzJ-vpg",
+      videoUrl: "https://youtu.be/rsCtGzJ-vpg",
       story: "The story of an experimental subject awakening inside a collapsing military research facility. As the facility crumbles around you, you find yourself trapped inside an endless memory loop. In each loop, combine clues found in escape rooms to uncover the facility's secret and find a way out.",
       features: [
         { title: "Memory Loops", desc: "Environmental conditions change when time resets, unlocking new paths while preserving puzzle progress across loops." },
@@ -64,8 +64,8 @@ export async function getStaticPaths() {
       teamSize: "Solo Developer",
       image: "/assets/unlit_door_logo.png",
       videoCover: "/assets/unlit_door_logo.png",
-      embedUrl: "",
-      videoUrl: "",
+      embedUrl: "https://drive.google.com/file/d/13bP3xqNxCXMtLxGEEpDIVqBRCYX8HxV1/preview",
+      videoUrl: "https://drive.google.com/file/d/13bP3xqNxCXMtLxGEEpDIVqBRCYX8HxV1/view?usp=drive_link",
       story: "A psychological narrative puzzle concept revolving around themes of light and shadow, where players unlock doors representing rooms of the human mind. This page presents a comprehensive written pitch detailing game atmosphere, market research, and production roadmaps.",
       features: [
         { title: "Narrative-Driven Puzzles", desc: "Abstract puzzles intertwined with narrative storytelling, evolving based on player decisions and mental states." },
@@ -188,7 +188,7 @@ const { project } = Astro.props;
 <Layout title={`${project.title} | Project Details`} description={project.story}>
   <section class="section border-none detail-page">
     <div class="container">
-      <a href="/projeler/" class="back-link font-sans">
+      <a href="/projects/" class="back-link font-sans">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         Back to All Projects
       </a>
@@ -281,6 +281,11 @@ const { project } = Astro.props;
             </div>
 
             <div class="action-buttons font-sans">
+              {project.videoUrl && (
+                <a href={project.videoUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-full">
+                  Watch Trailer Video ↗
+                </a>
+              )}
               {project.links.itch && (
                 <a href={project.links.itch} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full">
                   Play on Itch.io ↗
