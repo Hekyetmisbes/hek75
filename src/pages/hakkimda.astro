@@ -1,57 +1,46 @@
 ---
 // src/pages/hakkimda.astro
-// Biography page with stats and CV download link.
+// English Cinematic Director & Game Developer Biography Page (Stats section removed).
 
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Hakkımda | Harun Emrecan Karabağ" description="Harun Emrecan Karabağ - Biyografi, oyun geliştirme tutkusu, deneyim ve istatistikleri.">
-  <section class="section border-none">
+<Layout title="About Me | Film & Game Developer Biography" description="Harun Emrecan Karabağ - Game Developer and Computer Engineer cinematic biography.">
+  <section class="section border-none about-page-section">
     <div class="container">
-      <h2 class="section-title text-left">Hakkımda</h2>
+      <small class="page-meta font-sans">DIRECTOR & DEVELOPER BRIEFING · BIOGRAPHY</small>
+      <h1 class="section-title font-serif">About Me</h1>
       
       <div class="about-grid">
         <div class="about-text-col">
-          <p class="about-paragraph text-highlight">
-            Merhaba! Ben Harun Emrecan Karabağ. Oyun geliştirmeye olan ilgim, küçük yaşlarda başladı ve zamanla tutkum haline geldi.
+          <div class="scene-tag font-sans">SCENE 01 / BIOGRAPHY & VISION</div>
+          <p class="about-paragraph text-highlight font-serif">
+            "A game is a cinematic journey that begins in the player's mind and continues long after the screen goes dark."
           </p>
-          <p class="about-paragraph">
-            Unity ve Unreal Engine ile 3D ve 2D oyunlar geliştiriyorum. Oyun mekanikleri, seviye tasarımı (level design), yapay zeka ve oyuncu deneyimi (player experience) üzerine odaklanıyorum. Bilgisayar mühendisliği altyapımla performans odaklı, temiz ve sürdürülebilir kod yazmayı ilke ediniyorum.
+          <p class="about-paragraph font-serif">
+            Hello! I am Harun Emrecan Karabağ. I combine my computer engineering principles with my passion for game development, designing atmospheric games that feature strong technical optimization and deep narrative resonance.
           </p>
-          <p class="about-paragraph">
-            Yeni oyun motoru araçları, optimizasyon teknikleri ve modern yazılım mimarileri öğrenmeyi, yaratıcı projeler üreterek oyun dünyasında kalıcı izler bırakmayı hedefliyorum.
+          <p class="about-paragraph font-serif">
+            I focus on core game mechanics, level design, spatial audio design, and artificial intelligence systems across Unity (URP) and Unreal Engine 5. I value the emotional mood, pacing, and feeling of a scene just as much as code stability.
           </p>
+          
           <div class="about-cv-action">
-            <a href="/assets/Harun-Emrecan-Karabag-CV.pdf" target="_blank" class="btn btn-outline">
-              Özgeçmişimi İndir <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <a href="/assets/Harun-Emrecan-Karabag-CV.pdf" target="_blank" class="btn btn-primary font-sans">
+              Download Resume File ↗
             </a>
           </div>
         </div>
         
         <div class="about-img-col">
-          <div class="about-image-wrapper">
-            <img src="/assets/about_profile.png" alt="Harun Emrecan Karabağ" loading="lazy" />
+          <div class="about-image-card">
+            <div class="film-clapper-header">
+              <span class="clapper-text font-sans">PROD: HEK75 PORTFOLIO</span>
+              <span class="clapper-text font-sans">TAKE: 2026</span>
+            </div>
+            <div class="about-image-wrapper">
+              <img src="/assets/Emre.png" alt="Harun Emrecan Karabağ" loading="lazy" />
+            </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Character Stats -->
-      <div class="stats-row">
-        <div class="stat-box">
-          <span class="stat-number">3+</span>
-          <span class="stat-label">Yıl Deneyim</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-number">6+</span>
-          <span class="stat-label">Tamamlanan Proje</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-number">2+</span>
-          <span class="stat-label">Oyun Jam</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-number">∞</span>
-          <span class="stat-label">Kahve</span>
         </div>
       </div>
     </div>
@@ -59,25 +48,50 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+  .about-page-section {
+    padding-top: 130px;
+    padding-bottom: 90px;
+  }
+
+  .page-meta {
+    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    color: var(--pastel-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .scene-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--pastel-blue);
+    margin-bottom: 1.25rem;
+  }
+
   .about-grid {
     display: grid;
-    grid-template-columns: 1.25fr 0.9fr;
-    gap: 3.5rem;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
     align-items: center;
-    margin-bottom: 4.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .about-paragraph {
-    font-size: 1.0625rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.25rem;
-    line-height: 1.7;
+    font-size: 1.125rem;
+    color: var(--muted);
+    margin-bottom: 1.4rem;
+    line-height: 1.8;
   }
 
   .text-highlight {
-    color: #ffffff;
-    font-size: 1.1875rem;
-    font-weight: 500;
+    color: var(--white);
+    font-size: 1.4rem;
+    line-height: 1.45;
+    margin-bottom: 1.6rem;
   }
 
   .about-cv-action {
@@ -89,85 +103,49 @@ import Layout from '../layouts/Layout.astro';
     justify-content: center;
   }
 
+  .about-image-card {
+    background: #07090e;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    padding: 1rem;
+    max-width: 340px;
+    width: 100%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  }
+
+  .film-clapper-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.6875rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
   .about-image-wrapper {
     position: relative;
-    max-width: 320px;
     width: 100%;
     aspect-ratio: 1;
-    border-radius: 16px;
+    border-radius: 6px;
     overflow: hidden;
-    border: 1px solid var(--border-color);
+    background: #000;
   }
 
   .about-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .about-image-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-shadow: inset 0 0 30px rgba(168, 85, 247, 0.15);
-    pointer-events: none;
-    border-radius: 16px;
-  }
-
-  .about-image-wrapper:hover img {
-    transform: scale(1.03);
-  }
-
-  /* Stats Section Row */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-    padding-top: 3.5rem;
-    border-top: 1px solid var(--border-color);
-  }
-
-  .stat-box {
-    background: var(--bg-panel);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.75rem 1.25rem;
-    text-align: center;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .stat-box:hover {
-    border-color: var(--border-hover);
-    box-shadow: 0 5px 20px var(--accent-purple-glow);
-  }
-
-  .stat-number {
     display: block;
-    font-size: 2.25rem;
-    font-weight: 800;
-    color: var(--accent-purple);
-    margin-bottom: 0.25rem;
+    transition: transform 0.4s ease;
   }
 
-  .stat-label {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .about-image-card:hover img {
+    transform: scale(1.04);
   }
 
-  .inline-icon {
-    margin-left: 0.35rem;
-    vertical-align: middle;
-  }
-
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     .about-grid {
       grid-template-columns: 1fr;
       gap: 2.5rem;
@@ -175,17 +153,6 @@ import Layout from '../layouts/Layout.astro';
 
     .about-img-col {
       order: -1;
-    }
-
-    .stats-row {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .stats-row {
-      grid-template-columns: 1fr;
     }
   }
 </style>

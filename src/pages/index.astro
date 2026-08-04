@@ -1,190 +1,407 @@
 ---
 // src/pages/index.astro
-// Welcome / Start page of the Hek75 portfolio site.
-// Renders the glowing hero layout and links to the projects page.
+// Pitch-Black English Portfolio Home Page for Hek75.
 
 import Layout from '../layouts/Layout.astro';
+
+const featuredProjects = [
+  {
+    number: "01",
+    category: "UNREAL ENGINE 5 / PUZZLE",
+    title: "The Final Loop",
+    genre: "Psychological Puzzle / Vertical Slice",
+    engine: "Unreal Engine 5",
+    desc: "A psychological puzzle game built in Unreal Engine 5. Uncover memory loops inside a collapsing military research facility and solve room escape mysteries.",
+    slug: "the-final-loop",
+    image: "/assets/final_loop_logo.png",
+    year: "2026"
+  },
+  {
+    number: "02",
+    category: "UNITY (URP) / NARRATIVE PITCH",
+    title: "The Unlit Door",
+    genre: "Psychological Puzzle / Written Pitch",
+    engine: "Unity (URP)",
+    desc: "A written pitch and mechanic design for an atmospheric narrative puzzle game centered around memory, light, shadow, and psychological doors.",
+    slug: "the-unlit-door",
+    image: "/assets/unlit_door_logo.png",
+    year: "2025"
+  }
+];
 ---
 
-<Layout title="Harun Emrecan Karabağ | Game Developer" description="Harun Emrecan Karabağ - Computer Engineer and Game Developer portfolio welcome page.">
-  <!-- Hero Section -->
-  <section id="hero" class="hero-section">
-    <div class="hero-bg-overlay"></div>
-    <div class="container hero-content">
-      <p class="hero-greeting text-purple">Merhaba, ben</p>
-      <h1 class="hero-title">Harun Emrecan <br class="mobile-only"/><span class="text-purple glow-text">Karabağ</span></h1>
-      <p class="hero-subtitle text-purple-light font-black">Game Developer</p>
-      <p class="hero-desc">
-        Oyun geliştirmeye tutkulu bir geliştirici. Etkileyici dünyalar ve unutulmaz deneyimler oluşturuyorum.
-      </p>
-      <div class="hero-actions">
-        <a href="/projeler/" class="btn btn-primary">Projelerimi Gör <span class="arrow-icon">→</span></a>
-      </div>
-      
-      <!-- Social Links -->
-      <div class="hero-socials">
-        <a href="https://github.com/Hekyetmisbes" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/harunemrecankarabag/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-        </a>
-        <a href="mailto:harunemrecankarabag@gmail.com" aria-label="E-posta">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        </a>
+<Layout title="Harun Emrecan Karabağ | Game Developer Portfolio" description="Harun Emrecan Karabağ - Computer Engineer and Game Developer portfolio website.">
+  <!-- Pitch Black Hero Header -->
+  <header class="hero">
+    <div class="hero-card">
+      <div class="hero-copy">
+        <h1 class="hero-name font-serif">Harun Emrecan<br>Karabağ</h1>
+        <p class="hero-tag font-sans">GAME DEVELOPER · SELECTED WORKS 2022—2026</p>
+        
+        <div class="hero-actions font-sans">
+          <a href="#story" class="btn btn-primary">
+            Explore Projects ↓
+          </a>
+          <a href="/assets/Harun-Emrecan-Karabag-CV.pdf" target="_blank" class="btn btn-outline">
+            Download CV ↗
+          </a>
+        </div>
       </div>
     </div>
+  </header>
 
-    <div class="scroll-down-arrow">
-      <a href="/projeler/" aria-label="Aşağı Kaydır">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+  <!-- Story Intro & Chapter Flow -->
+  <main class="story" id="story">
+    <!-- Intro Section -->
+    <section class="intro">
+      <h2 class="intro-title font-serif">Stories begin with atmosphere before images.</h2>
+      <div class="intro-body">
+        <p class="intro-p font-serif">
+          Combining computer engineering foundations with a passion for game design, creating games focused on mechanics, level design, and player experience.
+        </p>
+        <p class="intro-sub font-sans">
+          Designing stable game loops, performance-optimized code architectures, and emotionally resonant worlds in Unity (URP) and Unreal Engine 5.
+        </p>
+      </div>
+    </section>
+
+    <!-- Project Chapters -->
+    {featuredProjects.map((p) => (
+      <section class="chapter">
+        <div class="chapter-image-container">
+          <div class="chapter-image">
+            <img src={p.image} alt={p.title} class="chapter-img" loading="lazy" />
+          </div>
+        </div>
+        <div class="chapter-info">
+          <small class="chapter-meta font-sans">{p.number} / {p.category}</small>
+          <h3 class="chapter-title font-serif">{p.title}</h3>
+          <p class="chapter-desc font-sans">{p.desc}</p>
+          <div class="chapter-actions font-sans">
+            <a href={`/projeler/${p.slug}/`} class="btn btn-primary">
+              View Project ↗
+            </a>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <div class="view-all-projects-bar">
+      <a href="/projeler/" class="btn btn-outline font-sans">
+        View All Projects (6+ Projects) →
       </a>
+    </div>
+  </main>
+
+  <!-- Warm & Personal Philosophy Section (Replaces Heavy Corporate Vision) -->
+  <section class="philosophy-section">
+    <div class="container">
+      <div class="philosophy-container">
+        <small class="page-meta font-sans">CRAFT & PHILOSOPHY</small>
+        <h2 class="section-title font-serif">Creating Worlds & Experiences</h2>
+        <p class="philosophy-lead font-serif">
+          "I care deeply about how a game feels in the player's hands. Beyond code structure and engine benchmarks, my focus is building immersive moments that linger long after the screen goes dark."
+        </p>
+        <p class="philosophy-body font-sans">
+          Whether crafting C# architecture in Unity or modular C++ systems in Unreal Engine 5, I focus on clean, scalable code that serves the core player loop and narrative flow.
+        </p>
+        
+        <div class="stats-counter-grid font-sans">
+          <div class="stat-card">
+            <span class="stat-num font-serif">3+</span>
+            <span class="stat-txt">Years Experience</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num font-serif">6+</span>
+            <span class="stat-txt">Completed Projects</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num font-serif">2+</span>
+            <span class="stat-txt">Game Jams</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num font-serif">∞</span>
+            <span class="stat-txt">Coffee & Code</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  /* Hero Specific Styling */
-  .hero-section {
-    position: relative;
+  /* Pitch Black Hero Styling */
+  .hero {
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background-image: url('/assets/hero_background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: var(--dark);
+    padding: 0 1.5rem;
   }
 
-  .hero-bg-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(8, 9, 13, 0.45) 0%, rgba(8, 9, 13, 0.95) 90%), rgba(8, 9, 13, 0.5);
-    z-index: 1;
-  }
-
-  .hero-content {
+  .hero-card {
     position: relative;
     z-index: 2;
-    max-width: 750px;
+    width: 44vw;
+    height: 65vh;
+    min-width: 320px;
+    background: #07090e;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 4rem;
+    padding: 3rem 2rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    transform: rotate(-1.5deg);
+    transition: transform 0.4s ease;
   }
 
-  .hero-greeting {
-    font-size: 1.125rem;
-    font-weight: 700;
+  .hero-card:hover {
+    transform: rotate(0deg);
+  }
+
+  .hero-copy {
+    text-align: center;
+    max-width: 700px;
+  }
+
+  .hero-name {
+    font: italic 400 clamp(48px, 8.5vw, 115px) / 0.9 var(--font-serif);
+    letter-spacing: -0.04em;
+    margin: 0;
+    color: var(--white);
+  }
+
+  .hero-tag {
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.75rem;
-  }
-
-  .hero-title {
-    font-size: 4.5rem;
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    color: #ffffff;
-  }
-
-  .glow-text {
-    text-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
-  }
-
-  .hero-subtitle {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-  }
-
-  .hero-desc {
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-    max-width: 580px;
-    margin: 0 auto 2.5rem;
+    font-size: 0.75rem;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: var(--pastel-blue);
+    font-weight: 600;
   }
 
   .hero-actions {
     display: flex;
+    justify-content: center;
     gap: 1rem;
+  }
+
+  /* Story Section */
+  .story {
+    padding: 10vh 1.5rem;
+  }
+
+  .intro {
+    display: grid;
+    grid-template-columns: 0.6fr 1fr;
+    gap: 6vw;
+    align-items: start;
+    margin-bottom: 16vh;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .intro-title {
+    font: 400 clamp(32px, 4.5vw, 70px) / 1 var(--font-serif);
+    margin: 0;
+    color: var(--white);
+  }
+
+  .intro-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .intro-p {
+    font: 400 clamp(18px, 2.2vw, 32px) / 1.35 var(--font-serif);
+    margin: 0;
+    color: #cbd5e1;
+  }
+
+  .intro-sub {
+    color: var(--muted);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
+
+  /* Chapter Block */
+  .chapter {
+    min-height: 70vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+    align-items: center;
+    margin-bottom: 12vh;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .chapter:nth-child(even) .chapter-image-container {
+    order: 2;
+  }
+
+  .chapter-image-container {
+    position: relative;
+  }
+
+  .chapter-image {
+    height: 56vh;
+    min-height: 350px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  }
+
+  .chapter-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .chapter:hover .chapter-img {
+    transform: scale(1.03);
+  }
+
+  .chapter-meta {
+    color: var(--pastel-blue);
+    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .chapter-title {
+    font: 400 clamp(36px, 5vw, 76px) / 0.95 var(--font-serif);
+    letter-spacing: -0.03em;
+    margin: 16px 0;
+    color: var(--white);
+  }
+
+  .chapter-desc {
+    color: var(--muted);
+    font-size: 1.0625rem;
+    max-width: 500px;
+    line-height: 1.7;
     margin-bottom: 2rem;
   }
 
-  .hero-socials {
+  .chapter-actions {
     display: flex;
-    gap: 1.5rem;
-    margin-top: 1rem;
+    gap: 1rem;
   }
 
-  .hero-socials a {
-    color: var(--text-secondary);
-    transition: color 0.3s ease, transform 0.3s ease;
+  .view-all-projects-bar {
+    text-align: center;
+    margin-top: 4vh;
+    margin-bottom: 6vh;
   }
 
-  .hero-socials a:hover {
-    color: var(--accent-purple);
-    transform: translateY(-2px);
+  /* Warm & Personal Philosophy Section */
+  .philosophy-section {
+    background: var(--dark);
+    border-top: 1px solid var(--border-color);
+    padding: 10vh 1.5rem;
   }
 
-  .scroll-down-arrow {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    animation: bounce 2s infinite;
+  .philosophy-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
   }
 
-  .scroll-down-arrow a {
-    color: var(--text-secondary);
-    transition: color 0.3s ease;
+  .page-meta {
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    color: var(--pastel-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
   }
 
-  .scroll-down-arrow a:hover {
-    color: var(--accent-purple);
+  .philosophy-lead {
+    font-size: clamp(20px, 2.8vw, 36px);
+    line-height: 1.35;
+    color: var(--white);
+    margin-bottom: 1.5rem;
   }
 
-  .arrow-icon {
-    margin-left: 0.5rem;
-    transition: transform 0.3s ease;
+  .philosophy-body {
+    color: var(--muted);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
   }
 
-  .btn-primary:hover .arrow-icon {
-    transform: translateX(3px);
+  .stats-counter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
   }
 
-  .mobile-only {
-    display: none;
+  .stat-card {
+    background: #07090e;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 1.75rem 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translate(-50%, 0);
+  .stat-num {
+    font-size: 2.75rem;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-txt {
+    color: var(--pastel-blue);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    .intro, .chapter {
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
     }
-    40% {
-      transform: translate(-50%, -10px);
-    }
-    60% {
-      transform: translate(-50%, -5px);
-    }
-  }
 
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: 3rem;
+    .chapter:nth-child(even) .chapter-image-container {
+      order: 0;
     }
-    .mobile-only {
-      display: inline;
+
+    .chapter-image {
+      height: 40vh;
+    }
+
+    .hero-card {
+      width: 85vw;
+      height: 52vh;
+    }
+
+    .stats-counter-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>
