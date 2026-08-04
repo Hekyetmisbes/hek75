@@ -1,0 +1,165 @@
+---
+// src/pages/iletisim.astro
+// Contact page presenting direct links for communication.
+
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="İletişim | Harun Emrecan Karabağ" description="Harun Emrecan Karabağ - İletişim bilgileri ve sosyal medya hesapları.">
+  <section class="section border-none contact-page">
+    <div class="container contact-container">
+      <h2 class="section-title">İletişim (End Game)</h2>
+      <p class="contact-subtitle text-secondary">
+        Yeni bir seviyeye geçmeye hazır mısınız? Projeleriniz, iş fırsatları veya sadece sohbet etmek için bana ulaşabilirsiniz.
+      </p>
+
+      <div class="contact-methods-grid">
+        <a href="mailto:harunemrecankarabag@gmail.com" class="contact-method-card">
+          <div class="icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </div>
+          <h3 class="method-title">E-posta Gönder</h3>
+          <p class="method-val text-purple-light">harunemrecankarabag@gmail.com</p>
+          <span class="method-cta">Mail At ↗</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/harunemrecankarabag/" target="_blank" rel="noopener noreferrer" class="contact-method-card">
+          <div class="icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </div>
+          <h3 class="method-title">LinkedIn'den Bağlan</h3>
+          <p class="method-val text-purple-light">harunemrecankarabag</p>
+          <span class="method-cta">Profili Aç ↗</span>
+        </a>
+
+        <a href="https://github.com/Hekyetmisbes" target="_blank" rel="noopener noreferrer" class="contact-method-card">
+          <div class="icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </div>
+          <h3 class="method-title">GitHub Projeleri</h3>
+          <p class="method-val text-purple-light">Hekyetmisbes</p>
+          <span class="method-cta">Kodları İncele ↗</span>
+        </a>
+
+        <a href="https://www.instagram.com/hekyetmisbes/" target="_blank" rel="noopener noreferrer" class="contact-method-card">
+          <div class="icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </div>
+          <h3 class="method-title">Instagram</h3>
+          <p class="method-val text-purple-light">hekyetmisbes</p>
+          <span class="method-cta">Takip Et ↗</span>
+        </a>
+      </div>
+
+      <p class="contact-page-copyright">© 2026 Harun Emrecan Karabağ. Ankara, Türkiye.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8rem;
+  }
+
+  .contact-container {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .contact-subtitle {
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .contact-methods-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 5rem;
+  }
+
+  .contact-method-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .contact-method-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 10px 30px var(--accent-purple-glow);
+    transform: translateY(-4px);
+  }
+
+  .icon-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(168, 85, 247, 0.04);
+    border: 1px solid rgba(168, 85, 247, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-purple);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .contact-method-card:hover .icon-circle {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.3);
+    box-shadow: 0 0 15px var(--accent-purple-glow);
+  }
+
+  .method-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+  }
+
+  .method-val {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .method-cta {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-purple);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 0.1rem;
+    transition: all 0.3s ease;
+  }
+
+  .contact-method-card:hover .method-cta {
+    border-bottom-color: var(--accent-purple);
+  }
+
+  .contact-page-copyright {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    opacity: 0.45;
+  }
+
+  @media (max-width: 600px) {
+    .contact-methods-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

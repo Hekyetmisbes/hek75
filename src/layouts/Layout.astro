@@ -1,0 +1,436 @@
+---
+// src/layouts/Layout.astro
+// Unified layout wrapper for the Hek75 portfolio site.
+// Features shared head tags, global typography, navbar with active states, and footer.
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Harun Emrecan Karabağ | Game Developer Portfolio", 
+  description = "Harun Emrecan Karabağ - Computer Engineer and Game Developer portfolio website." 
+} = Astro.props;
+
+const pathname = Astro.url.pathname;
+const isProjeler = pathname.startsWith('/projeler');
+const isHakkimda = pathname.startsWith('/hakkimda');
+const isYetkinlikler = pathname.startsWith('/yetkinlikler');
+const isIletisim = pathname.startsWith('/iletisim');
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/spider-favicon.svg" />
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Navbar / HUD Header -->
+    <header class="hud-header" id="navbar">
+      <div class="container hud-nav">
+        <div class="hud-logo">
+          <a href="/">
+            <span class="text-white font-black">H</span><span class="text-purple">K</span>
+          </a>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <nav class="hud-menu" aria-label="Ana Menü">
+          <a href="/projeler/" class={isProjeler ? "hud-link active" : "hud-link"}>Projeler</a>
+          <a href="/hakkimda/" class={isHakkimda ? "hud-link active" : "hud-link"}>Hakkımda</a>
+          <a href="/yetkinlikler/" class={isYetkinlikler ? "hud-link active" : "hud-link"}>Yetkinlikler</a>
+          <a href="/iletisim/" class={isIletisim ? "hud-link active" : "hud-link"}>İletişim</a>
+        </nav>
+
+        <!-- Mobile Menu Trigger -->
+        <button class="mobile-menu-toggle" aria-label="Menüyü Aç" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <nav aria-label="Mobil Menü">
+          <a href="/projeler/" class={isProjeler ? "mobile-link active" : "mobile-link"}>Projeler</a>
+          <a href="/hakkimda/" class={isHakkimda ? "mobile-link active" : "mobile-link"}>Hakkımda</a>
+          <a href="/yetkinlikler/" class={isYetkinlikler ? "mobile-link active" : "mobile-link"}>Yetkinlikler</a>
+          <a href="/iletisim/" class={isIletisim ? "mobile-link active" : "mobile-link"}>İletişim</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Slot -->
+    <slot />
+
+    <!-- Footer / End Game -->
+    {pathname !== '/iletisim/' && pathname !== '/iletisim' && (
+      <footer class="contact-footer">
+        <div class="container contact-footer-inner">
+          <h2 class="contact-title">İletişim (End Game)</h2>
+          <p class="contact-copy">Yeni bir seviyeye geçmeye hazır mısınız? Benimle iletişime geçin.</p>
+          
+          <div class="contact-socials-grid">
+            <a href="mailto:harunemrecankarabag@gmail.com" class="social-icon-box" aria-label="E-posta Gönder">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/harunemrecankarabag/" target="_blank" rel="noopener noreferrer" class="social-icon-box" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <a href="https://www.instagram.com/hekyetmisbes/" target="_blank" rel="noopener noreferrer" class="social-icon-box" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://github.com/Hekyetmisbes" target="_blank" rel="noopener noreferrer" class="social-icon-box" aria-label="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+          </div>
+          
+          <p class="contact-copyright">© 2026 Harun Emrecan Karabağ. Ankara, Türkiye.</p>
+        </div>
+      </footer>
+    )}
+
+    <!-- Mobile Menu Toggle Logic -->
+    <script>
+      const toggleBtn = document.querySelector('.mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (toggleBtn && mobileMenu) {
+        toggleBtn.addEventListener('click', () => {
+          const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+          toggleBtn.setAttribute('aria-expanded', (!isOpen).toString());
+          mobileMenu.classList.toggle('open');
+        });
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* Global Premium CSS Styling System */
+  :root {
+    --bg-dark: #08090d;
+    --bg-panel: rgba(16, 18, 27, 0.55);
+    --bg-panel-hover: rgba(26, 29, 44, 0.85);
+    --accent-purple: #a855f7;
+    --accent-purple-glow: rgba(168, 85, 247, 0.15);
+    --accent-purple-light: #c084fc;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --border-color: rgba(255, 255, 255, 0.05);
+    --border-hover: rgba(168, 85, 247, 0.6);
+  }
+
+  /* Reset & Base Setup */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark);
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-purple);
+  }
+
+  /* Layout Utility */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section {
+    padding: 7rem 0 5rem;
+    border-bottom: 1px solid var(--border-color);
+    min-height: 80vh;
+  }
+  
+  .border-none {
+    border-bottom: none !important;
+  }
+
+  .text-white { color: #ffffff; }
+  .text-purple { color: var(--accent-purple); }
+  .text-purple-light { color: var(--accent-purple-light); }
+  .text-secondary { color: var(--text-secondary); }
+  .font-black { font-weight: 900; }
+
+  /* Navbar / HUD Header */
+  .hud-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(8, 9, 13, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .hud-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.5rem;
+  }
+
+  .hud-logo a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .hud-menu {
+    display: flex;
+    gap: 2.25rem;
+  }
+
+  .hud-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color 0.3s ease;
+  }
+
+  .hud-link:hover {
+    color: var(--accent-purple);
+  }
+
+  .hud-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-purple);
+    box-shadow: 0 0 8px var(--accent-purple);
+    transition: width 0.3s ease;
+  }
+
+  .hud-link.active {
+    color: var(--text-primary);
+  }
+
+  .hud-link.active::after {
+    width: 100%;
+  }
+
+  /* Mobile Navigation Menu */
+  .mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+
+  .mobile-menu {
+    display: none;
+    background: var(--bg-dark);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 4.5rem;
+    z-index: 99;
+  }
+
+  .mobile-menu.open {
+    display: block;
+  }
+
+  .mobile-link {
+    display: block;
+    color: var(--text-secondary);
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-left: 3px solid transparent;
+  }
+
+  .mobile-link:hover, .mobile-link.active {
+    color: var(--accent-purple);
+    border-left-color: var(--accent-purple);
+    background: rgba(168, 85, 247, 0.03);
+  }
+
+  /* Shared Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 1.75rem;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-primary {
+    background: var(--accent-purple);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+  }
+
+  .btn-primary:hover {
+    background: #b56ff8;
+    box-shadow: 0 6px 24px rgba(168, 85, 247, 0.6);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 15px var(--accent-purple-glow);
+    color: var(--accent-purple);
+    transform: translateY(-2px);
+  }
+
+  /* Section Title & Header Styling */
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .section-title.text-left {
+    margin-bottom: 3rem;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--accent-purple);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--accent-purple);
+  }
+
+  /* Footer Styling */
+  .contact-footer {
+    border-top: 1px solid var(--border-color);
+    padding: 6rem 0 3rem;
+    text-align: center;
+  }
+
+  .contact-footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-copy {
+    color: var(--text-secondary);
+    font-size: 1.0625rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .contact-socials-grid {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .social-icon-box {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .social-icon-box:hover {
+    color: var(--accent-purple);
+    background: var(--bg-panel-hover);
+    border-color: var(--border-hover);
+    box-shadow: 0 5px 20px var(--accent-purple-glow);
+    transform: translateY(-4px);
+  }
+
+  .contact-copyright {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    opacity: 0.55;
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .hud-menu {
+      display: none;
+    }
+
+    .mobile-menu-toggle {
+      display: block;
+    }
+  }
+</style>
