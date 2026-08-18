@@ -8,8 +8,8 @@ interface Props {
 }
 
 const { 
-  title = "Harun Emrecan Karabağ | Game Developer Portfolio", 
-  description = "Harun Emrecan Karabağ - Computer Engineer and Game Developer cinematic portfolio website." 
+  title = "Harun Emrecan Karabağ | Portfolio", 
+  description = "Harun Emrecan Karabağ portfolio website." 
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
@@ -38,18 +38,14 @@ const isContact = pathname.startsWith('/contact');
       <div class="nav-container">
         <a href="/" class="nav-brand font-sans">
           <div class="brand-flipper">
-            <!-- Default State: HEK75 · GAME DEVELOPER -->
+            <!-- Default State: HEK75 -->
             <div class="brand-item brand-default">
               <span class="brand-title font-serif">HEK75</span>
-              <span class="brand-bullet">•</span>
-              <span class="brand-tag">GAME DEVELOPER</span>
             </div>
 
-            <!-- Hover State: HARUN EMRECAN KARABAĞ · GAME DEVELOPER -->
+            <!-- Hover State: HARUN EMRECAN KARABAĞ -->
             <div class="brand-item brand-hover">
               <span class="brand-title font-serif">HARUN EMRECAN KARABAĞ</span>
-              <span class="brand-bullet">•</span>
-              <span class="brand-tag">GAME DEVELOPER</span>
             </div>
           </div>
         </a>
