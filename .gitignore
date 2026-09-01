@@ -1,7 +1,28 @@
+# Build & Dependencies
 node_modules/
-.astro/
 dist/
+.astro/
 .vite/
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 vite-dev*.log
 vite-dev*.err
+*.log
+
+# OS & Temp
+.DS_Store
+Thumbs.db
+
+# Tools & AI
 .playwright-mcp/
+.agents/
+

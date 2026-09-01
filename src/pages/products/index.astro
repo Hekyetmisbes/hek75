@@ -1,0 +1,502 @@
+---
+// src/pages/products/index.astro
+// Delicate, high-precision Products Catalog for Hek75.
+
+import Layout from '../../layouts/Layout.astro';
+
+const products = [
+  {
+    title: "LiteCast",
+    tagline: "Ultra-Lightweight & Blazing-Fast Native Windows Launcher",
+    version: "v1.0.0",
+    status: "Active",
+    lang: "Rust 2024",
+    platform: "Windows 10 / 11 (x64)",
+    ram: "~25 - 40 MB",
+    response: "< 50ms",
+    desc: "A keyboard-first productivity launcher, developer toolkit, and window switcher built with pure Rust and native Win32/DWM APIs. Replaces heavy Electron-based tools with sub-50ms instant response and minimal memory footprint.",
+    slug: "litecast",
+    icon: "/assets/litecast/icon.png",
+    setupUrl: "/downloads/litecast/LiteCast-Setup.exe",
+    githubUrl: "https://github.com/Hekyetmisbes/litecast",
+    tags: ["Rust 2024", "Win32 / DWM", "Fuzzy Search", "DevTools", "0% Electron"]
+  }
+];
+
+const upcomingProducts = [
+  {
+    title: "GameDev Asset Pipeline Optimizer",
+    category: "Game Tooling",
+    status: "In Research",
+    desc: "Standalone Rust CLI & GUI utility for lossless compression and automated format conversion of textures, audio, and 3D assets for Unity and Unreal Engine."
+  }
+];
+---
+
+<Layout title="Products | Harun Emrecan Karabağ" description="High-performance native desktop software, productivity launchers, and developer utilities developed with Rust and native system APIs.">
+  <section class="section border-none products-page-section">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="products-header">
+        <small class="page-meta font-sans">SOFTWARE & DESKTOP TOOLS</small>
+        <h1 class="products-title font-serif">Products</h1>
+        <p class="products-intro font-sans">
+          Minimalist, high-performance desktop software and utilities built with pure <strong>Rust</strong> and native system APIs — engineered with zero web runtime bloat.
+        </p>
+      </div>
+
+      <!-- Products List -->
+      <div class="products-list">
+        {products.map((product) => (
+          <article class="product-item" data-slug={product.slug}>
+            <div class="product-item-inner">
+              <!-- Top Row: Icon + Header Info -->
+              <div class="product-top-row">
+                <div class="product-logo-box">
+                  <img src={product.icon} alt={product.title} class="product-logo-img" />
+                </div>
+                
+                <div class="product-title-group">
+                  <div class="product-meta-pills font-sans">
+                    <span class="pill-status">{product.status}</span>
+                    <span class="pill-version">{product.version}</span>
+                    <span class="pill-platform">{product.platform}</span>
+                  </div>
+                  <h2 class="product-heading font-serif">{product.title}</h2>
+                  <p class="product-tagline font-sans">{product.tagline}</p>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <p class="product-desc font-sans">{product.desc}</p>
+
+              <!-- Single-line Specs Strip -->
+              <div class="specs-strip font-sans">
+                <div class="spec-pill">
+                  <span class="spec-lbl">Language:</span>
+                  <span class="spec-val">{product.lang}</span>
+                </div>
+                <div class="spec-pill">
+                  <span class="spec-lbl">Idle RAM:</span>
+                  <span class="spec-val text-blue">{product.ram}</span>
+                </div>
+                <div class="spec-pill">
+                  <span class="spec-lbl">Latency:</span>
+                  <span class="spec-val text-blue">{product.response}</span>
+                </div>
+              </div>
+
+              <!-- Tags -->
+              <div class="product-tags font-sans">
+                {product.tags.map((t) => (
+                  <span class="tag-chip">{t}</span>
+                ))}
+              </div>
+
+              <!-- Delicate Action Bar -->
+              <div class="product-actions font-sans">
+                <a href={`/products/${product.slug}/`} class="btn-delicate btn-delicate-primary">
+                  Explore LiteCast
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href={product.setupUrl} class="btn-delicate btn-delicate-outline" download>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download Setup (.exe)
+                </a>
+                <a href={product.githubUrl} target="_blank" rel="noopener noreferrer" class="btn-delicate btn-delicate-outline">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  GitHub ↗
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Upcoming Labs -->
+      <div class="labs-section">
+        <div class="labs-header">
+          <small class="page-meta font-sans">RESEARCH & EXPERIMENTS</small>
+          <h3 class="labs-title font-serif">In Development</h3>
+        </div>
+
+        <div class="labs-grid font-sans">
+          {upcomingProducts.map((p) => (
+            <div class="labs-card">
+              <div class="labs-card-top">
+                <span class="labs-category">{p.category}</span>
+                <span class="labs-status-pill">{p.status}</span>
+              </div>
+              <h4 class="labs-card-title font-serif">{p.title}</h4>
+              <p class="labs-card-desc">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Card click navigation
+  const cards = document.querySelectorAll('.product-item');
+  cards.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('a') || target.closest('button')) {
+        return;
+      }
+      const slug = card.getAttribute('data-slug');
+      if (slug) {
+        window.location.href = `/products/${slug}/`;
+      }
+    });
+  });
+</script>
+
+<style>
+  .products-page-section {
+    padding-top: 130px;
+    padding-bottom: 90px;
+    min-height: 100vh;
+    background: var(--dark);
+    color: var(--cream-light);
+  }
+
+  .page-meta {
+    letter-spacing: 0.15em;
+    font-size: 0.6875rem;
+    color: var(--pastel-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .products-header {
+    margin-bottom: 3rem;
+  }
+
+  .products-title {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 0.65rem;
+  }
+
+  .products-intro {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    max-width: 680px;
+  }
+
+  .products-intro strong {
+    color: var(--white);
+  }
+
+  /* Product List */
+  .products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .product-item {
+    position: relative;
+    background: #07090e;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  }
+
+  .product-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(56, 132, 246, 0.45);
+    box-shadow: 0 15px 40px rgba(56, 132, 246, 0.12);
+  }
+
+  .product-item-inner {
+    padding: 1.75rem 1.85rem;
+  }
+
+  .product-top-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .product-logo-box {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+  }
+
+  .product-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .product-meta-pills {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.15rem;
+  }
+
+  .pill-status {
+    background: rgba(34, 197, 94, 0.12);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 0.12rem 0.45rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .pill-version {
+    background: rgba(56, 132, 246, 0.1);
+    color: var(--pastel-blue);
+    border: 1px solid rgba(56, 132, 246, 0.25);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.12rem 0.45rem;
+    border-radius: 4px;
+  }
+
+  .pill-platform {
+    color: var(--muted-dark);
+    font-size: 0.6875rem;
+    font-weight: 500;
+  }
+
+  .product-heading {
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.15;
+    color: var(--white);
+  }
+
+  .product-tagline {
+    font-size: 0.875rem;
+    color: var(--pastel-blue);
+    font-weight: 400;
+  }
+
+  .product-desc {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+    max-width: 820px;
+  }
+
+  /* Single-line Specs Strip */
+  .specs-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .spec-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    background: #000000;
+    border: 1px solid var(--border-color);
+  }
+
+  .spec-lbl {
+    color: var(--muted-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.625rem;
+  }
+
+  .spec-val {
+    font-weight: 600;
+    color: var(--cream-light);
+  }
+
+  .text-blue {
+    color: var(--pastel-blue);
+  }
+
+  /* Tags */
+  .product-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag-chip {
+    font-size: 0.6875rem;
+    background: #000000;
+    border: 1px solid var(--border-color);
+    color: var(--muted);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  /* Action Buttons */
+  .product-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .btn-delicate {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1rem;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-delicate-primary {
+    background: #3884f6;
+    color: #ffffff;
+    border: 1px solid #3884f6;
+  }
+
+  .btn-delicate-primary:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    box-shadow: 0 4px 14px rgba(56, 132, 246, 0.35);
+  }
+
+  .btn-delicate-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--border-color);
+  }
+
+  .btn-delicate-outline:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Labs Section */
+  .labs-section {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .labs-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .labs-title {
+    font-size: 1.25rem;
+    color: var(--white);
+  }
+
+  .labs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .labs-card {
+    background: #000000;
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    padding: 1.35rem 1.25rem;
+  }
+
+  .labs-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.65rem;
+  }
+
+  .labs-category {
+    font-size: 0.6875rem;
+    color: var(--pastel-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .labs-status-pill {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--muted-dark);
+    border: 1px solid var(--border-color);
+    padding: 0.12rem 0.45rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+
+  .labs-card-title {
+    font-size: 1.05rem;
+    color: var(--white);
+    margin-bottom: 0.35rem;
+  }
+
+  .labs-card-desc {
+    font-size: 0.8125rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 768px) {
+    .product-item-inner {
+      padding: 1.35rem;
+    }
+
+    .product-top-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .product-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .product-actions .btn-delicate {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
