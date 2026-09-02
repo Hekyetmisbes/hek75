@@ -1,367 +1,43 @@
 ---
 // src/pages/projects/index.astro
-// Chronological Film Strip Projects Page with updated years, engines, and no "View Project" link.
+// HEK75 ARCADE OS — Cartridge Database / Game Library.
 
 import Layout from '../../layouts/Layout.astro';
-
-const projects = [
-  {
-    frame: "FRAME 01",
-    title: "Fog Bridge",
-    genre: "Atmospheric Narrative Puzzle",
-    engine: "Unity",
-    desc: "Developed in 72 hours for GameDev.tv Game Jam 2026. Decipher cryptic paper plane messages emerging through dense fog to rebuild a bridge across the void.",
-    slug: "fog-bridge",
-    year: "2026",
-    image: "/assets/fog-bridge-logo.png"
-  },
-  {
-    frame: "FRAME 02",
-    title: "The Final Loop",
-    genre: "Psychological Puzzle / Vertical Slice",
-    engine: "Unreal Engine 5",
-    desc: "A psychological puzzle game developed in Unreal Engine 5. Uncover memory loops inside a collapsing research facility and solve room escape mysteries.",
-    slug: "the-final-loop",
-    year: "2026",
-    image: "/assets/final_loop_logo.png"
-  },
-  {
-    frame: "FRAME 03",
-    title: "The Unlit Door",
-    genre: "Psychological Puzzle / Pitch",
-    engine: "Unity Mobile",
-    desc: "Written pitch document and system design for a psychological narrative puzzle game exploring light, shadow, and internal rooms of memory.",
-    slug: "the-unlit-door",
-    year: "2026",
-    image: "/assets/unlit_door_logo.png"
-  },
-  {
-    frame: "FRAME 04",
-    title: "Delivery Driver",
-    genre: "3D Simulation & Driving",
-    engine: "Unity",
-    desc: "A physics-based courier simulation game. Deliver packages across city traffic within time limits using shortcuts and dynamic driving physics.",
-    slug: "delivery-driver",
-    year: "2025",
-    image: "/assets/delivery-drive-logo.png"
-  },
-  {
-    frame: "FRAME 05",
-    title: "The Platform",
-    genre: "2D Cyberpunk Platformer",
-    engine: "Unity 2D",
-    desc: "A 2D cyberpunk platformer where players collect stars, avoid hazards, complete levels, and experience a short-session gameplay loop.",
-    slug: "the-platform",
-    year: "2024",
-    image: "/assets/platform-logo.png"
-  },
-  {
-    frame: "FRAME 06",
-    title: "Flag Quiz Game",
-    genre: "Mobile Quiz / Educational",
-    engine: "Unity Mobile",
-    desc: "An educational mobile quiz game for geography enthusiasts featuring multiple game modes, custom ShaderLab effects, and score save systems.",
-    slug: "flag-quiz-game",
-    year: "2023",
-    image: "/assets/flag-quiz-logo.png"
-  },
-  {
-    frame: "FRAME 07",
-    title: "Movidle Game",
-    genre: "Web Game / Wordle Puzzle",
-    engine: "Unity",
-    desc: "A cinema guessing puzzle game featuring IMDb Top 250 movies. Deduce directors, release years, and cast lists using color-coded feedback.",
-    slug: "movidle-game",
-    year: "2023",
-    image: "/assets/movidle-logo.png"
-  }
-];
+import { GAMES_LIST } from '../../data/games';
 ---
 
-<Layout title="Projects | Harun Emrecan Karabağ" description="Harun Emrecan Karabağ's projects portfolio ordered chronologically.">
-  <section class="section border-none film-strip-section">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <small class="page-meta font-sans">PROJECTS · 2023—2026</small>
-          <h1 class="section-title font-serif">Projects</h1>
-        </div>
-      </div>
-
-      <!-- Vertical Film Strip Reel Container -->
-      <div class="film-strip-reel">
-        <div class="film-timeline-line"></div>
-
-        {projects.map((project) => (
-          <article class="film-frame-card" data-slug={project.slug}>
-            <!-- Film Reel Sprocket Holes Side (Crisp White Sprockets) -->
-            <div class="film-sprockets">
-              <span class="sprocket-hole"></span>
-              <span class="sprocket-hole"></span>
-              <span class="sprocket-hole"></span>
-              <span class="sprocket-hole"></span>
-            </div>
-
-            <!-- Main Film Frame Content -->
-            <div class="film-frame-inner">
-              <div class="film-frame-image">
-                <img src={project.image} alt={project.title} loading="lazy" />
-                <span class="film-frame-tag font-sans">{project.frame}</span>
-              </div>
-              
-              <div class="film-frame-body">
-                <div class="film-frame-header">
-                  <span class="film-year-badge font-sans">{project.year}</span>
-                  <span class="film-genre-text font-sans">{project.genre}</span>
-                </div>
-                
-                <h2 class="film-project-title font-serif">{project.title}</h2>
-                <p class="film-project-desc font-sans">{project.desc}</p>
-                
-                <div class="film-frame-footer">
-                  <span class="film-engine-tag font-sans">{project.engine}</span>
-                </div>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
+<Layout
+  title="Game Library // HEK75"
+  description="All game projects and case studies by Harun Emrecan Karabağ."
+  activeNav="games"
+  footerLeft="SELECT A CARTRIDGE TO OPEN CASE STUDY"
+  footerRight="HEK75 // GAMES.DB"
+>
+  <div class="section-head">
+    <div>
+      <div class="code">CARTRIDGE DATABASE // 07 TITLES</div>
+      <h1>GAME LIBRARY</h1>
     </div>
-  </section>
+    <span class="meta">2023 — 2026</span>
+  </div>
+
+  <div class="grid games-grid">
+    {GAMES_LIST.map((g) => (
+      <article class="game-tile">
+        <div class="cover">
+          <img src={g.image} alt={g.title} loading="lazy" />
+        </div>
+        <div class="tile-body">
+          <div class="meta">FILE {g.number} // {g.year} // {g.engine}</div>
+          <h2>{g.title}</h2>
+          <p>{g.pitch}</p>
+          <div class="tags">
+            <span class="tag">{g.genre}</span>
+            <span class="tag">{g.status}</span>
+          </div>
+          <a class="btn" href={`/projects/${g.slug}/`}>OPEN GAME FILE →</a>
+        </div>
+      </article>
+    ))}
+  </div>
 </Layout>
-
-<script>
-  // Card click routing
-  const cards = document.querySelectorAll('.film-frame-card');
-  cards.forEach((card) => {
-    card.addEventListener('click', () => {
-      const slug = card.getAttribute('data-slug');
-      if (slug) {
-        window.location.href = `/projects/${slug}/`;
-      }
-    });
-  });
-</script>
-
-<style>
-  .film-strip-section {
-    padding-top: 130px;
-    padding-bottom: 100px;
-    min-height: 100vh;
-  }
-
-  .page-meta {
-    letter-spacing: 0.2em;
-    font-size: 0.75rem;
-    color: var(--pastel-blue);
-    font-weight: 600;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 0.35rem;
-  }
-
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 4rem;
-  }
-
-  .section-header .section-title {
-    margin-bottom: 0;
-  }
-
-  /* Film Strip Vertical Reel Container */
-  .film-strip-reel {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 3.5rem;
-    max-width: 1080px;
-    margin: 0 auto;
-  }
-
-  /* White Timeline Connector Line */
-  .film-timeline-line {
-    position: absolute;
-    left: 28px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #ffffff;
-    opacity: 0.8;
-    z-index: 1;
-  }
-
-  /* Iconic White Film Frame Card */
-  .film-frame-card {
-    position: relative;
-    z-index: 2;
-    background: #000000;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    display: flex;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
-  }
-
-  .film-frame-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 45px rgba(255, 255, 255, 0.15);
-  }
-
-  /* Film Sprocket Perforations Side Bar */
-  .film-sprockets {
-    width: 56px;
-    background: #0a0e17;
-    border-right: 1px solid #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1.25rem 0;
-    flex-shrink: 0;
-  }
-
-  .sprocket-hole {
-    width: 14px;
-    height: 22px;
-    background: #000000;
-    border: 1px solid #ffffff;
-    border-radius: 3px;
-  }
-
-  /* Frame Inner Layout */
-  .film-frame-inner {
-    display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    flex-grow: 1;
-    align-items: stretch;
-  }
-
-  /* Standardized 16:9 Aspect Ratio Container for All Cover Images */
-  .film-frame-image {
-    position: relative;
-    background: #000000;
-    width: 100%;
-    height: 100%;
-    min-height: 260px;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .film-frame-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .film-frame-card:hover .film-frame-image img {
-    transform: scale(1.05);
-  }
-
-  .film-frame-tag {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: #000000;
-    border: 1px solid #ffffff;
-    color: #ffffff;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    padding: 0.25rem 0.65rem;
-    border-radius: 4px;
-    z-index: 5;
-  }
-
-  .film-frame-body {
-    padding: 2.25rem;
-    display: flex;
-    flex-direction: column;
-    background: #07090e;
-  }
-
-  .film-frame-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .film-year-badge {
-    background: #ffffff;
-    color: #000000;
-    font-size: 0.8125rem;
-    font-weight: 800;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-  }
-
-  .film-genre-text {
-    color: var(--pastel-blue);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .film-project-title {
-    font-size: 1.85rem;
-    line-height: 1.1;
-    color: var(--white);
-    margin-bottom: 0.85rem;
-  }
-
-  .film-project-desc {
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    margin-bottom: 1.75rem;
-    flex-grow: 1;
-  }
-
-  .film-frame-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .film-engine-tag {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--pastel-blue);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
-  @media (max-width: 900px) {
-    .film-frame-inner {
-      grid-template-columns: 1fr;
-    }
-
-    .film-frame-image {
-      height: 230px;
-      border-right: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .film-sprockets {
-      width: 44px;
-    }
-
-    .sprocket-hole {
-      width: 12px;
-      height: 18px;
-    }
-  }
-</style>

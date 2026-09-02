@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hek75-redesign-spec version="1.0" site="https://hek75.com" language="tr" purpose="codex-reference" content-policy="preserve-existing-content">
+  <meta>
+    <title>HEK75 Yeniden Tasarım Şeması</title>
+    <subtitle>İçerik Değişmeden Yeni Görsel Sistem</subtitle>
+    <design-direction>Luxury Monochrome / Premium Editorial</design-direction>
+    <primary-rule>Mevcut site içeriği, proje isimleri, bağlantılar, sayılar ve anlam değiştirilmeden korunur. Yalnızca tipografi, yerleşim, görsel hiyerarşi, kart sistemi, boşluklar, yüzeyler ve sunum dili yenilenir.</primary-rule>
+    <implementation-intent>Bu dosya Codex tarafından hek75.com yeniden tasarlanırken görsel ve yapısal referans olarak kullanılmalıdır.</implementation-intent>
+  </meta>
+  <principles>
+    <principle id="preserve-content">
+      <title>İçerik korunur</title>
+      <description>Tüm mevcut metinler, proje adları, linkler, sayılar ve temel sayfa yapısı korunur.</description>
+    </principle>
+    <principle id="strong-hierarchy">
+      <title>Daha güçlü görsel hiyerarşi</title>
+      <description>Başlık, açıklama, CTA, proje ve yardımcı içerikler belirgin tipografik katmanlarla ayrılır.</description>
+    </principle>
+    <principle id="project-first">
+      <title>Proje odaklı sunum</title>
+      <description>Projeler ana vitrinde daha büyük, sinematik ve keşfedilebilir kartlar halinde sunulur.</description>
+    </principle>
+    <principle id="premium-consistency">
+      <title>Premium ve tutarlı arayüz</title>
+      <description>Tüm sayfalarda aynı renk, tipografi, yüzey, kart, ikon ve hareket sistemi uygulanır.</description>
+    </principle>
+    <principle id="responsive">
+      <title>Masaüstü + mobil uyum</title>
+      <description>Aynı içerik mobil, tablet ve masaüstünde optimize edilmiş fakat tutarlı bir görsel dil ile gösterilir.</description>
+    </principle>
+  </principles>
+  <content-contract mode="immutable">
+    <rule>Codex mevcut içeriği yeniden yazmamalı, özetlememeli, yeni iddialar eklememeli veya proje isimlerini değiştirmemelidir.</rule>
+    <rule>Gerekli olduğu yerde sadece görsel sunum için satır kırılması, tipografik vurgu ve kapsayıcı bileşen değişiklikleri yapılabilir.</rule>
+    <rule>Mevcut URL hedefleri, CV bağlantısı, proje bağlantıları ve iletişim bağlantıları çalışır halde korunmalıdır.</rule>
+  </content-contract>
+  <content-mapping>
+    <map>
+      <source>Projects</source>
+      <target>featured-projects</target>
+      <usage>Ana vitrinde öne çıkan proje kartları ve Projects sayfasına geçiş.</usage>
+    </map>
+    <map>
+      <source>About</source>
+      <target>about-philosophy</target>
+      <usage>Kısa biyografi, yaklaşım, craft/philosophy ve deneyim sayıları.</usage>
+    </map>
+    <map>
+      <source>Skills</source>
+      <target>skills-tools</target>
+      <usage>Teknoloji ve yetkinlik blokları.</usage>
+    </map>
+    <map>
+      <source>Contact</source>
+      <target>contact-footer</target>
+      <usage>Footer ve iletişim çağrı alanı.</usage>
+    </map>
+    <map>
+      <source>Explore Projects</source>
+      <target>primary-cta</target>
+      <usage>Hero alanındaki birincil CTA.</usage>
+    </map>
+    <map>
+      <source>Download CV</source>
+      <target>secondary-cta</target>
+      <usage>Hero ve About alanlarında ikincil CTA.</usage>
+    </map>
+    <map>
+      <source>The Final Loop</source>
+      <target>featured-project</target>
+      <usage>Birinci featured project card.</usage>
+    </map>
+    <map>
+      <source>The Unlit Door</source>
+      <target>featured-project</target>
+      <usage>İkinci featured project card.</usage>
+    </map>
+    <map>
+      <source>Creating Worlds &amp; Experiences</source>
+      <target>craft-philosophy</target>
+      <usage>About / yaklaşım / zanaat anlatısı.</usage>
+    </map>
+    <map>
+      <source>3+ Years Experience</source>
+      <target>stat</target>
+      <usage>Sayısal güven öğesi.</usage>
+    </map>
+    <map>
+      <source>6+ Completed Projects</source>
+      <target>stat</target>
+      <usage>Sayısal güven öğesi.</usage>
+    </map>
+    <map>
+      <source>2+ Game Jams</source>
+      <target>stat</target>
+      <usage>Sayısal güven öğesi.</usage>
+    </map>
+    <map>
+      <source>∞ Coffee &amp; Code</source>
+      <target>stat</target>
+      <usage>Sayısal güven öğesi.</usage>
+    </map>
+  </content-mapping>
+  <design-system name="Luxury Monochrome">
+    <color-palette>
+      <color token="bg-0" value="#0B0B0D">Ana koyu arka plan</color>
+      <color token="bg-1" value="#1A1A1D">İkincil yüzey / kart</color>
+      <color token="bg-2" value="#2A2A2E">Yükseltilmiş yüzey</color>
+      <color token="text-muted" value="#A8A8A8">İkincil metin</color>
+      <color token="paper" value="#F4F2ED">Açık kontrast yüzeyi</color>
+      <color token="warm-accent" value="#D6C9B5">Sıcak nötr vurgu</color>
+      <color token="text-primary" value="#F7F6F2">Ana metin</color>
+    </color-palette>
+    <typography>
+      <font role="display" family="Playfair Display">
+        <usage>Hero isim, büyük sayfa başlıkları, editorial vurgu.</usage>
+        <weights>500, 600</weights>
+      </font>
+      <font role="body-ui" family="Inter">
+        <usage>Navigasyon, gövde metni, buton, etiket, yardımcı bilgi.</usage>
+        <weights>400, 500, 600</weights>
+      </font>
+      <scale unit="px">
+        <type name="display-xl" desktop="72" mobile="44" line-height="1.00"/>
+        <type name="display-lg" desktop="56" mobile="38" line-height="1.05"/>
+        <type name="h1" desktop="44" mobile="34" line-height="1.10"/>
+        <type name="h2" desktop="32" mobile="28" line-height="1.15"/>
+        <type name="h3" desktop="24" mobile="22" line-height="1.20"/>
+        <type name="body-lg" desktop="18" mobile="17" line-height="1.55"/>
+        <type name="body" desktop="16" mobile="16" line-height="1.60"/>
+        <type name="small" desktop="13" mobile="13" line-height="1.45"/>
+        <type name="label" desktop="11" mobile="11" line-height="1.30"/>
+      </scale>
+    </typography>
+    <spacing>
+      <base-unit>8px</base-unit>
+      <scale>8, 16, 24, 32, 48, 64, 96, 128</scale>
+      <section-spacing-desktop>96px–144px</section-spacing-desktop>
+      <section-spacing-mobile>64px–88px</section-spacing-mobile>
+    </spacing>
+    <grid>
+      <desktop>12 kolon, max-width 1280–1360px, 24–32px gutter</desktop>
+      <tablet>8 kolon</tablet>
+      <mobile>4 kolon, 20–24px yatay padding</mobile>
+    </grid>
+    <surfaces>
+      <card-radius>12px</card-radius>
+      <button-radius>8px</button-radius>
+      <border>1px solid rgba(255,255,255,0.10)</border>
+      <shadow>0 24px 80px rgba(0,0,0,0.28)</shadow>
+      <hover-shadow>0 32px 96px rgba(0,0,0,0.36)</hover-shadow>
+      <surface-rule>Cam efekti agresif kullanılmamalı; yüzeyler koyu, mat, yumuşak ve galeri hissinde olmalı.</surface-rule>
+    </surfaces>
+    <buttons>
+      <button id="primary">
+        <style>Açık ivory yüzey + koyu metin</style>
+        <usage>Explore Projects gibi ana CTA</usage>
+      </button>
+      <button id="secondary">
+        <style>Şeffaf/koyu yüzey + ince açık kenarlık</style>
+        <usage>Download CV</usage>
+      </button>
+      <button id="ghost">
+        <style>Kenarlıksız, metin + ok</style>
+        <usage>View All Projects ve ikincil navigasyon</usage>
+      </button>
+      <height>44–48px</height>
+      <horizontal-padding>18–24px</horizontal-padding>
+      <motion>Hover: 2px translateY(-2px), 180–220ms ease-out</motion>
+    </buttons>
+    <cards>
+      <project-card>
+        <media-ratio>16:9 veya 3:2</media-ratio>
+        <image-treatment>Monokrom veya düşük doygunluk, yüksek kontrast, hafif vignette</image-treatment>
+        <content-order>Görsel → Proje adı → kısa açıklama → teknoloji etiketi → aksiyon</content-order>
+        <hover>Görsel %102 ölçek, kart -4px yükselme, sınır opaklığı artışı</hover>
+        <rule>Mevcut proje metni korunur; kart yalnızca sunum kabıdır.</rule>
+      </project-card>
+    </cards>
+    <icons>
+      <style>İnce çizgisel, tek renk, 1.5px–2px stroke</style>
+      <usage>Arrow, download, mail, GitHub, LinkedIn, theme toggle</usage>
+      <rule>Dekoratif ikonlar içerikten daha baskın olmamalı.</rule>
+    </icons>
+    <motion>
+      <duration-fast>160ms</duration-fast>
+      <duration-normal>220ms</duration-normal>
+      <duration-section>500–700ms</duration-section>
+      <easing>cubic-bezier(0.22, 1, 0.36, 1)</easing>
+      <rule>Hareket premium ve sakin olmalı; parallax ve büyük animasyonlardan kaçınılmalı.</rule>
+      <reduced-motion>prefers-reduced-motion desteklenmeli.</reduced-motion>
+    </motion>
+  </design-system>
+  <page-specs>
+    <page id="home" label="Ana Sayfa">
+      <flow>
+        <section-ref order="1" id="header"/>
+        <section-ref order="2" id="hero"/>
+        <section-ref order="3" id="featured-projects"/>
+        <section-ref order="4" id="craft-philosophy"/>
+        <section-ref order="5" id="skills-tools"/>
+        <section-ref order="6" id="stats"/>
+        <section-ref order="7" id="contact-footer"/>
+      </flow>
+      <sections>
+        <section id="header">
+          <content>HEK75 + Projects + About + Skills + Contact</content>
+          <layout>Logo solda; navigasyon sağda; maksimum 64–72px header yüksekliği.</layout>
+          <behavior>Sticky olabilir; scroll sonrası koyu yarı-opak yüzey ve ince alt sınır kullanılabilir.</behavior>
+        </section>
+        <section id="hero">
+          <content>Harun Emrecan Karabağ / Game Developer / mevcut tanıtım metni / Explore Projects / Download CV</content>
+          <layout>Masaüstü iki kolon: sol içerik %42–48, sağ sinematik görsel %52–58.</layout>
+          <visual>Koyu monokrom manzara/oyun dünyası hissi; mevcut içeriğin önüne geçmeyen sinematik görsel.</visual>
+          <hierarchy>İsim en baskın öğe; rol küçük label; CTA’lar metinden sonra.</hierarchy>
+        </section>
+        <section id="featured-projects">
+          <content>The Final Loop + The Unlit Door + mevcut açıklama ve teknoloji bilgileri</content>
+          <layout>Masaüstü 2 kolon büyük kart; mobil tek kolon.</layout>
+          <cta>Mevcut View All Projects bağlantısı korunur.</cta>
+        </section>
+        <section id="craft-philosophy">
+          <content>Creating Worlds &amp; Experiences ve mevcut craft/philosophy içeriği</content>
+          <layout>Geniş editorial metin bloğu + boşluk + opsiyonel tek görsel.</layout>
+          <style>Playfair Display başlık, Inter gövde; yüksek boşluk oranı.</style>
+        </section>
+        <section id="skills-tools">
+          <content>Unity (URP), Unreal Engine 5 ve mevcut skill/tool içerikleri</content>
+          <layout>Kart/row sistemi; ikon + isim + kısa açıklama.</layout>
+          <rule>Yeni ve doğrulanmamış teknoloji ekleme.</rule>
+        </section>
+        <section id="stats">
+          <content>3+ Years Experience / 6+ Completed Projects / 2+ Game Jams / ∞ Coffee &amp; Code</content>
+          <layout>4 kolon masaüstü, 2x2 tablet/mobil.</layout>
+          <style>Büyük serif sayı, küçük uppercase label.</style>
+        </section>
+        <section id="contact-footer">
+          <content>Contact + mevcut iletişim/sosyal linkleri + marka/footer bilgileri</content>
+          <layout>Üstte net iletişim CTA, altta marka + sosyal ikonlar + copyright.</layout>
+          <rule>Mevcut link hedefleri korunmalı.</rule>
+        </section>
+      </sections>
+    </page>
+    <page id="about" label="About">
+      <content-rule>Mevcut biyografi ve yaklaşım içeriği korunur.</content-rule>
+      <layout>Masaüstü: editorial iki kolon. Sol portre/görsel; sağ metin + stats + CV CTA.</layout>
+      <mobile>Görsel üstte, metin altta; stats 2x2.</mobile>
+    </page>
+    <page id="skills" label="Skills">
+      <content-rule>Mevcut teknoloji/yetenek listeleri birebir korunur.</content-rule>
+      <layout>Kategori bazlı dark surface kartları, ince progress/metadata çizgileri sadece mevcut veri varsa kullanılmalı.</layout>
+      <rule>Yüzde veya seviye bilgisi mevcut içerikte yoksa uydurulmaz.</rule>
+    </page>
+    <page id="projects" label="Projects">
+      <content-rule>Tüm mevcut projeler aynı ad, açıklama, teknoloji ve linklerle korunur.</content-rule>
+      <layout>2 kolon editorial grid; ilk/öne çıkan proje gerektiğinde daha büyük olabilir.</layout>
+      <filtering>Yeni filtre yalnızca mevcut metadata güvenilir ise eklenmeli.</filtering>
+    </page>
+    <page id="project-detail" label="Project Detail">
+      <layout>Üstte büyük proje adı + meta + hero görsel; altında problem/approach/tech/gallery içerikleri mevcut sayfadan.</layout>
+      <rule>Yeni vaka çalışması metni uydurulmamalı; mevcut içerik hangi sıradaysa anlam korunarak yeniden yerleştirilmeli.</rule>
+    </page>
+  </page-specs>
+  <responsive-rules>
+    <breakpoint name="desktop &gt;= 1200">12 kolon, iki kolon hero, iki kolon project cards.</breakpoint>
+    <breakpoint name="tablet 768-1199">8 kolon, hero dengeli küçülür, project cards gerekirse tek kolon.</breakpoint>
+    <breakpoint name="mobile &lt; 768">4 kolon, tek kolon akış, 20–24px padding, CTA butonları tam genişlik veya dengeli stacked.</breakpoint>
+  </responsive-rules>
+  <accessibility>
+    <contrast>WCAG AA kontrast hedeflenmeli.</contrast>
+    <focus>Tüm interaktif öğelerde görünür focus state.</focus>
+    <semantics>Nav, main, section, article, footer semantik HTML kullanılmalı.</semantics>
+    <images>Mevcut anlamlı görseller için açıklayıcı alt metin korunmalı/iyileştirilmeli.</images>
+    <motion>prefers-reduced-motion desteklenmeli.</motion>
+  </accessibility>
+  <performance>
+    <images>Responsive image srcset/sizes, modern formatlar, lazy-loading; LCP hero görseli önceliklendirilmeli.</images>
+    <fonts>Display ve body fontları self-host veya optimize preload; yalnız gereken weightler.</fonts>
+    <effects>Blur ve ağır shader efektlerinden kaçınılmalı; görsel kalite performansı bozmamalı.</effects>
+    <goal>Tasarım iyileştirmesi mevcut sitenin hızını anlamlı şekilde düşürmemeli.</goal>
+  </performance>
+  <implementation-plan>
+    <step order="01" name="Inventory">Mevcut sayfalardaki metin, link, proje, görsel ve component envanterini çıkar.</step>
+    <step order="02" name="Tokens">Renk, tipografi, spacing, radius, border, shadow tokenlarını merkezi olarak tanımla.</step>
+    <step order="03" name="Shell">Header, container, section wrapper ve footer iskeletini yeni sistemle kur.</step>
+    <step order="04" name="Hero">Mevcut hero içeriğini yeni iki kolon premium editorial düzene taşı.</step>
+    <step order="05" name="Project Cards">Mevcut projeleri yeni project-card componentine geçir.</step>
+    <step order="06" name="Secondary Sections">Craft/About, Skills/Tools, Stats ve Contact bloklarını yeni hiyerarşiye taşı.</step>
+    <step order="07" name="Inner Pages">About, Skills, Projects ve Project Detail sayfalarını aynı token/component sistemiyle güncelle.</step>
+    <step order="08" name="Responsive">Mobil ve tablet kırılımlarını uygula; içerik sırasını ve anlamı koru.</step>
+    <step order="09" name="Accessibility">Klavye, focus, kontrast, reduced-motion ve semantik kontrolleri tamamla.</step>
+    <step order="10" name="Regression">Tüm linkler, CV, proje URL’leri, içerikler ve sayısal değerlerin değişmediğini doğrula.</step>
+  </implementation-plan>
+  <codex-instructions>
+    <priority level="critical">Bu XML, görsel yeniden tasarım için referans kaynaktır. Mevcut içerik kaynak dosyalardan alınmalı ve korunmalıdır.</priority>
+    <do>Mevcut component yapısını mümkün olduğunca yeniden kullan; gerektiğinde sadece sunum katmanını refactor et.</do>
+    <do>Design tokenlar için CSS variables veya proje stackine uygun merkezi tema sistemi kullan.</do>
+    <do>Yeni componentler semantik, erişilebilir, responsive ve tekrar kullanılabilir olmalı.</do>
+    <dont>İçerik metinlerini yeniden yazma veya yaratıcı biçimde değiştirme.</dont>
+    <dont>Var olmayan skill, teknoloji, istatistik, proje veya deneyim ekleme.</dont>
+    <dont>Yalnızca estetik uğruna kullanılabilirliği veya sayfa hızını düşürme.</dont>
+    <verification>Her sayfa güncellemesinden sonra mevcut içerik ile yeni sayfayı karşılaştır; metin, sayı, link ve proje kimliklerinin korunduğunu doğrula.</verification>
+  </codex-instructions>
+  <acceptance-criteria>
+    <criterion>İçerik değişmeden daha premium bir marka algısı oluşur.</criterion>
+    <criterion>Projeler daha görünür ve keşfedilebilir hale gelir.</criterion>
+    <criterion>Ana CTA ve ikincil CTA hiyerarşisi nettir.</criterion>
+    <criterion>Masaüstü ve mobilde aynı görsel dil korunur.</criterion>
+    <criterion>Site navigasyonu, CV ve proje linkleri çalışır.</criterion>
+    <criterion>WCAG AA seviyesinde okunabilirlik ve focus davranışı hedeflenir.</criterion>
+    <criterion>Yeni tasarım mevcut içerikten daha yavaş veya daha karmaşık bir deneyim oluşturmamalıdır.</criterion>
+  </acceptance-criteria>
+  <final-directive>Bu şema, hek75.com’daki mevcut içerikleri değiştirmeden Luxury Monochrome / Premium Editorial tasarım diline geçirmek için uygulanmalıdır.</final-directive>
+</hek75-redesign-spec>

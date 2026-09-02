@@ -1,0 +1,109 @@
+---
+// src/pages/products/litecast/changelog.astro
+// HEK75 ARCADE OS — LiteCast Detailed Changelog & Release Notes Archive.
+
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="LiteCast v1.0.1 Changelog // HEK75 Software"
+  description="LiteCast v1.0.1 release notes: Windows PE security, Authenticode code signing, search index cleanup, and in-app toast notifications."
+  activeNav="products"
+  footerLeft="LITECAST // RELEASE ARCHIVE v1.0.1"
+  footerRight="HEK75 ENTERTAINMENT SYSTEM // 2026"
+>
+  <div class="section-head">
+    <div>
+      <div class="code">SOFTWARE RELEASE LOG // LITECAST.EXE</div>
+      <h1>LITECAST v1.0.1 CHANGELOG</h1>
+    </div>
+    <span class="meta">BUILD 1.0.1.0 // STABLE</span>
+  </div>
+
+  <div class="panel" style="margin-bottom: 24px; border-left: 3px solid var(--green);">
+    <div class="code" style="color: var(--yellow); margin-bottom: 6px;">RELEASE SUMMARY // 2026</div>
+    <h2 style="margin: 0 0 10px 0; color: var(--green); font-size: 20px;">
+      Güvenlik, Dizinleme ve Arayüz İyileştirmeleri
+    </h2>
+    <p class="muted" style="line-height: 1.7; margin: 0; font-size: 14px;">
+      LiteCast v1.0.1 sürümü; Windows güvenlik ve dosya bilgisi doğrulamalarını güçlendiren, arama dizinini temizleyen ve arayüz içi canlı bildirimler sunan önemli hata düzeltmeleri ve kararlılık güncellemeleri içerir.
+    </p>
+  </div>
+
+  <div class="content-grid">
+    <!-- Section 1: Windows Security & PE Info -->
+    <div class="panel">
+      <div class="code" style="color: var(--yellow); margin-bottom: 8px;">MODULE 01 // SECURITY & METADATA</div>
+      <h3 style="color: var(--green); margin-top: 0;">Windows Güvenlik & Dosya Meta Bilgileri (PE Version Info)</h3>
+      <ul style="color: #7fa483; font-size: 13px; line-height: 1.8; padding-left: 18px; margin: 0;">
+        <li>
+          <b style="color: #dbffde;">Eksiksiz Yayımcı & Telif Hakları:</b> Hem <code class="code" style="color: var(--green);">LiteCast.exe</code> hem de <code class="code" style="color: var(--green);">LiteCast-Setup.exe</code> binary dosyalarına resmi PE sürüm bilgileri (Şirket: <i>LiteCast Team</i>, Ürün: <i>LiteCast</i>, Telif Hakkı: <i>Copyright © 2026 LiteCast Team</i>, Sürüm: <i>1.0.1.0</i>) eklendi.
+        </li>
+        <li>
+          <b style="color: #dbffde;">Güvenlik Taramaları Uyumluluğu:</b> Windows Gezgini (Sağ Tık &rarr; Özellikler &rarr; Ayrıntılar) ve VirusTotal gibi güvenlik tarayıcılarının dosya kimliğini anında doğrulayabilmesi için standart dil tablosu entegre edildi.
+        </li>
+        <li>
+          <b style="color: #dbffde;">Otomatik Dijital Kod İmzalama (Authenticode Code Signing):</b> Paketleme sürecine SHA-256 ve resmi RFC-3161 DigiCert Zaman Damgası (Timestamp) ile otomatik dijital imzalama desteği getirildi (<code class="code" style="color: var(--green);">build_installer.ps1</code>). Yerel testler için <code class="code" style="color: var(--green);">create_dev_cert.ps1</code> aracı eklendi.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Search Indexing -->
+    <div class="panel">
+      <div class="code" style="color: var(--yellow); margin-bottom: 8px;">MODULE 02 // SEARCH & INDEXING</div>
+      <h3 style="color: var(--green); margin-top: 0;">Arama Dizini Temizliği (Gerçekçi Uygulama Listesi)</h3>
+      <ul style="color: #7fa483; font-size: 13px; line-height: 1.8; padding-left: 18px; margin: 0;">
+        <li>
+          <b style="color: #dbffde;">Yüklü Olmayan Sahte Uygulamalar Kaldırıldı:</b> Bilgisayarda fiziksel olarak yüklü olmayan Spotify, Discord, Steam, ChatGPT, YouTube ve PC Manager gibi sahte web/protokol linklerinin arama sonuçlarını kirletmesi engellendi.
+        </li>
+        <li>
+          <b style="color: #dbffde;">Harici Başlatıcı Doğrulaması:</b> Riot Games ve benzeri platformlar için istemci doğrulaması sıkılaştırılarak yalnızca bilgisayarda gerçekten var olan oyunların listelenmesi sağlandı.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 3: In-App Toast -->
+    <div class="panel">
+      <div class="code" style="color: var(--yellow); margin-bottom: 8px;">MODULE 03 // USER INTERFACE</div>
+      <h3 style="color: var(--green); margin-top: 0;">Uygulama İçi Canlı Bildirim (In-App Toast Banner)</h3>
+      <ul style="color: #7fa483; font-size: 13px; line-height: 1.8; padding-left: 18px; margin: 0;">
+        <li>
+          <b style="color: #dbffde;">Arayüz İçi Bildirim Hapı:</b> Arama çubuğundan veya Ayarlar panelinden yeniden indeksleme yapıldığında, LiteCast penceresinin sağ üst köşesinde yeşil renkli modern bir bildirim balonu belirir:
+          <div style="margin: 8px 0; padding: 6px 10px; background: rgba(125, 255, 133, 0.1); border: 1px solid var(--green); border-radius: 4px; color: var(--green); font-size: 12px; display: inline-block;">
+            [ &#x2714; İndeksleme tamamlandı &bull; X hazır ]
+          </div>
+        </li>
+        <li>
+          <b style="color: #dbffde;">Sistem Tepsisi Sadeleştirmesi:</b> Windows 11'in susturduğu sistem tepsisi balon uyarısı yerine bildirim tamamen uygulama içine taşındı; tepsi menüsündeki çalışmayan seçenek kaldırılarak menü sadeleştirildi.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 4: Deployment & Distribution -->
+    <div class="panel">
+      <div class="code" style="color: var(--yellow); margin-bottom: 8px;">MODULE 04 // DEPLOYMENT & PIPELINE</div>
+      <h3 style="color: var(--green); margin-top: 0;">Dağıtım & Paket Bilgileri</h3>
+      <ul style="color: #7fa483; font-size: 13px; line-height: 1.8; padding-left: 18px; margin: 0;">
+        <li>
+          <b style="color: #dbffde;">WinGet Entegrasyonu:</b> <code class="code" style="color: var(--green);">winget/manifest.yaml</code> paketi v1.0.1 için güncellendi ve yeni kurulum dosyası SHA-256 hash değeri işlendi.
+        </li>
+        <li>
+          <b style="color: #dbffde;">Otomatik Güncelleme Dağıtımı:</b> <code class="code" style="color: var(--green);">version.json</code> dosyası v1.0.1 sürümüyle senkronize edilerek OTA istemcilerine duyuruldu.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Download & Return Actions -->
+  <div style="margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center;">
+    <a class="btn yellow" href="/downloads/litecast/LiteCast-Setup.exe" download>
+      DOWNLOAD SETUP v1.0.1 (.EXE) ↗
+    </a>
+    <a class="btn blue" href="https://github.com/Hekyetmisbes/litecast" target="_blank" rel="noopener">
+      GITHUB REPOSITORY ↗
+    </a>
+    <a class="btn" href="/products/litecast/">
+      &larr; RETURN TO LITECAST
+    </a>
+  </div>
+</Layout>

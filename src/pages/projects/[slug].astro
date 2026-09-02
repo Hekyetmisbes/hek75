@@ -1,619 +1,168 @@
 ---
 // src/pages/projects/[slug].astro
-// Dynamic project detail page in English with updated years, engines, and video embeds.
+// HEK75 ARCADE OS — Case Study & Game File Detail.
 
 import Layout from '../../layouts/Layout.astro';
+import { GAMES, GAMES_LIST, type GameProject } from '../../data/games';
 
 export async function getStaticPaths() {
-  const projectsData = [
-    {
-      slug: "fog-bridge",
-      title: "Fog Bridge",
-      genre: "Atmospheric Narrative Puzzle",
-      engine: "Unity",
-      tech: ["C#", "Cinemachine", "URP 2D Light", "Custom Audio Controller"],
-      year: "2026",
-      teamSize: "Solo Developer",
-      image: "/assets/fog-bridge-logo.png",
-      videoCover: "/assets/fog-bridge-logo.png",
-      embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7464783917389152257?compact=1",
-      videoUrl: "https://www.linkedin.com/posts/harunemrecankarabag_gamedev-indiedev-unity-activity-7464784394495586304-Svgy",
-      story: "An atmospheric puzzle game developed in 72 hours for GameDev.tv Game Jam 2026. In the middle of an endless sea of fog, decipher cryptic paper plane messages to rebuild a fog bridge extending into the unknown.",
-      features: [
-        { title: "Paper Plane Messages", desc: "Decipher mysterious symbols carried by paper planes emerging from the fog to place subsequent bridge segments." },
-        { title: "2D Lighting & Atmosphere", desc: "A surreal, melancholic fog atmosphere built using Unity URP 2D lights and custom audio triggers." },
-        { title: "Jam Execution", desc: "Completed under a 72-hour constraint with clean, focused gameplay mechanics and high performance." }
-      ],
-      links: {
-        github: "https://github.com/Hekyetmisbes",
-        itch: "https://hekyetmisbes.itch.io/fog-bridge",
-        presentation: ""
-      }
-    },
-    {
-      slug: "the-final-loop",
-      title: "The Final Loop",
-      genre: "Psychological Puzzle / Vertical Slice",
-      engine: "Unreal Engine 5",
-      tech: ["C++", "Blueprints", "Unreal Audio", "Niagara VFX"],
-      year: "2026",
-      teamSize: "Solo Developer",
-      image: "/assets/final_loop_logo.png",
-      videoCover: "/assets/final_loop_logo.png",
-      embedUrl: "https://www.youtube.com/embed/rsCtGzJ-vpg",
-      videoUrl: "https://youtu.be/rsCtGzJ-vpg",
-      story: "The story of an experimental subject awakening inside a collapsing military research facility. As the facility crumbles around you, you find yourself trapped inside an endless memory loop. In each loop, combine clues found in escape rooms to uncover the facility's secret and find a way out.",
-      features: [
-        { title: "Memory Loops", desc: "Environmental conditions change when time resets, unlocking new paths while preserving puzzle progress across loops." },
-        { title: "Escape Room Mechanics", desc: "Interactive terminal interfaces, codebreaking, classified documents, and physics-based puzzle designs." },
-        { title: "Atmospheric Tension", desc: "Unreal Engine 5 volumetric fog, dynamic lighting, and 3D spatial audio creating a claustrophobic psychological atmosphere." }
-      ],
-      links: {
-        github: "https://github.com/Hekyetmisbes",
-        itch: "",
-        presentation: "/projects/thefinalloop/"
-      }
-    },
-    {
-      slug: "the-unlit-door",
-      title: "The Unlit Door",
-      genre: "Psychological Puzzle / Written Pitch",
-      engine: "Unity Mobile",
-      tech: ["C#", "ScriptableObjects", "Cinemachine", "Post-Processing"],
-      year: "2026",
-      teamSize: "Solo Developer",
-      image: "/assets/unlit_door_logo.png",
-      videoCover: "/assets/unlit_door_logo.png",
-      embedUrl: "https://drive.google.com/file/d/13bP3xqNxCXMtLxGEEpDIVqBRCYX8HxV1/preview",
-      videoUrl: "https://drive.google.com/file/d/13bP3xqNxCXMtLxGEEpDIVqBRCYX8HxV1/view?usp=drive_link",
-      story: "A psychological narrative puzzle concept revolving around themes of light and shadow, where players unlock doors representing rooms of the human mind. This page presents a comprehensive written pitch detailing game atmosphere, market research, and production roadmaps.",
-      features: [
-        { title: "Narrative-Driven Puzzles", desc: "Abstract puzzles intertwined with narrative storytelling, evolving based on player decisions and mental states." },
-        { title: "Light & Shadow Control", desc: "Mechanics using light as a primary tool to illuminate unseen paths, reveal secret doors, and avoid dangers." },
-        { title: "Market & Production Analysis", desc: "Professional pitch materials containing Gantt charts, target audience analyses, and production planning." }
-      ],
-      links: {
-        github: "https://github.com/Hekyetmisbes",
-        itch: "",
-        presentation: "/projects/theunlitdoor/"
-      }
-    },
-    {
-      slug: "delivery-driver",
-      title: "Delivery Driver",
-      genre: "3D Simulation & Driving",
-      engine: "Unity",
-      tech: ["C#", "Unity Physics", "New Input System"],
-      year: "2025",
-      teamSize: "Solo Developer",
-      image: "/assets/delivery-drive-logo.png",
-      videoCover: "/assets/delivery-drive-logo.png",
-      embedUrl: "",
-      videoUrl: "",
-      story: "A physics-based courier simulation game where you deliver cargo through city traffic as fast and safely as possible. Follow traffic rules or take risky shortcuts to optimize your delivery strategy!",
-      features: [
-        { title: "Physics-Based Driving", desc: "Realistic vehicle handling, abrupt braking, cargo inertia around corners, and damage physics." },
-        { title: "Dynamic Delivery Points", desc: "Randomly generated courier assignments across the city and high-stakes racing against countdown timers." },
-        { title: "New Input System", desc: "Fully optimized input bindings for both gamepad and keyboard controllers." }
-      ],
-      links: {
-        github: "https://github.com/Hekyetmisbes/delivery-driver",
-        itch: "https://hekyetmisbes.itch.io/delivery-driver",
-        presentation: ""
-      }
-    },
-    {
-      slug: "the-platform",
-      title: "The Platform",
-      genre: "2D Cyberpunk Platformer",
-      engine: "Unity 2D",
-      tech: ["Unity 2D", "C#", "Platformer Mechanics", "Level Flow", "Collectibles", "ShaderLab/HLSL", "Git"],
-      year: "2024",
-      teamSize: "Solo Developer",
-      image: "/assets/platform-logo.png",
-      videoCover: "/assets/platform-logo.png",
-      embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7287040546265534464?compact=1",
-      videoUrl: "https://www.linkedin.com/posts/harunemrecankarabag_unity-platformer-game-activity-7287041023799693312-4arg",
-      story: "Released 2D platformer where players collect stars, avoid hazards and obstacles, complete levels, and interact with a cyberpunk-themed short-session gameplay loop.",
-      features: [
-        { title: "Player Movement & Mechanics", desc: "Developed fluid player movement, obstacle interaction, collectible tracking, star-based objectives, level progression, and win/fail state transitions." },
-        { title: "Cyberpunk Feedback & UX", desc: "Implemented readable player feedback around collection, hazards, progress, completion conditions, and short-session gameplay clarity." },
-        { title: "Playable Windows Build", desc: "Released a playable Windows build with downloadable package and installation instructions on Itch.io." }
-      ],
-      links: {
-        github: "https://github.com/Hekyetmisbes/platform",
-        itch: "https://hekyetmisbes.itch.io/platform",
-        presentation: ""
-      }
-    },
-    {
-      slug: "flag-quiz-game",
-      title: "Flag Quiz Game",
-      genre: "Mobile Quiz / Educational",
-      engine: "Unity Mobile",
-      tech: ["C#", "UI Toolkit", "ShaderLab Custom Effects", "Local Storage Save System"],
-      year: "2023",
-      teamSize: "Solo Developer",
-      image: "/assets/flag-quiz-logo.png",
-      videoCover: "/assets/flag-quiz-logo.png",
-      embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7198598131725303809?compact=1",
-      videoUrl: "https://www.linkedin.com/posts/harunemrecankarabag_gamedevelopment-unity-oyun-activity-7198598131725303809-WXSh",
-      story: "An educational mobile quiz game designed to help players learn world flags through engaging game modes, time trials, life systems, and high score tracking.",
-      features: [
-        { title: "Multiple Game Modes", desc: "Time trial, endless mode, and flag-to-country matching for varied replayability." },
-        { title: "Shader Effects", desc: "Custom shader glows and card transition effects triggered upon answering questions." },
-        { title: "Mobile Optimized UI", desc: "Responsive mobile interface adaptable to various screen aspect ratios with local data save systems." }
-      ],
-      links: {
-        github: "https://github.com/Hekyetmisbes/flag-quiz-game",
-        itch: "",
-        presentation: ""
-      }
-    },
-    {
-      slug: "movidle-game",
-      title: "Movidle Game",
-      genre: "Web Game / Wordle Puzzle",
-      engine: "Unity",
-      tech: ["C#", "JSON Parsing", "IMDb API Integration", "Responsive WebGL UI"],
-      year: "2023",
-      teamSize: "Solo Developer",
-      image: "/assets/movidle-logo.png",
-      videoCover: "/assets/movidle-logo.png",
-      embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7141805886859112448?compact=1",
-      videoUrl: "https://www.linkedin.com/posts/harunemrecankarabag_game-gamedevelopment-unity-activity-7141805886859112448-oZPK",
-      story: "A movie guessing puzzle game featuring IMDb Top 250 films. Receive color-coded feedback on directors, release years, genres, and cast members with every guess.",
-      features: [
-        { title: "Wordle-Style Feedback", desc: "Color-coded tiles (green, yellow, gray) indicating how close your guesses are to the target movie." },
-        { title: "IMDb Top 250 Database", desc: "A fast offline database of 250 legendary films fed via local JSON files." },
-        { title: "WebGL Optimization", desc: "Optimized memory footprint ensuring instant loading across desktop and mobile web browsers." }
-      ],
-      links: {
-        github: "https://github.com/Hekyetmisbes/movidle",
-        itch: "",
-        presentation: ""
-      }
-    }
-  ];
-
-  return projectsData.map((project) => ({
-    params: { slug: project.slug },
-    props: { project }
+  return GAMES_LIST.map((game) => ({
+    params: { slug: game.slug },
+    props: { game }
   }));
 }
 
-const { project } = Astro.props;
----
+interface Props {
+  game: GameProject;
+}
 
-<Layout title={`${project.title} | Project Details`} description={project.story}>
-  <section class="section border-none detail-page">
-    <div class="container">
-      <a href="/projects/" class="back-link font-sans">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-icon"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        Back to All Projects
-      </a>
+const { game: g } = Astro.props;
 
-      <div class="detail-header">
-        <span class="project-tag-genre font-sans">{project.genre}</span>
-        <h1 class="project-detail-title font-serif">{project.title}</h1>
-      </div>
-
-      <div class="detail-grid">
-        <div class="detail-main-col">
-          <div class="video-container">
-            {project.embedUrl ? (
-              <iframe 
-                src={project.embedUrl} 
-                title={`${project.title} Video Trailer`}
-                class="embedded-video-iframe" 
-                frameborder="0" 
-                allowfullscreen
-              ></iframe>
-            ) : (
-              <div class="video-overlay" id="videoOverlay">
-                <img src={project.videoCover} alt="Trailer Cover Image" class="video-cover-img" />
-                <div class="play-button-wrapper">
-                  <button class="play-button" aria-label="Play Trailer" id="playBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  </button>
-                </div>
-                <span class="video-label font-sans">Watch Trailer</span>
-              </div>
-            )}
-
-            {!project.embedUrl && (
-              <div class="simulated-player" id="simPlayer" style="display: none;">
-                <video id="localVideo" width="100%" height="100%" controls poster={project.videoCover}>
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-digital-particles-loop-31835-large.mp4" type="video/mp4" />
-                  Your browser does not support video playback.
-                </video>
-              </div>
-            )}
-          </div>
-
-          <div class="story-section">
-            <h2 class="sub-title font-serif">Story & Concept</h2>
-            <p class="story-text font-serif">{project.story}</p>
-          </div>
-
-          <div class="features-section">
-            <h2 class="sub-title font-serif">Key Features</h2>
-            <div class="features-list">
-              {project.features.map((f) => (
-                <div class="feature-item">
-                  <div class="feature-marker"></div>
-                  <div class="feature-info">
-                    <h3 class="feature-title font-sans">{f.title}</h3>
-                    <p class="feature-desc font-sans">{f.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div class="detail-sidebar-col">
-          <div class="spec-card">
-            <h3 class="spec-card-title font-serif">Project Specs</h3>
-            
-            <div class="spec-list font-sans">
-              <div class="spec-row">
-                <span class="spec-label">Game Engine</span>
-                <span class="spec-val text-white">{project.engine}</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-label">Year</span>
-                <span class="spec-val text-white">{project.year}</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-label">Team / Role</span>
-                <span class="spec-val text-white">{project.teamSize}</span>
-              </div>
-            </div>
-
-            <div class="tech-tags-wrapper">
-              <h4 class="tech-title font-sans">Technologies Used</h4>
-              <div class="tech-tags font-sans">
-                {project.tech.map((t) => (
-                  <span class="tech-tag">{t}</span>
-                ))}
-              </div>
-            </div>
-
-            <div class="action-buttons font-sans">
-              {project.videoUrl && (
-                <a href={project.videoUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-full">
-                  Watch Trailer Video ↗
-                </a>
-              )}
-              {project.links.itch && (
-                <a href={project.links.itch} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full">
-                  Play on Itch.io ↗
-                </a>
-              )}
-              {project.links.github && (
-                <a href={project.links.github} target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-full">
-                  View on GitHub
-                </a>
-              )}
-              {project.links.presentation && (
-                <a href={project.links.presentation} class="btn btn-primary btn-full">
-                  Detailed Written Pitch ↗
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</Layout>
-
-<script>
-  const videoOverlay = document.getElementById('videoOverlay');
-  const playBtn = document.getElementById('playBtn');
-  const simPlayer = document.getElementById('simPlayer');
-  const localVideo = document.getElementById('localVideo') as HTMLVideoElement;
-
-  if (videoOverlay && playBtn && simPlayer && localVideo) {
-    playBtn.addEventListener('click', () => {
-      videoOverlay.style.display = 'none';
-      simPlayer.style.display = 'block';
-      localVideo.play();
-    });
+// Resolve in-site playback embed URL for YouTube, LinkedIn activities, and Google Drive previews
+function resolveInSiteEmbed(game: GameProject): string | null {
+  if (game.mediaType === "youtube" && game.mediaUrl) {
+    return game.mediaUrl;
   }
-</script>
-
-<style>
-  .detail-page {
-    padding-top: 130px;
-    padding-bottom: 90px;
-  }
-
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    color: var(--muted);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 2rem;
-    transition: color 0.25s ease;
-  }
-
-  .back-link:hover {
-    color: var(--white);
-  }
-
-  .back-link .inline-icon {
-    margin-right: 0.4rem;
-  }
-
-  .detail-header {
-    margin-bottom: 3rem;
-  }
-
-  .project-tag-genre {
-    color: var(--pastel-blue);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    display: block;
-    margin-bottom: 0.4rem;
-  }
-
-  .project-detail-title {
-    font-size: clamp(32px, 5.5vw, 64px);
-    line-height: 1;
-    color: var(--white);
-  }
-
-  .detail-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 0.8fr;
-    gap: 3.5rem;
-    align-items: start;
-  }
-
-  .video-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/9;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-    background: #000000;
-    margin-bottom: 3rem;
-  }
-
-  .embedded-video-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: #000000;
-    display: block;
-  }
-
-  .video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    cursor: pointer;
-  }
-
-  .video-cover-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: 0.8;
-    transition: transform 0.4s ease;
-  }
-
-  .video-overlay:hover .video-cover-img {
-    transform: scale(1.03);
-  }
-
-  .play-button-wrapper {
-    position: relative;
-    z-index: 12;
-    margin-bottom: 0.75rem;
-  }
-
-  .play-button {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: var(--white);
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .video-overlay:hover .play-button {
-    transform: scale(1.08);
-  }
-
-  .video-label {
-    position: relative;
-    z-index: 12;
-    color: var(--white);
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-  }
-
-  .simulated-player {
-    width: 100%;
-    height: 100%;
-  }
-
-  .sub-title {
-    font-size: 1.6rem;
-    color: var(--white);
-    margin-bottom: 1.25rem;
-    position: relative;
-    padding-left: 0.85rem;
-  }
-
-  .sub-title::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3px;
-    height: 16px;
-    background: var(--white);
-  }
-
-  .story-section {
-    margin-bottom: 3rem;
-  }
-
-  .story-text {
-    font-size: 1.0625rem;
-    color: var(--muted);
-    line-height: 1.75;
-  }
-
-  .features-section {
-    margin-bottom: 3rem;
-  }
-
-  .features-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .feature-item {
-    display: flex;
-    gap: 1rem;
-    align-items: start;
-  }
-
-  .feature-marker {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--white);
-    margin-top: 0.65rem;
-    flex-shrink: 0;
-  }
-
-  .feature-title {
-    font-size: 1.0625rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.25rem;
-  }
-
-  .feature-desc {
-    color: var(--muted);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-  }
-
-  .spec-card {
-    background: #07090e;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    padding: 2rem;
-    border-radius: 8px;
-    position: sticky;
-    top: 6.5rem;
-  }
-
-  .spec-card-title {
-    font-size: 1.25rem;
-    color: var(--white);
-    margin-bottom: 1.5rem;
-  }
-
-  .spec-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-    margin-bottom: 1.75rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .spec-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9375rem;
-  }
-
-  .spec-label {
-    color: var(--muted);
-  }
-
-  .spec-val {
-    font-weight: 600;
-  }
-
-  .tech-tags-wrapper {
-    margin-bottom: 2rem;
-  }
-
-  .tech-title {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--pastel-blue);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.85rem;
-  }
-
-  .tech-tags {
-    display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-  }
-
-  .tech-tag {
-    font-size: 0.75rem;
-    font-weight: 600;
-    background: var(--dark);
-    color: var(--white);
-    padding: 0.3rem 0.65rem;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-  }
-
-  .action-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-
-  .btn-full {
-    width: 100%;
-    justify-content: center;
-  }
-
-  @media (max-width: 900px) {
-    .detail-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
+  if (game.externalUrl) {
+    const liMatch = game.externalUrl.match(/activity-(\d+)/);
+    if (liMatch) {
+      return `https://www.linkedin.com/embed/feed/update/urn:li:activity:${liMatch[1]}`;
+    }
+    if (game.externalUrl.includes("drive.google.com")) {
+      return game.externalUrl.replace("/view?usp=drive_link", "/preview").replace("/view", "/preview");
     }
   }
-</style>
+  return null;
+}
+
+const inSiteEmbedUrl = resolveInSiteEmbed(g);
+---
+
+<Layout
+  title={`${g.title} // HEK75 Game File`}
+  description={g.pitch}
+  activeNav="games"
+  footerLeft="CASE STUDY MODE // GAME FILE LOADED"
+  footerRight="TRY TERMINAL: search unity"
+>
+  <div class="detail-hero">
+    <!-- Media Container -->
+    {inSiteEmbedUrl ? (
+      <div class="detail-cover">
+        <span class="media-badge">{g.mediaType === "youtube" ? "YOUTUBE PLAYBACK" : "IN-SITE SHOWCASE"}</span>
+        <iframe
+          src={inSiteEmbedUrl}
+          title={`${g.title} video`}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+    ) : g.mediaType === "mp4" && g.mediaUrl ? (
+      <div class="detail-cover">
+        <span class="media-badge">LOCAL VIDEO</span>
+        <video controls playsinline preload="metadata" poster={g.image}>
+          <source src={g.mediaUrl} type="video/mp4" />
+        </video>
+      </div>
+    ) : (
+      <div class="detail-cover">
+        <span class="media-badge">PROJECT COVER</span>
+        <img src={g.image} alt={g.title} />
+      </div>
+    )}
+
+    <!-- Copy & Tags -->
+    <div class="detail-copy">
+      <div class="code">GAME FILE // {g.number}</div>
+      <h1>{g.title}</h1>
+      <div class="meta">{g.genre}</div>
+      <p>{g.pitch}</p>
+      <div class="tags">
+        <span class="tag">{g.engine}</span>
+        <span class="tag">{g.year}</span>
+        <span class="tag">{g.status}</span>
+      </div>
+      <div style="margin-top: auto; padding-top: 18px;">
+        <a class="btn" href="/projects/">← RETURN TO LIBRARY</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info Strip -->
+  <div class="info-strip">
+    <div class="info">
+      <b>ENGINE</b>
+      <span>{g.engine}</span>
+    </div>
+    <div class="info">
+      <b>YEAR</b>
+      <span>{g.year}</span>
+    </div>
+    <div class="info">
+      <b>STATUS</b>
+      <span>{g.status}</span>
+    </div>
+    <div class="info">
+      <b>ROLE</b>
+      <span>{g.role}</span>
+    </div>
+  </div>
+
+  <!-- Content Panels -->
+  <div class="content-grid">
+    <section class="panel">
+      <h3>[ CORE MECHANICS ]</h3>
+      <ul>
+        {g.mechanics.map((m) => (
+          <li>{m}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h3>[ TECHNICAL HIGHLIGHTS ]</h3>
+      <ul>
+        {g.technical.map((t) => (
+          <li>{t}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h3>[ DEVELOPMENT NOTES ]</h3>
+      <p>{g.learned}</p>
+    </section>
+
+    <section class="panel">
+      <h3>[ MEDIA & ACCESS ]</h3>
+      <p style="margin-bottom: 14px;">
+        {inSiteEmbedUrl
+          ? "Interactive gameplay and showcase media embedded for direct in-site viewing."
+          : "Local asset screenshots and showcase material."}
+      </p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        {g.links.presentation && (
+          <a class="btn yellow" href={g.links.presentation} target="_blank">
+            OPEN PITCH DECK ↗
+          </a>
+        )}
+        {g.links.itch && (
+          <a class="btn blue" href={g.links.itch} target="_blank" rel="noopener">
+            PLAY ON ITCH.IO ↗
+          </a>
+        )}
+        {g.links.github && (
+          <a class="btn" href={g.links.github} target="_blank" rel="noopener">
+            GITHUB ↗
+          </a>
+        )}
+        {g.externalUrl && (
+          <a class="btn" href={g.externalUrl} target="_blank" rel="noopener">
+            EXTERNAL POST ↗
+          </a>
+        )}
+      </div>
+    </section>
+  </div>
+</Layout>

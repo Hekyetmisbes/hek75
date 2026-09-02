@@ -1,0 +1,240 @@
+---
+// src/pages/player.astro
+// HEK75 ARCADE OS — Personnel Database / Player Record / CV.
+
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Player Record // HEK75"
+  description="Harun Emrecan Karabağ — Personnel Record, Education, Skills and Experience."
+  activeNav="player"
+  footerLeft="STATUS: RECORDS VERIFIED // ACCESS GRANTED"
+  footerRight="HEK75 // PLAYER.SAV"
+>
+  <div class="section-head">
+    <div>
+      <div class="code">PERSONNEL DATABASE // ACCESS LEVEL 75</div>
+      <h1>PLAYER RECORD</h1>
+    </div>
+    <span class="meta">CV_MODE.ACTIVE</span>
+  </div>
+
+  <div class="player-grid">
+    <!-- ID Card -->
+    <aside class="id-card">
+      <div class="crt-portrait" aria-label="Harun Emrecan Karabağ — CRT Portrait">
+        <img
+          src="/assets/Emre.png"
+          alt="Harun Emrecan Karabağ"
+          class="crt-portrait-img"
+          width="140"
+          height="140"
+          loading="eager"
+        />
+        <div class="crt-portrait-scan"></div>
+      </div>
+      <h2>HARUN EMRECAN<br />KARABAĞ</h2>
+      <p>UNITY / UNREAL GAME DEVELOPER<br />C# SOFTWARE ENGINEER<br /><span style="font-size: 11px; color: var(--yellow);">GAMEPLAY & SYSTEMS</span></p>
+      <div class="tags" style="justify-content: center;">
+        <span class="tag">ANKARA, TR</span>
+        <span class="tag">TR / EN</span>
+      </div>
+      <div style="margin-top: 14px;">
+        <a class="btn yellow" href="/assets/Resume.pdf" target="_blank" rel="noopener">
+          OPEN RESUME.PDF ↗
+        </a>
+      </div>
+    </aside>
+
+    <!-- Career Logs -->
+    <div class="record">
+      <div class="code">EDUCATION.LOG</div>
+      <h2>[ EDUCATION ]</h2>
+      <div class="timeline">
+        <div class="entry">
+          <small>2026 — PRESENT</small>
+          <h3>Hacettepe University</h3>
+          <p><b>M.Sc. in Computer Animation and Game Technologies</b></p>
+          <p class="muted" style="font-size: 12px; margin-top: 4px;">GPA: 3.81 / 4.00 · Expected Graduation: Jan 2027</p>
+        </div>
+        <div class="entry">
+          <small>2020 — 2025</small>
+          <h3>Erciyes University</h3>
+          <p><b>B.Sc. in Computer Engineering</b></p>
+          <p class="muted" style="font-size: 12px; margin-top: 4px;">GPA: 3.00 / 4.00</p>
+        </div>
+      </div>
+
+      <div class="code">EXPERIENCE.LOG</div>
+      <h2>[ PROFESSIONAL EXPERIENCE ]</h2>
+      <div class="timeline">
+        <div class="entry">
+          <small>DEC 2025 — APR 2026 // ANKARA, TR</small>
+          <h3>Co-Founder — Fiktion Technology Studios</h3>
+          <p>Contributed to early-stage game and software initiatives through technical direction, feature planning, prioritization, documentation, implementation ownership, and coordination in a small multidisciplinary team.</p>
+        </div>
+        <div class="entry">
+          <small>JUL 2025 — AUG 2025 // KAYSERI, TR</small>
+          <h3>Software Engineering Intern — Erciyes University Research Dean’s Office / IT</h3>
+          <p>Developed maintainable ASP.NET Core 8 and Entity Framework Core components with data modeling, validation, debugging, logging, and documentation. Applied Clean Architecture, CQRS, Repository Pattern, Dependency Injection, FluentValidation, Docker fundamentals, and xUnit tests.</p>
+        </div>
+        <div class="entry">
+          <small>JUL 2024 — AUG 2024 // KAYSERI, TR</small>
+          <h3>Hardware Engineering Intern — Fotonik Teknoloji A.Ş.</h3>
+          <p>Supported hardware system design and improvement, hands-on testing, system analysis, issue investigation, and technical problem solving in a cross-disciplinary engineering environment.</p>
+        </div>
+        <div class="entry">
+          <small>FEB 2024 — JUL 2024 // TÜBİTAK</small>
+          <h3>Research Intern (2247-C STAR Fellow) — TÜBİTAK</h3>
+          <p class="muted" style="font-size: 12px; margin-bottom: 4px;">Advisor: Asst. Prof. Saltuk Buğra Selçuklu</p>
+          <p>Worked on agent-based simulation, optimization, forecasting, and AI-supported modeling, strengthening algorithmic thinking, experimentation, quantitative reasoning, and structured problem solving.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game-Focused Tool Loadout -->
+  <div class="section-head" style="margin-top: 28px;">
+    <h2>[ TOOL LOADOUT ]</h2>
+    <span class="code">SKILLS.INI</span>
+  </div>
+  <div class="panel">
+    <div class="skill-list">
+      <span class="skill">Unity 6</span>
+      <span class="skill">Unreal Engine 5.5</span>
+      <span class="skill">C#</span>
+      <span class="skill">C++</span>
+      <span class="skill">Blueprints</span>
+      <span class="skill">Unity URP</span>
+      <span class="skill">Unity Input System</span>
+      <span class="skill">Cinemachine</span>
+      <span class="skill">Game Systems</span>
+      <span class="skill">State Machines</span>
+      <span class="skill">ScriptableObjects</span>
+      <span class="skill">A* Pathfinding & AI</span>
+      <span class="skill">Object Pooling</span>
+      <span class="skill">Level Design & Blockout</span>
+      <span class="skill">Physics & Interaction</span>
+      <span class="skill">Unity Test Framework</span>
+      <span class="skill">Spatial Audio</span>
+      <span class="skill">Git / GitHub</span>
+    </div>
+
+    <!-- Extra Tools Dropdown (Collapsible Dropbox) -->
+    <details class="extra-tools-panel">
+      <summary class="extra-tools-summary">
+        <span>[ ▼ ] VIEW EXTRA TOOLS & EXTENDED TECH STACK</span>
+        <span class="code">SECONDARY_LOADOUT.SYS</span>
+      </summary>
+      <div class="extra-tools-content">
+        <div class="extra-tools-category">
+          <h4>BACKEND, DATA & PERSISTENCE</h4>
+          <div class="skill-list">
+            <span class="skill">ASP.NET Core 8</span>
+            <span class="skill">Entity Framework Core</span>
+            <span class="skill">Firebase Realtime Database</span>
+            <span class="skill">SQLite</span>
+            <span class="skill">JSON Persistence</span>
+            <span class="skill">UnityWebRequest</span>
+            <span class="skill">FluentValidation</span>
+          </div>
+        </div>
+        <div class="extra-tools-category">
+          <h4>SOFTWARE ENGINEERING & ARCHITECTURE</h4>
+          <div class="skill-list">
+            <span class="skill">OOP & SOLID</span>
+            <span class="skill">Clean Architecture</span>
+            <span class="skill">CQRS Fundamentals</span>
+            <span class="skill">Repository Pattern</span>
+            <span class="skill">Dependency Injection</span>
+            <span class="skill">xUnit Tests</span>
+            <span class="skill">Docker Fundamentals</span>
+          </div>
+        </div>
+        <div class="extra-tools-category">
+          <h4>DESKTOP, WEB & GRAPHICS</h4>
+          <div class="skill-list">
+            <span class="skill">Rust</span>
+            <span class="skill">Java</span>
+            <span class="skill">Vite / React / Astro</span>
+            <span class="skill">HLSL / ShaderLab</span>
+            <span class="skill">Win32 / DWM</span>
+            <span class="skill">Figma</span>
+            <span class="skill">Technical Documentation</span>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Certificates From CV -->
+  <div class="section-head" style="margin-top: 28px;">
+    <h2>[ CERTIFICATES ]</h2>
+    <span class="code">ACHIEVEMENTS.UNLOCKED</span>
+  </div>
+  <div class="grid cert-grid">
+    <div class="cert">
+      <b>Introduction to Game Design</b>
+      <span>Epic Games / Coursera // NOV 2025</span>
+    </div>
+    <div class="cert">
+      <b>Unity 401</b>
+      <span>Turkcell Geleceği Yazanlar // JUL 2024</span>
+    </div>
+    <div class="cert">
+      <b>More C# Programming and Unity</b>
+      <span>University of Colorado Boulder / Coursera // MAR 2024</span>
+    </div>
+    <div class="cert">
+      <b>C# Class Development</b>
+      <span>University of Colorado Boulder / Coursera // MAR 2024</span>
+    </div>
+    <div class="cert">
+      <b>Introduction to C# Programming and Unity</b>
+      <span>University of Colorado Boulder / Coursera</span>
+    </div>
+    <div class="cert">
+      <b>Version Control: Git and GitHub</b>
+      <span>BTK Akademi // OCT 2023</span>
+    </div>
+    <div class="cert">
+      <b>Hypercasual Fundamentals</b>
+      <span>BTK Akademi // JAN 2023</span>
+    </div>
+  </div>
+
+  <!-- Language Modules -->
+  <div class="section-head" style="margin-top: 28px;">
+    <h2>[ LANGUAGE MODULES ]</h2>
+    <span class="code">COMMS.SYS</span>
+  </div>
+  <div class="content-grid">
+    <div class="panel">
+      <h3>TURKISH</h3>
+      <p>Native / bilingual proficiency.</p>
+    </div>
+    <div class="panel">
+      <h3>ENGLISH</h3>
+      <p>B2+ written and spoken · Professional working proficiency.</p>
+    </div>
+  </div>
+
+  <!-- Transmission Channels / Contact -->
+  <div class="section-head" style="margin-top: 28px;">
+    <h2>[ TRANSMISSION CHANNELS ]</h2>
+    <span class="code">CONTACT.LINK</span>
+  </div>
+  <div class="content-grid">
+    <div class="panel">
+      <h3>DIRECT COMMS</h3>
+      <p>Email: <a href="mailto:harunemrecankarabag@gmail.com" class="yellow" style="text-decoration: underline;">harunemrecankarabag@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/harunemrecankarabag/" target="_blank" rel="noopener" class="blue" style="text-decoration: underline;">in/harunemrecankarabag</a></p>
+    </div>
+    <div class="panel">
+      <h3>CODE & SOCIAL</h3>
+      <p>GitHub: <a href="https://github.com/Hekyetmisbes" target="_blank" rel="noopener" class="green" style="text-decoration: underline;">github.com/Hekyetmisbes</a></p>
+      <p>Instagram: <a href="https://www.instagram.com/hekyetmisbes/" target="_blank" rel="noopener" class="muted" style="text-decoration: underline;">@hekyetmisbes</a></p>
+    </div>
+  </div>
+</Layout>
