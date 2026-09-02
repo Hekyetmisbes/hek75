@@ -7,11 +7,11 @@ import { GAMES_LIST } from '../../data/games';
 ---
 
 <Layout
-  title="Game Library // HEK75"
-  description="All game projects and case studies by Harun Emrecan Karabağ."
+  title="Game Library // HEK75 OS — Harun Emrecan Karabağ"
+  description="Playable games, vertical slices, game jams, and technical case studies developed by Harun Emrecan Karabağ (HEK75) across Unity and Unreal Engine."
   activeNav="games"
   footerLeft="SELECT A CARTRIDGE TO OPEN CASE STUDY"
-  footerRight="HEK75 // GAMES.DB"
+  footerRight="HEK75 OS // GAMES.DB"
 >
   <div class="section-head">
     <div>
@@ -25,7 +25,7 @@ import { GAMES_LIST } from '../../data/games';
     {GAMES_LIST.map((g) => (
       <article class="game-tile">
         <div class="cover">
-          <img src={g.image} alt={g.title} loading="lazy" />
+          <img src={g.image} alt={`${g.title} — Game by Harun Emrecan Karabağ (HEK75)`} loading="lazy" />
         </div>
         <div class="tile-body">
           <div class="meta">FILE {g.number} // {g.year} // {g.engine}</div>

@@ -39,11 +39,13 @@ const inSiteEmbedUrl = resolveInSiteEmbed(g);
 ---
 
 <Layout
-  title={`${g.title} // HEK75 Game File`}
-  description={g.pitch}
+  title={`${g.title} // Game by Harun Emrecan Karabağ — HEK75 OS`}
+  description={`${g.title} (${g.year}) — ${g.genre} game developed with ${g.engine} by Harun Emrecan Karabağ (HEK75). ${g.pitch}`}
   activeNav="games"
   footerLeft="CASE STUDY MODE // GAME FILE LOADED"
-  footerRight="TRY TERMINAL: search unity"
+  footerRight="HEK75 OS // GAMES.DB"
+  image={g.image}
+  type="article"
 >
   <div class="detail-hero">
     <!-- Media Container -->
@@ -165,4 +167,24 @@ const inSiteEmbedUrl = resolveInSiteEmbed(g);
       </div>
     </section>
   </div>
+
+  <!-- Schema.org VideoGame Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": g.title,
+    "description": g.pitch,
+    "genre": g.genre,
+    "gamePlatform": "PC",
+    "applicationCategory": "Game",
+    "operatingSystem": "Windows",
+    "author": {
+      "@type": "Person",
+      "name": "Harun Emrecan Karabağ",
+      "alternateName": "HEK75",
+      "url": "https://hek75.com"
+    },
+    "image": new URL(g.image, "https://hek75.com").href,
+    "url": `https://hek75.com/projects/${g.slug}/`
+  })} />
 </Layout>

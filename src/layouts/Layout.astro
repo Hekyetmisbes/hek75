@@ -7,16 +7,22 @@ import '../styles/arcade.css';
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
+  image?: string;
+  type?: "website" | "profile" | "article";
   activeNav?: "home" | "games" | "products" | "player" | "contact" | "none";
   footerLeft?: string;
   footerRight?: string;
 }
 
 const {
-  title = "HEK75 // Arcade Portfolio",
-  description = "Harun Emrecan Karabağ — Game Developer & Software Portfolio in CRT Arcade OS.",
+  title = "HEK75 OS — Harun Emrecan Karabağ | Game Developer",
+  description = "Harun Emrecan Karabağ (HEK75) — Game Developer & Software Engineer. Portfolio featuring Unity, Unreal Engine, C#, C++, Gameplay Programming, and retro arcade systems.",
+  keywords = "HEK75, hek75, HEK75 OS, Harun Emrecan Karabağ, Harun Emrecan Karabag, Harun Karabag, hekye, Hekyetmisbes, Game Developer, Game Programmer, Indie Game Developer, Oyun Geliştirici, Unity Developer, Unreal Engine Developer, C# Developer, C++ Gameplay, The Final Loop, The Unlit Door, Fog Bridge, LiteCast, Retro Arcade Portfolio, Hacettepe University",
+  image = "/assets/og-image.svg",
+  type = "website",
   activeNav = "none",
-  footerLeft = "HEK75 ARCADE SYSTEM // READY",
+  footerLeft = "HEK75 OS // SYSTEM READY",
   footerRight = "HEK75 ENTERTAINMENT SYSTEM // 2026"
 } = Astro.props;
 
@@ -26,6 +32,60 @@ const isGames = activeNav === 'games' || pathname.startsWith('/projects') || pat
 const isProducts = activeNav === 'products' || pathname.startsWith('/products');
 const isPlayer = activeNav === 'player' || pathname.startsWith('/player') || pathname.startsWith('/about') || pathname.startsWith('/skills');
 const isContact = activeNav === 'contact' || pathname.startsWith('/contact') || pathname.startsWith('/multiplayer');
+
+const siteUrl = "https://hek75.com";
+const canonicalURL = new URL(pathname, siteUrl).href;
+const ogImageURL = new URL(image, siteUrl).href;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "HEK75 OS",
+      "alternateName": ["HEK75", "Harun Emrecan Karabağ Portfolio", "HEK75 Arcade OS"],
+      "description": "Harun Emrecan Karabağ (HEK75) — Game Developer & Software Engineer Portfolio",
+      "publisher": {
+        "@id": `${siteUrl}/#person`
+      },
+      "inLanguage": ["en-US", "tr-TR"]
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      "name": "Harun Emrecan Karabağ",
+      "alternateName": ["HEK75", "Harun Karabag", "hekye", "Hekyetmisbes"],
+      "url": siteUrl,
+      "image": `${siteUrl}/assets/Emre.png`,
+      "jobTitle": "Game Developer & Software Engineer",
+      "description": "Unity & Unreal Engine Game Developer, C# / C++ Gameplay Programmer, Master's student in Computer Animation and Game Technologies at Hacettepe University.",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Hacettepe University"
+      },
+      "knowsAbout": [
+        "Game Development",
+        "Unity",
+        "Unreal Engine",
+        "C#",
+        "C++",
+        "Gameplay Systems",
+        "Game Design",
+        "Level Design",
+        "Shaders & Graphics",
+        "Computer Animation"
+      ],
+      "sameAs": [
+        "https://github.com/Hekyetmisbes",
+        "https://github.com/hekye",
+        "https://linkedin.com/in/harun-emrecan-karabag",
+        "https://hekyetmisbes.itch.io"
+      ]
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -34,16 +94,55 @@ const isContact = activeNav === 'contact' || pathname.startsWith('/contact') || 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Icons & Favicon -->
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link rel="alternate icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/hk_logo.png" />
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Harun Emrecan Karabağ" />
+    <meta name="creator" content="Harun Emrecan Karabağ" />
+    <meta name="publisher" content="HEK75" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <meta name="theme-color" content="#020503" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Open Graph / Facebook / LinkedIn / Discord -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="HEK75 OS" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:alt" content="HEK75 OS — Harun Emrecan Karabağ | Game Developer Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="tr_TR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content="HEK75 OS — Harun Emrecan Karabağ | Game Developer Portfolio" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <div class="shell">
       <main class="screen">
         <!-- Arcade Topbar -->
         <header class="topbar">
-          <a class="brand" href="/">HEK75 // ARCADE OS</a>
+          <a class="brand" href="/">HEK75 OS</a>
           <nav>
             {isHome ? (
               <span class="online">● ONLINE // PLAYER_01</span>
