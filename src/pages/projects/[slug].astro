@@ -76,12 +76,22 @@ const videoGameSchema = [
   ]}
   customSchema={videoGameSchema}
 >
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">HOME</a>
+  <nav class="breadcrumb" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item"><span itemprop="name">HOME</span></a>
+      <meta itemprop="position" content="1" />
+    </span>
     <span class="breadcrumb-separator">/</span>
-    <a href="/projects/">GAMES</a>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/projects/" itemprop="item"><span itemprop="name">GAMES</span></a>
+      <meta itemprop="position" content="2" />
+    </span>
     <span class="breadcrumb-separator">/</span>
-    <span class="breadcrumb-current">{g.title}</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span class="breadcrumb-current" itemprop="name">{g.title}</span>
+      <link itemprop="item" href={`https://hek75.com/projects/${g.slug}/`} />
+      <meta itemprop="position" content="3" />
+    </span>
   </nav>
 
   <div class="detail-hero">
@@ -155,8 +165,33 @@ const videoGameSchema = [
   {g.overview && (
     <div class="panel" style="margin-top: 24px; border-left: 3px solid var(--green);">
       <div class="code" style="color: var(--yellow); margin-bottom: 6px;">CASE STUDY // EXECUTIVE SUMMARY</div>
-      <h2 style="margin: 0 0 10px 0; color: var(--green); font-size: 20px;">Project Overview & Objectives</h2>
+      <h2 style="margin: 0 0 10px 0; color: var(--green); font-size: 20px;">Project Overview &amp; Objectives</h2>
       <p class="muted" style="line-height: 1.8; margin: 0; font-size: 14px;">{g.overview}</p>
+    </div>
+  )}
+
+  <!-- In-Depth Technical Analysis & Retrospectives -->
+  {g.caseStudySections && g.caseStudySections.length > 0 && (
+    <div style="margin-top: 28px;">
+      <div class="section-head">
+        <div>
+          <div class="code">ENGINEERING RETROSPECTIVE // SYSTEM ARCHITECTURE</div>
+          <h2>IN-DEPTH TECHNICAL ANALYSIS</h2>
+        </div>
+        <span class="meta">CASE STUDY BREAKDOWN</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 14px;">
+        {g.caseStudySections.map((sec) => (
+          <article class="panel" style="border-left: 3px solid var(--green);">
+            <div class="code" style="color: var(--yellow); margin-bottom: 4px;">{sec.subheading || "SYSTEM BREAKDOWN"}</div>
+            <h3 style="color: var(--green); margin: 0 0 12px 0; font-size: 17px;">{sec.heading}</h3>
+            {sec.paragraphs.map((p) => (
+              <p style="color: #c2e2c5; font-size: 13.5px; line-height: 1.8; margin: 0 0 12px 0;">{p}</p>
+            ))}
+          </article>
+        ))}
+      </div>
     </div>
   )}
 

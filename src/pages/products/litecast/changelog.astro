@@ -18,14 +18,27 @@ import Layout from '../../../layouts/Layout.astro';
     { name: "CHANGELOG", url: "/products/litecast/changelog/" }
   ]}
 >
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">HOME</a>
+  <nav class="breadcrumb" aria-label="Breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item"><span itemprop="name">HOME</span></a>
+      <meta itemprop="position" content="1" />
+    </span>
     <span class="breadcrumb-separator">/</span>
-    <a href="/products/">PRODUCTS</a>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/products/" itemprop="item"><span itemprop="name">PRODUCTS</span></a>
+      <meta itemprop="position" content="2" />
+    </span>
     <span class="breadcrumb-separator">/</span>
-    <a href="/products/litecast/">LITECAST</a>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/products/litecast/" itemprop="item"><span itemprop="name">LITECAST</span></a>
+      <meta itemprop="position" content="3" />
+    </span>
     <span class="breadcrumb-separator">/</span>
-    <span class="breadcrumb-current">CHANGELOG</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span class="breadcrumb-current" itemprop="name">CHANGELOG</span>
+      <link itemprop="item" href="https://hek75.com/products/litecast/changelog/" />
+      <meta itemprop="position" content="4" />
+    </span>
   </nav>
 
   <div class="section-head">

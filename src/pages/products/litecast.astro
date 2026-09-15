@@ -41,12 +41,22 @@ const liteCastSchema = [
   ]}
   customSchema={liteCastSchema}
 >
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">HOME</a>
+  <nav class="breadcrumb" aria-label="Breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item"><span itemprop="name">HOME</span></a>
+      <meta itemprop="position" content="1" />
+    </span>
     <span class="breadcrumb-separator">/</span>
-    <a href="/products/">PRODUCTS</a>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/products/" itemprop="item"><span itemprop="name">PRODUCTS</span></a>
+      <meta itemprop="position" content="2" />
+    </span>
     <span class="breadcrumb-separator">/</span>
-    <span class="breadcrumb-current">LITECAST</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span class="breadcrumb-current" itemprop="name">LITECAST</span>
+      <link itemprop="item" href="https://hek75.com/products/litecast/" />
+      <meta itemprop="position" content="3" />
+    </span>
   </nav>
 
   <!-- LiteCast Hero -->
@@ -279,6 +289,15 @@ const liteCastSchema = [
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Benchmark Methodology & Test Rig -->
+  <div class="panel" style="margin-top: 14px; background: rgba(7, 16, 8, 0.55); border: 1px dashed var(--line); border-left: 3px solid var(--yellow);">
+    <div class="code" style="color: var(--yellow); margin-bottom: 6px;">BENCHMARK METHODOLOGY &amp; TEST ENVIRONMENT</div>
+    <p class="muted" style="font-size: 12px; margin: 0; line-height: 1.7;">
+      <b>Test Rig:</b> Windows 11 Pro 24H2 (OS Build 26100), AMD Ryzen 7 7840HS (8 Cores, 16 Threads @ 3.8 GHz base / 5.1 GHz boost), 16 GB LPDDR5-6400 RAM, PCIe 4.0 NVMe SSD.<br />
+      <b>Measurement Protocol:</b> Values represent statistical medians over 50 consecutive cold invocations and 30-minute idle background sessions logged via Windows Performance Monitor (perfmon), Sysinternals Process Explorer, and Windows Resource Monitor. Heavy desktop comparison baseline is measured against a standard modern Electron/Chromium v128 shell executing equivalent background tray listening and local search querying.
+    </p>
   </div>
 
   <!-- Shortcut Map -->

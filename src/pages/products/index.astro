@@ -16,10 +16,17 @@ import Layout from '../../layouts/Layout.astro';
     { name: "PRODUCTS", url: "/products/" }
   ]}
 >
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">HOME</a>
+  <nav class="breadcrumb" aria-label="Breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item"><span itemprop="name">HOME</span></a>
+      <meta itemprop="position" content="1" />
+    </span>
     <span class="breadcrumb-separator">/</span>
-    <span class="breadcrumb-current">PRODUCTS</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span class="breadcrumb-current" itemprop="name">PRODUCTS</span>
+      <link itemprop="item" href="https://hek75.com/products/" />
+      <meta itemprop="position" content="2" />
+    </span>
   </nav>
 
   <div class="section-head">

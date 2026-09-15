@@ -3,6 +3,12 @@ export interface TechnicalChallenge {
   solution: string;
 }
 
+export interface CaseStudySection {
+  heading: string;
+  subheading?: string;
+  paragraphs: string[];
+}
+
 export interface GameProject {
   slug: string;
   title: string;
@@ -22,6 +28,7 @@ export interface GameProject {
   architecture: string[];
   engineHighlights: string[];
   challengesAndSolutions: TechnicalChallenge[];
+  caseStudySections?: CaseStudySection[];
   learned: string;
   relatedSlugs: string[];
   mediaType: "youtube" | "mp4" | "external" | "cover";
@@ -38,7 +45,7 @@ export const GAMES: Record<string, GameProject> = {
   "the-final-loop": {
     slug: "the-final-loop",
     title: "THE FINAL LOOP",
-    seoTitle: "The Final Loop – Unreal Engine 5 Vertical Slice & Puzzle Prototype | Harun Emrecan Karabağ",
+    seoTitle: "The Final Loop – Unreal Engine 5 Psychological Puzzle Game | HEK75",
     seoDescription: "An Unreal Engine 5 psychological puzzle vertical slice prototype engineered around time loops, interaction states, and modular Blueprint systems.",
     number: "001",
     year: "2026",
@@ -47,7 +54,7 @@ export const GAMES: Record<string, GameProject> = {
     status: "Gameplay Prototype",
     image: "/assets/final_loop_logo.png",
     pitch: "A psychological gameplay prototype built around repeated attempts, memory loops, interaction states and player-facing feedback inside a collapsing research facility.",
-    overview: "The Final Loop is an Unreal Engine 5 vertical slice that explores recurring time-anomaly mechanics within an isolated laboratory. The project was designed to test tight environmental feedback loops, persistent room state modifications, and high-cadence player decision making under psychological tension.",
+    overview: "The Final Loop is an Unreal Engine 5 vertical slice that explores recurring time-anomaly mechanics within an isolated subterranean laboratory. The project was designed to test tight environmental feedback loops, persistent room state modifications, and high-cadence player decision making under psychological tension.",
     role: "Gameplay Programming / Technical Design / Level Prototyping",
     mechanics: [
       "Time-loop iteration and memory retrieval",
@@ -82,6 +89,44 @@ export const GAMES: Record<string, GameProject> = {
       {
         challenge: "Providing clear psychological clues without intrusive UI overlays.",
         solution: "Utilized dynamic material instances with pulsing emissive parameters and localized 3D spatial audio triggers."
+      },
+      {
+        challenge: "Decoupling puzzle triggers from hardcoded level references for rapid vertical slice iterations.",
+        solution: "Engineered a modular BaseInteractiveComponent with event dispatchers, allowing level designers to link switches to doors via Blueprint interfaces."
+      }
+    ],
+    caseStudySections: [
+      {
+        heading: "1. The Time-Anomaly Architecture & State Machine",
+        subheading: "Challenge → Architecture → Implementation",
+        paragraphs: [
+          "Designing a psychological game around time loops presents a core technical challenge: how do you persist player memory and narrative discoveries across iterations without accumulating stale game states or leaking memory? Rather than reloading the level map upon player death or timer expiration—which would cause noticeable hitching and break psychological immersion—I engineered a custom World Subsystem in Unreal Engine 5 called ULoopSubsystem.",
+          "This subsystem functions as a single source of truth, maintaining a lightweight bitmask of unlocked narrative flags, elapsed cycle seconds, and environmental deterioration tiers. When the loop resets, ULoopSubsystem broadcasts an OnLoopCycleReset event. Every interactive prop and puzzle mechanism in the scene implements an IResetLoopInterface, allowing them to revert their transforms, physics velocities, and material parameters deterministically within a single tick without invoking garbage collection spikes."
+        ]
+      },
+      {
+        heading: "2. Modular Actor Components vs Monolithic Blueprints",
+        subheading: "Decoupling Gameplay Logic from Visual Assets",
+        paragraphs: [
+          "In early prototyping, tying interaction logic directly into specific door or terminal actors resulted in duplicated Blueprint spaghetti. To establish clean engineering practices, I extracted all interactive logic into modular Actor Components: BPC_Interactable, BPC_PowerConsumer, and BPC_LoopStateObserver.",
+          "Under this architecture, any static mesh in the laboratory—whether an emergency airlock, an oscilloscope terminal, or a security junction box—becomes interactive simply by attaching BPC_Interactable. When the player engages with an object, the component delegates authority through Event Dispatchers to local puzzle controllers, keeping class hierarchies shallow and enabling rapid level prototyping."
+        ]
+      },
+      {
+        heading: "3. Contextual Enhanced Input & Diegetic Feedback",
+        subheading: "Player Experience & Ergonomics",
+        paragraphs: [
+          "To reinforce the sense of claustrophobia and tension, the prototype minimizes screen clutter by avoiding floating UI markers. Player affordances rely entirely on diegetic environmental cues: pulsing emissive strips driven by dynamic material instances (DMI), flickering emergency halogen bulbs via Lumen global illumination, and spatialized 3D audio attenuation curves.",
+          "Using Unreal Engine 5's Enhanced Input System, I established layered Input Mapping Contexts (IMC). While exploring, the default IMC_Exploration handles movement and examination. When approaching complex interactive machinery, the system seamlessly pushes IMC_Terminal onto the input stack, mapping directional inputs to dials and keypads without mode-switch stutter."
+        ]
+      },
+      {
+        heading: "4. Performance Profiling & Vertical Slice Outcomes",
+        subheading: "Stable 60 FPS Target on Mid-Tier Hardware",
+        paragraphs: [
+          "With Lumen dynamic global illumination enabled, maintaining stable 60 FPS in dense interior environments required strict draw call budgeting. I consolidated modular sci-fi corridor kits into reusable instanced static meshes, adjusted virtual shadow map caching, and ensured all loop reset routines execute under 2.5 milliseconds.",
+          "The resulting vertical slice successfully demonstrates tight psychological loop pacing, responsive tactile interactions, and a rock-solid state management foundation scalable to a full-length title."
+        ]
       }
     ],
     learned: "Strengthened core Unreal Engine Blueprint architecture, actor lifecycle management, and scalable vertical slice prototyping.",
@@ -96,7 +141,7 @@ export const GAMES: Record<string, GameProject> = {
   "fog-bridge": {
     slug: "fog-bridge",
     title: "FOG BRIDGE",
-    seoTitle: "Fog Bridge – Unity Atmospheric Narrative Puzzle Game | Harun Emrecan Karabağ",
+    seoTitle: "Fog Bridge – Unity Narrative Puzzle Game | Harun Emrecan Karabağ",
     seoDescription: "Developed in 72 hours for GameDev.tv Game Jam 2026. A Unity atmospheric puzzle game featuring cryptic paper-plane mechanics and volumetric bridge reconstruction.",
     number: "002",
     year: "2026",
@@ -137,6 +182,44 @@ export const GAMES: Record<string, GameProject> = {
       {
         challenge: "Preventing player disorientation in low-visibility dense fog.",
         solution: "Engineered subtle audio beacons and emissive runway glyphs that guide the player toward newly placed bridge tiles."
+      },
+      {
+        challenge: "Ensuring zero game-breaking bugs under high jam pressure without unit test suites.",
+        solution: "Employed strict Finite State Machines for puzzle validation, eliminating impossible progression edge cases."
+      }
+    ],
+    caseStudySections: [
+      {
+        heading: "1. 72-Hour Jam Scope Management & Design Pillars",
+        subheading: "From Theme to Finished Loop in 3 Days",
+        paragraphs: [
+          "When GameDev.tv announced the theme 'Secrets In The Fog', the primary danger was scope creep—attempting complex open-world navigation or intricate inventory systems that cannot be polished within 72 hours. To guarantee delivery, I established three non-negotiable design pillars: 1) One core mechanical input loop (catch, read, build), 2) Zero unmotivated travel distance, and 3) High atmospheric polish via sound and lighting.",
+          "Every gameplay feature had to directly serve the emotional experience of solitude and connection across a foggy void. By enforcing strict feature boundaries on Day 1, I reserved the final 24 hours entirely for playtesting, audio balance, and build validation across WebGL and Windows targets."
+        ]
+      },
+      {
+        heading: "2. The Paper-Plane Communication Pipeline",
+        subheading: "Procedural Flight Paths & Decoupled Data",
+        paragraphs: [
+          "The narrative vehicle of the game is a series of paper airplanes that soar out of the dense fog. To make their arrival feel organic rather than scripted on a rail, I engineered a Bezier trajectory calculator in C#. Each plane calculates a smooth cubic Bezier curve toward the player's current perimeter with subtle Perlin noise perturbations applied to pitch and roll.",
+          "The message content itself is backed by ScriptableObjects (MessageDataSO). Separating text content and clue identifiers from the physical plane prefab allowed narrative pacing adjustments in the Inspector without touching runtime physics code or recompiling scripts."
+        ]
+      },
+      {
+        heading: "3. State-Driven Puzzle Progression & Validation",
+        subheading: "Preventing Player Disorientation in Zero-Visibility",
+        paragraphs: [
+          "Navigating thick fog creates a high risk of player frustration: if players cannot see landmark silhouettes, they easily assume the game is broken. To maintain clear affordances without resorting to artificial GPS arrows, I implemented an environmental feedback chain.",
+          "As the player correctly solves cryptic messages and aligns bridge keystones, a centralized BridgeManager state machine transitions through distinct phases. Each completed step triggers an audible resonant chime, dampens local fog density in a localized radius, and lights up glowing floor glyphs that guide the player forward."
+        ]
+      },
+      {
+        heading: "4. Optimization & Zero-Allocation Performance",
+        subheading: "Unity 6 URP Performance Budgeting",
+        paragraphs: [
+          "To ensure silky smooth framerates on lower-end laptops and WebGL browsers, volumetric fog was achieved using calibrated exponential height fog combined with GPU-instanced quad particles instead of full-screen compute-shader raymarching.",
+          "All message objects and bridge chunks are pre-spawned in object pools at startup, ensuring zero garbage-collection allocations during gameplay frames. The project shipped with 0 critical defects and achieved top praise for atmosphere and gameplay cohesion in the jam rankings."
+        ]
       }
     ],
     learned: "Mastered strict scope prioritization, player affordance under constrained visibility, and shipping a zero-bug jam build.",
@@ -151,7 +234,7 @@ export const GAMES: Record<string, GameProject> = {
   "the-unlit-door": {
     slug: "the-unlit-door",
     title: "THE UNLIT DOOR",
-    seoTitle: "The Unlit Door – Unity Mobile Psychological Narrative Puzzle Pitch | Harun Emrecan Karabağ",
+    seoTitle: "The Unlit Door – Unity Mobile Psychological Puzzle Game | Harun Emrecan Karabağ",
     seoDescription: "A game concept and technical system design for Unity Mobile centered on memory, light-shadow interaction mechanics, and mobile performance budgets.",
     number: "003",
     year: "2026",
@@ -190,6 +273,24 @@ export const GAMES: Record<string, GameProject> = {
         solution: "Designed pre-baked light maps paired with a single real-time directional projected shadow caster, keeping draw calls under 60."
       }
     ],
+    caseStudySections: [
+      {
+        heading: "1. Mobile Touch Mechanics & Light-Shadow Interactions",
+        subheading: "Designing for Tactile Mobile Ergonomics",
+        paragraphs: [
+          "The mechanical core of The Unlit Door revolves around using fingers to manipulate single-source flashlight cones across intricate relief carvings. Because touchscreens lack physical feedback, the system architecture introduces micro-damping and rotational momentum to the virtual light beam, giving the beam weight and tactile fidelity.",
+          "When the beam casts shadows over specific doorway reliefs, a custom occlusion shader checks alignment angles against target thresholds. If matched within a 5-degree tolerance, the shadow silhouette manifests physical geometry, unlocking the psychological threshold."
+        ]
+      },
+      {
+        heading: "2. Mobile Performance Budget & Addressables Architecture",
+        subheading: "60 FPS and Low Memory Footprint on Android/iOS",
+        paragraphs: [
+          "To satisfy battery-conscious mobile requirements, the game is strictly budgeted for 60 FPS on ARM Mali and Adreno chipsets. Draw calls are constrained below 60 per frame through aggressive SRP Batching and unified atlas materials.",
+          "Furthermore, memory usage is maintained under 250 MB using Unity Addressables. Each psychological chapter is packaged as an independent Addressable AssetBundle, streamed on-demand and unloaded upon chapter transitions to prevent memory fragmentation on devices with low RAM."
+        ]
+      }
+    ],
     learned: "Refined comprehensive Game Design Document (GDD) authoring, mobile hardware constraints, and retention-focused mechanics.",
     relatedSlugs: ["the-final-loop", "fog-bridge"],
     mediaType: "external",
@@ -202,7 +303,7 @@ export const GAMES: Record<string, GameProject> = {
   "delivery-driver": {
     slug: "delivery-driver",
     title: "DELIVERY DRIVER",
-    seoTitle: "Delivery Driver – Unity 3D Physics Simulation & Arcade Driving | Harun Emrecan Karabağ",
+    seoTitle: "Delivery Driver – Unity 3D Driving Game | Harun Emrecan Karabağ",
     seoDescription: "A physics-based courier arcade game built in Unity featuring vehicle dynamics, waypoint navigation, route optimization, and responsive controls.",
     number: "004",
     year: "2025",
@@ -239,6 +340,28 @@ export const GAMES: Record<string, GameProject> = {
       {
         challenge: "Preventing high-speed arcade vehicles from flipping awkwardly on curb collisions.",
         solution: "Artificially lowered the vehicle Rigidbody center of mass and applied proportional downward stabilizing forces during airborne frames."
+      },
+      {
+        challenge: "Creating readable navigation cues without cluttering the screen with mini-maps.",
+        solution: "Implemented 3D world-space waypoint arrows positioned along the horizon and subtle roadside tire-mark decals marking hidden shortcuts."
+      }
+    ],
+    caseStudySections: [
+      {
+        heading: "1. Arcade Vehicle Physics Tuning & Stability",
+        subheading: "Balancing Simulation with Responsive Arcade Feel",
+        paragraphs: [
+          "Standard Unity WheelColliders often feel sluggish or excessively volatile on abrupt steering inputs. For Delivery Driver, the priority was immediate, responsive arcade feedback reminiscent of classic arcade couriers. I developed a hybrid physics controller that blends Rigidbody velocities with programmatic lateral friction curves.",
+          "To combat high-speed rollover instability when mounting curbs, the vehicle's center of mass is programmatically set 0.4 units below the wheel axle plane, with a downward corrective raycast applying an air-stabilization torque whenever wheels lose ground contact."
+        ]
+      },
+      {
+        heading: "2. Camera Ergonomics & Dynamic Field of View",
+        subheading: "Cinemachine Framing and Motion Sensation",
+        paragraphs: [
+          "A driving game lives or dies by its camera feel. Utilizing Unity Cinemachine, I engineered a third-person framing rig featuring dual transposer damping. The camera smoothly drifts opposite steering angles during power slides, giving the player visual feedback of lateral tire grip.",
+          "Additionally, the camera's Field of View (FOV) dynamically interpolates from 60° to 78° based on current linear velocity, amplifying the sense of speed during frantic delivery countdowns."
+        ]
       }
     ],
     learned: "Deepened practical knowledge of 3D physics stability, game loop pacing, and driving game camera ergonomics.",
@@ -252,7 +375,7 @@ export const GAMES: Record<string, GameProject> = {
   "the-platform": {
     slug: "the-platform",
     title: "THE PLATFORM",
-    seoTitle: "The Platform – Unity 2D Precision Platformer | Harun Emrecan Karabağ",
+    seoTitle: "The Platform – Unity 2D Precision Platformer Game | Harun Emrecan Karabağ",
     seoDescription: "A precision 2D platformer engineered in Unity with coyote time, jump buffering, wall sliding, and particle-rich feedback.",
     number: "005",
     year: "2024",
@@ -291,6 +414,16 @@ export const GAMES: Record<string, GameProject> = {
         solution: "Overrode horizontal drag with custom velocity clamping and asymmetric gravity multipliers during jump descents."
       }
     ],
+    caseStudySections: [
+      {
+        heading: "1. 2D Platformer Game Feel Equations",
+        subheading: "Coyote Time, Input Buffering and Asymmetric Gravity",
+        paragraphs: [
+          "Precision platformers succeed only when failure feels 100% fair. Standard rigidbodies fail this test because jumping milliseconds after leaving a ledge causes missed inputs. I engineered a dedicated PlayerController tracking a 0.12s coyote-time grace timer and a 0.10s input buffer queue.",
+          "Furthermore, gravity scaling is asymmetric: ascending jumps apply standard gravity, while descending frames multiply gravity by 1.8x, producing a snappy, controlled arc that eliminates floatiness."
+        ]
+      }
+    ],
     learned: "Mastered game-feel ergonomics, responsive 2D movement equations, and robust FSM implementation.",
     relatedSlugs: ["delivery-driver", "flag-quiz-game"],
     mediaType: "cover",
@@ -301,7 +434,7 @@ export const GAMES: Record<string, GameProject> = {
   "flag-quiz-game": {
     slug: "flag-quiz-game",
     title: "FLAG QUIZ GAME",
-    seoTitle: "Flag Quiz Game – Unity Mobile Educational Trivia & Firebase | Harun Emrecan Karabağ",
+    seoTitle: "Flag Quiz Game – Unity Mobile Geography Trivia Game | Harun Emrecan Karabağ",
     seoDescription: "A cross-platform mobile educational geography game built with Unity and Firebase Realtime Database for dynamic content synchronization.",
     number: "006",
     year: "2024",
@@ -351,7 +484,7 @@ export const GAMES: Record<string, GameProject> = {
   "movidle-game": {
     slug: "movidle-game",
     title: "MOVIDLE",
-    seoTitle: "Movidle – Unity Cinema Deduction Wordle-Style Puzzle | Harun Emrecan Karabağ",
+    seoTitle: "Movidle – Unity Cinema Deduction Puzzle Game | Harun Emrecan Karabağ",
     seoDescription: "A cinema guessing puzzle game built in Unity utilizing IMDb Top 250 datasets, metadata clue comparisons, and daily game loops.",
     number: "007",
     year: "2023",

@@ -18,10 +18,17 @@ import Layout from '../layouts/Layout.astro';
     { name: "PLAYER / CV", url: "/player/" }
   ]}
 >
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">HOME</a>
+  <nav class="breadcrumb" aria-label="Breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item"><span itemprop="name">HOME</span></a>
+      <meta itemprop="position" content="1" />
+    </span>
     <span class="breadcrumb-separator">/</span>
-    <span class="breadcrumb-current">PLAYER RECORD / CV</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span class="breadcrumb-current" itemprop="name">PLAYER RECORD / CV</span>
+      <link itemprop="item" href="https://hek75.com/player/" />
+      <meta itemprop="position" content="2" />
+    </span>
   </nav>
 
   <div class="section-head">

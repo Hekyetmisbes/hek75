@@ -7,7 +7,7 @@ import { GAMES_LIST } from '../../data/games';
 ---
 
 <Layout
-  title="Unity & Unreal Engine Game Projects // HEK75 OS — Harun Emrecan Karabağ"
+  title="Unity & Unreal Engine Game Development Portfolio // HEK75 OS — Harun Emrecan Karabağ"
   description="Playable games, vertical slices, game jam entries, and technical gameplay programming case studies developed with Unity and Unreal Engine 5 by Harun Emrecan Karabağ (HEK75)."
   activeNav="games"
   footerLeft="SELECT A CARTRIDGE TO OPEN CASE STUDY"
@@ -17,16 +17,23 @@ import { GAMES_LIST } from '../../data/games';
     { name: "GAMES", url: "/projects/" }
   ]}
 >
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="/">HOME</a>
+  <nav class="breadcrumb" aria-label="Breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item"><span itemprop="name">HOME</span></a>
+      <meta itemprop="position" content="1" />
+    </span>
     <span class="breadcrumb-separator">/</span>
-    <span class="breadcrumb-current">GAMES</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span class="breadcrumb-current" itemprop="name">GAMES</span>
+      <link itemprop="item" href="https://hek75.com/projects/" />
+      <meta itemprop="position" content="2" />
+    </span>
   </nav>
 
   <div class="section-head">
     <div>
       <div class="code">CARTRIDGE DATABASE // GAME LIBRARY // 07 TITLES</div>
-      <h1>UNITY & UNREAL ENGINE GAME PROJECTS</h1>
+      <h1>Unity &amp; Unreal Engine Game Development Portfolio</h1>
     </div>
     <span class="meta">2023 — 2026</span>
   </div>
