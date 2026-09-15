@@ -6,18 +6,28 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Player Record & CV // Harun Emrecan Karabağ — HEK75 OS"
-  description="Harun Emrecan Karabağ (HEK75) — Personnel record, education at Hacettepe University, game development skills, Unity & Unreal Engine experience, and resume."
+  title="Player Record & CV // Harun Emrecan Karabağ — Unity & Unreal Game Developer | HEK75 OS"
+  description="Harun Emrecan Karabağ (HEK75) — Personnel record, education at Hacettepe University, game development engineering skills, Unity & Unreal Engine experience, and resume."
   activeNav="player"
   footerLeft="STATUS: RECORDS VERIFIED // ACCESS GRANTED"
   footerRight="HEK75 OS // PLAYER.SAV"
   type="profile"
   image="/assets/Emre.png"
+  breadcrumbs={[
+    { name: "HOME", url: "/" },
+    { name: "PLAYER / CV", url: "/player/" }
+  ]}
 >
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">HOME</a>
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">PLAYER RECORD / CV</span>
+  </nav>
+
   <div class="section-head">
     <div>
       <div class="code">PERSONNEL DATABASE // ACCESS LEVEL 75</div>
-      <h1>PLAYER RECORD</h1>
+      <h1>PLAYER RECORD &amp; TECHNICAL CV</h1>
     </div>
     <span class="meta">CV_MODE.ACTIVE</span>
   </div>
@@ -168,6 +178,52 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
     </details>
+  </div>
+
+  <!-- Core Technical Competencies & Deep Dives -->
+  <div class="section-head" style="margin-top: 28px;">
+    <div>
+      <div class="code">SPECIALIZATIONS // ARCHITECTURAL FOCUS</div>
+      <h2>[ CORE TECHNICAL COMPETENCIES ]</h2>
+    </div>
+    <span class="meta">DEEP_DIVES.SYS</span>
+  </div>
+
+  <div class="competency-card">
+    <div class="code" style="color: var(--yellow); margin-bottom: 6px;">COMPETENCY 01 // ENGINE ARCHITECTURE</div>
+    <h3>Unity Gameplay Architecture &amp; Mobile Optimization</h3>
+    <p>
+      Engineering clean, decoupled gameplay loops using ScriptableObjects for data-driven progression, State Machines (FSM), the New Input System, and Cinemachine. Strong focus on mobile performance budgets: stable 60 FPS frame budgeting, zero-allocation per-frame routines, URP forward rendering, and practical memory profiling.
+    </p>
+    <div class="competency-links">
+      <a class="competency-link" href="/projects/fog-bridge/">CASE STUDY: Fog Bridge (Unity Jam) →</a>
+      <a class="competency-link" href="/projects/delivery-driver/">CASE STUDY: Delivery Driver (3D Physics) →</a>
+      <a class="competency-link" href="/projects/the-unlit-door/">DESIGN STUDY: The Unlit Door (Mobile URP) →</a>
+    </div>
+  </div>
+
+  <div class="competency-card">
+    <div class="code" style="color: var(--yellow); margin-bottom: 6px;">COMPETENCY 02 // PROTOTYPING &amp; SYSTEMS</div>
+    <h3>Unreal Engine 5 Modular Gameplay Systems &amp; Blueprints</h3>
+    <p>
+      Designing scalable game mechanics and vertical slices using Unreal Engine 5. Focus on modular Actor Components, Event Dispatchers, Enhanced Input contexts, and deterministic state reset workflows. Rapid level prototyping with Geometry Script and Lumen lighting exploration.
+    </p>
+    <div class="competency-links">
+      <a class="competency-link" href="/projects/the-final-loop/">CASE STUDY: The Final Loop (UE5 Vertical Slice) →</a>
+      <a class="competency-link" href="/projects/">EXPLORE ALL UNREAL PROJECTS →</a>
+    </div>
+  </div>
+
+  <div class="competency-card">
+    <div class="code" style="color: var(--yellow); margin-bottom: 6px;">COMPETENCY 03 // SYSTEMS PROGRAMMING &amp; TOOLING</div>
+    <h3>Native Desktop Tooling, Rust &amp; Win32 Systems</h3>
+    <p>
+      Developing high-performance, ultra-lightweight desktop applications and developer productivity utilities. Direct integration with Win32/DWM APIs, sub-millisecond query pipelines, Authenticode code signing, and low memory footprints (~30 MB) avoiding browser runtime overhead.
+    </p>
+    <div class="competency-links">
+      <a class="competency-link" href="/products/litecast/">PRODUCT SHOWCASE: LiteCast (Rust + Win32) →</a>
+      <a class="competency-link" href="/products/litecast/changelog/">RELEASE NOTES: LiteCast v1.0.1 →</a>
+    </div>
   </div>
 
   <!-- Certificates From CV -->

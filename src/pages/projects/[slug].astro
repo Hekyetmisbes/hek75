@@ -36,17 +36,54 @@ function resolveInSiteEmbed(game: GameProject): string | null {
 }
 
 const inSiteEmbedUrl = resolveInSiteEmbed(g);
+
+const currentIndex = GAMES_LIST.findIndex((item) => item.slug === g.slug);
+const prevGame = currentIndex > 0 ? GAMES_LIST[currentIndex - 1] : GAMES_LIST[GAMES_LIST.length - 1];
+const nextGame = currentIndex < GAMES_LIST.length - 1 ? GAMES_LIST[currentIndex + 1] : GAMES_LIST[0];
+const relatedGames = (g.relatedSlugs || []).map((slug) => GAMES[slug]).filter(Boolean);
+
+const videoGameSchema = [
+  {
+    "@type": "VideoGame",
+    "@id": `https://hek75.com/projects/${g.slug}/#game`,
+    "name": g.title,
+    "description": g.seoDescription || g.pitch,
+    "genre": g.genre,
+    "gamePlatform": g.engine.includes("Mobile") ? "Android / iOS" : "PC",
+    "applicationCategory": "Game",
+    "operatingSystem": g.engine.includes("Mobile") ? "Android / iOS" : "Windows",
+    "author": {
+      "@id": "https://hek75.com/#person"
+    },
+    "image": new URL(g.image, "https://hek75.com").href,
+    "url": `https://hek75.com/projects/${g.slug}/`
+  }
+];
 ---
 
 <Layout
-  title={`${g.title} // Game by Harun Emrecan Karabağ — HEK75 OS`}
-  description={`${g.title} (${g.year}) — ${g.genre} game developed with ${g.engine} by Harun Emrecan Karabağ (HEK75). ${g.pitch}`}
+  title={g.seoTitle || `${g.title} // Game by Harun Emrecan Karabağ — HEK75 OS`}
+  description={g.seoDescription || `${g.title} (${g.year}) — ${g.genre} game developed with ${g.engine} by Harun Emrecan Karabağ (HEK75). ${g.pitch}`}
   activeNav="games"
   footerLeft="CASE STUDY MODE // GAME FILE LOADED"
   footerRight="HEK75 OS // GAMES.DB"
   image={g.image}
   type="article"
+  breadcrumbs={[
+    { name: "HOME", url: "/" },
+    { name: "GAMES", url: "/projects/" },
+    { name: g.title, url: `/projects/${g.slug}/` }
+  ]}
+  customSchema={videoGameSchema}
 >
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">HOME</a>
+    <span class="breadcrumb-separator">/</span>
+    <a href="/projects/">GAMES</a>
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">{g.title}</span>
+  </nav>
+
   <div class="detail-hero">
     <!-- Media Container -->
     {inSiteEmbedUrl ? (
@@ -85,8 +122,11 @@ const inSiteEmbedUrl = resolveInSiteEmbed(g);
         <span class="tag">{g.year}</span>
         <span class="tag">{g.status}</span>
       </div>
-      <div style="margin-top: auto; padding-top: 18px;">
+      <div style="margin-top: auto; padding-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
         <a class="btn" href="/projects/">← RETURN TO LIBRARY</a>
+        {g.links.github && (
+          <a class="btn blue" href={g.links.github} target="_blank" rel="noopener">GITHUB REPO ↗</a>
+        )}
       </div>
     </div>
   </div>
@@ -111,8 +151,17 @@ const inSiteEmbedUrl = resolveInSiteEmbed(g);
     </div>
   </div>
 
+  <!-- Detailed Overview Case Study Banner -->
+  {g.overview && (
+    <div class="panel" style="margin-top: 24px; border-left: 3px solid var(--green);">
+      <div class="code" style="color: var(--yellow); margin-bottom: 6px;">CASE STUDY // EXECUTIVE SUMMARY</div>
+      <h2 style="margin: 0 0 10px 0; color: var(--green); font-size: 20px;">Project Overview & Objectives</h2>
+      <p class="muted" style="line-height: 1.8; margin: 0; font-size: 14px;">{g.overview}</p>
+    </div>
+  )}
+
   <!-- Content Panels -->
-  <div class="content-grid">
+  <div class="content-grid" style="margin-top: 24px;">
     <section class="panel">
       <h3>[ CORE MECHANICS ]</h3>
       <ul>
@@ -123,17 +172,44 @@ const inSiteEmbedUrl = resolveInSiteEmbed(g);
     </section>
 
     <section class="panel">
-      <h3>[ TECHNICAL HIGHLIGHTS ]</h3>
+      <h3>[ TECHNICAL ARCHITECTURE ]</h3>
       <ul>
-        {g.technical.map((t) => (
+        {(g.architecture || g.technical).map((t) => (
           <li>{t}</li>
         ))}
       </ul>
     </section>
 
+    {g.engineHighlights && g.engineHighlights.length > 0 && (
+      <section class="panel">
+        <h3>[ ENGINE & PIPELINE HIGHLIGHTS ]</h3>
+        <ul>
+          {g.engineHighlights.map((eh) => (
+            <li>{eh}</li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {g.challengesAndSolutions && g.challengesAndSolutions.length > 0 && (
+      <section class="panel">
+        <h3>[ ENGINEERING CHALLENGES & SOLUTIONS ]</h3>
+        <ul style="list-style: none; padding-left: 0; margin: 0;">
+          {g.challengesAndSolutions.map((cs) => (
+            <li style="margin-bottom: 12px;">
+              <b style="color: var(--yellow); display: block; margin-bottom: 4px;">▲ Challenge:</b>
+              <span style="color: #dbffde; font-size: 13px; display: block; margin-bottom: 4px;">{cs.challenge}</span>
+              <b style="color: var(--green); display: block; margin-bottom: 2px;">✔ Solution:</b>
+              <span style="color: var(--muted); font-size: 13px; display: block;">{cs.solution}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     <section class="panel">
-      <h3>[ DEVELOPMENT NOTES ]</h3>
-      <p>{g.learned}</p>
+      <h3>[ DEVELOPMENT NOTES & TAKEAWAYS ]</h3>
+      <p style="line-height: 1.7;">{g.learned}</p>
     </section>
 
     <section class="panel">
@@ -141,7 +217,7 @@ const inSiteEmbedUrl = resolveInSiteEmbed(g);
       <p style="margin-bottom: 14px;">
         {inSiteEmbedUrl
           ? "Interactive gameplay and showcase media embedded for direct in-site viewing."
-          : "Local asset screenshots and showcase material."}
+          : "Screenshots, documentation and play builds available via direct repository links."}
       </p>
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         {g.links.presentation && (
@@ -168,23 +244,41 @@ const inSiteEmbedUrl = resolveInSiteEmbed(g);
     </section>
   </div>
 
-  <!-- Schema.org VideoGame Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "VideoGame",
-    "name": g.title,
-    "description": g.pitch,
-    "genre": g.genre,
-    "gamePlatform": "PC",
-    "applicationCategory": "Game",
-    "operatingSystem": "Windows",
-    "author": {
-      "@type": "Person",
-      "name": "Harun Emrecan Karabağ",
-      "alternateName": "HEK75",
-      "url": "https://hek75.com"
-    },
-    "image": new URL(g.image, "https://hek75.com").href,
-    "url": `https://hek75.com/projects/${g.slug}/`
-  })} />
+  <!-- Related Projects Section -->
+  {relatedGames.length > 0 && (
+    <div class="related-section">
+      <div class="section-head">
+        <div>
+          <div class="code">CORRELATED CASE STUDIES</div>
+          <h2>RELATED PROJECTS</h2>
+        </div>
+        <span class="meta">CROSS-REFERENCE</span>
+      </div>
+      <div class="related-grid">
+        {relatedGames.map((rg) => (
+          <article class="related-card">
+            <div class="meta">{rg.engine} // {rg.year}</div>
+            <h3 style="margin: 6px 0; color: var(--green); font-size: 16px;">{rg.title}</h3>
+            <p style="font-size: 12px; color: var(--muted); margin: 0 0 14px 0; line-height: 1.6;">{rg.pitch}</p>
+            <a class="btn" style="margin-top: auto; align-self: flex-start; font-size: 11px;" href={`/projects/${rg.slug}/`}>
+              VIEW CASE STUDY →
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Prev / Next Pagination -->
+  <div class="project-pagination">
+    <a class="btn" href={`/projects/${prevGame.slug}/`}>
+      ← PREV: {prevGame.title}
+    </a>
+    <a class="btn yellow" href="/projects/">
+      RETURN TO GAME LIBRARY
+    </a>
+    <a class="btn" href={`/projects/${nextGame.slug}/`}>
+      NEXT: {nextGame.title} →
+    </a>
+  </div>
 </Layout>

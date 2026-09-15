@@ -6,16 +6,26 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Contact & Multiplayer // HEK75 OS — Harun Emrecan Karabağ"
-  description="Get in touch with Harun Emrecan Karabağ (HEK75) for game development opportunities, Unity / Unreal Engine engineering, and software collaborations."
+  title="Contact Harun Emrecan Karabağ — Game Developer & Software Engineer | HEK75 OS"
+  description="Get in touch with Harun Emrecan Karabağ (HEK75) for game development opportunities, Unity / Unreal Engine 5 gameplay engineering, and software collaborations."
   activeNav="contact"
   footerLeft="STATUS: CHANNELS OPEN // TRANSMIT AT WILL"
   footerRight="HEK75 OS // MULTIPLAYER.SYS"
+  breadcrumbs={[
+    { name: "HOME", url: "/" },
+    { name: "CONTACT", url: "/contact/" }
+  ]}
 >
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">HOME</a>
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">CONTACT</span>
+  </nav>
+
   <div class="section-head">
     <div>
-      <div class="code">COMMS STATION // 2-PLAYER TRANSMISSION</div>
-      <h1>MULTIPLAYER</h1>
+      <div class="code">COMMS STATION // MULTIPLAYER // 2-PLAYER TRANSMISSION</div>
+      <h1>CONTACT HARUN EMRECAN KARABAĞ</h1>
     </div>
     <span class="meta">DIRECT CHANNELS</span>
   </div>

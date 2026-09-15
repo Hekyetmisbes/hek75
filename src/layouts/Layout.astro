@@ -13,17 +13,21 @@ interface Props {
   activeNav?: "home" | "games" | "products" | "player" | "contact" | "none";
   footerLeft?: string;
   footerRight?: string;
+  breadcrumbs?: { name: string; url: string }[];
+  customSchema?: Record<string, any>[];
 }
 
 const {
-  title = "HEK75 OS — Harun Emrecan Karabağ | Game Developer",
-  description = "Harun Emrecan Karabağ (HEK75) — Game Developer & Software Engineer. Portfolio featuring Unity, Unreal Engine, C#, C++, Gameplay Programming, and retro arcade systems.",
+  title = "Harun Emrecan Karabağ — Unity & Unreal Engine Game Developer | HEK75 OS",
+  description = "Harun Emrecan Karabağ (HEK75) — Game Developer & Software Engineer. Portfolio featuring Unity, Unreal Engine 5, C#, C++, gameplay programming case studies, and native tools.",
   keywords = "HEK75, hek75, HEK75 OS, Harun Emrecan Karabağ, Harun Emrecan Karabag, Harun Karabag, hekye, Hekyetmisbes, Game Developer, Game Programmer, Indie Game Developer, Oyun Geliştirici, Unity Developer, Unreal Engine Developer, C# Developer, C++ Gameplay, The Final Loop, The Unlit Door, Fog Bridge, LiteCast, Retro Arcade Portfolio, Hacettepe University",
   image = "/assets/og-image.svg",
   type = "website",
   activeNav = "none",
   footerLeft = "HEK75 OS // SYSTEM READY",
-  footerRight = "HEK75 ENTERTAINMENT SYSTEM // 2026"
+  footerRight = "HEK75 ENTERTAINMENT SYSTEM // 2026",
+  breadcrumbs = [],
+  customSchema = []
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
@@ -86,6 +90,22 @@ const jsonLd = {
     }
   ]
 };
+
+if (breadcrumbs && breadcrumbs.length > 0) {
+  jsonLd["@graph"].push({
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": b.name,
+      "item": b.url.startsWith("http") ? b.url : `${siteUrl}${b.url}`
+    }))
+  } as any);
+}
+
+if (customSchema && customSchema.length > 0) {
+  jsonLd["@graph"].push(...customSchema);
+}
 ---
 
 <!doctype html>
@@ -142,15 +162,15 @@ const jsonLd = {
       <main class="screen">
         <!-- Arcade Topbar -->
         <header class="topbar">
-          <a class="brand" href="/">HEK75 OS</a>
-          <nav>
+          <a class="brand" href="/" aria-label="HEK75 OS — Harun Emrecan Karabağ Home">HEK75 OS</a>
+          <nav aria-label="Main Navigation">
             {isHome ? (
               <span class="online">● ONLINE // PLAYER_01</span>
             ) : null}
-            <a class={isPlayer ? "active" : ""} href="/player/">PLAYER</a>
-            <a class={isGames ? "active" : ""} href="/projects/">GAMES</a>
-            <a class={isProducts ? "active" : ""} href="/products/">PRODUCTS</a>
-            <a class={isContact ? "active" : ""} href="/contact/">MULTIPLAYER</a>
+            <a class={isPlayer ? "active" : ""} href="/player/" aria-label="Player Profile and Resume — About Harun Emrecan Karabağ" title="About / CV">PLAYER</a>
+            <a class={isGames ? "active" : ""} href="/projects/" aria-label="Game Development Projects — Unity & Unreal Engine" title="Game Projects">GAMES</a>
+            <a class={isProducts ? "active" : ""} href="/products/" aria-label="Software Products & Developer Tools" title="Software Products">PRODUCTS</a>
+            <a class={isContact ? "active" : ""} href="/contact/" aria-label="Contact & Collaboration Channels — Harun Emrecan Karabağ" title="Contact & Comms">MULTIPLAYER</a>
             <button class="term-nav-btn" type="button" onclick="window.HEKTerminal?.open()" aria-label="Open Terminal">&gt;_</button>
             <button class="sound-toggle" type="button">SOUND: ON</button>
           </nav>

@@ -1573,3 +1573,127 @@ kbd {
     bottom: 12px;
   }
 }
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  padding: 8px 14px;
+  background: rgba(7, 16, 8, 0.6);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.breadcrumb a {
+  color: var(--green);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.breadcrumb a:hover {
+  color: var(--yellow);
+  text-decoration: underline;
+}
+.breadcrumb-separator {
+  color: var(--muted2);
+  user-select: none;
+}
+.breadcrumb-current {
+  color: var(--yellow);
+  font-weight: bold;
+}
+
+/* Related Projects & Cross-Linking */
+.related-section {
+  margin-top: 40px;
+  border-top: 1px dashed var(--line);
+  padding-top: 24px;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.related-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.related-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--green);
+}
+
+/* Prev/Next Navigation */
+.project-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+/* Screen Reader Accessible Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Competency Deep-Dive Cards */
+.competency-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.competency-card h3 {
+  color: var(--green);
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+.competency-card p {
+  color: #a4caa8;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.competency-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.competency-link {
+  font-size: 11px;
+  color: var(--yellow);
+  background: rgba(255, 230, 109, 0.08);
+  border: 1px solid rgba(255, 230, 109, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.competency-link:hover {
+  background: rgba(255, 230, 109, 0.2);
+  border-color: var(--yellow);
+}
+

@@ -3,15 +3,52 @@
 // HEK75 ARCADE OS — Dedicated LiteCast Product Page & Browser Simulator.
 
 import Layout from '../../layouts/Layout.astro';
+
+const liteCastSchema = [
+  {
+    "@type": "SoftwareApplication",
+    "@id": "https://hek75.com/products/litecast/#app",
+    "name": "LiteCast",
+    "operatingSystem": "Windows 10, Windows 11 x64",
+    "applicationCategory": "DeveloperApplication",
+    "applicationSubCategory": "Launcher & Utilities",
+    "softwareVersion": "1.0.1",
+    "fileSize": "35MB",
+    "downloadUrl": "https://hek75.com/downloads/litecast/LiteCast-Setup.exe",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@id": "https://hek75.com/#person"
+    },
+    "description": "Ultra-lightweight keyboard-first native Windows launcher and developer toolkit built with Rust and Win32/DWM."
+  }
+];
 ---
 
 <Layout
-  title="LiteCast // Screen Mirroring Tool — HEK75 OS"
-  description="LiteCast by Harun Emrecan Karabağ (HEK75) — Ultra low-latency local screen mirroring and developer casting tool built with Rust and Win32/DWM."
+  title="LiteCast – Native Windows Launcher & Developer Toolkit | HEK75"
+  description="Keyboard-first native Windows launcher and developer toolkit built with Rust and Win32/DWM. Fast, low-memory application launcher, clipboard manager, and dev utilities by Harun Emrecan Karabağ."
   activeNav="products"
   footerLeft="POWERED BY RUST // NATIVE WINDOWS APIs"
   footerRight="HEK75 OS // LITECAST.EXE"
+  breadcrumbs={[
+    { name: "HOME", url: "/" },
+    { name: "PRODUCTS", url: "/products/" },
+    { name: "LITECAST", url: "/products/litecast/" }
+  ]}
+  customSchema={liteCastSchema}
 >
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">HOME</a>
+    <span class="breadcrumb-separator">/</span>
+    <a href="/products/">PRODUCTS</a>
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">LITECAST</span>
+  </nav>
+
   <!-- LiteCast Hero -->
   <section class="lc-hero">
     <div class="lc-brand-row">
@@ -284,13 +321,12 @@ import Layout from '../../layouts/Layout.astro';
     <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
       <div>
         <span class="code" style="color: var(--yellow);">[ STABLE RELEASE ]</span>
-        <h3 style="margin: 6px 0 2px 0; color: var(--green);">LiteCast v1.0.1 — Güvenlik, Dizinleme ve Arayüz İyileştirmeleri</h3>
+        <h3 style="margin: 6px 0 2px 0; color: var(--green);">LiteCast v1.0.1 — Security, Indexing & Interface Polish</h3>
       </div>
       <span class="tag" style="align-self: flex-start;">BUILD 1.0.1.0</span>
     </div>
     <p class="muted" style="line-height: 1.6; margin-bottom: 18px; font-size: 13px;">
-      Windows PE sürüm bilgileri ve Authenticode (SHA-256 + DigiCert RFC-3161) kod imzalama standartları entegre edildi,
-      arama dizinindeki sahte linkler temizlendi ve uygulama içi canlı bildirim (in-app toast) mimarisine geçildi.
+      Integrated official Windows PE version metadata and Authenticode (SHA-256 + DigiCert RFC-3161) code signing standards, cleaned up ghost links from search indexing, and introduced in-app real-time toast notifications.
     </p>
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
       <a class="btn yellow" href="/products/litecast/changelog/">

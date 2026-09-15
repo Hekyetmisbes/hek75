@@ -6,16 +6,26 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Software Products & Tools // HEK75 OS — Harun Emrecan Karabağ"
-  description="Native desktop software and developer tools developed by Harun Emrecan Karabağ (HEK75), including LiteCast ultra-low latency screen mirroring."
+  title="Software Products & Developer Tools // HEK75 OS — Harun Emrecan Karabağ"
+  description="Native Windows desktop software and developer utilities engineered by Harun Emrecan Karabağ (HEK75), including the LiteCast keyboard-first launcher."
   activeNav="products"
   footerLeft="TERMINAL COMMAND: litecast"
   footerRight="HEK75 OS // PRODUCTS.DB"
+  breadcrumbs={[
+    { name: "HOME", url: "/" },
+    { name: "PRODUCTS", url: "/products/" }
+  ]}
 >
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">HOME</a>
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">PRODUCTS</span>
+  </nav>
+
   <div class="section-head">
     <div>
-      <div class="code">SOFTWARE DATABASE // NATIVE TOOLS</div>
-      <h1>PRODUCTS</h1>
+      <div class="code">SOFTWARE DATABASE // NATIVE TOOLS & UTILITIES</div>
+      <h1>SOFTWARE PRODUCTS & DEVELOPER TOOLS</h1>
     </div>
     <span class="meta">BUILD SMALL // RUN FAST</span>
   </div>

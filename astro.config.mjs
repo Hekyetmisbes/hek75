@@ -2,6 +2,11 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   site: 'https://hek75.com',
-  // Minimal config, vanilla CSS and pure TypeScript
+  redirects: {
+    '/about': '/player',
+    '/skills': '/player',
+    '/games': '/projects',
+    '/multiplayer': '/contact',
+  },
 });
 

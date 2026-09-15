@@ -7,16 +7,26 @@ import { GAMES_LIST } from '../../data/games';
 ---
 
 <Layout
-  title="Game Library // HEK75 OS — Harun Emrecan Karabağ"
-  description="Playable games, vertical slices, game jams, and technical case studies developed by Harun Emrecan Karabağ (HEK75) across Unity and Unreal Engine."
+  title="Unity & Unreal Engine Game Projects // HEK75 OS — Harun Emrecan Karabağ"
+  description="Playable games, vertical slices, game jam entries, and technical gameplay programming case studies developed with Unity and Unreal Engine 5 by Harun Emrecan Karabağ (HEK75)."
   activeNav="games"
   footerLeft="SELECT A CARTRIDGE TO OPEN CASE STUDY"
   footerRight="HEK75 OS // GAMES.DB"
+  breadcrumbs={[
+    { name: "HOME", url: "/" },
+    { name: "GAMES", url: "/projects/" }
+  ]}
 >
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">HOME</a>
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">GAMES</span>
+  </nav>
+
   <div class="section-head">
     <div>
-      <div class="code">CARTRIDGE DATABASE // 07 TITLES</div>
-      <h1>GAME LIBRARY</h1>
+      <div class="code">CARTRIDGE DATABASE // GAME LIBRARY // 07 TITLES</div>
+      <h1>UNITY & UNREAL ENGINE GAME PROJECTS</h1>
     </div>
     <span class="meta">2023 — 2026</span>
   </div>
