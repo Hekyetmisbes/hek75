@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noodle Brothers — Tanıtım Kataloğu</title>
+  <meta name="description" content="Noodle Brothers - Yağmurlu bir Çin gecesinde, sıcak bir kase çorbanın ve huzurlu bir restoran işletmenin hikayesi. First Person Co-Op Simülasyon.">
+
+  <link rel="canonical" href="https://hek75.com/ns/catalog/">
+  <link rel="icon" type="image/png" href="/ns/catalog/images/logo.png">
+
+  <!-- Google Web Fonts: Serif & Sans & Calligraphy -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Ma+Shan+Zheng&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/ns/catalog/css/magazine.css">
+</head>
+<body>
+
+  <div class="magazine-app" id="magazineApp">
+
+    <!-- ÜST KONTROL ÇUBUĞU -->
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <a href="#page-1" class="brand-badge" data-target-page="1">
+          <img src="/ns/catalog/images/logo.png" alt="Noodle Brothers Logo" class="brand-logo-mini">
+          <span class="brand-title">Noodle Brothers</span>
+        </a>
+        <span class="brand-tag">Tanıtım Kataloğu</span>
+      </div>
+
+      <div class="top-bar-center">
+        <span class="spread-indicator" id="spreadIndicator">Kapak · Sayfa 1</span>
+      </div>
+
+      <div class="top-bar-right">
+        <button class="icon-btn" id="btnThumbnails" title="Sayfalara Genel Bakış">
+          <svg viewBox="0 0 24 24"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>
+          <span>Sayfalar</span>
+        </button>
+
+        <button class="icon-btn" id="btnShareQr" title="Instagram QR Kodu Görüntüle">
+          <svg viewBox="0 0 24 24"><path d="M3 3h8v8H3zm2 2v4h4V5zm8-2h8v8h-8zm2 2v4h4V5zM3 13h8v8H3zm2 2v4h4v-4zm13-2h3v2h-3zm-5 0h2v5h-2zm2 5h3v3h-3zm3-3h3v5h-3zm-5 0h2v3h-2z"/></svg>
+          <span>Instagram QR</span>
+        </button>
+
+        <button class="icon-btn" id="btnSoundToggle" title="Sayfa Çevirme Sesi">
+          <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+          <span class="sound-state-text">Ses: Açık</span>
+        </button>
+
+        <button class="icon-btn" id="btnFullscreen" title="Tam Ekran">
+          <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+        </button>
+
+        <!-- INSTAGRAM TOPLULUK BUTONU -->
+        <a href="https://www.instagram.com/noodle_siblings/" target="_blank" rel="noopener" class="icon-btn instagram-btn" title="Instagram'da Takip Edin">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span>@noodle_siblings</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- ANA DERGİ SAHNESİ -->
+    <main class="magazine-stage">
+
+      <!-- Sol Oku -->
+      <button class="nav-arrow prev" id="btnPrev" aria-label="Önceki Sayfa">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+
+      <!-- Dergi Kitabı (Tutup Sürükleyerek Sayfa Değiştirme) -->
+      <div class="magazine-book single-cover" id="magazineBook" title="Sayfayı tutup sürükleyerek çevirebilirsiniz">
+
+        <!-- ==========================================================================
+             SPREAD 0: SAYFA 1 — ÖN KAPAK
+             ========================================================================== -->
+        <div class="spread-slide cover-spread active" data-spread="0">
+          <div class="page page-cover">
+            <div class="cover-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="cover-header-meta">
+                <span>Sayı 01</span>
+                <span>Özel Tanıtım Baskısı</span>
+                <span>2026</span>
+              </div>
+
+              <div class="cover-masthead">
+                <div class="cover-logo-wrap">
+                  <img src="/ns/catalog/images/logo.png" alt="Noodle Brothers Logo" class="cover-logo-img">
+                </div>
+                <h1 class="cover-main-title">Noodle Brothers</h1>
+                <p class="cover-sub-headline">“Yağmurlu bir gecede, sıcak bir kase çorba ve sakinliğin hikayesi.”</p>
+
+                <div class="cover-feature-pills">
+                  <span class="pill-item">First Person</span>
+                  <span class="pill-item">2 Kişilik Co-Op</span>
+                  <span class="pill-item">Sıfır Stres</span>
+                  <span class="pill-item">Unity 6 URP</span>
+                </div>
+              </div>
+
+              <div class="pull-quote" style="margin: 0; max-width: 440px;">
+                Dışarıda soğuk yağmur ve mavi sokaklar; içeride fokurdayan et suyu, wok ateşi ve güvenli bir sığınak.
+              </div>
+
+              <div class="cover-footer-barcode">
+                <div class="barcode-box">
+                  <div class="barcode-lines">
+                    <span class="bar w-3"></span><span class="bar w-1"></span><span class="bar w-4"></span>
+                    <span class="bar w-1"></span><span class="bar w-3"></span><span class="bar w-2"></span>
+                    <span class="bar w-4"></span><span class="bar w-1"></span><span class="bar w-3"></span>
+                    <span class="bar w-1"></span><span class="bar w-4"></span><span class="bar w-2"></span>
+                  </div>
+                  <span class="barcode-num">NB-2026-CATALOG</span>
+                </div>
+
+                <div class="cover-cta-preview">
+                  <div class="cover-steam-tag">Bağımsız Simülasyon</div>
+                  <div class="cover-date-tag">Sayfayı sürükleyin ➔</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================================
+             SPREAD 1: SAYFA 2 & 3 — EDİTÖRDEN & İÇİNDEKİLER
+             ========================================================================== -->
+        <div class="spread-slide" data-spread="1">
+          <!-- SAYFA 2: EDİTÖRÜN NOTU (KISALTILMIŞ & FERAH) -->
+          <div class="page page-left">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="section-tag">Vizyon</span>
+                <span class="page-header-title">Noodle Brothers</span>
+              </div>
+
+              <h2 class="section-heading">Bir Mahalle Sığınağı</h2>
+              <div class="editorial-sub">Mutfakta unuttuğumuz bir his vardı: Sakinlik.</div>
+
+              <p class="editorial-text drop-cap">
+                Dışarıda dinmeyen sonbahar yağmuru ve buğulanan camlar... İçeride ise sıcak et suyu buharı, çıtırdayan Sichuan biberleri ve fokurdayan tencereler. Noodle Brothers, mutfak simülasyonlarının stresli temposuna alternatif bir huzur sığınağıdır.
+              </p>
+
+              <div class="pull-quote">
+                “Noodle Brothers bir fabrika bandı değil; sıcak bir kasenin etrafında birleşilen samimi bir mahalle lokantasıdır.”
+              </div>
+
+              <p class="editorial-text">
+                Burada sabırsız müşteriler veya kül olan siparişler yok. Arkadaşınızla temponuzu kendiniz belirler, et suyunu berraklaştırmaktan wok sotelemeye kadar her adımda zanaatin keyfini çıkarırsınız.
+              </p>
+
+              <div class="editor-signature">
+                <div class="signature-text">— Noodle Brothers Ekibi</div>
+                <div class="chinese-seal">麵</div>
+              </div>
+
+              <div class="page-footer">
+                <span>Resmi Katalog</span>
+                <span class="page-number">— 02 —</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SAYFA 3: İÇİNDEKİLER & RESTORAN GÖRÜNÜMÜ -->
+          <div class="page page-right">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="page-header-title">Rehber</span>
+                <span class="section-tag">İçindekiler</span>
+              </div>
+
+              <div class="editorial-photo-card" style="height: 190px;">
+                <img src="/ns/catalog/images/restaurant-wide.png" alt="Noodle Brothers Restoran İç Mekanı">
+              </div>
+              <span class="photo-caption">Yağmurlu gecede sıcak ahşap masalar, kırmızı fenerler ve açık mutfak.</span>
+
+              <ul class="toc-list">
+                <li class="toc-item" data-target-page="4">
+                  <span class="toc-title">01. Sıfır Stres & Huzurlu Deneyim</span>
+                  <span class="toc-dots"></span>
+                  <span class="toc-page">S. 04</span>
+                </li>
+                <li class="toc-item" data-target-page="5">
+                  <span class="toc-title">02. Akşam Servisi & Mahalle Kültürü</span>
+                  <span class="toc-dots"></span>
+                  <span class="toc-page">S. 05</span>
+                </li>
+                <li class="toc-item" data-target-page="6">
+                  <span class="toc-title">03. Güne Başlarken: Hazırlık Döngüsü</span>
+                  <span class="toc-dots"></span>
+                  <span class="toc-page">S. 06</span>
+                </li>
+                <li class="toc-item" data-target-page="7">
+                  <span class="toc-title">04. Mutfak İstasyonları & Ustalık</span>
+                  <span class="toc-dots"></span>
+                  <span class="toc-page">S. 07</span>
+                </li>
+                <li class="toc-item" data-target-page="8">
+                  <span class="toc-title">05. Menü: Beef Noodle Soup & Wok & Çay</span>
+                  <span class="toc-dots"></span>
+                  <span class="toc-page">S. 08</span>
+                </li>
+                <li class="toc-item" data-target-page="10">
+                  <span class="toc-title">06. First Person & 2 Kişilik Eşli Oyun</span>
+                  <span class="toc-dots"></span>
+                  <span class="toc-page">S. 10</span>
+                </li>
+                <li class="toc-item" data-target-page="12">
+                  <span class="toc-title">07. Teknik Mimari & Yol Haritası</span>
+                  <span class="toc-dots"></span>
+                  <span class="toc-page">S. 12</span>
+                </li>
+              </ul>
+
+              <div class="page-footer">
+                <span class="page-number">— 03 —</span>
+                <span>Fihrist</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================================
+             SPREAD 2: SAYFA 4 & 5 — OYUN FELSEFESİ & AKŞAM SERVİSİ
+             ========================================================================== -->
+        <div class="spread-slide" data-spread="2">
+          <!-- SAYFA 4: OYUN FELSEFESİ (TEMATİK SVG'LER İLE) -->
+          <div class="page page-left">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="section-tag">Felsefe</span>
+                <span class="page-header-title">Oyun Yaklaşımı</span>
+              </div>
+
+              <h2 class="section-heading">Zaman Baskısı Yok</h2>
+              <div class="editorial-sub">Sadece yemek kalitesi, atmosfer ve dostluk.</div>
+
+              <div class="philosophy-grid">
+                <!-- SVG KUM SAATİ / SAAT -->
+                <div class="philo-card">
+                  <svg viewBox="0 0 24 24" class="philo-svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                  </svg>
+                  <h4>Sabır Süresi Yok</h4>
+                  <p>Müşteriler geri sayım yapmaz; hazır olana kadar sakinlikle bekler.</p>
+                </div>
+
+                <!-- SVG ÇORBA KASESİ -->
+                <div class="philo-card">
+                  <svg viewBox="0 0 24 24" class="philo-svg">
+                    <path d="M12 3c-.55 0-1 .45-1 1 0 .8-.5 1.3-1 1.7-.6.5-1.5 1.3-1.5 2.8 0 .55.45 1 1 1s1-.45 1-1c0-.8.5-1.3 1-1.7.6-.5 1.5-1.3 1.5-2.8 0-.55-.45-1-1-1zm4 1c-.55 0-1 .45-1 1 0 .8-.5 1.3-1 1.7-.6.5-1.5 1.3-1.5 2.8 0 .55.45 1 1 1s1-.45 1-1c0-.8.5-1.3 1-1.7.6-.5 1.5-1.3 1.5-2.8 0-.55-.45-1-1-1zM2 13c0 4.97 3.58 9 8 9.87V24h4v-1.13c4.42-.87 8-4.9 8-9.87H2zm18-2H4l-.5-2h17l-.5 2z"/>
+                  </svg>
+                  <h4>Cezasız Mutfak</h4>
+                  <p>Hatalı tabak oyunu kaybettirmez; yalnızca bahşişi etkiler.</p>
+                </div>
+
+                <!-- SVG ÇİN FENERİ -->
+                <div class="philo-card">
+                  <svg viewBox="0 0 24 24" class="philo-svg">
+                    <path d="M11 2h2v2h-2zm-3 4h8v2H8zm-1 3h10c.55 0 1 .45 1 1v4c0 1.66-1.34 3-3 3h-6c-1.66 0-3-1.34-3-3v-4c0-.55.45-1 1-1zm1 12h6v2H8zm3 2h2v2h-2z"/>
+                  </svg>
+                  <h4>Siz Ne Zaman Açarsanız</h4>
+                  <p>Hazırlıklar tamamlandığında tabelayı çevirerek servisi başlatırsınız.</p>
+                </div>
+
+                <!-- SVG ÇAYDANLIK -->
+                <div class="philo-card">
+                  <svg viewBox="0 0 24 24" class="philo-svg">
+                    <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/>
+                  </svg>
+                  <h4>Dilediğinizde Mola</h4>
+                  <p>Stoklar azaldığında yeni müşteri alımını durdurup hazırlık yapabilirsiniz.</p>
+                </div>
+              </div>
+
+              <p class="editorial-text">
+                Noodle Brothers, bitmek bilmeyen sonsuz canlı servisler yerine başı ve sonu olan <strong>7–8 saatlik</strong> tamamlanmış bir hikayedir.
+              </p>
+
+              <div class="page-footer">
+                <span>Bölüm 01</span>
+                <span class="page-number">— 04 —</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SAYFA 5: AKŞAM SERVİSİ -->
+          <div class="page page-right">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="page-header-title">Atmosfer</span>
+                <span class="section-tag">Akşam Servisi</span>
+              </div>
+
+              <div class="editorial-photo-card" style="height: 220px;">
+                <img src="/ns/catalog/images/restaurant-evening.png" alt="Akşam Servisinde Konuklar">
+              </div>
+              <span class="photo-caption">Fenerlerin yumuşak ışığında akşam yemeğini yiyen mahalle sakinleri.</span>
+
+              <h3 style="font-size: 1.05rem; color: var(--c-ceviz); margin: 8px 0 4px 0;">Mahalle Müdavimleri</h3>
+              <p class="editorial-text">
+                Pencere kenarında yalnız bir öğrenci, iş çıkışı gelen bir komşu ya da her akşam çayını tazeleten ihtiyar bir müdavim... Her masanın kendine ait bir huzuru vardır.
+              </p>
+              <p class="editorial-text">
+                Siz çorbaları tamamlarken, restorandaki hafif tabak sesleri ve demlikten bardağa dökülen yasemin çayı içeriye eşsiz bir samimiyet katar.
+              </p>
+
+              <div class="page-footer">
+                <span class="page-number">— 05 —</span>
+                <span>Mahalle Yaşamı</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================================
+             SPREAD 3: SAYFA 6 & 7 — HAZIRLIK & İSTASYONLAR
+             ========================================================================== -->
+        <div class="spread-slide" data-spread="3">
+          <!-- SAYFA 6: HAZIRLIK AŞAMASI (ÖZET & TEMİZ) -->
+          <div class="page page-left">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="section-tag">Döngü</span>
+                <span class="page-header-title">Hazırlık Aşaması</span>
+              </div>
+
+              <div class="editorial-photo-card" style="height: 180px;">
+                <img src="/ns/catalog/images/kitchen-prep.png" alt="Mutfak Hazırlık Tezgahı">
+              </div>
+              <span class="photo-caption">Kesme tahtası, taze noodle tepsileri, daikon turpu ve wok ocağı.</span>
+
+              <h3 style="font-size: 1.05rem; color: var(--c-ceviz); margin: 6px 0 4px 0;">Tabela Çevrilmeden Önce</h3>
+              <div class="step-sequence">
+                <div class="step-row">
+                  <div class="step-badge">1</div>
+                  <div class="step-content">
+                    <h4>Teslimat Kasalarını Taşıma</h4>
+                    <p>Sebze, et ve taze porsiyon noodle kasalarını içeri taşıyıp raflara yerleştirin.</p>
+                  </div>
+                </div>
+                <div class="step-row">
+                  <div class="step-badge">2</div>
+                  <div class="step-content">
+                    <h4>Kemik Suyunu Berraklaştırma</h4>
+                    <p>Dana kemiği suyunu kaynatın, yüzeydeki köpükleri süzerek berrak bir lezzet elde edin.</p>
+                  </div>
+                </div>
+                <div class="step-row">
+                  <div class="step-badge">3</div>
+                  <div class="step-content">
+                    <h4>Doğrama & Marinasyon</h4>
+                    <p>Daikon turplarını dilimleyin, taze soğanları doğrayın, tavuğu Kung Pao sosuyla harmanlayın.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="page-footer">
+                <span>Bölüm 03</span>
+                <span class="page-number">— 06 —</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SAYFA 7: MUTFAK İSTASYONLARI -->
+          <div class="page page-right">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="page-header-title">Zanaat</span>
+                <span class="section-tag">İstasyonlar</span>
+              </div>
+
+              <div class="editorial-photo-card" style="height: 180px;">
+                <img src="/ns/catalog/images/noodle-station.png" alt="Noodle Pişirme İstasyonu">
+              </div>
+              <span class="photo-caption">Kaynayan noodle sepetleri ve anlık First Person etkileşim arayüzü.</span>
+
+              <h2 class="section-heading" style="margin-top: 6px;">İstasyonlarda Ustalık</h2>
+              <div class="editorial-sub">Kontrollü, tatmin edici First Person etkileşimi.</div>
+
+              <div class="philosophy-grid" style="margin: 6px 0;">
+                <div class="philo-card">
+                  <h4>Haşlama Kazanı</h4>
+                  <p>Noodle sepetini daldırın, ideal diri kıvamda süzün.</p>
+                </div>
+                <div class="philo-card">
+                  <h4>Wok Ocağı</h4>
+                  <p>Kontrollü yay hareketleriyle soteleyip ateşi hissedin.</p>
+                </div>
+                <div class="philo-card">
+                  <h4>Kase Montajı</h4>
+                  <p>Eti dizin, turpu ekleyin, berrak et suyunu dökün.</p>
+                </div>
+                <div class="philo-card">
+                  <h4>Çay Demliği</h4>
+                  <p>Sıcak suyu ekleyin, kehribar rengine dönüşünü izleyin.</p>
+                </div>
+              </div>
+
+              <div class="page-footer">
+                <span class="page-number">— 07 —</span>
+                <span>İstasyonlar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================================
+             SPREAD 4: SAYFA 8 & 9 — İMZA LEZZETLER (MENÜ REHBERİ)
+             ========================================================================== -->
+        <div class="spread-slide" data-spread="4">
+          <!-- SAYFA 8: BEEF NOODLE SOUP -->
+          <div class="page page-left">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="section-tag">İmza Tarif</span>
+                <span class="page-header-title">Menü</span>
+              </div>
+
+              <h2 class="section-heading">Beef Noodle Soup</h2>
+              <div class="editorial-sub">Geleneksel Dana Etli Noodle Çorbası · 牛肉麵</div>
+
+              <div class="editorial-photo-card" style="height: 190px;">
+                <img src="/ns/catalog/images/beef-noodle-dish.png" alt="Beef Noodle Soup Kasesi">
+              </div>
+              <span class="photo-caption">Mavi ejderha porselen kasede taze noodle, dana eti lokumları ve daikon turpu.</span>
+
+              <div class="recipe-hero-box">
+                <p class="editorial-text" style="font-size: 0.8rem; margin-bottom: 4px;">
+                  Et suyunun berraklığı, noodle'ın pişme derecesi ve garnitürlerin eksiksizliği kasedeki lezzet puanını doğrudan belirler.
+                </p>
+                <div class="ingredient-tags">
+                  <span class="ing-tag">Berrak Dana Kemiği Suyu</span>
+                  <span class="ing-tag">Taze Noodle</span>
+                  <span class="ing-tag">Dana Dilimleri</span>
+                  <span class="ing-tag">Daikon Turpu</span>
+                  <span class="ing-tag">Acı Biber Yağı</span>
+                  <span class="ing-tag">Taze Soğan</span>
+                </div>
+              </div>
+
+              <div class="page-footer">
+                <span>Menü A</span>
+                <span class="page-number">— 08 —</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SAYFA 9: WOK & ÇAY -->
+          <div class="page page-right">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="page-header-title">Wok & Çay</span>
+                <span class="section-tag">Menü B</span>
+              </div>
+
+              <div class="menu-dual-grid">
+                <!-- SPICY CHICKEN -->
+                <div class="menu-subcard">
+                  <h4>
+                    <span>Spicy Chicken with Peanuts</span>
+                    <span class="chinese-subtitle">宮保雞丁</span>
+                  </h4>
+                  <div class="editorial-sub" style="font-size: 0.78rem; margin-bottom: 4px;">Kung Pao Tavuk & Buharda Pilav</div>
+                  <p class="editorial-text" style="font-size: 0.76rem; margin-bottom: 4px;">
+                    Marine tavuk, wok üzerinde kurutulmuş biber, Sichuan karabiberi ve çıtır yer fıstıklarıyla alevde sotelenir.
+                  </p>
+                  <div class="ingredient-tags">
+                    <span class="ing-tag">Marine Tavuk</span>
+                    <span class="ing-tag">Kung Pao Sos</span>
+                    <span class="ing-tag">Yer Fıstığı</span>
+                    <span class="ing-tag">Pilav</span>
+                  </div>
+                </div>
+
+                <!-- JASMINE TEA -->
+                <div class="menu-subcard" style="border-left-color: var(--c-pirinc);">
+                  <h4>
+                    <span>Jasmine Tea</span>
+                    <span class="chinese-subtitle">茉莉花茶</span>
+                  </h4>
+                  <div class="editorial-sub" style="font-size: 0.78rem; margin-bottom: 4px;">Geleneksel Yasemin Çayı Seremonisi</div>
+                  <p class="editorial-text" style="font-size: 0.76rem; margin-bottom: 4px;">
+                    Porselen demlikte zamanla rengi koyulaşan yatıştırıcı çay. Müşterilerin fincanlarını dilediğinizde tazeleyebilirsiniz.
+                  </p>
+                  <div class="ingredient-tags">
+                    <span class="ing-tag">Yasemin Çiçekleri</span>
+                    <span class="ing-tag">Porselen Demlik</span>
+                    <span class="ing-tag">Sonsuz Tazeleme</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="editorial-photo-card" style="height: 120px; margin-top: 6px;">
+                <img src="/ns/catalog/images/counter-view.png" alt="Servis Tezgahı">
+              </div>
+
+              <div class="page-footer">
+                <span class="page-number">— 09 —</span>
+                <span>İmza Lezzetler</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================================
+             SPREAD 5: SAYFA 10 & 11 — FIRST PERSON & CO-OP
+             ========================================================================== -->
+        <div class="spread-slide" data-spread="5">
+          <!-- SAYFA 10: FIRST PERSON -->
+          <div class="page page-left">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="section-tag">Bakış Açısı</span>
+                <span class="page-header-title">First Person</span>
+              </div>
+
+              <h2 class="section-heading">Tezgahın Tam Arkasında</h2>
+              <div class="editorial-sub">Mutfak masasının seyircisi değil, şefisiniz.</div>
+
+              <div class="editorial-photo-card" style="height: 190px;">
+                <img src="/ns/catalog/images/serve-table.png" alt="Masa Servisi First Person">
+              </div>
+              <span class="photo-caption">Hazırladığınız çorba kasesini yağmur altındaki pencere masasına servis etme anı.</span>
+
+              <p class="editorial-text drop-cap" style="margin-top: 8px;">
+                Tepeden bakan klasik simülasyonların aksine First Person kamerasıyla buharın yüzünüze çarpışını, tenceredeki et suyunun altın rengini ve sıcacık kaseyi müşteriye teslim ettiğiniz anki teması bizzat yaşarsınız.
+              </p>
+
+              <div class="page-footer">
+                <span>Bölüm 04</span>
+                <span class="page-number">— 10 —</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SAYFA 11: CO-OP -->
+          <div class="page page-right">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="page-header-title">Eşli Oyun</span>
+                <span class="section-tag">2 Kişilik Co-Op</span>
+              </div>
+
+              <h2 class="section-heading">Birlikte Pişirmek</h2>
+              <div class="editorial-sub">Arkadaşınızla omuz omuza mutfak ahengi.</div>
+
+              <div class="coop-features-grid">
+                <div class="feature-pill-box">
+                  <h5>Hızlı 6 Haneli Kod</h5>
+                  <p>Oda kurun, kodu iletin ve anında aynı mutfakta buluşun.</p>
+                </div>
+                <div class="feature-pill-box">
+                  <h5>Doğal İş Bölümü</h5>
+                  <p>Biri wokta tavuk sotelerken, diğeri noodle haşlar.</p>
+                </div>
+                <div class="feature-pill-box">
+                  <h5>Servis & Temizlik</h5>
+                  <p>Masalara servis yapın, çayları tazeleyin ve masaları silin.</p>
+                </div>
+                <div class="feature-pill-box">
+                  <h5>Güvenli Mimari</h5>
+                  <p>Photon Fusion ile gecikmesiz ve senkronize mutfak deneyimi.</p>
+                </div>
+              </div>
+
+              <div class="pull-quote" style="margin-top: 10px;">
+                “Tencerenin tıkırtısı ve yağmurun sesi arasında bağırışmadan ortak bir ritim bulacaksınız.”
+              </div>
+
+              <div class="page-footer">
+                <span class="page-number">— 11 —</span>
+                <span>Co-Op Deneyimi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================================
+             SPREAD 6: SAYFA 12 & 13 — TEKNİK & YOL HARİTASI
+             ========================================================================== -->
+        <div class="spread-slide" data-spread="6">
+          <!-- SAYFA 12: TEKNİK TEMEL -->
+          <div class="page page-left">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="section-tag">Altyapı</span>
+                <span class="page-header-title">Teknik Temel</span>
+              </div>
+
+              <h2 class="section-heading">Mühendislik Vizyonu</h2>
+              <div class="editorial-sub">Yüksek performans, kararlı ağ ve çok dilli yapı.</div>
+
+              <table class="tech-spec-table">
+                <tr>
+                  <td class="label">Oyun Motoru</td>
+                  <td class="val">Unity 6000.3 LTS</td>
+                </tr>
+                <tr>
+                  <td class="label">Render</td>
+                  <td class="val">URP ile stilize aydınlatma & yağmur yansımaları</td>
+                </tr>
+                <tr>
+                  <td class="label">Ağ Mimarisi</td>
+                  <td class="val">Photon Fusion 2 (Host-Authoritative)</td>
+                </tr>
+                <tr>
+                  <td class="label">Kontrol</td>
+                  <td class="val">Unity New Input System (Klavye & Fare)</td>
+                </tr>
+                <tr>
+                  <td class="label">Platform</td>
+                  <td class="val">PC / Windows (1920x1080 Borderless)</td>
+                </tr>
+                <tr>
+                  <td class="label">Oyun Süresi</td>
+                  <td class="val">7–8 Saatlik Tamamlanmış Deneyim</td>
+                </tr>
+              </table>
+
+              <h4 style="font-size: 0.82rem; color: var(--c-ceviz); margin: 6px 0 2px 0;">15 Dil Desteği</h4>
+              <p class="editorial-text" style="font-size: 0.74rem;">
+                Türkçe, İngilizce, Japonca, Çince, Almanca, Fransızca, İspanyolca, Rusça, Portekizce, Arapça, Hintçe ve daha fazlası.
+              </p>
+
+              <div class="page-footer">
+                <span>Teknoloji</span>
+                <span class="page-number">— 12 —</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SAYFA 13: YOL HARİTASI (TEMATİK SVG İLE) -->
+          <div class="page page-right">
+            <div class="page-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="page-header">
+                <span class="page-header-title">Yol Haritası</span>
+                <span class="section-tag">Geliştirme</span>
+              </div>
+
+              <h2 class="section-heading">Kilometre Taşları</h2>
+              <div class="editorial-sub">Planlı ve emin adımlarla geliştirme.</div>
+
+              <div class="roadmap-timeline">
+                <div class="timeline-milestone done">
+                  <div class="milestone-title">M0 · Mimari Temel (Tamamlandı)</div>
+                  <div class="milestone-desc">Unity 6, URP ve deterministik derleme altyapısı.</div>
+                </div>
+                <div class="timeline-milestone">
+                  <div class="milestone-title">M1–M2 · Ağ, Oturum & First Person</div>
+                  <div class="milestone-desc">Photon Fusion lobi, kamera ve nesne taşıma fizikleri.</div>
+                </div>
+                <div class="timeline-milestone">
+                  <div class="milestone-title">M3–M4 · Beef Noodle Soup Kesiti</div>
+                  <div class="milestone-desc">Et suyu, malzeme doğrama ve ilk oynanabilir kase servisi.</div>
+                </div>
+                <div class="timeline-milestone">
+                  <div class="milestone-title">M5–M6 · Restoran Akışı, Kung Pao & Çay</div>
+                  <div class="milestone-desc">Müşteri yapay zekası, masa temizliği ve wok istasyonu.</div>
+                </div>
+                <div class="timeline-milestone target">
+                  <div class="milestone-title">
+                    <svg viewBox="0 0 24 24" class="milestone-svg" style="fill: var(--c-fener);"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    M8 · Oynanabilir Demo
+                  </div>
+                  <div class="milestone-desc">Oyuncuların ilk kez restorana adım atacağı büyük demo.</div>
+                </div>
+                <div class="timeline-milestone target">
+                  <div class="milestone-title">
+                    <svg viewBox="0 0 24 24" class="milestone-svg" style="fill: var(--c-fener);"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>
+                    Tam Sürüm Lansmanı
+                  </div>
+                  <div class="milestone-desc">Kompakt ve tamamlanmış restoran deneyimi.</div>
+                </div>
+              </div>
+
+              <div class="page-footer">
+                <span class="page-number">— 13 —</span>
+                <span>Takvim</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================================================
+             SPREAD 7: SAYFA 14 — ARKA KAPAK (INSTAGRAM QR VE TOPLULUK)
+             ========================================================================== -->
+        <div class="spread-slide cover-spread" data-spread="7">
+          <div class="page page-back-cover">
+            <div class="back-cover-inner">
+              <div class="corner-ornament corner-tl"></div>
+              <div class="corner-ornament corner-tr"></div>
+              <div class="corner-ornament corner-bl"></div>
+              <div class="corner-ornament corner-br"></div>
+
+              <div class="cover-header-meta">
+                <span>Noodle Brothers</span>
+                <span>Geliştirme Sürecini Takip Edin</span>
+                <span>2026</span>
+              </div>
+
+              <div style="margin: 4px 0;">
+                <img src="/ns/catalog/images/logo.png" alt="Noodle Brothers Logo" style="width: 85px; height: 85px; border-radius: 50%; border: 2.5px solid var(--c-pirinc); box-shadow: 0 4px 12px rgba(0,0,0,0.18);">
+                <div style="font-family: var(--font-calligraphy); font-size: 1.5rem; color: var(--c-fener); margin-top: 4px;">
+                  一碗好麵 溫暖人心
+                </div>
+                <p style="font-size: 0.74rem; color: var(--c-ceviz); font-style: italic;">“Bir kase iyi noodle, insan ruhunu ısıtır.”</p>
+              </div>
+
+              <!-- INSTAGRAM TOPLULUK VE RESMİ QR KUTUSU -->
+              <div class="instagram-community-box">
+                <h3 style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--c-ceviz); margin-bottom: 2px;">Bizi Instagram'da Takip Edin</h3>
+                <p style="font-size: 0.74rem; color: var(--c-tas); margin-bottom: 8px;">
+                  Geliştirme güncellemeleri ve perde arkası videoları için QR kodu tarayın:
+                </p>
+
+                <img src="/ns/catalog/images/qr-instagram.png" alt="Instagram QR @NOODLE_SIBLINGS" class="instagram-qr-img">
+
+                <div class="instagram-handle-tag">@NOODLE_SIBLINGS</div>
+
+                <a href="https://www.instagram.com/noodle_siblings/" target="_blank" rel="noopener" class="icon-btn instagram-btn" style="margin-top: 8px; padding: 6px 16px;">
+                  <span>Instagram Sayfasına Git</span>
+                </a>
+              </div>
+
+              <div style="font-size: 0.68rem; color: var(--c-tas); border-top: 1px solid rgba(75, 45, 27, 0.15); padding-top: 6px; width: 100%;">
+                <p>© 2026 Noodle Brothers Studio. Tüm hakları saklıdır.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sağ Oku -->
+      <button class="nav-arrow next" id="btnNext" aria-label="Sonraki Sayfa">
+        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+      </button>
+
+    </main>
+
+    <!-- ALT KONTROL VE İLERLEME ÇUBUĞU -->
+    <footer class="bottom-bar">
+      <div style="font-size: 0.76rem; color: var(--c-krem);">
+        <span>Sayfayı sürükleyin veya klavye: </span><kbd style="background: rgba(255,255,255,0.1); padding: 1px 5px; border-radius: 3px;">←</kbd> <kbd style="background: rgba(255,255,255,0.1); padding: 1px 5px; border-radius: 3px;">→</kbd>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-bar-bg" id="progressBarContainer" title="İlerleme">
+          <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div>
+        <select class="page-jump-select" id="pageJumpSelect" aria-label="Sayfaya Git">
+          <option value="0">Kapak (Sayfa 1)</option>
+          <option value="1">S. 02 - Editörün Notu</option>
+          <option value="2">S. 03 - İçindekiler</option>
+          <option value="3">S. 04 - Oyun Felsefesi</option>
+          <option value="4">S. 05 - Akşam Servisi</option>
+          <option value="5">S. 06 - Hazırlık Aşaması</option>
+          <option value="6">S. 07 - Mutfak İstasyonları</option>
+          <option value="7">S. 08 - Beef Noodle Soup</option>
+          <option value="8">S. 09 - Wok & Çay</option>
+          <option value="9">S. 10 - First Person</option>
+          <option value="10">S. 11 - Co-Op Eşli Oyun</option>
+          <option value="11">S. 12 - Teknik Temel</option>
+          <option value="12">S. 13 - Yol Haritası</option>
+          <option value="13">Arka Kapak (Sayfa 14)</option>
+        </select>
+      </div>
+    </footer>
+
+    <!-- KÜÇÜK RESİMLER MODALI -->
+    <div class="modal-overlay" id="modalThumbnails">
+      <div class="modal-card">
+        <button class="modal-close-btn" aria-label="Kapat">&times;</button>
+        <h3 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--c-ceviz);">Katalog Sayfaları</h3>
+        <p style="font-size: 0.78rem; color: var(--c-tas); margin-top: 3px;">Gitmek istediğiniz sayfaya tıklayın:</p>
+
+        <div class="thumbnails-grid">
+          <div class="thumb-item" data-page="0">
+            <div class="thumb-preview-box">01</div>
+            <div class="thumb-label">Kapak</div>
+          </div>
+          <div class="thumb-item" data-page="1">
+            <div class="thumb-preview-box">02</div>
+            <div class="thumb-label">Editörden</div>
+          </div>
+          <div class="thumb-item" data-page="2">
+            <div class="thumb-preview-box">03</div>
+            <div class="thumb-label">İçindekiler</div>
+          </div>
+          <div class="thumb-item" data-page="3">
+            <div class="thumb-preview-box">04</div>
+            <div class="thumb-label">Felsefe</div>
+          </div>
+          <div class="thumb-item" data-page="4">
+            <div class="thumb-preview-box">05</div>
+            <div class="thumb-label">Akşam Servisi</div>
+          </div>
+          <div class="thumb-item" data-page="5">
+            <div class="thumb-preview-box">06</div>
+            <div class="thumb-label">Hazırlık</div>
+          </div>
+          <div class="thumb-item" data-page="6">
+            <div class="thumb-preview-box">07</div>
+            <div class="thumb-label">İstasyonlar</div>
+          </div>
+          <div class="thumb-item" data-page="7">
+            <div class="thumb-preview-box">08</div>
+            <div class="thumb-label">Beef Noodle</div>
+          </div>
+          <div class="thumb-item" data-page="8">
+            <div class="thumb-preview-box">09</div>
+            <div class="thumb-label">Wok & Çay</div>
+          </div>
+          <div class="thumb-item" data-page="9">
+            <div class="thumb-preview-box">10</div>
+            <div class="thumb-label">First Person</div>
+          </div>
+          <div class="thumb-item" data-page="10">
+            <div class="thumb-preview-box">11</div>
+            <div class="thumb-label">Co-Op Oyun</div>
+          </div>
+          <div class="thumb-item" data-page="11">
+            <div class="thumb-preview-box">12</div>
+            <div class="thumb-label">Teknik Temel</div>
+          </div>
+          <div class="thumb-item" data-page="12">
+            <div class="thumb-preview-box">13</div>
+            <div class="thumb-label">Yol Haritası</div>
+          </div>
+          <div class="thumb-item" data-page="13">
+            <div class="thumb-preview-box">14</div>
+            <div class="thumb-label">Arka Kapak</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSTAGRAM QR MODALI -->
+    <div class="modal-overlay" id="modalQr">
+      <div class="modal-card" style="text-align: center;">
+        <button class="modal-close-btn" aria-label="Kapat">&times;</button>
+        <h3 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--c-ceviz);">Instagram'da Takip Edin</h3>
+        <p style="font-size: 0.78rem; color: var(--c-tas); margin-top: 3px;">
+          Kameranızla QR kodu tarayarak resmi sayfamıza ulaşabilirsiniz:
+        </p>
+
+        <div style="width: 170px; height: 170px; margin: 16px auto 10px auto; background: #fff; padding: 10px; border: 2px solid var(--c-pirinc); border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.12);">
+          <img src="/ns/catalog/images/qr-instagram.png" alt="Instagram QR Kodu" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+
+        <p style="font-family: var(--font-serif); font-size: 1rem; color: var(--c-fener); font-weight: 700; letter-spacing: 1px;">@NOODLE_SIBLINGS</p>
+        <p style="font-size: 0.72rem; color: var(--c-tas); margin-top: 2px;">Noodle Brothers Resmi Instagram Sayfası</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/ns/catalog/js/magazine.js"></script>
+</body>
+</html>
