@@ -18,18 +18,22 @@ interface Props {
 
 const { game: g } = Astro.props;
 
-// Resolve in-site playback embed URL for YouTube, LinkedIn activities, and Google Drive previews
+// Resolve in-site playback embed URL for YouTube, LinkedIn, and media embeds
 function resolveInSiteEmbed(game: GameProject): string | null {
   if (game.mediaType === "youtube" && game.mediaUrl) {
     return game.mediaUrl;
   }
+  if (game.mediaType === "linkedin" && game.mediaUrl) {
+    return game.mediaUrl;
+  }
   if (game.externalUrl) {
+    const ugcMatch = game.externalUrl.match(/ugcPost:(\d+)/);
+    if (ugcMatch) {
+      return `https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:${ugcMatch[1]}?compact=1`;
+    }
     const liMatch = game.externalUrl.match(/activity-(\d+)/);
     if (liMatch) {
       return `https://www.linkedin.com/embed/feed/update/urn:li:activity:${liMatch[1]}`;
-    }
-    if (game.externalUrl.includes("drive.google.com")) {
-      return game.externalUrl.replace("/view?usp=drive_link", "/preview").replace("/view", "/preview");
     }
   }
   return null;
@@ -42,14 +46,27 @@ const prevGame = currentIndex > 0 ? GAMES_LIST[currentIndex - 1] : GAMES_LIST[GA
 const nextGame = currentIndex < GAMES_LIST.length - 1 ? GAMES_LIST[currentIndex + 1] : GAMES_LIST[0];
 const relatedGames = (g.relatedSlugs || []).map((slug) => GAMES[slug]).filter(Boolean);
 
-const videoGameSchema = [
+const projectSchemas = [
+  {
+    "@type": "TechArticle",
+    "@id": `https://hek75.com/projects/${g.slug}/#article`,
+    "headline": `${g.title} – ${g.engine} Technical Case Study`,
+    "description": g.seoDescription || g.pitch,
+    "author": {
+      "@id": "https://hek75.com/#person"
+    },
+    "image": new URL(g.image, "https://hek75.com").href,
+    "url": `https://hek75.com/projects/${g.slug}/`,
+    "mainEntityOfPage": `https://hek75.com/projects/${g.slug}/`,
+    "inLanguage": "en-US"
+  },
   {
     "@type": "VideoGame",
     "@id": `https://hek75.com/projects/${g.slug}/#game`,
     "name": g.title,
     "description": g.seoDescription || g.pitch,
     "genre": g.genre,
-    "gamePlatform": g.engine.includes("Mobile") ? "Android / iOS" : "PC",
+    "gamePlatform": g.platform || (g.engine.includes("Mobile") ? "Android / iOS" : "PC"),
     "applicationCategory": "Game",
     "operatingSystem": g.engine.includes("Mobile") ? "Android / iOS" : "Windows",
     "author": {
@@ -62,8 +79,8 @@ const videoGameSchema = [
 ---
 
 <Layout
-  title={g.seoTitle || `${g.title} // Game by Harun Emrecan Karabağ — HEK75 OS`}
-  description={g.seoDescription || `${g.title} (${g.year}) — ${g.genre} game developed with ${g.engine} by Harun Emrecan Karabağ (HEK75). ${g.pitch}`}
+  title={g.seoTitle || `${g.title} – ${g.engine} | HEK75`}
+  description={g.seoDescription || `${g.title} (${g.year}) – ${g.genre} game developed with ${g.engine} by Harun Emrecan Karabağ (HEK75). ${g.pitch}`}
   activeNav="games"
   footerLeft="CASE STUDY MODE // GAME FILE LOADED"
   footerRight="HEK75 OS // GAMES.DB"
@@ -74,7 +91,7 @@ const videoGameSchema = [
     { name: "GAMES", url: "/projects/" },
     { name: g.title, url: `/projects/${g.slug}/` }
   ]}
-  customSchema={videoGameSchema}
+  customSchema={projectSchemas}
 >
   <nav class="breadcrumb" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -95,29 +112,53 @@ const videoGameSchema = [
   </nav>
 
   <div class="detail-hero">
-    <!-- Media Container -->
+    <!-- Media Container with Performance-Friendly Facade / Click-to-Load -->
     {inSiteEmbedUrl ? (
-      <div class="detail-cover">
-        <span class="media-badge">{g.mediaType === "youtube" ? "YOUTUBE PLAYBACK" : "IN-SITE SHOWCASE"}</span>
-        <iframe
-          src={inSiteEmbedUrl}
-          title={`${g.title} video`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
+      <div class={`detail-cover media-${g.mediaType || 'cover'}`}>
+        <div
+          class="video-facade"
+          id="videoFacade"
+          data-embed={inSiteEmbedUrl}
+          data-title={`${g.title} showcase video`}
+          role="button"
+          tabindex="0"
+          aria-label={`Play ${g.title} showcase video`}
+        >
+          <span class="media-badge">
+            {g.mediaType === "youtube" ? "YOUTUBE SHOWCASE" : g.mediaType === "linkedin" ? "LINKEDIN SHOWCASE" : "IN-SITE SHOWCASE"}
+          </span>
+          <img
+            src={g.image}
+            alt={`${g.title} showcase cover poster`}
+            class="video-facade-poster"
+            width={g.mediaType === "linkedin" ? "504" : "580"}
+            height={g.mediaType === "linkedin" ? "399" : "326"}
+            loading="eager"
+            fetchpriority="high"
+          />
+          <span class="video-facade-play">
+            <span>▶</span> PLAY SHOWCASE VIDEO
+          </span>
+        </div>
       </div>
     ) : g.mediaType === "mp4" && g.mediaUrl ? (
-      <div class="detail-cover">
+      <div class="detail-cover media-video">
         <span class="media-badge">LOCAL VIDEO</span>
         <video controls playsinline preload="metadata" poster={g.image}>
           <source src={g.mediaUrl} type="video/mp4" />
         </video>
       </div>
     ) : (
-      <div class="detail-cover">
+      <div class="detail-cover media-cover">
         <span class="media-badge">PROJECT COVER</span>
-        <img src={g.image} alt={g.title} />
+        <img
+          src={g.image}
+          alt={`${g.title} project cover`}
+          width="580"
+          height="326"
+          loading="eager"
+          fetchpriority="high"
+        />
       </div>
     )}
 
@@ -131,52 +172,71 @@ const videoGameSchema = [
         <span class="tag">{g.engine}</span>
         <span class="tag">{g.year}</span>
         <span class="tag">{g.status}</span>
+        {g.language && <span class="tag">{g.language}</span>}
       </div>
       <div style="margin-top: auto; padding-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
-        <a class="btn" href="/projects/">← RETURN TO LIBRARY</a>
+        <a class="btn" href="/projects/" aria-label="Return to Games Library">← RETURN TO LIBRARY</a>
         {g.links.github && (
-          <a class="btn blue" href={g.links.github} target="_blank" rel="noopener">GITHUB REPO ↗</a>
+          <a class="btn blue" href={g.links.github} target="_blank" rel="noopener" aria-label={`View ${g.title} repository on GitHub`}>GITHUB REPO ↗</a>
         )}
       </div>
     </div>
   </div>
 
-  <!-- Info Strip -->
-  <div class="info-strip">
+  <!-- Standardized Case Study Metadata Info Strip -->
+  <div class="info-strip" aria-label="Project Specifications">
     <div class="info">
       <b>ENGINE</b>
       <span>{g.engine}</span>
     </div>
-    <div class="info">
-      <b>YEAR</b>
-      <span>{g.year}</span>
-    </div>
-    <div class="info">
-      <b>STATUS</b>
-      <span>{g.status}</span>
-    </div>
+    {g.language && (
+      <div class="info">
+        <b>LANGUAGE</b>
+        <span>{g.language}</span>
+      </div>
+    )}
+    {g.platform && (
+      <div class="info">
+        <b>PLATFORM</b>
+        <span>{g.platform}</span>
+      </div>
+    )}
+    {g.teamSize && (
+      <div class="info">
+        <b>TEAM SIZE</b>
+        <span>{g.teamSize}</span>
+      </div>
+    )}
+    {g.developmentPeriod && (
+      <div class="info">
+        <b>TIMELINE</b>
+        <span>{g.developmentPeriod}</span>
+      </div>
+    )}
     <div class="info">
       <b>ROLE</b>
       <span>{g.role}</span>
     </div>
   </div>
 
-  <!-- Detailed Overview Case Study Banner -->
-  {g.overview && (
-    <div class="panel" style="margin-top: 24px; border-left: 3px solid var(--green);">
-      <div class="code" style="color: var(--yellow); margin-bottom: 6px;">CASE STUDY // EXECUTIVE SUMMARY</div>
-      <h2 style="margin: 0 0 10px 0; color: var(--green); font-size: 20px;">Project Overview &amp; Objectives</h2>
-      <p class="muted" style="line-height: 1.8; margin: 0; font-size: 14px;">{g.overview}</p>
-    </div>
-  )}
+  <!-- Executive Recruiter Brief & Problem Statement -->
+  <div class="panel" style="margin-top: 24px; border-left: 3px solid var(--yellow);" aria-labelledby="brief-heading">
+    <div class="code" style="color: var(--yellow); margin-bottom: 6px;">EXECUTIVE BRIEF // RECRUITER SUMMARY</div>
+    <h2 id="brief-heading" style="margin: 0 0 10px 0; color: var(--green); font-size: 19px;">
+      Project Overview &amp; Engineering Challenge
+    </h2>
+    <p class="muted" style="line-height: 1.85; margin: 0; font-size: 14px;">
+      {g.executiveSummary || g.overview}
+    </p>
+  </div>
 
   <!-- In-Depth Technical Analysis & Retrospectives -->
   {g.caseStudySections && g.caseStudySections.length > 0 && (
-    <div style="margin-top: 28px;">
+    <div style="margin-top: 28px;" aria-labelledby="retro-heading">
       <div class="section-head">
         <div>
           <div class="code">ENGINEERING RETROSPECTIVE // SYSTEM ARCHITECTURE</div>
-          <h2>IN-DEPTH TECHNICAL ANALYSIS</h2>
+          <h2 id="retro-heading">IN-DEPTH TECHNICAL ANALYSIS</h2>
         </div>
         <span class="meta">CASE STUDY BREAKDOWN</span>
       </div>
@@ -217,7 +277,7 @@ const videoGameSchema = [
 
     {g.engineHighlights && g.engineHighlights.length > 0 && (
       <section class="panel">
-        <h3>[ ENGINE & PIPELINE HIGHLIGHTS ]</h3>
+        <h3>[ ENGINE &amp; PIPELINE HIGHLIGHTS ]</h3>
         <ul>
           {g.engineHighlights.map((eh) => (
             <li>{eh}</li>
@@ -228,7 +288,7 @@ const videoGameSchema = [
 
     {g.challengesAndSolutions && g.challengesAndSolutions.length > 0 && (
       <section class="panel">
-        <h3>[ ENGINEERING CHALLENGES & SOLUTIONS ]</h3>
+        <h3>[ ENGINEERING CHALLENGES &amp; SOLUTIONS ]</h3>
         <ul style="list-style: none; padding-left: 0; margin: 0;">
           {g.challengesAndSolutions.map((cs) => (
             <li style="margin-bottom: 12px;">
@@ -243,12 +303,12 @@ const videoGameSchema = [
     )}
 
     <section class="panel">
-      <h3>[ DEVELOPMENT NOTES & TAKEAWAYS ]</h3>
+      <h3>[ DEVELOPMENT NOTES &amp; TAKEAWAYS ]</h3>
       <p style="line-height: 1.7;">{g.learned}</p>
     </section>
 
     <section class="panel">
-      <h3>[ MEDIA & ACCESS ]</h3>
+      <h3>[ MEDIA &amp; ACCESS ]</h3>
       <p style="margin-bottom: 14px;">
         {inSiteEmbedUrl
           ? "Interactive gameplay and showcase media embedded for direct in-site viewing."
@@ -256,22 +316,22 @@ const videoGameSchema = [
       </p>
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         {g.links.presentation && (
-          <a class="btn yellow" href={g.links.presentation} target="_blank">
+          <a class="btn yellow" href={g.links.presentation} target="_blank" rel="noopener" aria-label={`Open ${g.title} pitch deck presentation`}>
             OPEN PITCH DECK ↗
           </a>
         )}
         {g.links.itch && (
-          <a class="btn blue" href={g.links.itch} target="_blank" rel="noopener">
+          <a class="btn blue" href={g.links.itch} target="_blank" rel="noopener" aria-label={`Play ${g.title} on itch.io`}>
             PLAY ON ITCH.IO ↗
           </a>
         )}
         {g.links.github && (
-          <a class="btn" href={g.links.github} target="_blank" rel="noopener">
+          <a class="btn" href={g.links.github} target="_blank" rel="noopener" aria-label={`Inspect ${g.title} source code on GitHub`}>
             GITHUB ↗
           </a>
         )}
         {g.externalUrl && (
-          <a class="btn" href={g.externalUrl} target="_blank" rel="noopener">
+          <a class="btn" href={g.externalUrl} target="_blank" rel="noopener" aria-label={`Read external post about ${g.title}`}>
             EXTERNAL POST ↗
           </a>
         )}
@@ -281,11 +341,11 @@ const videoGameSchema = [
 
   <!-- Related Projects Section -->
   {relatedGames.length > 0 && (
-    <div class="related-section">
+    <div class="related-section" aria-labelledby="related-heading">
       <div class="section-head">
         <div>
           <div class="code">CORRELATED CASE STUDIES</div>
-          <h2>RELATED PROJECTS</h2>
+          <h2 id="related-heading">RELATED PROJECTS</h2>
         </div>
         <span class="meta">CROSS-REFERENCE</span>
       </div>
@@ -295,7 +355,12 @@ const videoGameSchema = [
             <div class="meta">{rg.engine} // {rg.year}</div>
             <h3 style="margin: 6px 0; color: var(--green); font-size: 16px;">{rg.title}</h3>
             <p style="font-size: 12px; color: var(--muted); margin: 0 0 14px 0; line-height: 1.6;">{rg.pitch}</p>
-            <a class="btn" style="margin-top: auto; align-self: flex-start; font-size: 11px;" href={`/projects/${rg.slug}/`}>
+            <a
+              class="btn"
+              style="margin-top: auto; align-self: flex-start; font-size: 11px;"
+              href={`/projects/${rg.slug}/`}
+              aria-label={`View ${rg.title} technical case study`}
+            >
               VIEW CASE STUDY →
             </a>
           </article>
@@ -305,15 +370,65 @@ const videoGameSchema = [
   )}
 
   <!-- Prev / Next Pagination -->
-  <div class="project-pagination">
-    <a class="btn" href={`/projects/${prevGame.slug}/`}>
+  <nav class="project-pagination" aria-label="Projects Pagination">
+    <a class="btn" href={`/projects/${prevGame.slug}/`} aria-label={`View previous project: ${prevGame.title}`}>
       ← PREV: {prevGame.title}
     </a>
-    <a class="btn yellow" href="/projects/">
+    <a class="btn yellow" href="/projects/" aria-label="Return to Game Library">
       RETURN TO GAME LIBRARY
     </a>
-    <a class="btn" href={`/projects/${nextGame.slug}/`}>
+    <a class="btn" href={`/projects/${nextGame.slug}/`} aria-label={`View next project: ${nextGame.title}`}>
       NEXT: {nextGame.title} →
     </a>
-  </div>
+  </nav>
+
+  <!-- Video Facade Activation Script -->
+  <script is:inline>
+    (() => {
+      function setupVideoFacade() {
+        const facade = document.getElementById("videoFacade");
+        if (!facade) return;
+
+        function loadVideo() {
+          const embedUrl = facade.dataset.embed;
+          const title = facade.dataset.title || "Video";
+          if (!embedUrl) return;
+
+          const iframe = document.createElement("iframe");
+          if (embedUrl.includes("youtube.com") || embedUrl.includes("youtu.be")) {
+            iframe.src = embedUrl.includes("?") ? `${embedUrl}&autoplay=1` : `${embedUrl}?autoplay=1`;
+          } else {
+            iframe.src = embedUrl;
+          }
+          iframe.title = title;
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          iframe.allowFullscreen = true;
+          iframe.loading = "lazy";
+          iframe.style.width = "100%";
+          iframe.style.height = "100%";
+          iframe.style.border = "0";
+
+          facade.innerHTML = "";
+          facade.appendChild(iframe);
+          facade.style.cursor = "default";
+          window.hek75Sound?.clickSound?.();
+        }
+
+        facade.addEventListener("click", loadVideo);
+        facade.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            loadVideo();
+          }
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", setupVideoFacade);
+      } else {
+        setupVideoFacade();
+      }
+      document.addEventListener("astro:page-load", setupVideoFacade);
+    })();
+  </script>
 </Layout>

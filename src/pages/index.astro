@@ -1,13 +1,13 @@
 ---
 // src/pages/index.astro
-// HEK75 ARCADE OS — Main Hub.
+// HEK75 ARCADE OS — Main Hub & Engineering Nexus.
 
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Harun Emrecan Karabağ — Unity & Unreal Engine Game Developer | HEK75 OS"
-  description="Harun Emrecan Karabağ (HEK75) — Game Developer & Software Engineer Portfolio. Discover Unity & Unreal Engine 5 games, C# / C++ gameplay programming, and retro arcade systems."
+  title="Harun Emrecan Karabağ | Unity & Unreal Game Developer"
+  description="Game developer and software engineer Harun Emrecan Karabağ's portfolio featuring Unity, Unreal Engine, gameplay systems and technical case studies."
   activeNav="home"
   footerLeft="HEK75 OS // SYSTEM READY"
   footerRight="HEK75 ENTERTAINMENT SYSTEM // 2026"
@@ -23,12 +23,13 @@ import Layout from '../layouts/Layout.astro';
     </h1>
   </section>
 
-  <section class="menu">
-    <a href="/projects/" aria-label="Start Game Library — Unity & Unreal Engine Projects">
+  <!-- Arcade Main Navigation Menu -->
+  <section class="menu" aria-label="Main Portfolio Modules">
+    <a href="/projects/" aria-label="Start Game Library — Explore Unity & Unreal Engine Projects">
       <span>START GAME LIBRARY</span>
       <span>01</span>
     </a>
-    <a href="/player/" aria-label="Player Record & Resume — About Harun Emrecan Karabağ">
+    <a href="/player/" aria-label="Player Record & Resume — Professional Profile of Harun Emrecan Karabağ">
       <span>PLAYER RECORD / CV</span>
       <span>02</span>
     </a>
@@ -40,9 +41,168 @@ import Layout from '../layouts/Layout.astro';
       <span>MULTIPLAYER / CONTACT</span>
       <span>04</span>
     </a>
-    <a href="/assets/Resume.pdf" target="_blank" rel="noopener" aria-label="Download or View Resume PDF">
+    <a href="/assets/Resume.pdf" target="_blank" rel="noopener" aria-label="Download Curriculum Vitae (PDF)">
       <span>LOAD RESUME.PDF</span>
       <span>↗</span>
     </a>
   </section>
+
+  <!-- Semantic & Crawler Accessible Dossier (Preserved for SEO, Bots & Assistive Tech) -->
+  <div class="sr-only">
+    <!-- Engineering Profile Overview -->
+    <section class="home-profile-panel" aria-labelledby="profile-heading">
+      <div class="code" style="color: var(--yellow); margin-bottom: 6px;">CORE PROFILE // SYSTEM ARCHITECTURE</div>
+      <h2 id="profile-heading" style="color: var(--green); margin: 0 0 12px 0; font-size: 19px;">
+        Engineering Profile: Game Development &amp; Systems Programming
+      </h2>
+      <p class="home-profile-lead">
+        Harun Emrecan Karabağ is a game developer and software engineer specializing in Unity and Unreal Engine gameplay systems. Pursuing a Master's degree in Computer Animation and Game Technologies at Hacettepe University with a Computer Engineering foundation, he designs scalable mechanics, state-driven gameplay loops, and performance-aware architectures. His work spans rapid vertical slice prototyping in Unreal Engine 5 with modular Blueprint and C++ subsystems, zero-allocation game-feel programming in Unity C#, and lightweight native desktop tools in Rust. Focused on technical problem solving and ergonomics, he builds resilient player experiences optimized for PC and mobile platforms.
+      </p>
+      <div class="home-profile-skills">
+        <span class="tag">Unity 6 &amp; URP</span>
+        <span class="tag">Unreal Engine 5</span>
+        <span class="tag">C# Gameplay Architecture</span>
+        <span class="tag">C++ Systems</span>
+        <span class="tag">Mobile 60 FPS Profiling</span>
+        <span class="tag">State Machines (FSM)</span>
+        <span class="tag">Rust &amp; Win32 Tooling</span>
+      </div>
+    </section>
+
+    <!-- Selected Missions / Featured Projects -->
+    <section style="margin-top: 36px;" aria-labelledby="featured-heading">
+      <div class="section-head">
+        <div>
+          <div class="code">SELECTED MISSIONS // HIGHLIGHTED BUILDS</div>
+          <h2 id="featured-heading">FEATURED PROJECTS</h2>
+        </div>
+        <a class="meta" href="/projects/" aria-label="View all game projects in the library" style="text-decoration: underline;">
+          ALL PROJECTS [07] →
+        </a>
+      </div>
+
+      <div class="home-featured-grid">
+        <!-- Project 1: The Final Loop -->
+        <article class="home-featured-card">
+          <div class="meta">UE5 // VERTICAL SLICE</div>
+          <h3>The Final Loop</h3>
+          <p>
+            An Unreal Engine 5 psychological puzzle vertical slice engineered around recurring time loops, modular Actor Components, and deterministic single-frame state reset routines.
+          </p>
+          <div class="tags" style="margin-bottom: 12px;">
+            <span class="tag">Unreal Engine 5</span>
+            <span class="tag">Gameplay Systems</span>
+          </div>
+          <a class="btn" href="/projects/the-final-loop/" aria-label="View The Final Loop technical case study">
+            VIEW CASE STUDY →
+          </a>
+        </article>
+
+        <!-- Project 2: Fog Bridge -->
+        <article class="home-featured-card">
+          <div class="meta">UNITY // GAME JAM 2026</div>
+          <h3>Fog Bridge</h3>
+          <p>
+            Developed in 72 hours for GameDev.tv Game Jam. Features procedural paper-plane flight curves, ScriptableObject clue architectures, and calibrated zero-allocation volumetric fog.
+          </p>
+          <div class="tags" style="margin-bottom: 12px;">
+            <span class="tag">Unity URP</span>
+            <span class="tag">72h Jam Build</span>
+          </div>
+          <a class="btn" href="/projects/fog-bridge/" aria-label="Explore Fog Bridge development breakdown">
+            VIEW CASE STUDY →
+          </a>
+        </article>
+
+        <!-- Project 3: The Unlit Door -->
+        <article class="home-featured-card">
+          <div class="meta">UNITY MOBILE // CONCEPT</div>
+          <h3>The Unlit Door</h3>
+          <p>
+            A mobile psychological puzzle system design centered on touch light-shadow interactions, strict 60 FPS mobile budgets, and episodic streaming via Unity Addressables.
+          </p>
+          <div class="tags" style="margin-bottom: 12px;">
+            <span class="tag">Unity Mobile</span>
+            <span class="tag">System Design</span>
+          </div>
+          <a class="btn" href="/projects/the-unlit-door/" aria-label="Read The Unlit Door mobile system design case study">
+            VIEW CASE STUDY →
+          </a>
+        </article>
+
+        <!-- Project 4: Delivery Driver -->
+        <article class="home-featured-card">
+          <div class="meta">UNITY 3D // PHYSICS</div>
+          <h3>Delivery Driver</h3>
+          <p>
+            Arcade courier driving simulation featuring responsive Rigidbody physics, programmatic lateral friction curves, and dynamic Cinemachine velocity damping.
+          </p>
+          <div class="tags" style="margin-bottom: 12px;">
+            <span class="tag">Unity 3D</span>
+            <span class="tag">Physics Tuning</span>
+          </div>
+          <a class="btn" href="/projects/delivery-driver/" aria-label="Inspect Delivery Driver physics and camera case study">
+            VIEW CASE STUDY →
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Core Systems / Technical Stack -->
+    <section style="margin-top: 36px;" aria-labelledby="stack-heading">
+      <div class="section-head">
+        <div>
+          <div class="code">TECH SPECIFICATIONS // ENGINEERING CAPABILITIES</div>
+          <h2 id="stack-heading">CORE SYSTEMS &amp; TECHNICAL STACK</h2>
+        </div>
+        <span class="meta">PRODUCTION READY</span>
+      </div>
+
+      <div class="home-stack-grid">
+        <div class="home-stack-item">
+          <b>Unity Engine (URP)</b>
+          <span>Mobile 60 FPS budgeting, Addressables streaming, Cinemachine cameras, and New Input System ergonomics.</span>
+        </div>
+        <div class="home-stack-item">
+          <b>Unreal Engine 5</b>
+          <span>Modular Actor Components, Event Dispatchers, Enhanced Input contexts, and deterministic state reset systems.</span>
+        </div>
+        <div class="home-stack-item">
+          <b>C# &amp; C++ Architecture</b>
+          <span>Clean OOP, Finite State Machines (FSM), decoupled ScriptableObjects, and zero-allocation per-frame routines.</span>
+        </div>
+        <div class="home-stack-item">
+          <b>Gameplay Mechanics</b>
+          <span>Platformer game feel (coyote time, input buffering), vehicle suspension, puzzle validation, and 3D raycasting.</span>
+        </div>
+        <div class="home-stack-item">
+          <b>Performance Optimization</b>
+          <span>Draw call budgeting with SRP Batcher, object pooling, memory profiling, and virtual shadow map tuning.</span>
+        </div>
+        <div class="home-stack-item">
+          <b>Native Tooling (Rust)</b>
+          <span>Lightweight Windows utilities (LiteCast), Win32/DWM integration, and sub-50ms instant querying.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transmission CTA Station -->
+    <section style="margin-top: 36px;" aria-labelledby="transmission-heading">
+      <div class="panel" style="border-left: 3px solid var(--yellow);">
+        <div class="code" style="color: var(--yellow); margin-bottom: 6px;">TRANSMISSION CHANNELS // OPEN COMMS</div>
+        <h2 id="transmission-heading" style="color: var(--green); margin: 0 0 8px 0; font-size: 18px;">
+          Connect &amp; Collaborate
+        </h2>
+        <p class="muted" style="line-height: 1.7; margin-bottom: 16px; font-size: 13.5px;">
+          Available for game development roles, gameplay engineering opportunities, technical design collaborations, and software projects.
+        </p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a class="btn yellow" href="/contact/" aria-label="Open contact and messaging channels">CONTACT ME ↗</a>
+          <a class="btn" href="/player/" aria-label="View player record, experience and resume">VIEW PLAYER CV →</a>
+          <a class="btn blue" href="https://linkedin.com/in/harun-emrecan-karabag" target="_blank" rel="noopener" aria-label="Connect on LinkedIn">LINKEDIN ↗</a>
+          <a class="btn green" href="https://github.com/Hekyetmisbes" target="_blank" rel="noopener" aria-label="Explore GitHub repositories">GITHUB ↗</a>
+        </div>
+      </div>
+    </section>
+  </div>
 </Layout>

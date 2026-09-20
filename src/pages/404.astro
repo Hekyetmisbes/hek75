@@ -1,0 +1,71 @@
+---
+// src/pages/404.astro
+// HEK75 ARCADE OS — 404 Cartridge Not Found.
+
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="404 – Cartridge Not Found | HEK75 OS"
+  description="The requested memory cartridge, route or file could not be located in the HEK75 system index."
+  activeNav="none"
+  footerLeft="SYSTEM ALERT // 0x00000404"
+  footerRight="HEK75 OS // SIGNAL_LOST"
+>
+  <div class="section-head">
+    <div>
+      <div class="code" style="color: var(--red);">[ ERROR 404 // MEMORY CORRUPTION ]</div>
+      <h1>CARTRIDGE NOT FOUND</h1>
+    </div>
+    <span class="meta" style="color: var(--red);">SECTOR_MISSING</span>
+  </div>
+
+  <div class="panel" style="border-left: 3px solid var(--red); margin-bottom: 28px;">
+    <div class="code" style="color: var(--yellow); margin-bottom: 6px;">DIAGNOSTIC REPORT // TRACE ROUTE</div>
+    <p class="muted" style="line-height: 1.8; margin: 0 0 14px 0; font-size: 14px;">
+      The memory sector, game file, or communication frequency you attempted to summon does not exist in the active HEK75 cartridge database.
+    </p>
+    <div class="code" style="color: #ff9999; font-size: 12px;">
+      SIGNAL STATUS: DISCONNECTED // RE-ROUTING TO SAFE SYSTEM HUBS...
+    </div>
+  </div>
+
+  <div class="section-head">
+    <h2>[ RECOMMENDED TELEPORT COORDINATES ]</h2>
+    <span class="code">SAFE_ZONES</span>
+  </div>
+
+  <div class="content-grid">
+    <div class="panel">
+      <h3>HOME NEXUS</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.6; margin-bottom: 14px;">
+        Return to the central arcade operating system and engineering profile.
+      </p>
+      <a class="btn" href="/" aria-label="Return to HEK75 Home Nexus">← RETURN TO HOME</a>
+    </div>
+
+    <div class="panel">
+      <h3>GAME LIBRARY</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.6; margin-bottom: 14px;">
+        Browse all Unity and Unreal Engine 5 playable vertical slices and case studies.
+      </p>
+      <a class="btn yellow" href="/projects/" aria-label="Explore Game Projects Library">BROWSE GAMES →</a>
+    </div>
+
+    <div class="panel">
+      <h3>SOFTWARE PRODUCTS</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.6; margin-bottom: 14px;">
+        Explore LiteCast native Windows launcher and developer toolkits.
+      </p>
+      <a class="btn blue" href="/products/" aria-label="View Software Products">EXPLORE PRODUCTS →</a>
+    </div>
+
+    <div class="panel">
+      <h3>TRANSMISSION STATION</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.6; margin-bottom: 14px;">
+        Contact Harun Emrecan Karabağ directly via Email, LinkedIn or GitHub.
+      </p>
+      <a class="btn" href="/contact/" aria-label="Open Transmission Station">OPEN COMMS →</a>
+    </div>
+  </div>
+</Layout>

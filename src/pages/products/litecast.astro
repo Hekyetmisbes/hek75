@@ -30,7 +30,7 @@ const liteCastSchema = [
 
 <Layout
   title="LiteCast – Native Windows Launcher & Developer Toolkit | HEK75"
-  description="Keyboard-first native Windows launcher and developer toolkit built with Rust and Win32/DWM. Fast, low-memory application launcher, clipboard manager, and dev utilities by Harun Emrecan Karabağ."
+  description="Ultra-lightweight keyboard-first native Windows launcher and developer toolkit built with Rust and Win32/DWM for sub-50ms instant querying."
   activeNav="products"
   footerLeft="POWERED BY RUST // NATIVE WINDOWS APIs"
   footerRight="HEK75 OS // LITECAST.EXE"
@@ -354,6 +354,80 @@ const liteCastSchema = [
       <a class="btn" href="/downloads/litecast/LiteCast-Setup.exe" download>
         DOWNLOAD SETUP (.EXE) ↗
       </a>
+    </div>
+  </div>
+
+  <!-- Installation & Quick Start -->
+  <div class="section-head" style="margin-top: 42px;">
+    <div>
+      <div class="code">DEPLOYMENT &amp; SETUP</div>
+      <h2>INSTALLATION &amp; QUICK START</h2>
+    </div>
+    <span class="meta">ZERO-OVERHEAD</span>
+  </div>
+
+  <div class="content-grid">
+    <div class="panel">
+      <h3 style="color: var(--green); margin-top: 0;">1. Download &amp; Run</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7;">
+        Download the official installer (<code class="code" style="color: var(--green);">LiteCast-Setup.exe</code>) verified with Authenticode SHA-256 code signing. Run the setup to install LiteCast to your user directory with automatic autostart integration.
+      </p>
+    </div>
+    <div class="panel">
+      <h3 style="color: var(--green); margin-top: 0;">2. Global Hotkey Activation</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7;">
+        Press <kbd>Alt + Space</kbd> from any application, game, or desktop state. The lightweight native window summons within 1 frame (&lt;16ms) without frame stuttering or background browser process wakeups.
+      </p>
+    </div>
+    <div class="panel">
+      <h3 style="color: var(--green); margin-top: 0;">3. Search &amp; Act Immediately</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7;">
+        Type application names, files, mathematical equations (e.g. <code class="code" style="color: var(--yellow);">15% of 2500</code>), or common unit conversions. Use <kbd>Enter</kbd> to launch, or <kbd>Esc</kbd> to instantly dismiss.
+      </p>
+    </div>
+    <div class="panel">
+      <h3 style="color: var(--green); margin-top: 0;">4. Developer Commands</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7;">
+        Prefix commands with <code class="code" style="color: var(--green);">&gt;</code> for quick developer operations: <code class="code">&gt; help</code>, <code class="code">&gt; reindex</code>, UUID generation, Base64 encoding, and system window switching.
+      </p>
+    </div>
+  </div>
+
+  <!-- Frequently Asked Questions (FAQ) for Organic Search Intent -->
+  <div class="section-head" style="margin-top: 42px;">
+    <div>
+      <div class="code">FREQUENTLY ASKED QUESTIONS</div>
+      <h2>LITECAST FAQ</h2>
+    </div>
+    <span class="meta">ARCHITECTURAL DETAILS</span>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 14px;">
+    <div class="panel" style="border-left: 3px solid var(--green);">
+      <h3 style="color: var(--green); margin: 0 0 8px 0; font-size: 15px;">
+        Why is LiteCast significantly faster than Electron-based application launchers?
+      </h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7; margin: 0;">
+        LiteCast is compiled directly to native x64 machine code using Rust and interacts directly with the Windows Win32 and Desktop Window Manager (DWM) APIs. It contains 0% browser runtime overhead, avoiding Chromium multi-process trees, V8 engine initialization delays, and idle timer interrupts.
+      </p>
+    </div>
+
+    <div class="panel" style="border-left: 3px solid var(--green);">
+      <h3 style="color: var(--green); margin: 0 0 8px 0; font-size: 15px;">
+        Does LiteCast transmit telemetry or search queries to remote servers?
+      </h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7; margin: 0;">
+        No. LiteCast operates with a strict 100% offline-first architecture. All application indexing, file querying, clipboard caches, and unit conversion algorithms execute locally on your machine without network handshakes or remote telemetry packets.
+      </p>
+    </div>
+
+    <div class="panel" style="border-left: 3px solid var(--green);">
+      <h3 style="color: var(--green); margin: 0 0 8px 0; font-size: 15px;">
+        Which operating systems are officially supported?
+      </h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7; margin: 0;">
+        LiteCast targets 64-bit Windows 10 and Windows 11 systems (x86_64). Binaries are signed with Authenticode standards (SHA-256 with DigiCert RFC-3161 timestamping) ensuring trusted execution with Windows SmartScreen and corporate antivirus scanners.
+      </p>
     </div>
   </div>
 </Layout>

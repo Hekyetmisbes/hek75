@@ -38,7 +38,8 @@ const isPlayer = activeNav === 'player' || pathname.startsWith('/player') || pat
 const isContact = activeNav === 'contact' || pathname.startsWith('/contact') || pathname.startsWith('/multiplayer');
 
 const siteUrl = "https://hek75.com";
-const canonicalURL = new URL(pathname, siteUrl).href;
+const cleanPath = pathname === '/' ? '/' : (pathname.endsWith('/') ? pathname : `${pathname}/`);
+const canonicalURL = new URL(cleanPath, siteUrl).href;
 const ogImageURL = new URL(image, siteUrl).href;
 
 const jsonLd = {
@@ -54,7 +55,7 @@ const jsonLd = {
       "publisher": {
         "@id": `${siteUrl}/#person`
       },
-      "inLanguage": ["en-US", "tr-TR"]
+      "inLanguage": "en-US"
     },
     {
       "@type": "Person",
@@ -76,10 +77,12 @@ const jsonLd = {
         "C#",
         "C++",
         "Gameplay Systems",
-        "Game Design",
-        "Level Design",
-        "Shaders & Graphics",
-        "Computer Animation"
+        "Game Architecture",
+        "Performance Optimization",
+        "Input Systems",
+        "AI & Navigation",
+        "Level Prototyping",
+        "Shaders & Graphics"
       ],
       "sameAs": [
         "https://github.com/Hekyetmisbes",
@@ -119,9 +122,13 @@ if (customSchema && customSchema.length > 0) {
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Icons & Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-    <link rel="alternate icon" type="image/x-icon" href="/assets/favicon.ico" />
-    <link rel="apple-touch-icon" href="/assets/hk_logo.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Primary Meta Tags -->
     <meta name="title" content={title} />
@@ -144,7 +151,6 @@ if (customSchema && customSchema.length > 0) {
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:alt" content="HEK75 OS — Harun Emrecan Karabağ | Game Developer Portfolio" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="tr_TR" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -158,8 +164,11 @@ if (customSchema && customSchema.length > 0) {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
+    <!-- Skip to Main Content Link for Keyboard / Screen Reader Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <div class="shell">
-      <main class="screen">
+      <div class="screen">
         <!-- Arcade Topbar -->
         <header class="topbar">
           <a class="brand" href="/" aria-label="HEK75 OS — Harun Emrecan Karabağ Home">HEK75 OS</a>
@@ -176,15 +185,32 @@ if (customSchema && customSchema.length > 0) {
           </nav>
         </header>
 
-        <!-- Page Specific Content -->
-        <slot />
+        <!-- Main Content Area -->
+        <main id="main-content">
+          <slot />
+        </main>
 
-        <!-- Arcade Footer -->
+        <!-- Arcade Footer with Structured Navigation Links -->
         <footer class="footer">
-          <span>{footerLeft}</span>
-          <span>{footerRight}</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 8px;">
+            <span>{footerLeft}</span>
+            <span>{footerRight}</span>
+          </div>
+          <div class="footer-links-grid" aria-label="Footer Secondary Navigation">
+            <div style="color: var(--green); font-weight: 700;">
+              HARUN EMRECAN KARABAĞ // HEK75
+            </div>
+            <nav class="footer-nav-list" aria-label="Footer Links">
+              <a href="/projects/">Projects</a>
+              <a href="/player/">Player / CV</a>
+              <a href="/products/">Products</a>
+              <a href="/contact/">Contact</a>
+              <a href="https://github.com/Hekyetmisbes" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://linkedin.com/in/harun-emrecan-karabag" target="_blank" rel="noopener">LinkedIn</a>
+            </nav>
+          </div>
         </footer>
-      </main>
+      </div>
     </div>
 
     <!-- Client Scripts for Sound, Search and Terminal -->

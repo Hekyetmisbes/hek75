@@ -4,11 +4,12 @@
 
 import Layout from '../../layouts/Layout.astro';
 import { GAMES_LIST } from '../../data/games';
+import { ENGINEERING_TOPICS } from '../../data/notes';
 ---
 
 <Layout
-  title="Unity & Unreal Engine Game Development Portfolio // HEK75 OS — Harun Emrecan Karabağ"
-  description="Playable games, vertical slices, game jam entries, and technical gameplay programming case studies developed with Unity and Unreal Engine 5 by Harun Emrecan Karabağ (HEK75)."
+  title="Unity & Unreal Game Development Portfolio | HEK75"
+  description="Explore Unity and Unreal Engine projects by Harun Emrecan Karabağ, including gameplay architecture, optimization and technical case studies."
   activeNav="games"
   footerLeft="SELECT A CARTRIDGE TO OPEN CASE STUDY"
   footerRight="HEK75 OS // GAMES.DB"
@@ -39,10 +40,17 @@ import { GAMES_LIST } from '../../data/games';
   </div>
 
   <div class="grid games-grid">
-    {GAMES_LIST.map((g) => (
+    {GAMES_LIST.map((g, idx) => (
       <article class="game-tile">
         <div class="cover">
-          <img src={g.image} alt={`${g.title} — Game by Harun Emrecan Karabağ (HEK75)`} loading="lazy" />
+          <img
+            src={g.image}
+            alt={`${g.title} — ${g.engine} game by Harun Emrecan Karabağ`}
+            width="380"
+            height="214"
+            loading={idx === 0 ? "eager" : "lazy"}
+            fetchpriority={idx === 0 ? "high" : "auto"}
+          />
         </div>
         <div class="tile-body">
           <div class="meta">FILE {g.number} // {g.year} // {g.engine}</div>
@@ -52,9 +60,47 @@ import { GAMES_LIST } from '../../data/games';
             <span class="tag">{g.genre}</span>
             <span class="tag">{g.status}</span>
           </div>
-          <a class="btn" href={`/projects/${g.slug}/`}>OPEN GAME FILE →</a>
+          <a class="btn" href={`/projects/${g.slug}/`} aria-label={`View ${g.title} technical case study`}>
+            VIEW CASE STUDY →
+          </a>
         </div>
       </article>
     ))}
   </div>
+
+  <!-- Engineering Notes & Architectural Topics (Content Hub / Topical Authority) -->
+  <section style="margin-top: 48px;" aria-labelledby="tech-notes-heading">
+    <div class="section-head">
+      <div>
+        <div class="code">TECHNICAL RETROSPECTIVES // KNOWLEDGE BASE</div>
+        <h2 id="tech-notes-heading">ENGINEERING NOTES &amp; TOPICAL INDEX</h2>
+      </div>
+      <span class="meta">SYSTEM DEEP-DIVES</span>
+    </div>
+
+    <div class="content-grid">
+      {ENGINEERING_TOPICS.map((topic) => (
+        <article class="panel" style="border-left: 3px solid var(--green);">
+          <div class="meta">{topic.category.toUpperCase()} // SYSTEM NOTE</div>
+          <h3 style="color: var(--green); margin: 8px 0 6px 0; font-size: 15px;">{topic.title}</h3>
+          <p class="muted" style="font-size: 12.5px; line-height: 1.65; margin-bottom: 12px;">
+            {topic.description}
+          </p>
+          <div class="tags" style="margin-bottom: 12px;">
+            {topic.tags.map((t) => (
+              <span class="tag">{t}</span>
+            ))}
+          </div>
+          <a
+            class="competency-link"
+            style="align-self: flex-start; font-size: 11px;"
+            href={topic.relatedProjectSlug === "litecast" ? "/products/litecast/" : `/projects/${topic.relatedProjectSlug}/`}
+            aria-label={`Read ${topic.title} in ${topic.relatedProjectName} case study`}
+          >
+            EXPLORE IN {topic.relatedProjectName.toUpperCase()} CASE STUDY →
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
 </Layout>

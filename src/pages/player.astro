@@ -3,11 +3,23 @@
 // HEK75 ARCADE OS — Personnel Database / Player Record / CV.
 
 import Layout from '../layouts/Layout.astro';
+
+const profilePageSchema = [
+  {
+    "@type": "ProfilePage",
+    "@id": "https://hek75.com/player/#profile",
+    "name": "Harun Emrecan Karabağ — Game Developer CV",
+    "url": "https://hek75.com/player/",
+    "mainEntity": {
+      "@id": "https://hek75.com/#person"
+    }
+  }
+];
 ---
 
 <Layout
-  title="Player Record & CV // Harun Emrecan Karabağ — Unity & Unreal Game Developer | HEK75 OS"
-  description="Harun Emrecan Karabağ (HEK75) — Personnel record, education at Hacettepe University, game development engineering skills, Unity & Unreal Engine experience, and resume."
+  title="Harun Emrecan Karabağ – Game Developer CV | HEK75"
+  description="Professional profile of game developer Harun Emrecan Karabağ, covering experience, education, Unity, Unreal Engine and software engineering skills."
   activeNav="player"
   footerLeft="STATUS: RECORDS VERIFIED // ACCESS GRANTED"
   footerRight="HEK75 OS // PLAYER.SAV"
@@ -17,6 +29,7 @@ import Layout from '../layouts/Layout.astro';
     { name: "HOME", url: "/" },
     { name: "PLAYER / CV", url: "/player/" }
   ]}
+  customSchema={profilePageSchema}
 >
   <nav class="breadcrumb" aria-label="Breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
     <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -45,11 +58,12 @@ import Layout from '../layouts/Layout.astro';
       <div class="crt-portrait" aria-label="Harun Emrecan Karabağ — CRT Portrait">
         <img
           src="/assets/Emre.png"
-          alt="Harun Emrecan Karabağ"
+          alt="Harun Emrecan Karabağ — Unity & Unreal Game Developer"
           class="crt-portrait-img"
           width="140"
           height="140"
           loading="eager"
+          fetchpriority="high"
         />
         <div class="crt-portrait-scan"></div>
       </div>
