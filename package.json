@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/generate-sitemap.mjs && node scripts/validate-seo.mjs",
+    "build": "astro build && node scripts/generate-sitemap.mjs && node scripts/validate-seo.mjs && node scripts/validate-security.mjs",
     "test:seo": "node scripts/validate-seo.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:security": "node scripts/validate-security.mjs"
   },
   "dependencies": {
     "astro": "^5.2.2"
