@@ -181,6 +181,18 @@ nav a,
   font-weight: bold;
 }
 
+nav a,
+.term-nav-btn,
+.sound-toggle {
+  white-space: nowrap;
+}
+
+/* Keep the sound control width stable when JS swaps ON/OFF text after load. */
+.sound-toggle {
+  width: 102px;
+  flex: 0 0 102px;
+}
+
 nav a:hover,
 nav a.active,
 .btn:hover,
@@ -232,7 +244,7 @@ nav a.active,
   position: relative;
   display: block;
   width: min(900px, 92%);
-  height: 170px;
+  height: clamp(145px, 17vw, 170px);
   margin: 10px auto 0;
   cursor: pointer;
 }
@@ -1582,9 +1594,6 @@ kbd {
   .external-media-card,
   .external-media-card img {
     min-height: 270px;
-  }
-  .hero-logo-swap {
-    height: 145px;
   }
   .hero-logo-swap .logo-main {
     letter-spacing: -5px;
