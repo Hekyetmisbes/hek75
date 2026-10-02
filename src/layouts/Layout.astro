@@ -171,11 +171,13 @@ if (customSchema && customSchema.length > 0) {
       <div class="screen">
         <!-- Arcade Topbar -->
         <header class="topbar">
-          <a class="brand" href="/" aria-label="HEK75 OS — Harun Emrecan Karabağ Home">HEK75 OS</a>
-          <nav aria-label="Main Navigation">
+          <div class="topbar-header">
+            <a class="brand" href="/" aria-label="HEK75 OS — Harun Emrecan Karabağ Home">HEK75 OS</a>
             {isHome ? (
               <span class="online">● ONLINE // PLAYER_01</span>
             ) : null}
+          </div>
+          <nav aria-label="Main Navigation">
             <a class={isPlayer ? "active" : ""} href="/player/" aria-label="Player Profile and Resume — About Harun Emrecan Karabağ" title="About / CV">PLAYER</a>
             <a class={isGames ? "active" : ""} href="/projects/" aria-label="Game Development Projects — Unity & Unreal Engine" title="Game Projects">GAMES</a>
             <a class={isProducts ? "active" : ""} href="/products/" aria-label="Software Products & Developer Tools" title="Software Products">PRODUCTS</a>
@@ -192,12 +194,12 @@ if (customSchema && customSchema.length > 0) {
 
         <!-- Arcade Footer with Structured Navigation Links -->
         <footer class="footer">
-          <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 8px;">
+          <div class="footer-status-bar">
             <span>{footerLeft}</span>
             <span>{footerRight}</span>
           </div>
           <div class="footer-links-grid" aria-label="Footer Secondary Navigation">
-            <div style="color: var(--green); font-weight: 700;">
+            <div class="footer-brand-title">
               HARUN EMRECAN KARABAĞ // HEK75
             </div>
             <nav class="footer-nav-list" aria-label="Footer Links">
