@@ -166,6 +166,8 @@
       "products": "/products/",
       "product": "/products/",
       "litecast": "/products/litecast/",
+      "closemeet": "/products/closemeet-lite/",
+      "closemeet-lite": "/products/closemeet-lite/",
       "contact": "/contact/",
       "multiplayer": "/contact/"
     };
@@ -179,7 +181,7 @@
     if (cmd === "help") {
       output(`
         <b>Navigation</b><br>
-        home · games · player · cv · products · litecast · multiplayer · contact<br><br>
+        home · games · player · cv · products · litecast · closemeet · multiplayer · contact<br><br>
         <b>Search</b><br>
         search &lt;query&gt; &nbsp;— example: search unreal<br>
         Or type any phrase directly: psychological puzzle<br>

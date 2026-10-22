@@ -94,7 +94,7 @@ import { ENGINEERING_TOPICS } from '../../data/notes';
           <a
             class="competency-link"
             style="align-self: flex-start; font-size: 11px;"
-            href={topic.relatedProjectSlug === "litecast" ? "/products/litecast/" : `/projects/${topic.relatedProjectSlug}/`}
+            href={(topic.relatedProjectSlug === "litecast" || topic.relatedProjectSlug === "closemeet-lite") ? `/products/${topic.relatedProjectSlug}/` : `/projects/${topic.relatedProjectSlug}/`}
             aria-label={`Read ${topic.title} in ${topic.relatedProjectName} case study`}
           >
             EXPLORE IN {topic.relatedProjectName.toUpperCase()} CASE STUDY →

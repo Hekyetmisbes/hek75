@@ -66,5 +66,14 @@ export const ENGINEERING_TOPICS: EngineeringTopic[] = [
     relatedProjectSlug: "litecast",
     relatedProjectName: "LiteCast",
     tags: ["Rust", "Win32", "Desktop Tools", "Performance", "Productivity"]
+  },
+  {
+    id: "full-mesh-p2p-e2ee-cng",
+    title: "Zero-Knowledge Full-Mesh P2P & Windows CNG AES-256-GCM",
+    category: "Systems & Tools",
+    description: "Architecting serverless 6-peer Full-Mesh desktop video conferencing in C++20 and Qt 6 with hardware-accelerated Windows CNG encryption and mDNS LAN discovery.",
+    relatedProjectSlug: "closemeet-lite",
+    relatedProjectName: "CloseMeet Lite",
+    tags: ["C++20", "Qt 6 / QML", "AES-256-GCM", "Full-Mesh P2P", "mDNS LAN"]
   }
 ];

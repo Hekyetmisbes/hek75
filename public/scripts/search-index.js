@@ -25,7 +25,7 @@ const SITE_INDEX = [
     type: "page",
     url: "/products/",
     description: "Native desktop software and developer tools.",
-    keywords: ["products", "software", "desktop", "rust", "tools", "litecast"]
+    keywords: ["products", "software", "desktop", "rust", "c++", "qt", "tools", "litecast", "closemeet"]
   },
   {
     title: "LiteCast",
@@ -40,6 +40,20 @@ const SITE_INDEX = [
     url: "/products/litecast/changelog/",
     description: "LiteCast v1.0.1 release notes — Security, Authenticode, indexing cleanup and in-app toast banner.",
     keywords: ["changelog", "release notes", "v1.0.1", "litecast", "update", "security", "authenticode", "toast"]
+  },
+  {
+    title: "CloseMeet Lite",
+    type: "product",
+    url: "/products/closemeet-lite/",
+    description: "Zero-knowledge P2P encrypted desktop video conferencing for 2–6 participants built with C++20, Qt 6 and Windows CNG.",
+    keywords: ["closemeet", "closemeet lite", "close-meet-lite", "c++20", "qt 6", "qml", "p2p", "webrtc", "e2ee", "aes-256-gcm", "video conferencing", "mdns", "lan"]
+  },
+  {
+    title: "CloseMeet Lite v1.0.0 Changelog",
+    type: "product",
+    url: "/products/closemeet-lite/changelog/",
+    description: "CloseMeet Lite v1.0.0 release notes — Windows CNG AES-256-GCM E2EE, 6-peer Full-Mesh P2P, and mDNS Offline LAN.",
+    keywords: ["changelog", "release notes", "v1.0.0", "closemeet", "closemeet lite", "e2ee", "p2p", "mesh"]
   },
   {
     title: "The Final Loop",
