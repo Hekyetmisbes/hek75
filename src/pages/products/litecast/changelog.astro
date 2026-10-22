@@ -3,11 +3,33 @@
 // HEK75 ARCADE OS — LiteCast Detailed Changelog & Release Notes Archive.
 
 import Layout from '../../../layouts/Layout.astro';
+
+const changelogSchema = [
+  {
+    "@type": "TechArticle",
+    "@id": "https://hek75.com/products/litecast/changelog/#article",
+    "headline": "LiteCast v1.0.1 Release Notes & Changelog",
+    "description": "LiteCast v1.0.1 release notes: Windows PE security, Authenticode code signing, search index cleanup, and in-app toast notifications by Harun Emrecan Karabağ.",
+    "author": {
+      "@id": "https://hek75.com/#person"
+    },
+    "publisher": {
+      "@id": "https://hek75.com/#person"
+    },
+    "datePublished": "2026-09-02",
+    "dateModified": "2026-10-22",
+    "mainEntityOfPage": "https://hek75.com/products/litecast/changelog/",
+    "about": {
+      "@id": "https://hek75.com/products/litecast/#app"
+    }
+  }
+];
 ---
 
 <Layout
   title="LiteCast v1.0.1 Changelog & Release Notes | HEK75"
   description="LiteCast v1.0.1 release notes: Windows PE security, Authenticode code signing, search index cleanup, and in-app toast notifications by Harun Emrecan Karabağ."
+  keywords="LiteCast v1.0.1 Changelog, LiteCast Release Notes, Rust Windows Launcher Update, Harun Emrecan Karabağ"
   activeNav="products"
   footerLeft="LITECAST // RELEASE ARCHIVE v1.0.1"
   footerRight="HEK75 OS // ARCHIVE.LOG"
@@ -17,6 +39,7 @@ import Layout from '../../../layouts/Layout.astro';
     { name: "LITECAST", url: "/products/litecast/" },
     { name: "CHANGELOG", url: "/products/litecast/changelog/" }
   ]}
+  customSchema={changelogSchema}
 >
   <nav class="breadcrumb" aria-label="Breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
     <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -125,11 +148,14 @@ import Layout from '../../../layouts/Layout.astro';
 
   <!-- Download & Return Actions -->
   <div class="product-actions" style="margin-top: 36px;">
-    <a class="btn yellow" href="/downloads/litecast/LiteCast-Setup.exe" download>
+    <a class="btn yellow" href="https://github.com/Hekyetmisbes/litecast/releases/download/v1.0.1/LiteCast-Setup.exe" target="_blank" rel="noopener">
       DOWNLOAD SETUP v1.0.1 (.EXE) ↗
     </a>
-    <a class="btn blue" href="https://github.com/Hekyetmisbes/litecast" target="_blank" rel="noopener">
-      GITHUB REPOSITORY ↗
+    <a class="btn" href="https://github.com/Hekyetmisbes/litecast/releases/download/v1.0.1/LiteCast.exe" target="_blank" rel="noopener">
+      PORTABLE v1.0.1 (.EXE) ↗
+    </a>
+    <a class="btn blue" href="https://github.com/Hekyetmisbes/litecast/releases/tag/v1.0.1" target="_blank" rel="noopener">
+      GITHUB RELEASE v1.0.1 ↗
     </a>
     <a class="btn" href="/products/litecast/">
       &larr; RETURN TO LITECAST

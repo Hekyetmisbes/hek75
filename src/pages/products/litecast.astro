@@ -13,8 +13,11 @@ const liteCastSchema = [
     "applicationCategory": "DeveloperApplication",
     "applicationSubCategory": "Launcher & Utilities",
     "softwareVersion": "1.0.1",
-    "fileSize": "35MB",
-    "downloadUrl": "https://hek75.com/downloads/litecast/LiteCast-Setup.exe",
+    "fileSize": "3.18MB",
+    "downloadUrl": "https://github.com/Hekyetmisbes/litecast/releases/download/v1.0.1/LiteCast-Setup.exe",
+    "releaseNotes": "https://hek75.com/products/litecast/changelog/",
+    "codeRepository": "https://github.com/Hekyetmisbes/litecast",
+    "license": "https://opensource.org/licenses/MIT",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -24,6 +27,36 @@ const liteCastSchema = [
       "@id": "https://hek75.com/#person"
     },
     "description": "Ultra-lightweight keyboard-first native Windows launcher and developer toolkit built with Rust and Win32/DWM."
+  },
+  {
+    "@type": "FAQPage",
+    "@id": "https://hek75.com/products/litecast/#faq",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is LiteCast significantly faster than Electron-based application launchers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LiteCast is compiled directly to native x64 machine code using Rust and interacts directly with the Windows Win32 and Desktop Window Manager (DWM) APIs. It contains 0% browser runtime overhead, avoiding Chromium multi-process trees, V8 engine initialization delays, and idle timer interrupts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does LiteCast transmit telemetry or search queries to remote servers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. LiteCast operates with a strict 100% offline-first architecture. All application indexing, file querying, clipboard caches, and unit conversion algorithms execute locally on your machine without network handshakes or remote telemetry packets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which operating systems are officially supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LiteCast targets 64-bit Windows 10 and Windows 11 systems (x86_64). Binaries are distributed via GitHub Releases with SHA-256 verification and official Windows PE version metadata."
+        }
+      }
+    ]
   }
 ];
 ---
@@ -91,8 +124,10 @@ const liteCastSchema = [
     </div>
 
     <div class="product-actions">
-      <a class="btn yellow" href="/downloads/litecast/LiteCast-Setup.exe" download>DOWNLOAD SETUP (.EXE) ↗</a>
+      <a class="btn yellow" href="https://github.com/Hekyetmisbes/litecast/releases/download/v1.0.1/LiteCast-Setup.exe" target="_blank" rel="noopener">DOWNLOAD SETUP (.EXE) ↗</a>
+      <a class="btn" href="https://github.com/Hekyetmisbes/litecast/releases/download/v1.0.1/LiteCast.exe" target="_blank" rel="noopener">PORTABLE (.EXE) ↗</a>
       <a class="btn blue" href="https://github.com/Hekyetmisbes/litecast" target="_blank" rel="noopener">GITHUB REPOSITORY ↗</a>
+      <a class="btn" href="/products/litecast/changelog/">RELEASE NOTES (v1.0.1)</a>
       <a class="btn" href="/products/">← PRODUCTS</a>
     </div>
   </section>
@@ -351,8 +386,14 @@ const liteCastSchema = [
       <a class="btn yellow" href="/products/litecast/changelog/">
         VIEW FULL CHANGELOG ↗
       </a>
-      <a class="btn" href="/downloads/litecast/LiteCast-Setup.exe" download>
+      <a class="btn" href="https://github.com/Hekyetmisbes/litecast/releases/download/v1.0.1/LiteCast-Setup.exe" target="_blank" rel="noopener">
         DOWNLOAD SETUP (.EXE) ↗
+      </a>
+      <a class="btn" href="https://github.com/Hekyetmisbes/litecast/releases/download/v1.0.1/LiteCast.exe" target="_blank" rel="noopener">
+        PORTABLE (.EXE) ↗
+      </a>
+      <a class="btn blue" href="https://github.com/Hekyetmisbes/litecast/releases/tag/v1.0.1" target="_blank" rel="noopener">
+        GITHUB RELEASE v1.0.1 ↗
       </a>
     </div>
   </div>
@@ -454,6 +495,8 @@ const liteCastSchema = [
         { title: "Software Products", sub: "Native desktop software and developer tools", type: "product", url: "/products/", keywords: ["products", "software", "rust", "tools"] },
         { title: "LiteCast", sub: "Native Windows launcher built with Rust + Win32/DWM", type: "product", url: "/products/litecast/", keywords: ["litecast", "rust", "windows", "launcher", "win32", "dwm", "50ms"] },
         { title: "LiteCast v1.0.1 Changelog", sub: "Security, Authenticode, indexing cleanup and toast banner", type: "product", url: "/products/litecast/changelog/", keywords: ["changelog", "v1.0.1", "release notes", "update", "litecast"] },
+        { title: "CloseMeet Lite", sub: "Zero-knowledge P2P encrypted desktop video conferencing (C++20 + Qt 6 + Windows CNG)", type: "product", url: "/products/closemeet-lite/", keywords: ["closemeet", "closemeet lite", "c++20", "qt 6", "p2p", "e2ee", "aes-256-gcm", "video conferencing"] },
+        { title: "CloseMeet Lite v1.0.0 Changelog", sub: "Full-Mesh P2P, Windows CNG E2EE, mDNS Offline LAN and per-user installer", type: "product", url: "/products/closemeet-lite/changelog/", keywords: ["changelog", "v1.0.0", "closemeet", "release notes"] },
         { title: "Player Record / CV", sub: "Education, experience, tools and certificates", type: "page", url: "/player/", keywords: ["player", "cv", "resume", "education", "experience", "hacettepe", "erciyes", "skills"] },
         { title: "Start Game Library", sub: "Explore all developed game projects", type: "page", url: "/projects/", keywords: ["games", "library", "projects", "game library"] },
         { title: "Multiplayer / Contact", sub: "Transmission channels: Email, LinkedIn, GitHub", type: "page", url: "/contact/", keywords: ["multiplayer", "contact", "email", "linkedin", "github", "instagram"] },
