@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 const siteUrl = 'https://hek75.com';
-const currentDate = '2026-09-20'; // Current release date
+const currentDate = '2026-10-22'; // Current release date
 
 // Canonical indexable routes (Excludes 404, redirects /about, /skills, /games, /multiplayer, and easter eggs)
 const routes = [
@@ -15,6 +15,8 @@ const routes = [
   { path: '/products/', priority: '0.85', changefreq: 'weekly' },
   { path: '/products/litecast/', priority: '0.85', changefreq: 'weekly' },
   { path: '/products/litecast/changelog/', priority: '0.7', changefreq: 'monthly' },
+  { path: '/products/closemeet-lite/', priority: '0.85', changefreq: 'weekly' },
+  { path: '/products/closemeet-lite/changelog/', priority: '0.7', changefreq: 'monthly' },
   { path: '/contact/', priority: '0.8', changefreq: 'monthly' },
 
   // Project Case Studies
