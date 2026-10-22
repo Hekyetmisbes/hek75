@@ -3,18 +3,47 @@
 // HEK75 ARCADE OS — Software Products Catalog.
 
 import Layout from '../../layouts/Layout.astro';
+
+const productsCatalogSchema = [
+  {
+    "@type": "CollectionPage",
+    "@id": "https://hek75.com/products/#collection",
+    "name": "Software Products & Developer Tools — HEK75",
+    "url": "https://hek75.com/products/",
+    "description": "Native Windows desktop software and developer utilities engineered by Harun Emrecan Karabağ, including LiteCast and CloseMeet Lite.",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "LiteCast",
+          "url": "https://hek75.com/products/litecast/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "CloseMeet Lite",
+          "url": "https://hek75.com/products/closemeet-lite/"
+        }
+      ]
+    }
+  }
+];
 ---
 
 <Layout
   title="Software Projects & Developer Tools | HEK75"
-  description="Native Windows desktop software and developer utilities engineered by Harun Emrecan Karabağ, including the LiteCast keyboard-first launcher."
+  description="Native Windows desktop software and developer utilities engineered by Harun Emrecan Karabağ, including the LiteCast keyboard-first launcher and CloseMeet Lite P2P encrypted video conferencing."
+  keywords="HEK75 Software Products, Harun Emrecan Karabağ Software, LiteCast Windows Launcher, CloseMeet Lite, Encrypted P2P Video Conferencing, C++20 Qt 6 Desktop App, Rust Win32 Tools, AES-256-GCM Windows CNG"
   activeNav="products"
-  footerLeft="TERMINAL COMMAND: litecast"
+  footerLeft="TERMINAL COMMANDS: litecast // closemeet"
   footerRight="HEK75 OS // PRODUCTS.DB"
   breadcrumbs={[
     { name: "HOME", url: "/" },
     { name: "PRODUCTS", url: "/products/" }
   ]}
+  customSchema={productsCatalogSchema}
 >
   <nav class="breadcrumb" aria-label="Breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
     <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -31,13 +60,14 @@ import Layout from '../../layouts/Layout.astro';
 
   <div class="section-head">
     <div>
-      <div class="code">SOFTWARE DATABASE // NATIVE TOOLS & UTILITIES</div>
+      <div class="code">SOFTWARE DATABASE // NATIVE TOOLS &amp; UTILITIES // 02 ACTIVE BUILDS</div>
       <h1>SOFTWARE PRODUCTS &amp; DEVELOPER TOOLS</h1>
     </div>
     <span class="meta">BUILD SMALL // RUN FAST</span>
   </div>
 
-  <section class="product-card">
+  <!-- PRODUCT 01: LITECAST -->
+  <section class="product-card" data-product-id="PRODUCT_01">
     <div class="product-head">
       <div class="product-icon">
         <img
@@ -49,9 +79,9 @@ import Layout from '../../layouts/Layout.astro';
         />
       </div>
       <div>
-        <div class="meta">ACTIVE // v1.0.0 // WINDOWS 10 / 11 x64</div>
+        <div class="meta">ACTIVE // v1.0.1 // WINDOWS 10 / 11 x64</div>
         <h2>LITECAST</h2>
-        <div class="blue">Ultra-lightweight native Windows launcher & developer toolkit</div>
+        <div class="blue">Ultra-lightweight native Windows launcher &amp; developer toolkit</div>
       </div>
     </div>
 
@@ -79,14 +109,66 @@ import Layout from '../../layouts/Layout.astro';
 
     <div class="product-actions">
       <a class="btn" href="/products/litecast/">EXPLORE LITECAST →</a>
-      <a class="btn yellow" href="/downloads/litecast/LiteCast-Setup.exe" download>DOWNLOAD SETUP ↗</a>
+      <a class="btn yellow" href="https://github.com/Hekyetmisbes/litecast/releases/download/v1.0.1/LiteCast-Setup.exe" target="_blank" rel="noopener">DOWNLOAD SETUP (.EXE) ↗</a>
+      <a class="btn" href="https://github.com/Hekyetmisbes/litecast/releases/download/v1.0.1/LiteCast.exe" target="_blank" rel="noopener">PORTABLE (.EXE) ↗</a>
       <a class="btn blue" href="https://github.com/Hekyetmisbes/litecast" target="_blank" rel="noopener">GITHUB ↗</a>
+    </div>
+  </section>
+
+  <!-- PRODUCT 02: CLOSEMEET LITE -->
+  <section class="product-card" data-product-id="PRODUCT_02">
+    <div class="product-head">
+      <div class="product-icon">
+        <img
+          src="/assets/closemeet-lite/icon.png"
+          alt="CloseMeet Lite P2P encrypted desktop conferencing icon"
+          width="48"
+          height="48"
+          loading="lazy"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div class=&quot;product-icon-fallback&quot;>CM</div>'"
+        />
+      </div>
+      <div>
+        <div class="meta">ACTIVE // v1.0.0 // WINDOWS 10 / 11 x64</div>
+        <h2>CLOSEMEET LITE</h2>
+        <div class="blue">Zero-knowledge P2P encrypted desktop video conferencing for 2–6 peers</div>
+      </div>
+    </div>
+
+    <p>
+      A serverless, hardware-accelerated desktop video conferencing client built with C++20, Qt 6 / QML, and Windows CNG cryptography.
+      Engineered for 2–6 participants over a direct Full-Mesh P2P topology with fail-closed AES-256-GCM encryption,
+      zero inbound listening sockets, offline LAN mDNS discovery, screen sharing, collaborative whiteboard, and local MP4 recording.
+    </p>
+
+    <div class="spec-row">
+      <span class="spec"><b>CORE:</b> C++20 / Qt 6 QML</span>
+      <span class="spec"><b>CRYPTO:</b> AES-256-GCM (CNG)</span>
+      <span class="spec"><b>TOPOLOGY:</b> 2–6 Peer Full-Mesh (15 Links)</span>
+      <span class="spec"><b>INBOUND PORTS:</b> 0 (Zero-Listen)</span>
+      <span class="spec"><b>NATIVE EXE:</b> ~4.55 MB</span>
+    </div>
+
+    <div class="tags">
+      <span class="tag">E2EE (AES-256-GCM)</span>
+      <span class="tag">HKDF-SHA256</span>
+      <span class="tag">Full-Mesh P2P</span>
+      <span class="tag">Offline LAN (mDNS)</span>
+      <span class="tag">Screen Share &amp; Whiteboard</span>
+      <span class="tag">Local MP4 Recorder</span>
+    </div>
+
+    <div class="product-actions">
+      <a class="btn" href="/products/closemeet-lite/">EXPLORE CLOSEMEET LITE →</a>
+      <a class="btn yellow" href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Setup.exe" target="_blank" rel="noopener">DOWNLOAD SETUP (.EXE) ↗</a>
+      <a class="btn" href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Portable.zip" target="_blank" rel="noopener">PORTABLE (.ZIP) ↗</a>
+      <a class="btn blue" href="https://github.com/Hekyetmisbes/close-meet-lite" target="_blank" rel="noopener">GITHUB ↗</a>
     </div>
   </section>
 
   <div class="section-head" style="margin-top: 34px;">
     <div>
-      <div class="code">R&D QUEUE</div>
+      <div class="code">R&amp;D QUEUE</div>
       <h2>IN DEVELOPMENT</h2>
     </div>
   </div>

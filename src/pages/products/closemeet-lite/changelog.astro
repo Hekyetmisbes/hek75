@@ -1,0 +1,168 @@
+---
+// src/pages/products/closemeet-lite/changelog.astro
+// HEK75 ARCADE OS — CloseMeet Lite Detailed Changelog & Release Notes Archive.
+
+import Layout from '../../../layouts/Layout.astro';
+
+const changelogSchema = [
+  {
+    "@type": "TechArticle",
+    "@id": "https://hek75.com/products/closemeet-lite/changelog/#article",
+    "headline": "CloseMeet Lite v1.0.0 Changelog & Release Notes",
+    "description": "CloseMeet Lite v1.0.0 release notes: Windows CNG AES-256-GCM E2EE, 6-peer Full-Mesh P2P, mDNS Offline LAN mode, local MP4 recording, and per-user packaging.",
+    "datePublished": "2026-10-21",
+    "author": {
+      "@id": "https://hek75.com/#person"
+    },
+    "about": {
+      "@id": "https://hek75.com/products/closemeet-lite/#app"
+    },
+    "url": "https://hek75.com/products/closemeet-lite/changelog/"
+  }
+];
+---
+
+<Layout
+  title="CloseMeet Lite v1.0.0 Changelog & Release Notes | HEK75"
+  description="CloseMeet Lite v1.0.0 release notes: Windows CNG AES-256-GCM E2EE, 6-peer Full-Mesh P2P, mDNS Offline LAN mode, local MP4 recording, and per-user packaging."
+  keywords="CloseMeet Lite v1.0.0 Changelog, CloseMeet Lite Release Notes, Windows CNG AES-256-GCM E2EE, Full-Mesh WebRTC P2P, mDNS Offline LAN, Harun Emrecan Karabağ"
+  image="/assets/closemeet-lite/icon.png"
+  type="article"
+  activeNav="products"
+  footerLeft="CLOSEMEET LITE // RELEASE ARCHIVE v1.0.0"
+  footerRight="HEK75 OS // ARCHIVE.LOG"
+  breadcrumbs={[
+    { name: "HOME", url: "/" },
+    { name: "PRODUCTS", url: "/products/" },
+    { name: "CLOSEMEET LITE", url: "/products/closemeet-lite/" },
+    { name: "CHANGELOG", url: "/products/closemeet-lite/changelog/" }
+  ]}
+  customSchema={changelogSchema}
+>
+  <nav class="breadcrumb" aria-label="Breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item"><span itemprop="name">HOME</span></a>
+      <meta itemprop="position" content="1" />
+    </span>
+    <span class="breadcrumb-separator">/</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/products/" itemprop="item"><span itemprop="name">PRODUCTS</span></a>
+      <meta itemprop="position" content="2" />
+    </span>
+    <span class="breadcrumb-separator">/</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/products/closemeet-lite/" itemprop="item"><span itemprop="name">CLOSEMEET LITE</span></a>
+      <meta itemprop="position" content="3" />
+    </span>
+    <span class="breadcrumb-separator">/</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span class="breadcrumb-current" itemprop="name">CHANGELOG</span>
+      <link itemprop="item" href="https://hek75.com/products/closemeet-lite/changelog/" />
+      <meta itemprop="position" content="4" />
+    </span>
+  </nav>
+
+  <div class="section-head">
+    <div>
+      <div class="code">SOFTWARE RELEASE LOG // CLOSEMEETLITE.EXE</div>
+      <h1>CLOSEMEET LITE v1.0.0 CHANGELOG</h1>
+    </div>
+    <span class="meta">BUILD 1.0.0.0 // STABLE</span>
+  </div>
+
+  <div class="panel" style="margin-bottom: 24px; border-left: 3px solid var(--green);">
+    <div class="code" style="color: var(--yellow); margin-bottom: 6px;">RELEASE SUMMARY // OCT 2026</div>
+    <h2 style="margin: 0 0 10px 0; color: var(--green); font-size: 20px;">
+      Initial Stable Release — Full-Mesh P2P, Hardware E2EE &amp; Offline LAN
+    </h2>
+    <p class="muted" style="line-height: 1.7; margin: 0; font-size: 14px;">
+      CloseMeet Lite v1.0.0 delivers a standalone, serverless desktop video conferencing client for 2–6 participants on Windows 10/11 x64. Built with C++20, Qt 6 / QML, and Windows CNG cryptography, it provides fail-closed end-to-end encryption without central SFU media servers, cloud accounts, or inbound firewall ports.
+    </p>
+  </div>
+
+  <div class="content-grid">
+    <!-- Module 1: Hardware E2EE & Security -->
+    <div class="panel">
+      <div class="code" style="color: var(--yellow); margin-bottom: 8px;">MODULE 01 // CRYPTOGRAPHY &amp; ZERO-TRUST</div>
+      <h3 style="color: var(--green); margin-top: 0;">Hardware-Accelerated E2EE (Windows CNG)</h3>
+      <ul style="color: #7fa483; font-size: 13px; line-height: 1.8; padding-left: 18px; margin: 0;">
+        <li>
+          <b style="color: #dbffde;">AES-256-GCM via <code class="code" style="color: var(--green);">bcrypt.lib</code>:</b> All audio, video, and DataChannel frames are encrypted using the OS hardware cryptographic engine with 96-bit monotonic IVs and 128-bit authentication tags.
+        </li>
+        <li>
+          <b style="color: #dbffde;">RFC 5869 HKDF-SHA256 &amp; PBKDF2:</b> Session keys are derived from a 256-bit session secret and optional room password; local credentials use 600,000-iteration PBKDF2-HMAC-SHA256.
+        </li>
+        <li>
+          <b style="color: #dbffde;">Fail-Closed Tamper Guard &amp; Zero-Inbound Sockets:</b> Any corrupted or tampered packet is silently dropped before reaching UI buffers. Client opens 0 listening TCP/UDP ports on Windows Firewall.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Module 2: Full-Mesh P2P & Offline LAN -->
+    <div class="panel">
+      <div class="code" style="color: var(--yellow); margin-bottom: 8px;">MODULE 02 // NETWORK TOPOLOGY &amp; LAN</div>
+      <h3 style="color: var(--green); margin-top: 0;">6-Peer Full-Mesh &amp; mDNS Offline LAN</h3>
+      <ul style="color: #7fa483; font-size: 13px; line-height: 1.8; padding-left: 18px; margin: 0;">
+        <li>
+          <b style="color: #dbffde;">2–6 Participant Full-Mesh:</b> Manages up to 15 concurrent peer connections without an SFU/MCU server, enforcing atomic <code class="code" style="color: var(--yellow);">ROOM_FULL</code> rejection on 7th-peer join attempts.
+        </li>
+        <li>
+          <b style="color: #dbffde;">Offline LAN Mode (mDNS / DNS-SD):</b> Discovers local rooms (<code class="code" style="color: var(--green);">_closemeet._tcp.local</code>) over Wi-Fi/Ethernet with zero internet connectivity using Host-as-Bridge signaling.
+        </li>
+        <li>
+          <b style="color: #dbffde;">Privacy Relay &amp; Auto-Reconnect:</b> Optional TURN-only Privacy Relay toggle to mask peer IP addresses, paired with 1s→2s→4s→8s exponential backoff reconnection.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Module 3: Collaboration & Local MP4 Recording -->
+    <div class="panel">
+      <div class="code" style="color: var(--yellow); margin-bottom: 8px;">MODULE 03 // COLLABORATION &amp; MEDIA</div>
+      <h3 style="color: var(--green); margin-top: 0;">Meeting Tools, ABR &amp; Local MP4 Recorder</h3>
+      <ul style="color: #7fa483; font-size: 13px; line-height: 1.8; padding-left: 18px; margin: 0;">
+        <li>
+          <b style="color: #dbffde;">Screen Share, Whiteboard &amp; 64 KB File Transfer:</b> 1080p30 WGC/GDI capture (<code class="code">WDA_EXCLUDEFROMCAPTURE</code>), vector whiteboard with late-joiner snapshots, and SHA-256 verified P2P file streaming.
+        </li>
+        <li>
+          <b style="color: #dbffde;">ABR Engine &amp; GPU Codecs:</b> Hysteresis-driven quality adaptation (720p30 → 480p24 → 360p15 → Audio-Only) and hardware encoder detection (NVENC, Intel QSV, AMD AMF).
+        </li>
+        <li>
+          <b style="color: #dbffde;">Local-Only MP4 Recording &amp; HUD:</b> Pure C++ H.264/AAC MP4 writer saving directly to <code class="code">%USERPROFILE%\Videos\CloseMeet\Recordings\</code> and live <kbd>Ctrl + D</kbd> Diagnostics HUD.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Module 4: Packaging, SignPath & Verification -->
+    <div class="panel">
+      <div class="code" style="color: var(--yellow); margin-bottom: 8px;">MODULE 04 // PACKAGING &amp; VERIFICATION</div>
+      <h3 style="color: var(--green); margin-top: 0;">Per-User Installer, LGPLv3 &amp; Soak Proof</h3>
+      <ul style="color: #7fa483; font-size: 13px; line-height: 1.8; padding-left: 18px; margin: 0;">
+        <li>
+          <b style="color: #dbffde;">Zero-UAC Per-User Setup &amp; Portable ZIP:</b> Inno Setup installer (<code class="code">PrivilegesRequired=lowest</code>) targeting <code class="code">%LOCALAPPDATA%\Programs\CloseMeetLite</code>, plus portable archive and SignPath.io Authenticode pipeline.
+        </li>
+        <li>
+          <b style="color: #dbffde;">LGPLv3 &amp; SPDX-2.3 SBOM:</b> Dynamically linked Qt 6 DLLs preserving user relinking rights, shipped with <code class="code">sbom.json</code> and <code class="code">THIRD_PARTY_NOTICES.md</code>.
+        </li>
+        <li>
+          <b style="color: #dbffde;">Soak &amp; Security Proof (L090–L102):</b> 150,000 frames processed across 6 peers with 0.0039 MB memory delta and 100% fail-closed adversarial packet rejection.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Download & Return Actions -->
+  <div class="product-actions" style="margin-top: 36px;">
+    <a class="btn yellow" href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Setup.exe" target="_blank" rel="noopener">
+      DOWNLOAD SETUP v1.0.0 (.EXE) ↗
+    </a>
+    <a class="btn" href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Portable.zip" target="_blank" rel="noopener">
+      DOWNLOAD PORTABLE (.ZIP) ↗
+    </a>
+    <a class="btn blue" href="https://github.com/Hekyetmisbes/close-meet-lite" target="_blank" rel="noopener">
+      GITHUB REPOSITORY ↗
+    </a>
+    <a class="btn" href="/products/closemeet-lite/">
+      &larr; RETURN TO CLOSEMEET LITE
+    </a>
+  </div>
+</Layout>

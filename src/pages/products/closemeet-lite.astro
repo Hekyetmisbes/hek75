@@ -1,0 +1,828 @@
+---
+// src/pages/products/closemeet-lite.astro
+// HEK75 ARCADE OS — Dedicated CloseMeet Lite Product Page & P2P Mesh / E2EE Simulator.
+
+import Layout from '../../layouts/Layout.astro';
+
+const closeMeetSchema = [
+  {
+    "@type": "SoftwareApplication",
+    "@id": "https://hek75.com/products/closemeet-lite/#app",
+    "name": "CloseMeet Lite",
+    "operatingSystem": "Windows 10, Windows 11 x64",
+    "applicationCategory": "CommunicationApplication",
+    "applicationSubCategory": "Encrypted P2P Video Conferencing",
+    "softwareVersion": "1.0.0",
+    "datePublished": "2026-10-21",
+    "fileSize": "141MB",
+    "image": "https://hek75.com/assets/closemeet-lite/icon.png",
+    "url": "https://hek75.com/products/closemeet-lite/",
+    "downloadUrl": "https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Setup.exe",
+    "releaseNotes": "https://hek75.com/products/closemeet-lite/changelog/",
+    "license": "https://opensource.org/licenses/MIT",
+    "featureList": [
+      "Windows CNG (bcrypt.lib) AES-256-GCM end-to-end encryption",
+      "RFC 5869 HKDF-SHA256 session key derivation and 600,000-iteration PBKDF2-HMAC-SHA256 local auth",
+      "Serverless 2–6 participant Full-Mesh P2P topology (15 bidirectional links)",
+      "Zero inbound listening sockets (outbound-only WebRTC ICE traversal + optional TURN Privacy Relay)",
+      "Offline LAN room discovery via mDNS / DNS-SD (_closemeet._tcp.local)",
+      "1080p 30 FPS screen sharing, collaborative vector whiteboard, and 64 KB chunked P2P file transfer",
+      "Local-only H.264/AAC MP4 session recording and live Ctrl+D Diagnostics HUD"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@id": "https://hek75.com/#person"
+    },
+    "description": "Hardware-accelerated, zero-knowledge P2P encrypted desktop video conferencing for 2–6 participants built with C++20, Qt 6 / QML, and Windows CNG (AES-256-GCM)."
+  },
+  {
+    "@type": "FAQPage",
+    "@id": "https://hek75.com/products/closemeet-lite/#faq",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is CloseMeet Lite capped at 6 participants per room?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CloseMeet Lite uses a serverless Full-Mesh P2P topology where every participant connects directly to every other participant (N(N-1)/2 connections). At 6 participants, the mesh maintains 15 bidirectional P2P links within a strict <15% CPU and 4.5 Mbps uplink budget. A 7th participant attempt is atomically rejected (ROOM_FULL) at both the signaling and client layers to guarantee zero frame drops without a central SFU server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the Fail-Closed E2EE architecture protect media and files?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Session keys are derived locally using RFC 5869 HKDF-SHA256 from a 256-bit session secret and optional room password. Every media frame and 64 KB file chunk is encrypted via Windows CNG (bcrypt.lib) AES-256-GCM with a unique 96-bit monotonic IV and 128-bit authentication tag. Any packet that fails authentication tag verification is discarded immediately before reaching decoder or UI buffers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does CloseMeet Lite require port forwarding or administrator privileges?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Neither. CloseMeet Lite opens 0 inbound listening sockets on Windows Defender Firewall, relying strictly on outbound WebRTC ICE UDP hole-punching (or optional TURN Privacy Relay for IP masking). Furthermore, the Inno Setup installer runs with PrivilegesRequired=lowest (asInvoker), installing cleanly to user space without UAC elevation."
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout
+  title="CloseMeet Lite – Encrypted P2P Desktop Video Conferencing | HEK75"
+  description="Zero-knowledge Full-Mesh P2P desktop video conferencing for 2–6 participants engineered with C++20, Qt 6 / QML, and Windows CNG hardware AES-256-GCM encryption."
+  keywords="CloseMeet Lite, Encrypted P2P Video Conferencing, Full-Mesh WebRTC Desktop App, C++20 Qt 6 QML, Windows CNG AES-256-GCM, HKDF-SHA256, Offline LAN mDNS Conferencing, Serverless Video Call Windows, Harun Emrecan Karabağ, HEK75"
+  image="/assets/closemeet-lite/icon.png"
+  activeNav="products"
+  footerLeft="ZERO-KNOWLEDGE P2P // C++20 + QT 6 + WINDOWS CNG"
+  footerRight="HEK75 OS // CLOSEMEETLITE.EXE"
+  breadcrumbs={[
+    { name: "HOME", url: "/" },
+    { name: "PRODUCTS", url: "/products/" },
+    { name: "CLOSEMEET LITE", url: "/products/closemeet-lite/" }
+  ]}
+  customSchema={closeMeetSchema}
+>
+  <nav class="breadcrumb" aria-label="Breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item"><span itemprop="name">HOME</span></a>
+      <meta itemprop="position" content="1" />
+    </span>
+    <span class="breadcrumb-separator">/</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/products/" itemprop="item"><span itemprop="name">PRODUCTS</span></a>
+      <meta itemprop="position" content="2" />
+    </span>
+    <span class="breadcrumb-separator">/</span>
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span class="breadcrumb-current" itemprop="name">CLOSEMEET LITE</span>
+      <link itemprop="item" href="https://hek75.com/products/closemeet-lite/" />
+      <meta itemprop="position" content="3" />
+    </span>
+  </nav>
+
+  <!-- CloseMeet Lite Hero -->
+  <section class="lc-hero">
+    <div class="lc-brand-row">
+      <div class="lc-hero-icon">
+        <img
+          src="/assets/closemeet-lite/icon.png"
+          alt="CloseMeet Lite P2P encrypted video conferencing application icon"
+          width="72"
+          height="72"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div class=&quot;product-icon-fallback&quot;>CM</div>'"
+        />
+      </div>
+      <div>
+        <div class="meta">HEK75 SOFTWARE // PRODUCT_02 // v1.0.0</div>
+        <h1 class="lc-title">CLOSEMEET LITE</h1>
+        <div class="lc-sub">Zero-Knowledge Full-Mesh P2P Video Conferencing // C++20 + Qt 6 + Windows CNG</div>
+      </div>
+    </div>
+
+    <p class="lc-lead">
+      CloseMeet Lite is a serverless desktop video conferencing application engineered for 2–6 participants on Windows 10/11 x64.
+      It eliminates central media servers (SFU/MCU), cloud recording risks, and database dependencies by establishing direct
+      peer-to-peer Full-Mesh connections secured with hardware-accelerated Windows CNG (<code class="code">bcrypt.lib</code>)
+      AES-256-GCM encryption and RFC 5869 HKDF-SHA256 key derivation.
+    </p>
+
+    <div class="lc-pills">
+      <span class="lc-pill"><b>OS</b> Windows 10 / 11 x64</span>
+      <span class="lc-pill"><b>CORE</b> C++20 (MSVC 2022) + Qt 6 / QML</span>
+      <span class="lc-pill"><b>CRYPTO</b> AES-256-GCM + HKDF-SHA256</span>
+      <span class="lc-pill"><b>TOPOLOGY</b> 2–6 Peers (15 P2P Links)</span>
+      <span class="lc-pill"><b>INBOUND PORTS</b> 0 (Zero-Listen)</span>
+      <span class="lc-pill"><b>LICENSE</b> MIT / LGPLv3</span>
+    </div>
+
+    <div class="product-actions">
+      <a class="btn yellow" href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Setup.exe" target="_blank" rel="noopener">
+        DOWNLOAD SETUP (.EXE) ↗
+      </a>
+      <a class="btn" href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Portable.zip" target="_blank" rel="noopener">
+        DOWNLOAD PORTABLE (.ZIP) ↗
+      </a>
+      <a class="btn blue" href="https://github.com/Hekyetmisbes/close-meet-lite" target="_blank" rel="noopener">
+        GITHUB REPOSITORY ↗
+      </a>
+      <a class="btn" href="/products/closemeet-lite/changelog/">
+        v1.0.0 CHANGELOG →
+      </a>
+      <a class="btn" href="/products/">
+        ← PRODUCTS
+      </a>
+    </div>
+  </section>
+
+  <!-- Interactive P2P Mesh & E2EE Diagnostics Simulator -->
+  <div class="section-head" style="margin-top: 34px;">
+    <div>
+      <div class="code">INTERACTIVE MESH &amp; CRYPTO LAB</div>
+      <h2>SIMULATE FULL-MESH &amp; E2EE</h2>
+    </div>
+    <span class="meta">BROWSER TELEMETRY SIMULATOR</span>
+  </div>
+
+  <div class="cm-sim-wrap">
+    <div class="cm-sim-window" id="closemeetSimulator">
+      <!-- Simulated Top Bar -->
+      <div class="cm-sim-topbar">
+        <div class="cm-sim-status-group">
+          <span class="cm-sim-badge secure" id="cmRoomBadge" title="Room Invite Code">● ROOM: CM-75OS</span>
+          <span class="cm-sim-badge" id="cmTimerBadge">⏱ 00:42</span>
+          <span class="cm-sim-badge secure" id="cmCryptoBadge">🔒 E2EE ACTIVE (AES-256-GCM)</span>
+        </div>
+        <div class="cm-sim-status-group">
+          <span class="cm-sim-badge" id="cmTransportBadge">⚡ DIRECT P2P (0 INBOUND)</span>
+          <span class="cm-sim-badge" id="cmRecBadge" style="display: none;">● REC 720p MP4 (LOCAL)</span>
+          <span class="cm-sim-badge" id="cmPeerCountBadge">👥 4 / 6 PEERS</span>
+        </div>
+      </div>
+
+      <!-- Interactive Control Strip -->
+      <div class="cm-sim-toolbar">
+        <div class="cm-sim-btn-group" role="group" aria-label="Mesh Peer Count">
+          <span class="code" style="margin-right: 4px;">MESH:</span>
+          <button type="button" class="cm-sim-btn" data-peers="2">2 PEERS (1 LINK)</button>
+          <button type="button" class="cm-sim-btn active" data-peers="4">4 PEERS (6 LINKS)</button>
+          <button type="button" class="cm-sim-btn" data-peers="6">6 PEERS (15 LINKS)</button>
+          <button type="button" class="cm-sim-btn warn" id="cmBtn7thPeer" title="Test atomic 7th participant rejection">+ 7TH PEER TEST</button>
+        </div>
+
+        <div class="cm-sim-btn-group" role="group" aria-label="ABR Quality Tier">
+          <span class="code" style="margin-right: 4px;">ABR TIER:</span>
+          <button type="button" class="cm-sim-btn active" data-tier="720p">720p HD</button>
+          <button type="button" class="cm-sim-btn" data-tier="480p">480p SD</button>
+          <button type="button" class="cm-sim-btn" data-tier="360p">360p LOW</button>
+          <button type="button" class="cm-sim-btn" data-tier="audio">AUDIO-ONLY</button>
+        </div>
+      </div>
+
+      <!-- Main Stage: Adaptive Video Grid + Live Diagnostics HUD -->
+      <div class="cm-sim-stage">
+        <div class="cm-mesh-grid" id="cmMeshGrid" aria-live="polite"></div>
+
+        <aside class="cm-hud-panel" aria-label="Diagnostics HUD (Ctrl+D)">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span class="code" style="color: var(--yellow);">DIAGNOSTICS HUD // CTRL+D</span>
+            <span class="tag" style="margin: 0; padding: 2px 5px;">LIVE</span>
+          </div>
+          <div class="cm-hud-row">
+            <span>P2P Links N(N-1)/2</span>
+            <b id="hudLinks">6 Bidirectional (12 Streams)</b>
+          </div>
+          <div class="cm-hud-row">
+            <span>ABR Profile</span>
+            <b id="hudProfile" style="color: var(--green);">1280×720 @ 30 FPS</b>
+          </div>
+          <div class="cm-hud-row">
+            <span>CPU Budget (NVENC/QSV)</span>
+            <b id="hudCpu">8.4% (&lt;15% target)</b>
+          </div>
+          <div class="cm-hud-row">
+            <span>RAM Footprint</span>
+            <b id="hudRam">138 MB (&lt;250 MB cap)</b>
+          </div>
+          <div class="cm-hud-row">
+            <span>Uplink / Downlink</span>
+            <b id="hudBw">3.2 Mbps / 3.2 Mbps</b>
+          </div>
+          <div class="cm-hud-row">
+            <span>RTT / Jitter</span>
+            <b id="hudRtt">18 ms / 2.1 ms</b>
+          </div>
+          <div class="cm-hud-row">
+            <span>GCM Frames Verified</span>
+            <b id="hudFrames">14,820 (96-bit IV)</b>
+          </div>
+          <div class="cm-hud-row" style="border-bottom: 0;">
+            <span>Tampered Dropped</span>
+            <b id="hudDropped" style="color: var(--yellow);">0 (Fail-Closed)</b>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Bottom Security & Action Bar -->
+      <div class="cm-sim-toolbar" style="border-top: 1px solid #1d3621; border-bottom: 0;">
+        <div class="cm-sim-btn-group">
+          <button type="button" class="cm-sim-btn" id="cmBtnSpeaker">🎙 CYCLE ACTIVE SPEAKER (VAD)</button>
+          <button type="button" class="cm-sim-btn" id="cmBtnRelay">🛡 PRIVACY RELAY (TURN): OFF</button>
+          <button type="button" class="cm-sim-btn" id="cmBtnLan">📡 OFFLINE LAN (mDNS): OFF</button>
+          <button type="button" class="cm-sim-btn" id="cmBtnRec">● LOCAL MP4 REC: OFF</button>
+        </div>
+        <div class="cm-sim-btn-group">
+          <button type="button" class="cm-sim-btn danger" id="cmBtnTamper">⚡ INJECT TAMPERED PACKET</button>
+        </div>
+      </div>
+
+      <div class="cm-log-bar" id="cmSimLog">
+        <span>[SYSTEM] Full-Mesh initialized (4 peers, 6 E2EE links). Windows CNG AES-256-GCM session keys derived via HKDF-SHA256.</span>
+        <span class="code">FAIL-CLOSED: ARMED</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why CloseMeet Lite Pillars -->
+  <div class="section-head" style="margin-top: 42px;">
+    <div>
+      <div class="code">CORE PRINCIPLES</div>
+      <h2>WHY CLOSEMEET LITE?</h2>
+    </div>
+  </div>
+
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="big-metric">0 PORTS</div>
+      <strong>Zero-Inbound Sockets</strong>
+      <p>No listening TCP/UDP server ports or router port-forwarding required; outbound-only WebRTC ICE traversal.</p>
+    </div>
+    <div class="pillar">
+      <div class="big-metric">AES-256</div>
+      <strong>Hardware CNG E2EE</strong>
+      <p>Windows CNG (<code class="code">bcrypt.lib</code>) AES-256-GCM encryption with RFC 5869 HKDF-SHA256 key derivation and fail-closed tag checks.</p>
+    </div>
+    <div class="pillar">
+      <div class="big-metric">15 LINKS</div>
+      <strong>Serverless Full-Mesh</strong>
+      <p>Direct 2–6 participant P2P mesh ($N(N-1)/2 = 15$ links) with zero SFU/MCU cloud hosting costs and atomic 7th-peer rejection.</p>
+    </div>
+    <div class="pillar">
+      <div class="big-metric">mDNS</div>
+      <strong>Offline LAN Mode</strong>
+      <p>Zero-internet local network discovery (<code class="code">_closemeet._tcp.local</code>) with automatic Host-as-Bridge signaling.</p>
+    </div>
+  </div>
+
+  <!-- Feature Matrix -->
+  <div class="section-head" style="margin-top: 42px;">
+    <div>
+      <div class="code">CAPABILITY MATRIX</div>
+      <h2>SYSTEM ARCHITECTURE &amp; TOOLKIT</h2>
+    </div>
+  </div>
+
+  <div class="feature-grid">
+    <article class="feature">
+      <span class="feature-num">01</span>
+      <h3>Fail-Closed E2EE (Windows CNG)</h3>
+      <p>Every audio, video, and DataChannel frame is encrypted with hardware-accelerated AES-256-GCM, 96-bit monotonic nonces, and 128-bit authentication tags. Tampered packets are dropped before touching UI memory.</p>
+    </article>
+    <article class="feature">
+      <span class="feature-num">02</span>
+      <h3>6-Peer Full-Mesh &amp; Speaker VAD</h3>
+      <p>Deterministic Full-Mesh controller managing up to 15 peer connections, real-time PCM RMS + hysteresis Active Speaker highlighting, and exponential backoff auto-reconnect (1s→2s→4s→8s).</p>
+    </article>
+    <article class="feature">
+      <span class="feature-num">03</span>
+      <h3>Screen Share &amp; Vector Whiteboard</h3>
+      <p>1080p 30 FPS screen/window capture with <code class="code">WDA_EXCLUDEFROMCAPTURE</code> self-capture protection, plus normalized vector whiteboard synchronization with automatic late-joiner snapshots.</p>
+    </article>
+    <article class="feature">
+      <span class="feature-num">04</span>
+      <h3>64 KB Streaming P2P File Transfer</h3>
+      <p>Serverless peer-to-peer file sharing over SCTP DataChannels in 64 KB chunks with backpressure flow control and per-chunk + full-file SHA-256 integrity verification.</p>
+    </article>
+    <article class="feature">
+      <span class="feature-num">05</span>
+      <h3>Adaptive Bitrate (ABR) &amp; GPU Codecs</h3>
+      <p>Hysteresis-filtered ABR engine smoothly stepping between 720p30, 480p24, 360p15, and 64 kbps Opus Audio-Only based on RTT/loss telemetry, backed by NVENC, Intel QSV, and AMD AMF detection.</p>
+    </article>
+    <article class="feature">
+      <span class="feature-num">06</span>
+      <h3>Local MP4 Recorder &amp; Live HUD</h3>
+      <p>Zero-cloud session recorder writing hardware-compatible H.264/AAC MP4 containers (<code class="code">ftyp</code>/<code class="code">moov</code>/<code class="code">mdat</code>) directly to local disk, paired with a real-time <kbd>Ctrl + D</kbd> telemetry HUD.</p>
+    </article>
+  </div>
+
+  <!-- Performance Budgets & Soak Verification Table -->
+  <div class="section-head" style="margin-top: 42px;">
+    <div>
+      <div class="code">VERIFIED TELEMETRY // MILESTONE M08 &amp; M09</div>
+      <h2>PERFORMANCE BUDGET &amp; SOAK PROFILE</h2>
+    </div>
+  </div>
+
+  <div style="overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); margin-top: 14px;">
+    <table class="benchmark" style="min-width: 580px;">
+      <thead>
+        <tr>
+          <th>Metric / Verification Target</th>
+          <th>2 Peers (1-to-1 Link)</th>
+          <th>4 Peers (6 Mesh Links)</th>
+          <th>6 Peers (15 Full-Mesh Links)</th>
+          <th>Verification Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CPU Usage (GPU NVENC / QSV / AMF)</td>
+          <td class="lite">&lt; 5%</td>
+          <td class="lite">&lt; 10%</td>
+          <td class="lite">&lt; 15%</td>
+          <td class="delta">PASS (Target &lt; 15%)</td>
+        </tr>
+        <tr>
+          <td>CPU Usage (Software Fallback)</td>
+          <td>&lt; 12%</td>
+          <td>&lt; 22%</td>
+          <td>&lt; 35%</td>
+          <td class="delta">PASS (Target &lt; 35%)</td>
+        </tr>
+        <tr>
+          <td>Total Process RAM Footprint</td>
+          <td class="lite">~85 MB</td>
+          <td class="lite">~140 MB</td>
+          <td class="lite">&lt; 220 MB</td>
+          <td class="delta">PASS (&lt; 250 MB Cap)</td>
+        </tr>
+        <tr>
+          <td>Uplink / Downlink Bandwidth Cap</td>
+          <td>1.5 Mbps / 1.5 Mbps</td>
+          <td>3.2 Mbps / 3.2 Mbps</td>
+          <td>4.5 Mbps / 4.5 Mbps</td>
+          <td class="delta">ABR Hysteresis Managed</td>
+        </tr>
+        <tr>
+          <td>Frame Crypto &amp; Encode Latency</td>
+          <td class="lite">~4 ms</td>
+          <td class="lite">~5 ms</td>
+          <td class="lite">&lt; 8 ms</td>
+          <td class="delta">Sub-Frame (&lt; 15 ms)</td>
+        </tr>
+        <tr>
+          <td>L091 Soak Test (150,000 Frames / 5,000 Cycles)</td>
+          <td class="lite">0.00 MB Leak</td>
+          <td class="lite">0.00 MB Leak</td>
+          <td class="lite">+0.0039 MB Delta</td>
+          <td class="delta">100% Zero-Leak RAII</td>
+        </tr>
+        <tr>
+          <td>L090 Adversarial Tamper &amp; Flood Suite</td>
+          <td class="lite">100% Rejected</td>
+          <td class="lite">100% Rejected</td>
+          <td class="lite">7th Peer Atomic Reject</td>
+          <td class="delta">100% Fail-Closed</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Verification Methodology Note -->
+  <div class="panel" style="margin-top: 14px; background: rgba(7, 16, 8, 0.55); border: 1px dashed var(--line); border-left: 3px solid var(--yellow);">
+    <div class="code" style="color: var(--yellow); margin-bottom: 6px;">VERIFICATION &amp; SECURITY AUDIT EVIDENCE (L090 / L091 / L092 / L102)</div>
+    <p class="muted" style="font-size: 12px; margin: 0; line-height: 1.7;">
+      <b>Test Environment:</b> Windows 11 x64, MSVC 2022 (v19.38+) C++20, Qt 6.8, 24 CMake/CTest unit &amp; E2E suites plus Python/Node adversarial harnesses.<br />
+      <b>Validation Proof:</b> Verified across 150,000 continuous Full-Mesh frames in 6-peer soak testing (<code class="code">core-acceptance.md</code>) with only 0.0039 MB net heap delta, 16/16 byte AES-GCM authentication tag bit-flip tamper rejection (<code class="code">security-review.md</code>), zero inbound TCP/UDP listening sockets confirmed via <code class="code">Get-NetTCPConnection</code> / <code class="code">Get-NetUDPEndpoint</code>, and 0.8s cold startup on clean Windows 10/11 per-user installations.
+    </p>
+  </div>
+
+  <!-- Keyboard & Control Map -->
+  <div class="section-head" style="margin-top: 42px;">
+    <div>
+      <div class="code">OPERATIONAL CONTROLS</div>
+      <h2>SHORTCUTS &amp; SECURITY TOGGLES</h2>
+    </div>
+  </div>
+
+  <div class="key-grid">
+    <div class="key-item">
+      <kbd>Ctrl + D</kbd>
+      <span class="muted">Toggle live Diagnostics HUD (RTT, Jitter, Bitrate, GPU Codec, RAM/CPU).</span>
+    </div>
+    <div class="key-item">
+      <kbd>CM-XXXX</kbd>
+      <span class="muted">One-click 6-character room invite code generation and clipboard copy.</span>
+    </div>
+    <div class="key-item">
+      <kbd>Privacy Relay</kbd>
+      <span class="muted">Disable Host/STUN candidates and force all traffic strictly over TURN relay to mask peer IPs.</span>
+    </div>
+    <div class="key-item">
+      <kbd>● REC MP4</kbd>
+      <span class="muted">Record 1280×720 H.264/AAC MP4 locally to <code class="code">%USERPROFILE%\Videos\CloseMeet</code>.</span>
+    </div>
+  </div>
+
+  <!-- Latest Release Notes Callout (v1.0.0) -->
+  <div class="section-head" style="margin-top: 42px;">
+    <div>
+      <div class="code">RELEASE LOG // STABLE CHANNEL</div>
+      <h2>LATEST RELEASE // v1.0.0</h2>
+    </div>
+    <span class="meta">RELEASED // OCT 2026</span>
+  </div>
+
+  <div class="panel" style="border-left: 3px solid var(--green);">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+      <div>
+        <span class="code" style="color: var(--yellow);">[ INITIAL STABLE RELEASE ]</span>
+        <h3 style="margin: 6px 0 2px 0; color: var(--green);">CloseMeet Lite v1.0.0 — Full-Mesh P2P, Windows CNG E2EE &amp; Offline LAN</h3>
+      </div>
+      <span class="tag" style="align-self: flex-start;">BUILD 1.0.0.0</span>
+    </div>
+    <p class="muted" style="line-height: 1.6; margin-bottom: 16px; font-size: 13px;">
+      Ships the complete 3-layer architecture: Qt 6 / QML desktop client (Login/Guest, Pre-Join Lobby, Adaptive Meeting Room, Diagnostics HUD), C++20 core engine with Windows CNG AES-256-GCM encryption and mDNS LAN discovery, and the hardened token-bucket signaling bridge. Packaged as both a zero-UAC Inno Setup per-user installer and a portable ZIP archive with full SPDX-2.3 SBOM and LGPLv3 dynamic linking compliance.
+    </p>
+    <div style="overflow-x: auto; margin-bottom: 18px; border: 1px solid var(--line);">
+      <table class="benchmark" style="min-width: 520px;">
+        <thead>
+          <tr>
+            <th>Artifact (Direct Download)</th>
+            <th>Format / Scope</th>
+            <th>Size</th>
+            <th>SHA-256 Checksum (Prefix)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lite">
+              <a href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Setup.exe" target="_blank" rel="noopener" style="text-decoration: underline;">
+                CloseMeet-Lite-v1.0-Setup.exe ↗
+              </a>
+            </td>
+            <td>Inno Setup Per-User (<code class="code">asInvoker</code>, No UAC)</td>
+            <td>141.06 MB</td>
+            <td><code class="code">7AD83C9B9D7A4B79...EEE5FC8949</code></td>
+          </tr>
+          <tr>
+            <td class="lite">
+              <a href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Portable.zip" target="_blank" rel="noopener" style="text-decoration: underline;">
+                CloseMeet-Lite-v1.0-Portable.zip ↗
+              </a>
+            </td>
+            <td>Standalone Portable Archive (x64)</td>
+            <td>216.70 MB</td>
+            <td><code class="code">0F78591544B1C265...107D0824</code></td>
+          </tr>
+          <tr>
+            <td class="lite">
+              <a href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeetLite.exe" target="_blank" rel="noopener" style="text-decoration: underline;">
+                CloseMeetLite.exe ↗
+              </a>
+            </td>
+            <td>Native Windows PE x64 Executable</td>
+            <td>4.55 MB</td>
+            <td><code class="code">D68BFC61D9E3CA77...2A7A8C8</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a class="btn yellow" href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Setup.exe" target="_blank" rel="noopener">
+        DOWNLOAD SETUP (.EXE) ↗
+      </a>
+      <a class="btn" href="https://github.com/Hekyetmisbes/close-meet-lite/releases/download/v1.0.0/CloseMeet-Lite-v1.0-Portable.zip" target="_blank" rel="noopener">
+        DOWNLOAD PORTABLE (.ZIP) ↗
+      </a>
+      <a class="btn blue" href="/products/closemeet-lite/changelog/">
+        VIEW FULL CHANGELOG →
+      </a>
+    </div>
+  </div>
+
+  <!-- Installation & Quick Start -->
+  <div class="section-head" style="margin-top: 42px;">
+    <div>
+      <div class="code">DEPLOYMENT &amp; SETUP</div>
+      <h2>INSTALLATION &amp; QUICK START</h2>
+    </div>
+    <span class="meta">NO UAC // ZERO SERVER SETUP</span>
+  </div>
+
+  <div class="content-grid">
+    <div class="panel">
+      <h3 style="color: var(--green); margin-top: 0;">1. Per-User Setup or Portable Run</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7;">
+        Run <code class="code" style="color: var(--green);">CloseMeet-Lite-v1.0-Setup.exe</code> to install directly to <code class="code">%LOCALAPPDATA%\Programs\CloseMeetLite</code> without administrator (UAC) prompts, or extract the portable archive on any Windows 10/11 x64 machine.
+      </p>
+    </div>
+    <div class="panel">
+      <h3 style="color: var(--green); margin-top: 0;">2. Local Auth or Instant Guest Mode</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7;">
+        Sign in using local PBKDF2-HMAC-SHA256 (600,000 iterations) credentials, optional Firebase REST authentication, or jump directly into a session via one-click Guest Mode.
+      </p>
+    </div>
+    <div class="panel">
+      <h3 style="color: var(--green); margin-top: 0;">3. Create or Join a 6-Peer Room</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7;">
+        Generate a 6-character room code (<code class="code" style="color: var(--yellow);">CM-XXXX</code>) with an optional room passphrase, verify your camera/microphone and background blur in the Pre-Join Lobby, and establish direct P2P E2EE streams.
+      </p>
+    </div>
+    <div class="panel">
+      <h3 style="color: var(--green); margin-top: 0;">4. Offline LAN Fallback (mDNS)</h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7;">
+        If internet connectivity drops, open LAN Discovery to automatically locate peers on the same Wi-Fi/Ethernet subnet via <code class="code">_closemeet._tcp.local</code> with the room host acting as the local signaling bridge.
+      </p>
+    </div>
+  </div>
+
+  <!-- Frequently Asked Questions -->
+  <div class="section-head" style="margin-top: 42px;">
+    <div>
+      <div class="code">FREQUENTLY ASKED QUESTIONS</div>
+      <h2>CLOSEMEET LITE FAQ</h2>
+    </div>
+    <span class="meta">ARCHITECTURAL DETAILS</span>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 14px;">
+    <div class="panel" style="border-left: 3px solid var(--green);">
+      <h3 style="color: var(--green); margin: 0 0 8px 0; font-size: 15px;">
+        Why is CloseMeet Lite capped at 6 participants per room?
+      </h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7; margin: 0;">
+        CloseMeet Lite uses a serverless Full-Mesh P2P topology where every participant connects directly to every other participant ($N(N-1)/2$ connections). At 6 participants, the mesh maintains 15 bidirectional P2P links within a strict &lt;15% CPU and 4.5 Mbps uplink budget. A 7th participant attempt is atomically rejected (<code class="code">ROOM_FULL</code>) at both the signaling and client layers to guarantee zero frame drops without a central SFU server.
+      </p>
+    </div>
+
+    <div class="panel" style="border-left: 3px solid var(--green);">
+      <h3 style="color: var(--green); margin: 0 0 8px 0; font-size: 15px;">
+        How does the Fail-Closed E2EE architecture protect media and files?
+      </h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7; margin: 0;">
+        Session keys are derived locally using RFC 5869 HKDF-SHA256 from a 256-bit session secret and optional room password. Every media frame and 64 KB file chunk is encrypted via Windows CNG (<code class="code">bcrypt.lib</code>) AES-256-GCM with a unique 96-bit monotonic IV and 128-bit authentication tag. Any packet that fails authentication tag verification is discarded immediately before reaching decoder or UI buffers.
+      </p>
+    </div>
+
+    <div class="panel" style="border-left: 3px solid var(--green);">
+      <h3 style="color: var(--green); margin: 0 0 8px 0; font-size: 15px;">
+        Does CloseMeet Lite require port forwarding or administrator privileges?
+      </h3>
+      <p class="muted" style="font-size: 13px; line-height: 1.7; margin: 0;">
+        Neither. CloseMeet Lite opens 0 inbound listening sockets on Windows Defender Firewall, relying strictly on outbound WebRTC ICE UDP hole-punching (or optional TURN Privacy Relay for IP masking). Furthermore, the Inno Setup installer runs with <code class="code">PrivilegesRequired=lowest</code> (<code class="code">asInvoker</code>), installing cleanly to user space without UAC elevation.
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<script is:inline>
+  (() => {
+    function initCloseMeetSim() {
+      const grid = document.getElementById("cmMeshGrid");
+      const logBar = document.getElementById("cmSimLog");
+      if (!grid || !logBar) return;
+
+      const peerRoster = [
+        { id: "P1", name: "Harun_Host (You)", role: "HOST", codec: "NVENC H.264" },
+        { id: "P2", name: "Emre_Dev", role: "PEER", codec: "NVENC H.264" },
+        { id: "P3", name: "Selin_SecOps", role: "PEER", codec: "Intel QSV" },
+        { id: "P4", name: "Kaan_NetEng", role: "PEER", codec: "AMD AMF" },
+        { id: "P5", name: "Deniz_QA", role: "PEER", codec: "NVENC H.264" },
+        { id: "P6", name: "Mert_Arch", role: "PEER", codec: "Intel QSV" }
+      ];
+
+      const tierProfiles = {
+        "720p": { label: "1280×720 @ 30 FPS", bwFactor: 1.0, rtt: "18 ms / 2.1 ms" },
+        "480p": { label: "854×480 @ 24 FPS", bwFactor: 0.55, rtt: "195 ms / 9.4 ms" },
+        "360p": { label: "640×360 @ 15 FPS", bwFactor: 0.28, rtt: "320 ms / 18.0 ms" },
+        "audio": { label: "Opus Audio-Only (64 kbps)", bwFactor: 0.05, rtt: "410 ms / 26.5 ms" }
+      };
+
+      const peerBudgets = {
+        2: { links: 1, streams: 2, cpu: "4.2%", ram: "85 MB", baseBw: 1.5 },
+        4: { links: 6, streams: 12, cpu: "8.4%", ram: "138 MB", baseBw: 3.2 },
+        6: { links: 15, streams: 30, cpu: "13.8%", ram: "212 MB", baseBw: 4.5 }
+      };
+
+      let state = {
+        peers: 4,
+        tier: "720p",
+        speakerIdx: 0,
+        relay: false,
+        lan: false,
+        rec: false,
+        frames: 14820,
+        dropped: 0
+      };
+
+      function setLog(msg, statusRight = "FAIL-CLOSED: ARMED") {
+        logBar.innerHTML = `<span>${msg}</span><span class="code">${statusRight}</span>`;
+      }
+
+      function renderSim() {
+        const activePeers = peerRoster.slice(0, state.peers);
+        const budget = peerBudgets[state.peers] || peerBudgets[4];
+        const tier = tierProfiles[state.tier] || tierProfiles["720p"];
+
+        grid.innerHTML = activePeers.map((p, idx) => {
+          const isSpeaking = idx === (state.speakerIdx % activePeers.length);
+          const streamLabel = state.tier === "audio" ? "OPUS 48kHz (VAD)" : `${state.tier.toUpperCase()} // ${p.codec}`;
+          return `
+            <div class="cm-peer-tile ${isSpeaking ? "speaking" : ""}">
+              <div class="cm-peer-head">
+                <span>${p.id} // ${p.role}</span>
+                <span style="color: ${isSpeaking ? "var(--green)" : "var(--muted)"};">${isSpeaking ? "● VAD SPEAKING" : "🔒 GCM OK"}</span>
+              </div>
+              <div class="cm-peer-avatar">${p.id}</div>
+              <div class="cm-peer-foot">
+                <b>${p.name}</b>
+                <span>${streamLabel}</span>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        const peerBadge = document.getElementById("cmPeerCountBadge");
+        if (peerBadge) peerBadge.textContent = `👥 ${state.peers} / 6 PEERS`;
+
+        const transportBadge = document.getElementById("cmTransportBadge");
+        if (transportBadge) {
+          if (state.lan) {
+            transportBadge.textContent = "📡 OFFLINE LAN (mDNS _closemeet._tcp.local)";
+            transportBadge.className = "cm-sim-badge secure";
+          } else if (state.relay) {
+            transportBadge.textContent = "🛡 TURN PRIVACY RELAY (IP MASKED)";
+            transportBadge.className = "cm-sim-badge relay";
+          } else {
+            transportBadge.textContent = "⚡ DIRECT P2P (0 INBOUND PORTS)";
+            transportBadge.className = "cm-sim-badge";
+          }
+        }
+
+        const recBadge = document.getElementById("cmRecBadge");
+        if (recBadge) {
+          recBadge.style.display = state.rec ? "inline-flex" : "none";
+        }
+
+        const bwVal = (budget.baseBw * tier.bwFactor).toFixed(2);
+        const hudLinks = document.getElementById("hudLinks");
+        const hudProfile = document.getElementById("hudProfile");
+        const hudCpu = document.getElementById("hudCpu");
+        const hudRam = document.getElementById("hudRam");
+        const hudBw = document.getElementById("hudBw");
+        const hudRtt = document.getElementById("hudRtt");
+        const hudFrames = document.getElementById("hudFrames");
+        const hudDropped = document.getElementById("hudDropped");
+
+        if (hudLinks) hudLinks.textContent = `${budget.links} Bidirectional (${budget.streams} Streams)`;
+        if (hudProfile) hudProfile.textContent = tier.label;
+        if (hudCpu) hudCpu.textContent = `${budget.cpu} (<15% target)`;
+        if (hudRam) hudRam.textContent = `${budget.ram} (<250 MB cap)`;
+        if (hudBw) hudBw.textContent = `${bwVal} Mbps / ${bwVal} Mbps`;
+        if (hudRtt) hudRtt.textContent = state.lan ? "1.2 ms / 0.3 ms (LAN)" : tier.rtt;
+        if (hudFrames) hudFrames.textContent = `${state.frames.toLocaleString()} (96-bit IV)`;
+        if (hudDropped) hudDropped.textContent = `${state.dropped} (Fail-Closed)`;
+      }
+
+      document.querySelectorAll("[data-peers]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-peers]").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          state.peers = Number(btn.getAttribute("data-peers"));
+          state.frames += 120;
+          const links = (state.peers * (state.peers - 1)) / 2;
+          setLog(`[MESH] Topology reconfigured to ${state.peers} peers (${links} bidirectional P2P links, 0 central SFU).`);
+          window.hek75Sound?.beep?.(520, 0.035, "square", 0.012);
+          renderSim();
+        });
+      });
+
+      document.querySelectorAll("[data-tier]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-tier]").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          state.tier = btn.getAttribute("data-tier") || "720p";
+          setLog(`[ABR ENGINE] Hysteresis filter switched stream tier to ${tierProfiles[state.tier].label}. Opus 48kHz audio guaranteed.`);
+          window.hek75Sound?.beep?.(460, 0.035, "square", 0.012);
+          renderSim();
+        });
+      });
+
+      const btn7th = document.getElementById("cmBtn7thPeer");
+      if (btn7th) {
+        btn7th.addEventListener("click", () => {
+          setLog(`[SECURITY GUARD] 7th peer connection request atomically rejected with ROOM_FULL (Close Code 4001) to protect O(N²) mesh budget.`, "ROOM_FULL: BLOCKED");
+          window.hek75Sound?.beep?.(240, 0.06, "sawtooth", 0.016);
+        });
+      }
+
+      const btnSpeaker = document.getElementById("cmBtnSpeaker");
+      if (btnSpeaker) {
+        btnSpeaker.addEventListener("click", () => {
+          state.speakerIdx = (state.speakerIdx + 1) % state.peers;
+          state.frames += 45;
+          const activePeer = peerRoster[state.speakerIdx];
+          setLog(`[VAD TRACKER] PCM RMS + Hysteresis switched active speaker highlight to ${activePeer.name}.`);
+          window.hek75Sound?.beep?.(610, 0.03, "triangle", 0.012);
+          renderSim();
+        });
+      }
+
+      const btnRelay = document.getElementById("cmBtnRelay");
+      if (btnRelay) {
+        btnRelay.addEventListener("click", () => {
+          state.relay = !state.relay;
+          if (state.relay) state.lan = false;
+          btnRelay.classList.toggle("active", state.relay);
+          const btnLan = document.getElementById("cmBtnLan");
+          if (btnLan && state.relay) btnLan.classList.remove("active");
+          btnRelay.textContent = `🛡 PRIVACY RELAY (TURN): ${state.relay ? "ON" : "OFF"}`;
+          if (btnLan) btnLan.textContent = `📡 OFFLINE LAN (mDNS): ${state.lan ? "ON" : "OFF"}`;
+          setLog(state.relay
+            ? `[PRIVACY RELAY] Host/STUN ICE candidates disabled. All P2P streams routed strictly over TURN relay to prevent peer IP disclosure.`
+            : `[ICE TRANSPORT] Restored direct P2P STUN hole-punching with 0 inbound listening ports.`);
+          window.hek75Sound?.beep?.(540, 0.035, "square", 0.012);
+          renderSim();
+        });
+      }
+
+      const btnLan = document.getElementById("cmBtnLan");
+      if (btnLan) {
+        btnLan.addEventListener("click", () => {
+          state.lan = !state.lan;
+          if (state.lan) state.relay = false;
+          btnLan.classList.toggle("active", state.lan);
+          const btnRelayEl = document.getElementById("cmBtnRelay");
+          if (btnRelayEl && state.lan) {
+            btnRelayEl.classList.remove("active");
+            btnRelayEl.textContent = "🛡 PRIVACY RELAY (TURN): OFF";
+          }
+          btnLan.textContent = `📡 OFFLINE LAN (mDNS): ${state.lan ? "ON" : "OFF"}`;
+          setLog(state.lan
+            ? `[OFFLINE LAN] Discovered local room via mDNS (_closemeet._tcp.local). Host-as-Bridge signaling active with zero external internet.`
+            : `[WAN SIGNALING] Switched back to standard WebSocket signaling bridge.`);
+          window.hek75Sound?.beep?.(580, 0.035, "square", 0.012);
+          renderSim();
+        });
+      }
+
+      const btnRec = document.getElementById("cmBtnRec");
+      if (btnRec) {
+        btnRec.addEventListener("click", () => {
+          state.rec = !state.rec;
+          btnRec.classList.toggle("active", state.rec);
+          btnRec.textContent = `● LOCAL MP4 REC: ${state.rec ? "ON" : "OFF"}`;
+          setLog(state.rec
+            ? `[SESSION RECORDER] Recording 1280×720 H.264/AAC MP4 (ftyp/moov/mdat) locally to %USERPROFILE%\\Videos\\CloseMeet\\Recordings.`
+            : `[SESSION RECORDER] Finalized MP4 moov atom and saved recording to local disk. Zero cloud upload.`);
+          window.hek75Sound?.beep?.(500, 0.035, "square", 0.012);
+          renderSim();
+        });
+      }
+
+      const btnTamper = document.getElementById("cmBtnTamper");
+      if (btnTamper) {
+        btnTamper.addEventListener("click", () => {
+          state.dropped += 1;
+          setLog(`[CNG BCRYPT GUARD] Bit-flip detected in 16-byte AES-256-GCM Auth Tag! Frame silently discarded (corrupted_frames_dropped_ = ${state.dropped}). Zero bytes leaked to UI.`, "AUTH TAG TAMPER: DROPPED");
+          window.hek75Sound?.beep?.(310, 0.055, "sawtooth", 0.016);
+          renderSim();
+        });
+      }
+
+      renderSim();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initCloseMeetSim);
+    } else {
+      initCloseMeetSim();
+    }
+    document.addEventListener("astro:page-load", initCloseMeetSim);
+  })();
+</script>
