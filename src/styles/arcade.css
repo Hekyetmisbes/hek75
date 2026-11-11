@@ -366,6 +366,11 @@ button, input {
   padding-bottom: 14px;
 }
 
+.section-head .meta {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .section-head > div {
   min-width: 0;
   max-width: 100%;
@@ -465,10 +470,15 @@ button, input {
 }
 
 .cover {
-  height: 170px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  min-height: 170px;
   background: #020503;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cover img {
@@ -1125,6 +1135,11 @@ button, input {
   padding: 14px;
   border-bottom: 1px solid #223b26;
   background: #070e08;
+  transition: border-color 0.15s ease;
+}
+
+.launcher-input-row:focus-within {
+  border-bottom-color: #355f3b;
 }
 
 .launcher-mini-icon {
@@ -1154,6 +1169,12 @@ button, input {
   background: transparent;
   color: #e5ffe7;
   font-size: 15px;
+}
+
+.launcher-input:focus,
+.launcher-input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .launcher-input::placeholder {
@@ -1254,15 +1275,24 @@ button, input {
 .quick-row {
   display: flex;
   gap: 7px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   align-items: center;
   margin-top: 12px;
+}
+
+.quick-row::-webkit-scrollbar {
+  display: none;
 }
 
 .quick-row span {
   font-size: 10px;
   color: #4c7450;
   letter-spacing: 1px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .quick-chip {
@@ -1273,6 +1303,8 @@ button, input {
   padding: 7px 9px;
   cursor: pointer;
   transition: 0.14s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .quick-chip:hover {
@@ -1434,13 +1466,38 @@ kbd {
 .terminal-overlay {
   position: fixed;
   inset: 0;
-  z-index: 8999;
+  z-index: 9999;
   display: none;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.58);
-  backdrop-filter: blur(3px);
+  padding: clamp(30px, 8vh, 80px) 16px 24px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+
+.terminal-launcher-wrap {
+  width: min(780px, 100%);
+  display: flex;
+  flex-direction: column;
+  animation: launcherPop 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 24px;
+}
+
+.terminal-launcher-wrap .launcher-results {
+  max-height: min(440px, 55vh);
+  overflow-y: auto;
+}
+
+@keyframes launcherPop {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .terminal-overlay.open {
@@ -1574,6 +1631,12 @@ kbd {
   color: #d7ffda;
   font-family: inherit;
   font-size: 12px;
+}
+
+.term-input:focus,
+.term-input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .terminal-ad {
@@ -1728,7 +1791,8 @@ kbd {
     min-height: 270px;
   }
   .terminal-overlay {
-    padding: 0;
+    padding: 16px 10px;
+    align-items: flex-start;
   }
   .terminal {
     height: 78vh;
@@ -1885,7 +1949,8 @@ kbd {
     gap: 8px 12px;
   }
   .terminal-overlay {
-    padding: 0;
+    padding: 16px 10px;
+    align-items: flex-start;
   }
   .terminal {
     height: 85vh;
@@ -2097,10 +2162,22 @@ kbd {
 /* High-contrast focus state for keyboard navigation */
 a:focus-visible,
 button:focus-visible,
-input:focus-visible,
+input:focus-visible:not(.launcher-input):not(.term-input),
 summary:focus-visible {
   outline: 2px solid var(--yellow);
   outline-offset: 3px;
+}
+
+.launcher-window input:focus,
+.launcher-window input:focus-visible,
+.terminal-window input:focus,
+.terminal-window input:focus-visible,
+.launcher-input:focus,
+.launcher-input:focus-visible,
+.term-input:focus,
+.term-input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* prefers-reduced-motion: respect user motion preferences */
