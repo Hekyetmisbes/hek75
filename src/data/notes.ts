@@ -75,5 +75,23 @@ export const ENGINEERING_TOPICS: EngineeringTopic[] = [
     relatedProjectSlug: "closemeet-lite",
     relatedProjectName: "CloseMeet Lite",
     tags: ["C++20", "Qt 6 / QML", "AES-256-GCM", "Full-Mesh P2P", "mDNS LAN"]
+  },
+  {
+    id: "procedural-reverse-insertion-generation",
+    title: "Reverse-Insertion Procedural Puzzle Generation & Monotonic Solvers",
+    category: "Unity",
+    description: "Designing backtrack-free procedural arrow maze generators with Xorshift32 and monotonic escape solvers running under strict 2ms frame budgets.",
+    relatedProjectSlug: "ribbon-bloom",
+    relatedProjectName: "Ribbon Bloom",
+    tags: ["Unity", "Procedural Generation", "Algorithms", "Monotonic Solvers", "Mobile"]
+  },
+  {
+    id: "deterministic-harbor-logistics-atomic-saves",
+    title: "Deterministic Queue State Machines & Atomic Mobile Persistence",
+    category: "Architecture",
+    description: "Decoupling complex cargo dispatch state resolution from 3D animations with pure C# models and implementing two-phase commit rollback-safe saves.",
+    relatedProjectSlug: "tiny-tide-harbor",
+    relatedProjectName: "Tiny Tide Harbor",
+    tags: ["Unity", "Architecture", "State Machine", "Data Persistence", "Assembly Definitions"]
   }
 ];
