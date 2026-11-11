@@ -105,6 +105,20 @@ const SITE_INDEX = [
     keywords: ["movidle", "movie", "cinema", "wordle", "unity", "puzzle", "imdb"]
   },
   {
+    title: "Ribbon Bloom",
+    type: "game",
+    url: "/projects/ribbon-bloom/",
+    description: "Tactile mobile arrow escape puzzle with 3D jelly physics and monotonic solver in Unity 6.",
+    keywords: ["ribbon bloom", "jelly arrows", "unity", "puzzle", "mobile", "android", "tactile", "casual", "blender", "jelly"]
+  },
+  {
+    title: "Tiny Tide Harbor",
+    type: "game",
+    url: "/projects/tiny-tide-harbor/",
+    description: "Mobile harbor logistics puzzle and port expansion tycoon with 500 levels in Unity 6.",
+    keywords: ["tiny tide harbor", "harbor", "cargo sort", "unity", "mobile", "puzzle", "tycoon", "ships", "containers", "android"]
+  },
+  {
     title: "Multiplayer / Contact / Comms",
     type: "page",
     url: "/contact/",

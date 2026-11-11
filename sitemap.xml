@@ -97,6 +97,18 @@
     <priority>0.75</priority>
   </url>
   <url>
+    <loc>https://hek75.com/projects/ribbon-bloom/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://hek75.com/projects/tiny-tide-harbor/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://hek75.com/projects/thefinalloop/</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>

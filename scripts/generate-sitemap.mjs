@@ -27,6 +27,8 @@ const routes = [
   { path: '/projects/the-platform/', priority: '0.8', changefreq: 'monthly' },
   { path: '/projects/flag-quiz-game/', priority: '0.75', changefreq: 'monthly' },
   { path: '/projects/movidle-game/', priority: '0.75', changefreq: 'monthly' },
+  { path: '/projects/ribbon-bloom/', priority: '0.85', changefreq: 'monthly' },
+  { path: '/projects/tiny-tide-harbor/', priority: '0.85', changefreq: 'monthly' },
 
   // Presentation & Pitch Decks
   { path: '/projects/thefinalloop/', priority: '0.7', changefreq: 'monthly' },
