@@ -31,6 +31,9 @@
     userInteracted = true;
     if (typeof window !== "undefined") window.__hek75UserInteracted = true;
     ensureAudio();
+    GESTURE_EVENTS.forEach(evt => {
+      document.removeEventListener(evt, unlockOnGesture, { capture: true });
+    });
   }
 
   // Listen to user gestures to safely unlock AudioContext
