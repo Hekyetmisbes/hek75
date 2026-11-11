@@ -387,7 +387,11 @@
       }
     });
 
+    const wasQueued = Boolean(window.HEKTerminal?._queued);
     window.HEKTerminal = { open, close: hide, search: siteSearch };
+    if (wasQueued) {
+      open();
+    }
   }
 
   if (document.readyState === "loading") {

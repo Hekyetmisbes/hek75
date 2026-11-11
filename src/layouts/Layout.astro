@@ -218,8 +218,19 @@ if (customSchema && customSchema.length > 0) {
     </div>
 
     <!-- Client Scripts for Sound, Search and Terminal -->
-    <script is:inline src="/scripts/search-index.js"></script>
-    <script is:inline src="/scripts/sound.js"></script>
-    <script is:inline src="/scripts/terminal.js"></script>
+    <!-- Early bootstrap stub for Terminal to guarantee zero-latency first-click response -->
+    <script is:inline>
+      window.HEKTerminal = window.HEKTerminal || {
+        _queued: false,
+        open: function() { this._queued = true; },
+        close: function() {},
+        search: function() { return []; }
+      };
+    </script>
+
+    <!-- Client Scripts for Sound, Search and Terminal with defer to eliminate render-blocking -->
+    <script is:inline defer src="/scripts/search-index.js"></script>
+    <script is:inline defer src="/scripts/sound.js"></script>
+    <script is:inline defer src="/scripts/terminal.js"></script>
   </body>
 </html>

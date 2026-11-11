@@ -3,6 +3,7 @@
 // HEK75 ARCADE OS — Main Hub & Engineering Nexus.
 
 import Layout from '../layouts/Layout.astro';
+import { GAMES_LIST } from '../data/games';
 ---
 
 <Layout
@@ -77,7 +78,7 @@ import Layout from '../layouts/Layout.astro';
           <h2 id="featured-heading">FEATURED PROJECTS</h2>
         </div>
         <a class="meta" href="/projects/" aria-label="View all game projects in the library" style="text-decoration: underline;">
-          ALL PROJECTS [07] →
+          ALL PROJECTS [{String(GAMES_LIST.length).padStart(2, '0')}] →
         </a>
       </div>
 

@@ -23,13 +23,6 @@
   -ms-user-select: none;
 }
 
-body {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
-
 input,
 textarea {
   user-select: text !important;
@@ -2084,19 +2077,6 @@ kbd {
   margin-top: 36px;
   padding-top: 20px;
   border-top: 1px solid var(--line);
-}
-
-/* Screen Reader Accessible Utility */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
 }
 
 /* Competency Deep-Dive Cards */

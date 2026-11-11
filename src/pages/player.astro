@@ -56,15 +56,18 @@ const profilePageSchema = [
     <!-- ID Card -->
     <aside class="id-card">
       <div class="crt-portrait" aria-label="Harun Emrecan Karabağ — CRT Portrait">
-        <img
-          src="/assets/Emre.png"
-          alt="Harun Emrecan Karabağ — Unity & Unreal Game Developer"
-          class="crt-portrait-img"
-          width="140"
-          height="140"
-          loading="eager"
-          fetchpriority="high"
-        />
+        <picture>
+          <source srcset="/assets/Emre.webp" type="image/webp" />
+          <img
+            src="/assets/Emre.png"
+            alt="Harun Emrecan Karabağ — Unity & Unreal Game Developer"
+            class="crt-portrait-img"
+            width="140"
+            height="140"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </picture>
         <div class="crt-portrait-scan"></div>
       </div>
       <h2>HARUN EMRECAN<br />KARABAĞ</h2>

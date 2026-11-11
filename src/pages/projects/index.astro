@@ -33,7 +33,7 @@ import { ENGINEERING_TOPICS } from '../../data/notes';
 
   <div class="section-head">
     <div>
-      <div class="code">CARTRIDGE DATABASE // GAME LIBRARY // 09 TITLES</div>
+      <div class="code">CARTRIDGE DATABASE // GAME LIBRARY // {String(GAMES_LIST.length).padStart(2, '0')} TITLES</div>
       <h1>Unity &amp; Unreal Engine Game Development Portfolio</h1>
     </div>
     <span class="meta" style="white-space: nowrap; flex-shrink: 0;">2023&nbsp;&mdash;&nbsp;2026</span>
@@ -43,14 +43,17 @@ import { ENGINEERING_TOPICS } from '../../data/notes';
     {GAMES_LIST.map((g, idx) => (
       <article class="game-tile">
         <div class="cover">
-          <img
-            src={g.image}
-            alt={`${g.title} — ${g.engine} game by Harun Emrecan Karabağ`}
-            width="380"
-            height="214"
-            loading={idx === 0 ? "eager" : "lazy"}
-            fetchpriority={idx === 0 ? "high" : "auto"}
-          />
+          <picture>
+            <source srcset={g.image.replace(/\.png$/, '.webp')} type="image/webp" />
+            <img
+              src={g.image}
+              alt={`${g.title} — ${g.engine} game by Harun Emrecan Karabağ`}
+              width="380"
+              height="214"
+              loading={idx === 0 ? "eager" : "lazy"}
+              fetchpriority={idx === 0 ? "high" : "auto"}
+            />
+          </picture>
         </div>
         <div class="tile-body">
           <div class="meta">FILE {g.number} // {g.year} // {g.engine}</div>
